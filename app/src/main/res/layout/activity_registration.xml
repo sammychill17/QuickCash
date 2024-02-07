@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/RegistrationWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="137dp"
+        android:layout_marginEnd="163dp"
+        android:text="Registration!"
+        android:textAlignment="center"
+        android:textSize="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailText"
+        android:layout_width="422dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="345dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="345dp"
+        android:ems="10"
+        android:hint="email@domain.com"
+        android:inputType="text"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegistrationWelcome" />
+
+    <EditText
+        android:id="@+id/nameText"
+        android:layout_width="422dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="239dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="239dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailText" />
+
+    <EditText
+        android:id="@+id/passText"
+        android:layout_width="422dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="239dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="239dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
+    <RadioGroup
+        android:id="@+id/roleGroup"
+        android:layout_width="508dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="146dp"
+        android:layout_marginBottom="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passText">
+
+        <RadioButton
+            android:id="@+id/employeeRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Employee" />
+
+        <RadioButton
+            android:id="@+id/employerRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Employer" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="422dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="189dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="189dp"
+        android:layout_marginBottom="66dp"
+        android:text="Register"
+        android:textSize="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roleGroup" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="206dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="297dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="297dp"
+        android:layout_marginBottom="83dp"
+        android:text="Back"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
