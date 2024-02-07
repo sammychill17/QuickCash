@@ -9,8 +9,17 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
+    DatabaseReference emailRef = database.getReference("Email");
+    DatabaseReference nameRef = database.getReference("Name");
+    DatabaseReference passwordRef = database.getReference("Password");
+    DatabaseReference roleRef = database.getReference("Email");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +67,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         Toast test = Toast.makeText(this, "Email: "+email+" Name: "+name+" Password: "+password+" Role: "+role, Toast.LENGTH_SHORT);
 
         test.show();
-
+        emailRef.setValue(email);
+        nameRef.setValue(name);
+        passwordRef.setValue(password);
+        roleRef.setValue(role);
     }
 
 }
