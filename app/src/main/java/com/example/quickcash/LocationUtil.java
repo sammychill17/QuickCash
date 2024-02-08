@@ -21,7 +21,7 @@ public class LocationUtil {
     /*
    checks if longitude is valid and catches error if
    longitude shouldn't have co-ordinates
-   that stretches beyond 170 and stays between -180 and 180.
+   that stretches beyond 180 and stays between -180 and 180.
     */
     public static boolean isValidLongitude(String longitude) {
         try {

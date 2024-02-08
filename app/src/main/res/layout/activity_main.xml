@@ -17,7 +17,7 @@
             android:layout_width="366dp"
             android:layout_height="96dp"
             android:hint="Latitude"
-            android:inputType="numberDecimal" />
+            android:inputType="numberSigned|numberDecimal" />
 
         <EditText
             android:id="@+id/editTextLongitude"

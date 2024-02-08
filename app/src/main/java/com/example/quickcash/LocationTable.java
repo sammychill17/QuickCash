@@ -6,7 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LocationTable {
     private DatabaseReference databaseReference;
 
-    public void locationTable() {
+    public LocationTable() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Locations");
     }
 
