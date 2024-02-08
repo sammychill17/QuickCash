@@ -56,6 +56,27 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             return "";
         }
     }
+    protected boolean isEmptyEmail(String email) {
+        return email.isEmpty();
+    }
+    protected boolean isEmptyName(String name) {
+        return name.isEmpty();
+    }
+    protected boolean isEmptyPassword(String password) {
+        return password.isEmpty();
+    }
+    protected boolean isEmptyRole(String role) {
+        return role.isEmpty();
+    }
+    protected boolean isValidEmailAddress(String emailAddress) {
+        // Check if email is not null and meets certain criteria
+        if (emailAddress != null && !emailAddress.isEmpty()) {
+            // Check if email matches the pattern
+            return emailAddress.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+        } else {
+            return false; // Return false for null or empty email
+        }
+    }
 
     @Override
     public void onClick(View view){
@@ -64,13 +85,26 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String password = getPassword();
         String role = getRole();
 
-        Toast test = Toast.makeText(this, "Email: "+email+" Name: "+name+" Password: "+password+" Role: "+role, Toast.LENGTH_SHORT);
+        String errorMessage = new String();
 
-        test.show();
-        emailRef.push().setValue(email);
-        nameRef.push().setValue(name);
-        passwordRef.push().setValue(password);
-        roleRef.push().setValue(role);
+        if (isEmptyEmail(email) || isEmptyName(name) || isEmptyPassword(password) || isEmptyRole(role)){
+            errorMessage="Please enter all fields!".trim();
+        } else if (!isValidEmailAddress(email)) {
+            errorMessage="Invalid email!".trim();
+        } else {
+            emailRef.push().setValue(email);
+            nameRef.push().setValue(name);
+            passwordRef.push().setValue(password);
+            roleRef.push().setValue(role);
+            errorMessage="Registration successful :)".trim();
+
+            // No errors, move to the welcome window and save info to Firebase
+//            move2WelcomeWindow(netID, email, role);
+//            saveInfoToFirebase(netID, email, role);
+        }
+        Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
+        toast.show();
+//        setStatusMessage(errorMessage);
     }
 
 }
