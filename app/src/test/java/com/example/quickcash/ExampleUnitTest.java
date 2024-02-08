@@ -9,9 +9,22 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+
+    public class ExampleUnitTest {
+
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void latitudeIsValid() {
+        assertTrue(LocationUtil.isValidLatitude("34.0522"));
+        assertTrue(LocationUtil.isValidLatitude("-34.0522"));
+        assertFalse(LocationUtil.isValidLatitude("invalid"));
+        assertFalse(LocationUtil.isValidLatitude("95"));
+    }
+
+    @Test
+    public void longitudeIsValid() {
+        assertTrue(LocationUtil.isValidLongitude("-118.2437"));
+        assertTrue(LocationUtil.isValidLongitude("118.2437"));
+        assertFalse(LocationUtil.isValidLongitude("invalid"));
+        assertFalse(LocationUtil.isValidLongitude("-200"));
     }
 }
