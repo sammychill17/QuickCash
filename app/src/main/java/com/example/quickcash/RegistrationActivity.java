@@ -18,7 +18,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     DatabaseReference emailRef = database.getReference("Email");
     DatabaseReference nameRef = database.getReference("Name");
     DatabaseReference passwordRef = database.getReference("Password");
-    DatabaseReference roleRef = database.getReference("Email");
+    DatabaseReference roleRef = database.getReference("Role");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +67,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         Toast test = Toast.makeText(this, "Email: "+email+" Name: "+name+" Password: "+password+" Role: "+role, Toast.LENGTH_SHORT);
 
         test.show();
-        emailRef.setValue(email);
-        nameRef.setValue(name);
-        passwordRef.setValue(password);
-        roleRef.setValue(role);
+        emailRef.push().setValue(email);
+        nameRef.push().setValue(name);
+        passwordRef.push().setValue(password);
+        roleRef.push().setValue(role);
     }
 
 }
