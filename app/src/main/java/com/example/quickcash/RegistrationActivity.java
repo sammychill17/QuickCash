@@ -1,5 +1,6 @@
 package com.example.quickcash;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,16 +10,14 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
-    DatabaseReference emailRef = database.getReference("Email");
-    DatabaseReference nameRef = database.getReference("Name");
-    DatabaseReference passwordRef = database.getReference("Password");
-    DatabaseReference roleRef = database.getReference("Role");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,19 +91,27 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         } else if (!isValidEmailAddress(email)) {
             errorMessage="Invalid email!".trim();
         } else {
-            emailRef.push().setValue(email);
-            nameRef.push().setValue(name);
-            passwordRef.push().setValue(password);
-            roleRef.push().setValue(role);
+            DatabaseReference userRef = database.getReference("Users");
+            User currentUser = new User(email, password, name, role);
+            userRef.push().setValue(currentUser)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "FAILURE: "+e.toString(), Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    });
             errorMessage="Registration successful :)".trim();
-
-            // No errors, move to the welcome window and save info to Firebase
-//            move2WelcomeWindow(netID, email, role);
-//            saveInfoToFirebase(netID, email, role);
         }
         Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
         toast.show();
-//        setStatusMessage(errorMessage);
     }
 
 }
