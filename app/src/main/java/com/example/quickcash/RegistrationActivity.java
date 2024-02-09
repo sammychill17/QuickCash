@@ -84,9 +84,21 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     protected boolean doesEmailExist(DatabaseReference ref, String email){
-        boolean exists = false;
-        //TODO add verification code to ensure duplicate emails cannot be registered.
-        return exists;
+        final boolean[] exists = new boolean[]{false};
+        ref.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    exists[0] = true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                    exists[0] = false;
+            }
+        });
+        return exists[0];
     }
 
     @Override
