@@ -3,9 +3,12 @@ package com.example.quickcash;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
@@ -14,12 +17,18 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+//This section of code was written by chatGPT https://chat.openai.com/share/4d1331e6-eecc-44fe-83c6-fae04bf91cb7
+interface EmailExistCallback {
+    void onCallback(boolean exists);
+}
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -83,23 +92,32 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    protected boolean doesEmailExist(DatabaseReference ref, String email){
-        final boolean[] exists = new boolean[]{false};
-        ref.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
+    //This section of code was written by chatGPT https://chat.openai.com/share/4d1331e6-eecc-44fe-83c6-fae04bf91cb7
+    protected void doesEmailExist(DatabaseReference ref, String email, EmailExistCallback callback){
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    exists[0] = true;
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean exists = false;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Now snapshot represents each user under Users
+                    User user = snapshot.getValue(User.class);
+                    if (user != null && email.equals(user.getEmail())) {
+                        exists = true;
+                        break; // Email found, no need to continue the loop
+                    }
                 }
+                callback.onCallback(exists);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                    exists[0] = false;
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Log error or handle cancellation
+                callback.onCallback(false);
             }
         });
-        return exists[0];
     }
+
+
 
     @Override
     public void onClick(View view){
@@ -108,23 +126,35 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String password = getPassword();
         String role = getRole();
 
-        String errorMessage = new String();
         DatabaseReference userRef = database.getReference("Users");
-
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         if (isEmptyEmail(email) || isEmptyName(name) || isEmptyPassword(password) || isEmptyRole(role)){
-            errorMessage="Please enter all fields!".trim();
+            Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.EMPTY_FIELD_ERROR).trim(), Snackbar.LENGTH_LONG);
+            snackbar.show();
         } else if (!isValidEmailAddress(email)) {
-            errorMessage="Invalid email!".trim();
-        } else if(doesEmailExist(userRef, email)){
-            errorMessage="This email is already registered :/";
+            Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.INVALID_EMAIL_ERROR).trim(), Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
         else {
-            User currentUser = new User(email, password, name, role);
-            userRef.push().setValue(currentUser);
-            errorMessage="Registration successful :)".trim();
+            //This section of code was written by chatGPT https://chat.openai.com/share/4d1331e6-eecc-44fe-83c6-fae04bf91cb7
+            doesEmailExist(userRef, email, new EmailExistCallback() {
+                @Override
+                public void onCallback(boolean exists) {
+                    if(!exists){
+                        User currentUser = new User(email, password, name, role);
+                        userRef.push().setValue(currentUser);
+                        Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim(), Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }
+                    else{
+                        Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim(), Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }
+                }
+            });
+
+
         }
-        Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-        toast.show();
     }
 
 }

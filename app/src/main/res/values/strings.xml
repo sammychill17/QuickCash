@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">quickcash</string>
+    <string name="EMPTY_FIELD_ERROR">Please enter all fields!</string>
+    <string name="INVALID_EMAIL_ERROR">Invalid email!</string>
+    <string name="REGISTRATION_SUCCESS_MESSAGE">Registration successful :)</string>
+    <string name="DUPLICATE_EMAIL_ERROR">Email already associated with account :/</string>
 </resources>
