@@ -1,9 +1,11 @@
 package com.example.quickcash;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
@@ -12,8 +14,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -77,6 +83,12 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    protected boolean doesEmailExist(DatabaseReference ref, String email){
+        boolean exists = false;
+        //TODO add verification code to ensure duplicate emails cannot be registered.
+        return exists;
+    }
+
     @Override
     public void onClick(View view){
         String email = getEmailAddress();
@@ -85,29 +97,18 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String role = getRole();
 
         String errorMessage = new String();
+        DatabaseReference userRef = database.getReference("Users");
 
         if (isEmptyEmail(email) || isEmptyName(name) || isEmptyPassword(password) || isEmptyRole(role)){
             errorMessage="Please enter all fields!".trim();
         } else if (!isValidEmailAddress(email)) {
             errorMessage="Invalid email!".trim();
-        } else {
-            DatabaseReference userRef = database.getReference("Users");
+        } else if(doesEmailExist(userRef, email)){
+            errorMessage="This email is already registered :/";
+        }
+        else {
             User currentUser = new User(email, password, name, role);
-            userRef.push().setValue(currentUser)
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "FAILURE: "+e.toString(), Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                    });
+            userRef.push().setValue(currentUser);
             errorMessage="Registration successful :)".trim();
         }
         Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
