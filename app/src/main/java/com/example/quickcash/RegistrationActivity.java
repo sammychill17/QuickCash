@@ -34,6 +34,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
 
+    CredentialValidator validator = new CredentialValidator();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,27 +71,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             return "";
         }
     }
-    protected boolean isEmptyEmail(String email) {
-        return email.isEmpty();
-    }
-    protected boolean isEmptyName(String name) {
-        return name.isEmpty();
-    }
-    protected boolean isEmptyPassword(String password) {
-        return password.isEmpty();
-    }
-    protected boolean isEmptyRole(String role) {
-        return role.isEmpty();
-    }
-    protected boolean isValidEmailAddress(String emailAddress) {
-        // Check if email is not null and meets certain criteria
-        if (emailAddress != null && !emailAddress.isEmpty()) {
-            // Check if email matches the pattern
-            return emailAddress.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
-        } else {
-            return false; // Return false for null or empty email
-        }
-    }
 
     //This section of code was written by chatGPT https://chat.openai.com/share/4d1331e6-eecc-44fe-83c6-fae04bf91cb7
     protected void doesEmailExist(DatabaseReference ref, String email, EmailExistCallback callback){
@@ -117,21 +97,18 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         });
     }
 
-
-
     @Override
     public void onClick(View view){
         String email = getEmailAddress();
         String name = getName();
         String password = getPassword();
         String role = getRole();
-
         DatabaseReference userRef = database.getReference("Users");
         ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
-        if (isEmptyEmail(email) || isEmptyName(name) || isEmptyPassword(password) || isEmptyRole(role)){
+        if (validator.isAnyFieldEmpty(email, name, password, role)){
             Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.EMPTY_FIELD_ERROR).trim(), Snackbar.LENGTH_LONG);
             snackbar.show();
-        } else if (!isValidEmailAddress(email)) {
+        } else if (!validator.isValidEmailAddress(email)) {
             Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.INVALID_EMAIL_ERROR).trim(), Snackbar.LENGTH_LONG);
             snackbar.show();
         }
@@ -152,8 +129,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     }
                 }
             });
-
-
         }
     }
 
