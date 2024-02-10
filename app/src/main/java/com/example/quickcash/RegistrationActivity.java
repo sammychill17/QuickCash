@@ -31,9 +31,7 @@ interface EmailExistCallback {
 }
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
-
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
-
     CredentialValidator validator = new CredentialValidator();
     @Override
     protected void onCreate(Bundle savedInstanceState) {

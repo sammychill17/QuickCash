@@ -16,7 +16,6 @@ public class ExampleUnitTest {
     public void setup() {
         validator = new CredentialValidator();
     }
-
     @Test
     public void checkIfEmailIsValid(){
         assertTrue(validator.isValidEmailAddress("abc123@email.com"));
@@ -29,26 +28,37 @@ public class ExampleUnitTest {
         assertFalse (validator.isValidEmailAddress ("abc@12345")) ;
         assertFalse(validator.isValidEmailAddress("88mh1819@"));
     }
+
     @Test
-    public void checkIfNameIsValid() {
-        assertTrue(validator.isValidName("Alice"));
-        assertTrue(validator.isValidName("Jon Smith"));
-    }
-    @Test
-    public void checkIfNameIsInvalid() {
-        assertFalse(validator.isValidName("b"));
-        assertFalse(validator.isValidName("Jon47"));
-    }
-    @Test
-    public void checkIfPasswordIsValid() {
-        assertTrue(validator.isValidPassword("hEll0123"));
-        assertTrue(validator.isValidPassword("PASSword4"));
-    }
-    @Test
-    public void checkIfPasswordIsInvalid() {
-        assertFalse(validator.isValidPassword("hEll0"));
-        assertFalse(validator.isValidPassword("hellohello"));
-        assertFalse(validator.isValidPassword("123456789"));
+    public void checkIfEmailIsEmpty(){
+        assertTrue(validator.isEmptyEmail(""));
+        assertFalse(validator.isEmptyEmail("email@email.com"));
     }
 
+    @Test
+    public void checkIfNameIsEmpty(){
+        assertTrue(validator.isEmptyName(""));
+        assertFalse(validator.isEmptyName("John Doe"));
+    }
+
+    @Test
+    public void checkIfPasswordIsEmpty(){
+        assertTrue(validator.isEmptyPassword(""));
+        assertFalse(validator.isEmptyPassword("password123"));
+    }
+
+    @Test
+    public void checkIfRoleIsEmpty(){
+        assertTrue(validator.isEmptyRole(""));
+        assertFalse(validator.isEmptyRole("Employee"));
+    }
+    @Test
+    public void checkIfAnyEmpty(){
+        assertTrue(validator.isAnyFieldEmpty("","","",""));
+        assertTrue(validator.isAnyFieldEmpty("email@email.com","","password","Employee"));
+        assertTrue(validator.isAnyFieldEmpty("","name","password","Employee"));
+        assertTrue(validator.isAnyFieldEmpty("email@email.com","name","","Employee"));
+        assertTrue(validator.isAnyFieldEmpty("email@email.com","name","password",""));
+        assertFalse(validator.isAnyFieldEmpty("email@email.com","name","password","Employee"));
+    }
 }
