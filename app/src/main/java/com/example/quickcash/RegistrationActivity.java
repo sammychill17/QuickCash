@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,14 +32,18 @@ interface EmailExistCallback {
 }
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
-    FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
+//    FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
     CredentialValidator validator = new CredentialValidator();
+
+    FirebaseDatabase database = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        Button registerButton = findViewById(R.id.submitButton);
-        registerButton.setOnClickListener(this);
+//        Button registerButton = findViewById(R.id.submitButton);
+//        registerButton.setOnClickListener(this);
+        setupRegistrationButton();
+        initializeDatabaseAccess();
     }
 
     protected String getEmailAddress(){
@@ -94,6 +99,19 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             }
         });
     }
+    protected void setupRegistrationButton() {
+        Button registerButton = findViewById(R.id.submitButton);
+        registerButton.setOnClickListener(this);
+    }
+
+    protected void initializeDatabaseAccess() {
+        database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
+    }
+
+    protected void setStatusMessage(String message) {
+        TextView statusLabel = findViewById(R.id.statusLabel);
+        statusLabel.setText(message.trim());
+    }
 
     @Override
     public void onClick(View view){
@@ -102,13 +120,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String password = getPassword();
         String role = getRole();
         DatabaseReference userRef = database.getReference("Users");
-        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout);
         if (validator.isAnyFieldEmpty(email, name, password, role)){
-            Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.EMPTY_FIELD_ERROR).trim(), Snackbar.LENGTH_LONG);
-            snackbar.show();
+            setStatusMessage(getResources().getString(R.string.EMPTY_FIELD_ERROR));
         } else if (!validator.isValidEmailAddress(email)) {
-            Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.INVALID_EMAIL_ERROR).trim(), Snackbar.LENGTH_LONG);
-            snackbar.show();
+            setStatusMessage(getResources().getString(R.string.INVALID_EMAIL_ERROR));
         }
         else {
             //This section of code was written by chatGPT https://chat.openai.com/share/4d1331e6-eecc-44fe-83c6-fae04bf91cb7
@@ -118,16 +133,13 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     if(!exists){
                         User currentUser = new User(email, password, name, role);
                         userRef.push().setValue(currentUser);
-                        Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim(), Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                        setStatusMessage(getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim());
                     }
                     else{
-                        Snackbar snackbar = Snackbar.make(constraintLayout, getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim(), Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                        setStatusMessage(getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim());
                     }
                 }
             });
         }
     }
-
 }
