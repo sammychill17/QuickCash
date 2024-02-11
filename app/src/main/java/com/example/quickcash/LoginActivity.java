@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         loginbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 handleLogin();
-                handleSp();
             }
         });
     }
@@ -58,8 +57,16 @@ public class LoginActivity extends AppCompatActivity {
                     String accPassword = String.valueOf(accountSnapshot.child("password").getValue());
                     if (accEmail.equals(LoginActivity.this.getEmail()) && accPassword.equals(LoginActivity.this.getPassword())) {
                         LoginActivity.this.handleSp();
-                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Login Successful!", -1).show();
+                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Login successful!", -1).show();
+                    } else if (LoginActivity.this.getEmail().isEmpty()) {
+                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Email required to login", -1).show();
+                    } else if (LoginActivity.this.getPassword().isEmpty()) {
+                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Password required to login", -1).show();
+                    } else if (accEmail.equals(LoginActivity.this.getEmail()) && !accPassword.equals(LoginActivity.this.getPassword())) {
+                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Incorrect password", -1).show();
                     }
+                } else {
+                    Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Account not found. Please register", -1).show();
                 }
             }
         }
