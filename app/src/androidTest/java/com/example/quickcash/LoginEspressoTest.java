@@ -27,11 +27,11 @@ import org.junit.runner.RunWith;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 
-/**
+
 @RunWith(AndroidJUnit4.class)
 public class EspressoTest {
 
-    public ActivityScenario<MainActivity> scenario;
+    public ActivityScenario<LoginActivity> scenario;
 
     @Before
     public void setup() {
@@ -45,86 +45,84 @@ public class EspressoTest {
 
 
     @Test
-    public void checkIfNetIDIsEmpty() {
-        onView(withId(R.id.netIDBox)).perform(typeText(""));
-        onView(withId(R.id.emailBox)).perform(typeText("abc.123@dal.ca"));
-        onView(withId(R.id.roleSpinner)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Buyer"))).perform(click());
-        onView(withId(R.id.registerButton)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_NET_ID)));
+    public void checkIfEmailIsEmpty() {
+        // credit: Barry Carroll (https://medium.com/@baz8080/testing-snackbar-on-android-8fb634e682e3)
+        View snackbarLayout = snackbar.getView();
+        TextView snackbarText = snackbarLayout.findViewById(R.id.snackbar_text);
+
+        onView(withId(R.id.editTextEmailAddress)).perform(typeText(""));
+        onView(withId(R.id.editTextPassword)).perform(typeText("@password"));
+        onView(withId(R.id.buttonLogin)).perform(click());
+        assertEquals("Email required to login", snackbarTextView.getText().toString());
+
+        Button snackbarAction = snackbarLayout.findViewById(R.id.snackbar_action);
+        assertNotNull(snackbarAction);
+        assertFalse(snackbarAction.hasOnClickListeners());
+        assertEquals(View.GONE, snackbarAction.getVisibility());
     }
 
-
     @Test
-    public void checkIfNetIDIsValid() {
-        onView(withId(R.id.emailBox)).perform(typeText("abc.123@dal.ca"));
-        onView(withId(R.id.netIDBox)).perform(typeText("mh881819"));
-        onView(withId(R.id.roleSpinner)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Buyer"))).perform(click());
-        onView(withId(R.id.registerButton)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_STRING)));
+    public void checkIfAccountDoesNotExist() {
+        View snackbarLayout = snackbar.getView();
+        TextView snackbarText = snackbarLayout.findViewById(R.id.snackbar_text);
+
+        onView(withId(R.id.editTextEmailAddress)).perform(typeText("testshouldfail@dal.ca"));
+        onView(withId(R.id.editTextPassword)).perform(typeText("@password"));
+        onView(withId(R.id.buttonLogin)).perform(click());
+        assertEquals("Account not found. Please register", snackbarTextView.getText().toString());
+
+        Button snackbarAction = snackbarLayout.findViewById(R.id.snackbar_action);
+        assertNotNull(snackbarAction);
+        assertFalse(snackbarAction.hasOnClickListeners());
+        assertEquals(View.GONE, snackbarAction.getVisibility());
     }
 
-
     @Test
-    public void checkIfNetIDIsInvalid() {
-        onView(withId(R.id.emailBox)).perform(typeText("abc.123@dal.ca"));
-        onView(withId(R.id.netIDBox)).perform(typeText("88mh1819"));
-        onView(withId(R.id.roleSpinner)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Buyer"))).perform(click());
-        onView(withId(R.id.registerButton)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.INVALID_NET_ID)));
+    public void checkIfPasswordIsEmpty() {
+        View snackbarLayout = snackbar.getView();
+        TextView snackbarText = snackbarLayout.findViewById(R.id.snackbar_text);
+
+        onView(withId(R.id.editTextEmailAddress)).perform(typeText("testshouldfail2@dal.ca"));
+        onView(withId(R.id.editTextPassword)).perform(typeText(""));
+        onView(withId(R.id.buttonLogin)).perform(click());
+        assertEquals("Password required to login", snackbarTextView.getText().toString());
+
+        Button snackbarAction = snackbarLayout.findViewById(R.id.snackbar_action);
+        assertNotNull(snackbarAction);
+        assertFalse(snackbarAction.hasOnClickListeners());
+        assertEquals(View.GONE, snackbarAction.getVisibility());
     }
 
-
     @Test
-    public void checkIfEmailIsValid() {
-        onView(withId(R.id.netIDBox)).perform(typeText("sh885689"));
-        onView(withId(R.id.emailBox)).perform(typeText("abc.123@dal.ca"));
-        onView(withId(R.id.roleSpinner)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Buyer"))).perform(click());
-        onView(withId(R.id.registerButton)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_STRING)));
+    public void checkIfPasswordIsValid() {
+        View snackbarLayout = snackbar.getView();
+        TextView snackbarText = snackbarLayout.findViewById(R.id.snackbar_text);
+
+        onView(withId(R.id.editTextEmailAddress)).perform(typeText("testshouldpass@dal.ca"));
+        onView(withId(R.id.editTextPassword)).perform(typeText("@password"));
+        onView(withId(R.id.buttonLogin)).perform(click());
+        assertEquals("Login successful!", snackbarTextView.getText().toString());
+
+        Button snackbarAction = snackbarLayout.findViewById(R.id.snackbar_action);
+        assertNotNull(snackbarAction);
+        assertFalse(snackbarAction.hasOnClickListeners());
+        assertEquals(View.GONE, snackbarAction.getVisibility());
     }
 
-
     @Test
-    public void checkIfEmailIsInvalid() {
-        //buggy Espresso test, write an appropriate test!
-        assertFalse(1 + 2 == 3);
-    }
+    public void checkIfPasswordIsInvalid() {
+        View snackbarLayout = snackbar.getView();
+        TextView snackbarText = snackbarLayout.findViewById(R.id.snackbar_text);
 
+        onView(withId(R.id.editTextEmailAddress)).perform(typeText("testshouldfail2@dal.ca"));
+        onView(withId(R.id.editTextPassword)).perform(typeText("@password"));
+        onView(withId(R.id.buttonLogin)).perform(click());
+        assertEquals("Incorrect password", snackbarTextView.getText().toString());
 
-    @Test
-    public void checkIfEmailIsNotFromDAL() {
-        onView(withId(R.id.netIDBox)).perform(typeText("xy884568"));
-        onView(withId(R.id.emailBox)).perform(typeText("abc123@usask.ca"));
-        onView(withId(R.id.roleSpinner)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Buyer"))).perform(click());
-        onView(withId(R.id.registerButton)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.INVALID_DAL_EMAIL)));
-    }
-
-
-    @Test
-    public void checkIfRoleIsValid() {
-        onView(withId(R.id.netIDBox)).perform(typeText("xy884568"));
-        onView(withId(R.id.emailBox)).perform(typeText("abc123@dal.ca"));
-        onView(withId(R.id.roleSpinner)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Seller"))).perform(click());
-        onView(withId(R.id.registerButton)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_STRING)));
-    }
-
-
-    @Test
-    public void checkIfRoleIsInvalid() {
-        onView(withId(R.id.netIDBox)).perform(typeText("xy884568"));
-        onView(withId(R.id.emailBox)).perform(typeText("abc123@dal.ca"));
-        onView(withId(R.id.roleSpinner)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Select your role"))).perform(click());
-        onView(withId(R.id.registerButton)).perform(click());
-        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.INVALID_ROLE)));
+        Button snackbarAction = snackbarLayout.findViewById(R.id.snackbar_action);
+        assertNotNull(snackbarAction);
+        assertFalse(snackbarAction.hasOnClickListeners());
+        assertEquals(View.GONE, snackbarAction.getVisibility());
     }
 }
  */
