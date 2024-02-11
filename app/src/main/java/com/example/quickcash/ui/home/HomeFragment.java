@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Longitude: ");
         stringBuilder.append(longitude);
-        binding.textViewLat.setText(stringBuilder.toString());
+        binding.textViewLong.setText(stringBuilder.toString());
     }
 
     @Override
