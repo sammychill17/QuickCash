@@ -26,7 +26,23 @@ public class HomeFragment extends Fragment {
 
         final TextView textView = binding.dashboardTextViewWelcome;
         textView.setText("Dashboard");
+        setLat("To be implemented");
+        setLong("To be implemented");
         return root;
+    }
+
+    private void setLat(String lat) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Latitude: ");
+        stringBuilder.append(lat);
+        binding.textViewLat.setText(stringBuilder.toString());
+    }
+
+    private void setLong(String longitude) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Longitude: ");
+        stringBuilder.append(longitude);
+        binding.textViewLat.setText(stringBuilder.toString());
     }
 
     @Override
