@@ -65,13 +65,26 @@ public class UIAutomatorTest {
     }
 
     @Test
-    public void checkIfDashboardPageIsVisible() throws UiObjectNotFoundException {
+    public void checkIfDashboardPageIsVisible() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        device.wait(LAUNCH_TIMEOUT);
+        UiObject anotherLoginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        device.wait(LAUNCH_TIMEOUT);
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+    }
+
+    public void checkIfLongLatIsVisible() throws UiObjectNotFoundException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject anotherLoginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
-        assertTrue(dashboardPage.exists());
+        UiObject longitudeLabel = device.findObject(new UiSelector().textContains("Longitude"));
+        assertTrue(longitudeLabel.exists());
+        UiObject latitudeLabel = device.findObject(new UiSelector().textContains("Latidude"));
+        assertTrue(latitudeLabel.exists());
     }
 
 //    @Test
