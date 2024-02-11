@@ -50,20 +50,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleLogin() {
-        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.firebaseUrl);
-        DatabaseReference drefEmail = db.getReference("Email");
-
-        drefEmail.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String e = snapshot.getValue(String.class);
-                Toast.makeText(LoginActivity.this, e, Toast.LENGTH_SHORT).show();
+        FirebaseDatabase.getInstance(Constants.firebaseUrl).getReference().child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+        public void onDataChange(DataSnapshot snapshot) {
+            for (DataSnapshot accountSnapshot : snapshot.getChildren()) {
+                if (accountSnapshot.hasChild("email") && accountSnapshot.hasChild("password")) {
+                    String accEmail = String.valueOf(accountSnapshot.child("email").getValue());
+                    String accPassword = String.valueOf(accountSnapshot.child("password").getValue());
+                    if (accEmail.equals(LoginActivity.this.getEmail()) && accPassword.equals(LoginActivity.this.getPassword())) {
+                        LoginActivity.this.handleSp();
+                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Login Successful!", -1).show();
+                    }
+                }
             }
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(LoginActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
-            }
+        public void onCancelled(DatabaseError error) {
+
+        }
         });
     }
 
@@ -74,9 +77,5 @@ public class LoginActivity extends AppCompatActivity {
 
         sp.edit().putString("email",getEmail()).commit();
         sp.edit().putString("password",getPassword()).commit();
-
-        Toast.makeText(context, sp.getString("email","ERROR ON EMAIL")
-                +", "+sp.getString("password","ERROR ON PASSWORD"),
-                Toast.LENGTH_SHORT).show();
     }
 }
