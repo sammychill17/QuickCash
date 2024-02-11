@@ -4,6 +4,7 @@ import static android.app.PendingIntent.getActivity;
 
 import com.example.quickcash.Constants;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

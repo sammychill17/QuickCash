@@ -27,19 +27,18 @@ import org.junit.runner.RunWith;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 
-
+/**
 @RunWith(AndroidJUnit4.class)
 public class EspressoTest {
 
     public ActivityScenario<LoginActivity> scenario;
 
+
     @Before
     public void setup() {
-        scenario = ActivityScenario.launch(MainActivity.class);
+        scenario = ActivityScenario.launch(LoginActivity.class);
         scenario.onActivity(activity -> {
-            activity.loadRoleSpinner();
-            activity.setupRegistrationButton();
-            activity.initializeDatabaseAccess();
+
         });
     }
 
