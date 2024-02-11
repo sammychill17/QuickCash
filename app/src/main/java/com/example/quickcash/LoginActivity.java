@@ -33,8 +33,10 @@ public class LoginActivity extends AppCompatActivity {
         Button loginbutton = (Button) findViewById(R.id.buttonLogin);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                handleLogin();
+//                handleLogin();
                 handleSp();
+                Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -50,21 +52,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleLogin() {
-        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.firebaseUrl);
-        DatabaseReference drefEmail = db.getReference("Email");
-
-        drefEmail.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String e = snapshot.getValue(String.class);
-                Toast.makeText(LoginActivity.this, e, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(LoginActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.firebaseUrl);
+//        DatabaseReference drefEmail = db.getReference("Email");
+//
+//        drefEmail.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                String e = snapshot.getValue(String.class);
+//                Toast.makeText(LoginActivity.this, e, Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(LoginActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void handleSp() {
