@@ -11,6 +11,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.hamcrest.Matchers.allOf;
@@ -43,6 +44,7 @@ public class EspressoTest {
         onView(withId(R.id.emailText)).perform(typeText(""));
         onView(withId(R.id.nameText)).perform(typeText("Mary"));
         onView(withId(R.id.passText)).perform(typeText("Qwerty1234"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.employeeRole)).perform(click());
         onView(withId(R.id.submitButton)).perform(click());
         onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_FIELD_ERROR)));
