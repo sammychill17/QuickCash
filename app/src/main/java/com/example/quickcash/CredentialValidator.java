@@ -1,6 +1,10 @@
 package com.example.quickcash;
 
 public class CredentialValidator {
+
+    /*
+    This function uses a simple regular expression to determine if the given string is a valid email address.
+     */
     protected boolean isValidEmailAddress(String emailAddress) {
         // Check if email is not null and meets certain criteria
         if (emailAddress != null && !emailAddress.isEmpty()) {
@@ -22,6 +26,11 @@ public class CredentialValidator {
     protected boolean isEmptyRole(String role) {
         return role.isEmpty();
     }
+
+    /*
+    * This function returns true if any of the given strings are empty.
+    * It is to be used in registration activity to determine if all fields are empty as a group function call.
+     */
     protected boolean isAnyFieldEmpty(String email, String name, String password, String role){
         return isEmptyEmail(email) || isEmptyName(name) || isEmptyPassword(password) || isEmptyRole(role);
     }

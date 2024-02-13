@@ -26,13 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-//This section of code was written by chatGPT https://chat.openai.com/share/4d1331e6-eecc-44fe-83c6-fae04bf91cb7
-interface EmailExistCallback {
-    void onCallback(boolean exists);
-}
-
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
-//    FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
     CredentialValidator validator = new CredentialValidator();
 
     FirebaseDatabase database = null;
@@ -40,8 +34,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-//        Button registerButton = findViewById(R.id.submitButton);
-//        registerButton.setOnClickListener(this);
         setupRegistrationButton();
         initializeDatabaseAccess();
     }
@@ -75,37 +67,44 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    //This section of code was written by chatGPT https://chat.openai.com/share/4d1331e6-eecc-44fe-83c6-fae04bf91cb7
-    protected void doesEmailExist(DatabaseReference ref, String email, EmailExistCallback callback){
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+    //This section of code was written by chatGPT https://chat.openai.com/share/0d2020e5-d854-44e2-8fca-0eb3cb3e6aff
+    /*
+    * This method checks to see if the input email exists already in the database as a User.
+    * It returns nothing but does return a boolean value into it's callback should it find an object.
+    * Otherwise it returns an error should it find an error.
+     */
+    protected void doesEmailExist(String email, EmailExistenceCallback callback){
+        dbScrounger scrounger = new dbScrounger("Users");
+        scrounger.getObjectByEmail(email, new dbScrounger.ObjectCallback() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                boolean exists = false;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Now snapshot represents each user under Users
-                    User user = snapshot.getValue(User.class);
-                    if (user != null && email.equals(user.getEmail())) {
-                        exists = true;
-                        break; // Email found, no need to continue the loop
-                    }
-                }
-                callback.onCallback(exists);
+            public void onObjectReceived(quickCashDbObject object) {
+                // If object is not null, email exists
+                callback.onResult(object != null);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Log error or handle cancellation
-                callback.onCallback(false);
+            public void onError(DatabaseError error) {
+                // Handle error, possibly assuming email does not exist or indicating an error
+                callback.onError(error);
             }
         });
     }
+
+    /*
+    * This interface is simple and will use a boolean value "exists" if it finds a result and return an error otherwise.
+     */
+    interface EmailExistenceCallback {
+        void onResult(boolean exists);
+        void onError(DatabaseError error);
+    }
+
     protected void setupRegistrationButton() {
         Button registerButton = findViewById(R.id.submitButton);
         registerButton.setOnClickListener(this);
     }
 
     protected void initializeDatabaseAccess() {
-        database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
+        database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL));
     }
 
     protected void setStatusMessage(String message) {
@@ -126,20 +125,30 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             setStatusMessage(getResources().getString(R.string.INVALID_EMAIL_ERROR));
         }
         else {
-            //This section of code was written by chatGPT https://chat.openai.com/share/4d1331e6-eecc-44fe-83c6-fae04bf91cb7
-            doesEmailExist(userRef, email, new EmailExistCallback() {
+            //This section of code was written partially by chatGPT https://chat.openai.com/share/0d2020e5-d854-44e2-8fca-0eb3cb3e6aff
+            /*
+            * This calling of doesEmailExist uses the EmailExistanceCallback and the doesEmailExist
+            * method to get a boolean value for if the requested email was found, and then it prints
+            * the appropriate message to the status label.
+             */
+            doesEmailExist(email, new EmailExistenceCallback() {
                 @Override
-                public void onCallback(boolean exists) {
-                    if(!exists){
+                public void onResult(boolean exists) {
+                    if (exists) {
+                        setStatusMessage(getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim());
+                    } else {
                         User currentUser = new User(email, password, name, role);
                         userRef.push().setValue(currentUser);
                         setStatusMessage(getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim());
                     }
-                    else{
-                        setStatusMessage(getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim());
-                    }
+                }
+
+                @Override
+                public void onError(DatabaseError error) {
+                    setStatusMessage(getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + error.toString());
                 }
             });
+
         }
     }
 }
