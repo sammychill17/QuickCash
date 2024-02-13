@@ -39,13 +39,80 @@ public class EspressoTest {
         });
     }
 
-    @Test //correct
+    @Test
     public void checkIfEmailIsEmpty() {
         onView(withId(R.id.emailText)).perform(typeText(""));
         onView(withId(R.id.nameText)).perform(typeText("Mary"));
         onView(withId(R.id.passText)).perform(typeText("Qwerty1234"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.employeeRole)).perform(click());
+        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_FIELD_ERROR)));
+    }
+    @Test
+    public void checkIfEmailIsValid() {
+        onView(withId(R.id.emailText)).perform(typeText("abc@email.ca"));
+        onView(withId(R.id.nameText)).perform(typeText("Mary"));
+        onView(withId(R.id.passText)).perform(typeText("Qwerty1234"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.employeeRole)).perform(click());
+        onView(withId(R.id.submitButton)).perform(click());
+    }
+    @Test
+    public void checkIfEmailIsInvalid() {
+        onView(withId(R.id.emailText)).perform(typeText("abc@mail"));
+        onView(withId(R.id.nameText)).perform(typeText("Mary"));
+        onView(withId(R.id.passText)).perform(typeText("Qwerty1234"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.employeeRole)).perform(click());
+        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.INVALID_EMAIL_ERROR)));
+    }
+//    @Test
+//    public void checkIfEmailExists() {
+//        onView(withId(R.id.emailText)).perform(typeText("johnappleseed@website.ru"));
+//        onView(withId(R.id.nameText)).perform(typeText("Butter"));
+//        onView(withId(R.id.passText)).perform(typeText("apple"));
+//        Espresso.closeSoftKeyboard();
+//        onView(withId(R.id.employeeRole)).perform(click());
+//        onView(withId(R.id.submitButton)).perform(click());
+//        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.DUPLICATE_EMAIL_ERROR)));
+//    }
+    @Test
+    public void checkIfNameIsEmpty() {
+        onView(withId(R.id.emailText)).perform(typeText("abcdef@email.com"));
+        onView(withId(R.id.nameText)).perform(typeText(""));
+        onView(withId(R.id.passText)).perform(typeText("Qwerty1234"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.employeeRole)).perform(click());
+        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_FIELD_ERROR)));
+    }
+    @Test
+    public void checkIfPasswordIsEmpty() {
+        onView(withId(R.id.emailText)).perform(typeText("abcdef@email.com"));
+        onView(withId(R.id.nameText)).perform(typeText("Mary"));
+        onView(withId(R.id.passText)).perform(typeText(""));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.employeeRole)).perform(click());
+        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_FIELD_ERROR)));
+    }
+    @Test
+    public void checkIfRoleIsEmpty() {
+        onView(withId(R.id.emailText)).perform(typeText("abcdef@email.com"));
+        onView(withId(R.id.nameText)).perform(typeText("Mary"));
+        onView(withId(R.id.passText)).perform(typeText("Qwerty1234"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.submitButton)).perform(click());
+        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_FIELD_ERROR)));
+    }
+    @Test
+    public void checkIfAnyIsEmpty() {
+        onView(withId(R.id.emailText)).perform(typeText(""));
+        onView(withId(R.id.nameText)).perform(typeText(""));
+        onView(withId(R.id.passText)).perform(typeText("APPLE"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.submitButton)).perform(click());
         onView(withId(R.id.statusLabel)).check(matches(withText(R.string.EMPTY_FIELD_ERROR)));
     }
