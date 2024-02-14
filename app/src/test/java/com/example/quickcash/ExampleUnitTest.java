@@ -39,5 +39,10 @@ import static org.junit.Assert.*;
     public void longitudeIsInvalid(){
         assertFalse(LocationUtil.isValidLongitude("invalid"));
         assertFalse(LocationUtil.isValidLongitude("-200"));
+        assertFalse("Should have returned false when input is " +
+                "less than minimum allowed value for longitude",
+                LocationUtil.isValidLongitude("-180.1"));
+        assertFalse("Should have returned false when input is " + "greater than" +
+                "maximum allowed value for longitude",LocationUtil.isValidLongitude("180.1"));
     }
 }
