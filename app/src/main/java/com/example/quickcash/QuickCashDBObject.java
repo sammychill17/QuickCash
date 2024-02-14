@@ -12,7 +12,7 @@
 
 package com.example.quickcash;
 
-public class quickCashDbObject {
+public class QuickCashDBObject {
 
     String email = "";
 

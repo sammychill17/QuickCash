@@ -1,6 +1,6 @@
 package com.example.quickcash;
 
-public class User {
+public class User extends QuickCashDBObject{
     private String email;
     private String password;
     private String name;

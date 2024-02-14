@@ -1,30 +1,17 @@
 package com.example.quickcash;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
     CredentialValidator validator = new CredentialValidator();
@@ -74,10 +61,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     * Otherwise it returns an error should it find an error.
      */
     protected void doesEmailExist(String email, EmailExistenceCallback callback){
-        dbScrounger scrounger = new dbScrounger("Users");
-        scrounger.getObjectByEmail(email, new dbScrounger.ObjectCallback() {
+        DatabaseScrounger scrounger = new DatabaseScrounger("Users");
+        scrounger.getObjectByEmail(email, new DatabaseScrounger.ObjectCallback() {
             @Override
-            public void onObjectReceived(quickCashDbObject object) {
+            public void onObjectReceived(QuickCashDBObject object) {
                 // If object is not null, email exists
                 callback.onResult(object != null);
             }

@@ -68,16 +68,6 @@ public class EspressoTest {
         onView(withId(R.id.submitButton)).perform(click());
         onView(withId(R.id.statusLabel)).check(matches(withText(R.string.INVALID_EMAIL_ERROR)));
     }
-//    @Test
-//    public void checkIfEmailExists() {
-//        onView(withId(R.id.emailText)).perform(typeText("johnappleseed@website.ru"));
-//        onView(withId(R.id.nameText)).perform(typeText("Butter"));
-//        onView(withId(R.id.passText)).perform(typeText("apple"));
-//        Espresso.closeSoftKeyboard();
-//        onView(withId(R.id.employeeRole)).perform(click());
-//        onView(withId(R.id.submitButton)).perform(click());
-//        onView(withId(R.id.statusLabel)).check(matches(withText(R.string.DUPLICATE_EMAIL_ERROR)));
-//    }
     @Test
     public void checkIfNameIsEmpty() {
         onView(withId(R.id.emailText)).perform(typeText("abcdef@email.com"));
