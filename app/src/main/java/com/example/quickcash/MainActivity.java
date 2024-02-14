@@ -1,75 +1,62 @@
 package com.example.quickcash;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editTextLatitude, editTextLongitude;
-    private Button buttonSaveLocation;
+    private FusedLocationProviderClient fusedLocationClient;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        editTextLatitude = findViewById(R.id.editTextLatitude);
-        editTextLongitude = findViewById(R.id.editTextLongitude);
-        buttonSaveLocation = findViewById(R.id.buttonSaveLocation);
 
-        /*
-        sets the OnClickListener for the button to save the location
-         */
-        buttonSaveLocation.setOnClickListener(v -> saveLocation());
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            saveUserLocation();
+        }
     }
 
-    private void saveLocation() {
-        /*
-         Get the latitude and longitude values from the EditTexts
-         */
-        String strLatitude = editTextLatitude.getText().toString().trim();
-        String strLongitude = editTextLongitude.getText().toString().trim();
-
-        /*
-         checking if the latitude and longitude fields are not empty
-         */
-        if (LocationUtil.isValidLatitude(strLatitude)
-                && LocationUtil.isValidLongitude(strLongitude) ) {
-            try {
-                /*
-                 parses the latitude and longitude to double values accordingly
-                 */
-                double latitude = Double.parseDouble(strLatitude);
-                double longitude = Double.parseDouble(strLongitude);
-
-                /*
-                 creates a new location object using the parsed latitude and longitude
-                 */
-                location loc = new location(latitude, longitude);
-                /*
-                therefore, saves the location to Firebase using the locationTable class
-                 */
-                LocationTable locTable = new LocationTable();
-                locTable.addLocationToDatabase(loc);
-            } catch (NumberFormatException e) {
-                /*
-                 should notify the user that the entered values are not valid doubles
-                 */
-                Toast.makeText(MainActivity.this,
-                        "Please enter valid numbers for latitude and longitude",
-                        Toast.LENGTH_SHORT).show();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                saveUserLocation();
+            } else {
+                Toast.makeText(this, "Permission rejected", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            /*
-             else, should notify the user that the fields cannot be empty.
-             */
-            Toast.makeText(MainActivity.this,
-                    "Please fill in the co-ordinates",
-                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void saveUserLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, location -> {
+                        if (location != null) {
+                            /*
+                             Using my existing LocationTable class to save the location to Firebase
+                             */
+                            LocationTable locationTable = new LocationTable();
+                            com.example.quickcash.Location loc = new com.example.quickcash.Location(location.getLatitude(), location.getLongitude());
+                            locationTable.addLocationToDatabase(loc);
+                        }
+                    });
         }
     }
 }
