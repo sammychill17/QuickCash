@@ -4,14 +4,12 @@ public class CredentialValidator {
 
     /*
     This function uses a simple regular expression to determine if the given string is a valid email address.
-     */
+    */
     protected boolean isValidEmailAddress(String emailAddress) {
-        // Check if email is not null and meets certain criteria
         if (emailAddress != null && !emailAddress.isEmpty()) {
-            // Check if email matches the pattern
-            return emailAddress.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+            return emailAddress.matches("^.+@.+\\..+$");
         } else {
-            return false; // Return false for null or empty email
+            return false;
         }
     }
     protected boolean isEmptyEmail(String email) {
