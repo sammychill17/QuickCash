@@ -36,6 +36,8 @@ package com.example.quickcash;
 
 import androidx.annotation.NonNull;
 
+import android.os.Bundle;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,19 +47,19 @@ import com.google.firebase.database.ValueEventListener;
 // Assuming quickCashDbObject is an abstract class, make sure it can be deserialized properly from Firebase.
 // This often requires a default constructor and public getters for all properties.
 
-public class dbScrounger {
+public class DatabaseScrounger {
 
     FirebaseDatabase database;
     DatabaseReference reference;
 
-    public dbScrounger(String path) {
+    public DatabaseScrounger(String path) {
         String fireBaseURL = "https://quickcash-6941c-default-rtdb.firebaseio.com/"; //For some reason I was getting null pointer exceptions when I tried to reference strings.xml so I manually added the link here.
         this.database = FirebaseDatabase.getInstance(fireBaseURL);
         this.reference = database.getReference(path);
     }
 
     public interface ObjectCallback {
-        void onObjectReceived(quickCashDbObject object);
+        void onObjectReceived(QuickCashDBObject object);
         void onError(DatabaseError error);
     }
 
@@ -65,11 +67,11 @@ public class dbScrounger {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                quickCashDbObject result = null;
+                QuickCashDBObject result = null;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Assuming you have a way to deserialize snapshot to a quickCashDbObject
                     // This often involves manually parsing the DataSnapshot based on your object structure
-                    quickCashDbObject obj = snapshot.getValue(quickCashDbObject.class); // This might need adjustment
+                    QuickCashDBObject obj = snapshot.getValue(QuickCashDBObject.class); // This might need adjustment
                     if (obj != null && email.equals(obj.getEmail())) {
                         result = obj;
                         break;
