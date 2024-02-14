@@ -1,18 +1,18 @@
 package com.example.quickcash;
 
-public class location {
+public class Location {
     private double latitude;
     private double longitude;
 
-    public location() {
-    }
 
-    public location(double latitude, double longitude) {
+    public Location(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    // Getters and setters
+    /*
+     Getters and setters
+     */
     public double getLatitude() {
         return latitude;
     }
