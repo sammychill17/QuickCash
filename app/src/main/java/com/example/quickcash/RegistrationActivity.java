@@ -1,31 +1,41 @@
 package com.example.quickcash;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
+    CredentialValidator validator = new CredentialValidator();
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
-    DatabaseReference emailRef = database.getReference("Email");
-    DatabaseReference nameRef = database.getReference("Name");
-    DatabaseReference passwordRef = database.getReference("Password");
-    DatabaseReference roleRef = database.getReference("Role");
-
+    FirebaseDatabase database = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        Button registerButton = findViewById(R.id.submitButton);
-        registerButton.setOnClickListener(this);
+        setupRegistrationButton();
+        initializeDatabaseAccess();
     }
 
     protected String getEmailAddress(){
@@ -56,26 +66,50 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             return "";
         }
     }
-    protected boolean isEmptyEmail(String email) {
-        return email.isEmpty();
+
+    //This section of code was written by chatGPT https://chat.openai.com/share/0d2020e5-d854-44e2-8fca-0eb3cb3e6aff
+    /*
+    * This method checks to see if the input email exists already in the database as a User.
+    * It returns nothing but does return a boolean value into it's callback should it find an object.
+    * Otherwise it returns an error should it find an error.
+     */
+    protected void doesEmailExist(String email, EmailExistenceCallback callback){
+        dbScrounger scrounger = new dbScrounger("Users");
+        scrounger.getObjectByEmail(email, new dbScrounger.ObjectCallback() {
+            @Override
+            public void onObjectReceived(quickCashDbObject object) {
+                // If object is not null, email exists
+                callback.onResult(object != null);
+            }
+
+            @Override
+            public void onError(DatabaseError error) {
+                // Handle error, possibly assuming email does not exist or indicating an error
+                callback.onError(error);
+            }
+        });
     }
-    protected boolean isEmptyName(String name) {
-        return name.isEmpty();
+
+    /*
+    * This interface is simple and will use a boolean value "exists" if it finds a result and return an error otherwise.
+     */
+    interface EmailExistenceCallback {
+        void onResult(boolean exists);
+        void onError(DatabaseError error);
     }
-    protected boolean isEmptyPassword(String password) {
-        return password.isEmpty();
+
+    protected void setupRegistrationButton() {
+        Button registerButton = findViewById(R.id.submitButton);
+        registerButton.setOnClickListener(this);
     }
-    protected boolean isEmptyRole(String role) {
-        return role.isEmpty();
+
+    protected void initializeDatabaseAccess() {
+        database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL));
     }
-    protected boolean isValidEmailAddress(String emailAddress) {
-        // Check if email is not null and meets certain criteria
-        if (emailAddress != null && !emailAddress.isEmpty()) {
-            // Check if email matches the pattern
-            return emailAddress.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
-        } else {
-            return false; // Return false for null or empty email
-        }
+
+    protected void setStatusMessage(String message) {
+        TextView statusLabel = findViewById(R.id.statusLabel);
+        statusLabel.setText(message.trim());
     }
 
     @Override
@@ -84,27 +118,37 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String name = getName();
         String password = getPassword();
         String role = getRole();
-
-        String errorMessage = new String();
-
-        if (isEmptyEmail(email) || isEmptyName(name) || isEmptyPassword(password) || isEmptyRole(role)){
-            errorMessage="Please enter all fields!".trim();
-        } else if (!isValidEmailAddress(email)) {
-            errorMessage="Invalid email!".trim();
-        } else {
-            emailRef.push().setValue(email);
-            nameRef.push().setValue(name);
-            passwordRef.push().setValue(password);
-            roleRef.push().setValue(role);
-            errorMessage="Registration successful :)".trim();
-
-            // No errors, move to the welcome window and save info to Firebase
-//            move2WelcomeWindow(netID, email, role);
-//            saveInfoToFirebase(netID, email, role);
+        DatabaseReference userRef = database.getReference("Users");
+        if (validator.isAnyFieldEmpty(email, name, password, role)){
+            setStatusMessage(getResources().getString(R.string.EMPTY_FIELD_ERROR));
+        } else if (!validator.isValidEmailAddress(email)) {
+            setStatusMessage(getResources().getString(R.string.INVALID_EMAIL_ERROR));
         }
-        Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-        toast.show();
-//        setStatusMessage(errorMessage);
-    }
+        else {
+            //This section of code was written partially by chatGPT https://chat.openai.com/share/0d2020e5-d854-44e2-8fca-0eb3cb3e6aff
+            /*
+            * This calling of doesEmailExist uses the EmailExistanceCallback and the doesEmailExist
+            * method to get a boolean value for if the requested email was found, and then it prints
+            * the appropriate message to the status label.
+             */
+            doesEmailExist(email, new EmailExistenceCallback() {
+                @Override
+                public void onResult(boolean exists) {
+                    if (exists) {
+                        setStatusMessage(getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim());
+                    } else {
+                        User currentUser = new User(email, password, name, role);
+                        userRef.push().setValue(currentUser);
+                        setStatusMessage(getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim());
+                    }
+                }
 
+                @Override
+                public void onError(DatabaseError error) {
+                    setStatusMessage(getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + error.toString());
+                }
+            });
+
+        }
+    }
 }
