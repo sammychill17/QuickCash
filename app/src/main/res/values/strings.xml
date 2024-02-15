@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">quickcash</string>
+    <string name="EMPTY_FIELD_ERROR">Please enter all fields!</string>
+    <string name="INVALID_EMAIL_ERROR">Invalid email!</string>
+    <string name="REGISTRATION_SUCCESS_MESSAGE">Registration successful :)</string>
+    <string name="DUPLICATE_EMAIL_ERROR">Email already associated with account :/</string>
+    <string name="FIREBASE_DATABASE_URL">https://quickcash-6941c-default-rtdb.firebaseio.com/</string>
+    <string name="DATABASE_REGISTRATION_ERROR">A Database Error has occurred: </string>
 </resources>
