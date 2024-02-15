@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Button;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -57,21 +58,33 @@ public class UIAutomatorTest {
     }
 
     @Test
-    public void checkIfLoginPageIsVisible() throws UiObjectNotFoundException {
+    public void checkIfLoginPageIsVisible() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+//        device.wait(LAUNCH_TIMEOUT);
         UiObject anotherLoginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         assertTrue(anotherLoginButton.exists());
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
     }
 
     @Test
     public void checkIfDashboardPageIsVisible() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        device.wait(LAUNCH_TIMEOUT);
-        UiObject anotherLoginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+//        device.wait(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("xy881245");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("abc123@dal.ca");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        device.wait(LAUNCH_TIMEOUT);
+//        device.wait(LAUNCH_TIMEOUT);
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
     }
