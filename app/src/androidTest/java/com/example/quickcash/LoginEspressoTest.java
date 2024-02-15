@@ -16,7 +16,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertFalse;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +26,7 @@ import org.junit.runner.RunWith;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 
-/**
+
 @RunWith(AndroidJUnit4.class)
 public class EspressoTest {
 
@@ -124,4 +123,4 @@ public class EspressoTest {
         assertEquals(View.GONE, snackbarAction.getVisibility());
     }
 }
- */
+
