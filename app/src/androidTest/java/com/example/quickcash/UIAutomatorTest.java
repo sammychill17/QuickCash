@@ -108,6 +108,44 @@ public class UIAutomatorTest {
         assertTrue(latitudeLabel.exists());
     }
 
+    @Test
+    public void checkIfEmployeeDashboardIsVisible() throws UiObjectNotFoundException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("emailJohnson@website.ru");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("orange");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject employeeLabel = device.findObject(new UiSelector().textContains("Employee"));
+        assertTrue(employeeLabel.exists());
+        UiObject employerLabel = device.findObject(new UiSelector().textContains("Employer"));
+        assertFalse(employeeLabel.exists());
+    }
+
+    @Test
+    public void checkIfEmployerDashboardIsVisible() throws UiObjectNotFoundException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("johnappleseed@website.ru");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("orange");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject employeeLabel = device.findObject(new UiSelector().textContains("Employer"));
+        assertFalse(employeeLabel.exists());
+        UiObject employerLabel = device.findObject(new UiSelector().textContains("Employer"));
+        assertTrue(employeeLabel.exists());
+    }
+
 //    @Test
 //    public void checkIfMoved2WelcomePage() throws UiObjectNotFoundException {
 //        UiObject netIDBox = device.findObject(new UiSelector().textContains("Net ID"));
