@@ -13,7 +13,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
 
-public class MainActivity extends AppCompatActivity implements PermissionsUtil.PermissionResultCallback {
+public class LocationActivity extends AppCompatActivity implements PermissionsUtil.PermissionResultCallback {
 
     /*
     FusedLocationProviderClient is used to receive location updates.
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements PermissionsUtil.P
                 @Override
                 public void onLocationResult(LocationResult locationResult) {
                     if (locationResult == null || locationResult.getLocations().isEmpty()) {
-                        Toast.makeText(MainActivity.this, "No Location Detected", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LocationActivity.this, "No Location Detected", Toast.LENGTH_SHORT).show();
                     } else {
                         for (android.location.Location location : locationResult.getLocations()) {
                             com.example.quickcash.Location newLoc = new com.example.quickcash.Location(location.getLatitude(), location.getLongitude());
@@ -111,4 +111,3 @@ public class MainActivity extends AppCompatActivity implements PermissionsUtil.P
         }
     }
 }
-
