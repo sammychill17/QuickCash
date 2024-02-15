@@ -1,5 +1,7 @@
 package com.example.quickcash;
-
+//it should extend to quickcash database object
+//connect string email (getters and setters) to check whether the same email
+//is getting the same co-ordinates
 public class Location {
     private double latitude;
     private double longitude;

@@ -1,60 +1,114 @@
 package com.example.quickcash;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
 
+public class MainActivity extends AppCompatActivity implements PermissionsUtil.PermissionResultCallback {
 
-public class MainActivity extends AppCompatActivity {
-
+    /*
+    FusedLocationProviderClient is used to receive location updates.
+    */
     private FusedLocationProviderClient fusedLocationClient;
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /*
+        Initializes the FusedLocationProviderClient.
+        */
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+        /*
+        this checks for location permission using the java class PermissionUtils.
+        */
+        if (PermissionsUtil.checkLocationPermission(this)) {
+            /*
+            permission has been granted already,
+            Thus, start location updates.
+            */
+            startLocationUpdates();
         } else {
-            saveUserLocation();
+            /*
+            Permission has not been not granted,
+            Thus, requests for it.
+            */
+            PermissionsUtil.requestLocationPermission(this);
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        /*
+        Handle the result of the permission request result using java class PermissionUtils.
+        */
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                saveUserLocation();
-            } else {
-                Toast.makeText(this, "Permission rejected", Toast.LENGTH_SHORT).show();
-            }
-        }
+        PermissionsUtil.handlePermissionsResult(requestCode, grantResults, this);
     }
 
-    private void saveUserLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            fusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, location -> {
-                        if (location != null) {
+    @Override
+    public void onPermissionGranted() {
+        /*
+        Called when location permission has already been granted.
+        */
+        startLocationUpdates();
+    }
+
+    @Override
+    public void onPermissionDenied() {
+        /*
+        Called when location permission has been denied.
+        */
+        Toast.makeText(this, "Permission rejected", Toast.LENGTH_SHORT).show();
+    }
+
+    private void startLocationUpdates() {
+        if (PermissionsUtil.checkLocationPermission(this)) {
+            LocationRequest locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000).build();
+
+            final com.example.quickcash.Location[] lastLocation = {null}; // Array to hold the last known location
+
+            LocationCallback locationCallback = new LocationCallback() {
+
+                @Override
+                public void onLocationResult(LocationResult locationResult) {
+                    if (locationResult == null || locationResult.getLocations().isEmpty()) {
+                        Toast.makeText(MainActivity.this, "No Location Detected", Toast.LENGTH_SHORT).show();
+                    } else {
+                        for (android.location.Location location : locationResult.getLocations()) {
+                            com.example.quickcash.Location newLoc = new com.example.quickcash.Location(location.getLatitude(), location.getLongitude());
+
                             /*
-                             Using my existing LocationTable class to save the location to Firebase
+                             Checks if the new location is significantly different from the last saved location
+                             Note: checkEquals is not necessary as though I believe,
+                             there remains a possibility that 2 users can have the same location
+                             hence, it stores same co-ordinates for 2 different users.
+                             utilized it here to test out something different.
                              */
-                            LocationTable locationTable = new LocationTable();
-                            com.example.quickcash.Location loc = new com.example.quickcash.Location(location.getLatitude(), location.getLongitude());
-                            locationTable.addLocationToDatabase(loc);
+                            if (lastLocation[0] == null || !lastLocation[0].checkEquals(newLoc)) {
+                                LocationTable locationTable = new LocationTable();
+                                locationTable.addLocationToDatabase(newLoc);
+                                /*
+                                 Updates the last known location
+                                 */
+                                lastLocation[0] = newLoc;
+                            }
                         }
-                    });
+                    }
+                }
+            };
+            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
         }
     }
 }
+
