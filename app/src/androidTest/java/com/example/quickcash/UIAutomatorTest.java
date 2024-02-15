@@ -121,10 +121,10 @@ public class UIAutomatorTest {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject employeeLabel = device.findObject(new UiSelector().textContains("Employee"));
+        UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
         assertTrue(employeeLabel.exists());
-        UiObject employerLabel = device.findObject(new UiSelector().textContains("Employer"));
-        assertFalse(employeeLabel.exists());
+        UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
+        assertFalse(employerLabel.exists());
     }
 
     @Test
@@ -140,10 +140,10 @@ public class UIAutomatorTest {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject employeeLabel = device.findObject(new UiSelector().textContains("Employer"));
+        UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
         assertFalse(employeeLabel.exists());
-        UiObject employerLabel = device.findObject(new UiSelector().textContains("Employer"));
-        assertTrue(employeeLabel.exists());
+        UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
+        assertTrue(employerLabel.exists());
     }
 
 //    @Test
