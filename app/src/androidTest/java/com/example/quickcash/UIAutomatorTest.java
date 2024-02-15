@@ -89,14 +89,22 @@ public class UIAutomatorTest {
         assertTrue(dashboardPage.exists());
     }
 
+    @Test
     public void checkIfLongLatIsVisible() throws UiObjectNotFoundException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject anotherLoginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("8097@dal.ca");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("thing");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject longitudeLabel = device.findObject(new UiSelector().textContains("Longitude"));
         assertTrue(longitudeLabel.exists());
-        UiObject latitudeLabel = device.findObject(new UiSelector().textContains("Latidude"));
+        UiObject latitudeLabel = device.findObject(new UiSelector().textContains("Latitude"));
         assertTrue(latitudeLabel.exists());
     }
 

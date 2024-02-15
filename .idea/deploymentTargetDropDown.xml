@@ -3,20 +3,7 @@
   <component name="deploymentTargetDropDown">
     <value>
       <entry key="UIAutomatorTest">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="adb-R5CR401MQ1W-AIPtAi._adb-tls-connect._tcp." />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-15T03:33:48.596502800Z" />
-        </State>
+        <State />
       </entry>
       <entry key="app">
         <State>
@@ -35,10 +22,39 @@
         </State>
       </entry>
       <entry key="checkIfDashboardPageIsVisible()">
-        <State />
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="100.64.57.50:38445" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-02-15T14:46:24.092875800Z" />
+        </State>
       </entry>
       <entry key="checkIfLoginPageIsVisible()">
         <State />
+      </entry>
+      <entry key="checkIfLongLatIsVisible()">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="100.64.57.50:42771" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-02-15T15:02:21.104534500Z" />
+        </State>
       </entry>
     </value>
   </component>
