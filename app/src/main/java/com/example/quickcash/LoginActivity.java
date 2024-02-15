@@ -34,7 +34,9 @@ public class LoginActivity extends AppCompatActivity {
         Button loginbutton = (Button) findViewById(R.id.buttonLogin);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                handleLogin();
+                LoginHandler loginHandler = new LoginHandler(getEmail(),getPassword(),
+                        getApplicationContext(),v);
+                loginHandler.handleLogin();
             }
         });
     }
@@ -47,43 +49,5 @@ public class LoginActivity extends AppCompatActivity {
     private String getPassword() {
         EditText passwordBox = (EditText) findViewById(R.id.editTextTextPassword);
         return passwordBox.getText().toString();
-    }
-
-    private void handleLogin() {
-        FirebaseDatabase.getInstance(Constants.firebaseUrl).getReference().child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-        public void onDataChange(DataSnapshot snapshot) {
-            for (DataSnapshot accountSnapshot : snapshot.getChildren()) {
-                if (accountSnapshot.hasChild("email") && accountSnapshot.hasChild("password")) {
-                    String accEmail = String.valueOf(accountSnapshot.child("email").getValue());
-                    String accPassword = String.valueOf(accountSnapshot.child("password").getValue());
-                    if (accEmail.equals(LoginActivity.this.getEmail()) && accPassword.equals(LoginActivity.this.getPassword())) {
-                        LoginActivity.this.handleSp();
-                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Login successful!", -1).show();
-                    } else if (LoginActivity.this.getEmail().isEmpty()) {
-                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Email required to login", -1).show();
-                    } else if (LoginActivity.this.getPassword().isEmpty()) {
-                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Password required to login", -1).show();
-                    } else if (accEmail.equals(LoginActivity.this.getEmail()) && !accPassword.equals(LoginActivity.this.getPassword())) {
-                        Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Incorrect password", -1).show();
-                    }
-                } else {
-                    Snackbar.make(LoginActivity.this.findViewById(R.id.buttonLogin), (CharSequence) "Account not found. Please register", -1).show();
-                }
-            }
-        }
-
-        public void onCancelled(DatabaseError error) {
-
-        }
-        });
-    }
-
-    private void handleSp() {
-        Context context = getApplicationContext();
-        SharedPreferences sp = context.getSharedPreferences(
-                Constants.sessionData_spID, Context.MODE_PRIVATE);
-
-        sp.edit().putString("email",getEmail()).commit();
-        sp.edit().putString("password",getPassword()).commit();
     }
 }

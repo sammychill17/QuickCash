@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">quickcash</string>
+    <string name="app_name">QuickCash</string>
+    <string name="success">Login successful!</string>
+    <string name="error_email_empty">Email required to log in</string>
+    <string name="error_email_invalid">Account not found. Please register</string>
+    <string name="error_password_empty">Password required to log in</string>
+    <string name="error_password_incorrect">Incorrect password</string>
+
 </resources>
