@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:background="@drawable/employer_background_gradient"
+    tools:context=".ui.employeeHome.EmployeeHomeFragment">
 
     <TextView
         android:id="@+id/dashboardTextView_Welcome"
@@ -18,6 +19,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/dashboardTextView_RoleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toEndOf="@+id/dashboardTextView_Welcome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardTextView_Welcome" />
+
+    <TextView
         android:id="@+id/textViewLong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +40,7 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dashboardCardView"
-        app:layout_constraintTop_toBottomOf="@+id/dashboardTextView_Welcome" />
+        app:layout_constraintTop_toBottomOf="@+id/dashboardTextView_RoleLabel" />
 
     <TextView
         android:id="@+id/textViewLat"
@@ -66,13 +79,13 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="4dp">
+                android:padding="12dp">
 
                 <ImageView
                     android:id="@+id/header_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:src="@drawable/natsu_eating"
+                    android:src="@drawable/reisa_happy"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

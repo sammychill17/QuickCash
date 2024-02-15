@@ -6,20 +6,7 @@
         <State />
       </entry>
       <entry key="app">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="adb-R5CR401MQ1W-AIPtAi._adb-tls-connect._tcp." />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-15T03:34:49.995566900Z" />
-        </State>
+        <State />
       </entry>
       <entry key="checkIfDashboardPageIsVisible()">
         <State>
@@ -48,12 +35,12 @@
               <deviceKey>
                 <Key>
                   <type value="SERIAL_NUMBER" />
-                  <value value="100.64.57.50:42771" />
+                  <value value="134.190.134.156:35743" />
                 </Key>
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-15T15:02:21.104534500Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-02-15T15:39:59.133650900Z" />
         </State>
       </entry>
     </value>

@@ -1,4 +1,4 @@
-package com.example.quickcash.ui.home;
+package com.example.quickcash.ui.employeeHome;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,24 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.quickcash.databinding.FragmentHomeBinding;
+import com.example.quickcash.databinding.FragmentEmployeehomeBinding;
 
-public class HomeFragment extends Fragment {
+public class EmployeeHomeFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentEmployeehomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        EmployeeHomeViewModel employeeHomeViewModel =
+                new ViewModelProvider(this).get(EmployeeHomeViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentEmployeehomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.dashboardTextViewWelcome;
         textView.setText("Dashboard");
+        final TextView roleView = binding.dashboardTextViewRoleLabel;
+        roleView.setText("I'm an employee!");
         setLat("To be implemented");
         setLong("To be implemented");
         return root;
