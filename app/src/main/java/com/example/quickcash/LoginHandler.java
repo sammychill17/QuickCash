@@ -37,25 +37,25 @@ public class LoginHandler {
                                 .getValue());
                         if (accEmail.equals(email) && accPassword.equals(password)) {
                             handleSp();
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                            Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_SUCCESS), -1).show();
                         } else if (email.isEmpty()) {
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                            Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_ERROR_EMAIL_EMPTY),
                                     -1).show();
                         } else if (password.isEmpty()) {
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                            Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_ERROR_PASSWORD_EMPTY),
                                     -1).show();
                         } else if (accEmail.equals(email) && !accPassword.equals(password)) {
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                            Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT),
                                     -1).show();
-                        } else {
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
-                                    context.getString(R.string.LOGIN_ERROR_EMAIL_INVALID),
-                                    -1).show();
                         }
+                    } else {
+                        Snackbar.make(view, (CharSequence)
+                                        context.getString(R.string.LOGIN_ERROR_EMAIL_INVALID),
+                                -1).show();
                     }
                 }
             }
