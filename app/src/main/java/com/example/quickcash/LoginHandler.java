@@ -25,23 +25,36 @@ public class LoginHandler {
     }
 
     public void handleLogin() {
-        FirebaseDatabase.getInstance(Constants.firebaseUrl).getReference().child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance(Constants.firebaseUrl).getReference().child("Users").
+                addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot accountSnapshot : snapshot.getChildren()) {
-                    if (accountSnapshot.hasChild("email") && accountSnapshot.hasChild("password")) {
-                        String accEmail = String.valueOf(accountSnapshot.child("email").getValue());
-                        String accPassword = String.valueOf(accountSnapshot.child("password").getValue());
+                    if (accountSnapshot.hasChild("email") && accountSnapshot.hasChild(
+                            "password")) {
+                        String accEmail = String.valueOf(accountSnapshot.child("email")
+                                .getValue());
+                        String accPassword = String.valueOf(accountSnapshot.child("password")
+                                .getValue());
                         if (accEmail.equals(email) && accPassword.equals(password)) {
                             handleSp();
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence) context.getString(R.string.success), -1).show();
+                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                                    context.getString(R.string.LOGIN_SUCCESS), -1).show();
                         } else if (email.isEmpty()) {
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence) context.getString(R.string.error_email_empty), -1).show();
+                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                                    context.getString(R.string.LOGIN_ERROR_EMAIL_EMPTY),
+                                    -1).show();
                         } else if (password.isEmpty()) {
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence) context.getString(R.string.error_password_empty), -1).show();
+                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                                    context.getString(R.string.LOGIN_ERROR_PASSWORD_EMPTY),
+                                    -1).show();
                         } else if (accEmail.equals(email) && !accPassword.equals(password)) {
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence) context.getString(R.string.error_password_incorrect), -1).show();
+                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                                    context.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT),
+                                    -1).show();
                         } else {
-                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence) context.getString(R.string.error_email_invalid), -1).show();
+                            Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
+                                    context.getString(R.string.LOGIN_ERROR_EMAIL_EMPTY),
+                                    -1).show();
                         }
                     }
                 }
