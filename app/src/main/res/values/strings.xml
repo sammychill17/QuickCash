@@ -4,4 +4,16 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Me</string>
     <string name="title_notifications">Settings</string>
+    <string name="app_name">QuickCash</string>
+    <string name="LOGIN_SUCCESS">Login successful!</string>
+    <string name="LOGIN_ERROR_EMAIL_EMPTY">Email required to log in</string>
+    <string name="LOGIN_ERROR_EMAIL_INVALID">Account not found. Please register</string>
+    <string name="LOGIN_ERROR_PASSWORD_EMPTY">Password required to log in</string>
+    <string name="LOGIN_ERROR_PASSWORD_INCORRECT">Incorrect password</string>
+    <string name="EMPTY_FIELD_ERROR">Please enter all fields!</string>
+    <string name="INVALID_EMAIL_ERROR">Invalid email!</string>
+    <string name="REGISTRATION_SUCCESS_MESSAGE">Registration successful :)</string>
+    <string name="DUPLICATE_EMAIL_ERROR">Email already associated with account :/</string>
+    <string name="FIREBASE_DATABASE_URL">https://quickcash-6941c-default-rtdb.firebaseio.com/</string>
+    <string name="DATABASE_REGISTRATION_ERROR">A Database Error has occurred: </string>
 </resources>

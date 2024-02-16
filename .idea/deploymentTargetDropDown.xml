@@ -8,40 +8,23 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="EspressoTest">
+        <State />
+      </entry>
+      <entry key="RegistrationActivity">
+        <State />
+      </entry>
+      <entry key="RegistrationActivity (1)">
+        <State />
+      </entry>
       <entry key="checkIfDashboardPageIsVisible()">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="100.64.57.50:38445" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-15T14:46:24.092875800Z" />
-        </State>
+        <State />
       </entry>
       <entry key="checkIfLoginPageIsVisible()">
         <State />
       </entry>
       <entry key="checkIfLongLatIsVisible()">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="134.190.134.156:35743" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-15T15:39:59.133650900Z" />
-        </State>
+        <State />
       </entry>
     </value>
   </component>
