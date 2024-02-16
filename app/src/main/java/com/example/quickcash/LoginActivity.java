@@ -19,6 +19,9 @@ public class LoginActivity extends AppCompatActivity {
         Button loginbutton = (Button) findViewById(R.id.buttonGotoLogin);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // handleSp();
+                // Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                // startActivity(intent);
                 String email = getEmail();
                 String password = getPassword();
 
@@ -37,5 +40,36 @@ public class LoginActivity extends AppCompatActivity {
     private String getPassword() {
         EditText passwordBox = (EditText) findViewById(R.id.editTextTextPassword);
         return passwordBox.getText().toString();
+    }
+
+    private void handleLogin() {
+//        FirebaseDatabase db = FirebaseDatabase.getInstance(Constants.firebaseUrl);
+//        DatabaseReference drefEmail = db.getReference("Email");
+//
+//        drefEmail.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                String e = snapshot.getValue(String.class);
+//                Toast.makeText(LoginActivity.this, e, Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(LoginActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+    }
+
+    private void handleSp() {
+        Context context = getApplicationContext();
+        SharedPreferences sp = context.getSharedPreferences(
+                Constants.sessionData_spID, Context.MODE_PRIVATE);
+
+        sp.edit().putString("email",getEmail()).commit();
+        sp.edit().putString("password",getPassword()).commit();
+
+        Toast.makeText(context, sp.getString("email","ERROR ON EMAIL")
+                +", "+sp.getString("password","ERROR ON PASSWORD"),
+                Toast.LENGTH_SHORT).show();
     }
 }

@@ -2,6 +2,12 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="UIAutomatorTest">
+        <State />
+      </entry>
+      <entry key="app">
+        <State />
+      </entry>
       <entry key="EspressoTest">
         <State />
       </entry>
@@ -9,6 +15,15 @@
         <State />
       </entry>
       <entry key="RegistrationActivity (1)">
+        <State />
+      </entry>
+      <entry key="checkIfDashboardPageIsVisible()">
+        <State />
+      </entry>
+      <entry key="checkIfLoginPageIsVisible()">
+        <State />
+      </entry>
+      <entry key="checkIfLongLatIsVisible()">
         <State />
       </entry>
     </value>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_employer"
+    app:startDestination="@id/employerHomeFragment">
+
+    <fragment
+        android:id="@+id/employerHomeFragment"
+        android:name="com.example.quickcash.ui.employerHome.EmployerHomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_employerhome" />
+    <fragment
+        android:id="@+id/employeeDashboardFragment"
+        android:name="com.example.quickcash.ui.dashboard.EmployeeDashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.example.quickcash.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>

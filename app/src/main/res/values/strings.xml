@@ -1,4 +1,9 @@
 <resources>
+    <string name="app_name">quickcash</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Me</string>
+    <string name="title_notifications">Settings</string>
     <string name="app_name">QuickCash</string>
     <string name="LOGIN_SUCCESS">Login successful!</string>
     <string name="LOGIN_ERROR_EMAIL_EMPTY">Email required to log in</string>
