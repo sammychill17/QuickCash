@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.content.Intent;
 
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -100,24 +101,17 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void onClick(View view){
+    public void onClick(View view) {
         String email = getEmailAddress();
         String name = getName();
         String password = getPassword();
         String role = getRole();
         DatabaseReference userRef = database.getReference("Users");
-        if (validator.isAnyFieldEmpty(email, name, password, role)){
+        if (validator.isAnyFieldEmpty(email, name, password, role)) {
             setStatusMessage(getResources().getString(R.string.EMPTY_FIELD_ERROR));
         } else if (!validator.isValidEmailAddress(email)) {
             setStatusMessage(getResources().getString(R.string.INVALID_EMAIL_ERROR));
-        }
-        else {
-            //This section of code was written partially by chatGPT https://chat.openai.com/share/0d2020e5-d854-44e2-8fca-0eb3cb3e6aff
-            /*
-            * This calling of doesEmailExist uses the EmailExistanceCallback and the doesEmailExist
-            * method to get a boolean value for if the requested email was found, and then it prints
-            * the appropriate message to the status label.
-             */
+        } else {
             doesEmailExist(email, new EmailExistenceCallback() {
                 @Override
                 public void onResult(boolean exists) {
@@ -125,8 +119,30 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         setStatusMessage(getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim());
                     } else {
                         User currentUser = new User(email, password, name, role);
-                        userRef.push().setValue(currentUser);
-                        setStatusMessage(getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim());
+                        /*
+                        Uses push() to generate a unique key for the user and to save the user data
+                         */
+                        userRef.push().setValue(currentUser, (error, ref) -> {
+                            if (error == null) {
+                                /*
+                                 indicates that data has been saved successfully.
+                                 */
+                                setStatusMessage(getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim());
+                                /*
+                                Transitioning to LocationActivity,
+                                starts up the LocationActivity and passes the email
+                                for database purposes.
+                                 */
+                                Intent intent = new Intent(RegistrationActivity.this, LocationActivity.class);
+                                /*
+                                passes the email to LocationActivity in the code line below.
+                                 */
+                                intent.putExtra(String.valueOf(R.string.user_email), email);
+                                startActivity(intent);
+                            } else {
+                                setStatusMessage(getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + error.toString());
+                            }
+                        });
                     }
                 }
 
@@ -135,7 +151,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     setStatusMessage(getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + error.toString());
                 }
             });
-
         }
     }
 }
+
