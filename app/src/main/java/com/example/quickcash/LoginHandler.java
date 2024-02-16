@@ -16,7 +16,7 @@ public class LoginHandler {
 
     private Context context;
     private View view;
-    
+
     public LoginHandler(String email, String password, Context context, View view) {
         this.email = email;
         this.password = password;
@@ -53,7 +53,7 @@ public class LoginHandler {
                                     -1).show();
                         } else {
                             Snackbar.make(view.findViewById(R.id.buttonLogin), (CharSequence)
-                                    context.getString(R.string.LOGIN_ERROR_EMAIL_EMPTY),
+                                    context.getString(R.string.LOGIN_ERROR_EMAIL_INVALID),
                                     -1).show();
                         }
                     }
