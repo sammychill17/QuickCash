@@ -1,3 +1,4 @@
+/*Unused File, MUST DELETE
 package com.example.quickcash;
 //it should extend to quickcash database object
 //connect string email (getters and setters) to check whether the same email
@@ -12,9 +13,9 @@ public class Location {
         this.longitude = longitude;
     }
 
-    /*
+
      Getters and setters
-     */
+
     public double getLatitude() {
         return latitude;
     }
@@ -33,13 +34,13 @@ public class Location {
     public boolean checkEquals(Object obj) {
         /*
          Check for reference equality
-         */
+
         if (this == obj){
             return true;
         }
         /*
          Check for null and object type
-         */
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
@@ -50,3 +51,4 @@ public class Location {
     }
 
 }
+*/
