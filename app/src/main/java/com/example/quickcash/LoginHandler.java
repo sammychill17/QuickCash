@@ -17,11 +17,14 @@ public class LoginHandler {
     private Context context;
     private View view;
 
-    public LoginHandler(String email, String password, Context context, View view) {
+    private LoginHandlerAdapter loginHandlerAdapter;
+
+    public LoginHandler(String email, String password, Context context, View view, LoginHandlerAdapter loginHandlerAdapter) {
         this.email = email;
         this.password = password;
         this.context = context;
         this.view = view;
+        this.loginHandlerAdapter = loginHandlerAdapter;
     }
 
     public void handleLogin() {
@@ -39,6 +42,7 @@ public class LoginHandler {
                             handleSp();
                             Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_SUCCESS), -1).show();
+                            loginHandlerAdapter.onLoginSuccess();
                         } else if (email.isEmpty()) {
                             Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_ERROR_EMAIL_EMPTY),
@@ -61,7 +65,7 @@ public class LoginHandler {
             }
 
             public void onCancelled(DatabaseError error) {
-
+                loginHandlerAdapter.onLoginFailure(error.getCode() + " - " + error.getMessage());
             }
         });
     }
@@ -72,5 +76,9 @@ public class LoginHandler {
 
         sp.edit().putString("email",email).commit();
         sp.edit().putString("password",password).commit();
+    }
+
+    private void doLogin() {
+
     }
 }

@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/buttonGotoRegister"
         android:layout_width="125dp"
         android:layout_height="50dp"
         android:layout_marginStart="143dp"
