@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">quickcash</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Me</string>
