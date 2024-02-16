@@ -11,6 +11,7 @@ import static org.hamcrest.CoreMatchers.is;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.hamcrest.Matchers.allOf;
@@ -49,6 +50,7 @@ public class LoginEspressoTest {
         // credit: Barry Carroll (https://medium.com/@baz8080/testing-snackbar-on-android-8fb634e682e3)
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText(""));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withText(res.getString(R.string.LOGIN_ERROR_EMAIL_EMPTY))).check(matches(isDisplayed()));
     }
@@ -57,6 +59,7 @@ public class LoginEspressoTest {
     public void checkIfAccountDoesNotExist() {
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("testshouldfail@dal.ca"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withText(res.getString(R.string.LOGIN_ERROR_EMAIL_INVALID))).check(matches(isDisplayed()));
     }
@@ -65,6 +68,7 @@ public class LoginEspressoTest {
     public void checkIfPasswordIsEmpty() {
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("testshouldfail2@dal.ca"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText(""));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withText(res.getString(R.string.LOGIN_ERROR_PASSWORD_EMPTY))).check(matches(isDisplayed()));
     }
@@ -73,6 +77,7 @@ public class LoginEspressoTest {
     public void checkIfPasswordIsValid() {
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("testshouldpass@dal.ca"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withText(res.getString(R.string.LOGIN_SUCCESS))).check(matches(isDisplayed()));
     }
@@ -81,6 +86,7 @@ public class LoginEspressoTest {
     public void checkIfPasswordIsInvalid() {
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("testshouldfail2@dal.ca"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withText(res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT))).check(matches(isDisplayed()));
     }
