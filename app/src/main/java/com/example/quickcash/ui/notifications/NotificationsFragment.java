@@ -1,16 +1,20 @@
 package com.example.quickcash.ui.notifications;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.quickcash.MainActivity;
 import com.example.quickcash.databinding.FragmentNotificationsBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class NotificationsFragment extends Fragment {
 
@@ -26,6 +30,14 @@ public class NotificationsFragment extends Fragment {
 
         final TextView textView = binding.textNotifications;
         textView.setText("Settings fragment");
+        final Button logOutButton = binding.settingsLogoutButton;
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Logging out!", Snackbar.LENGTH_SHORT).show();
+                handleLogout();
+            }
+        });
 //        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
@@ -34,5 +46,11 @@ public class NotificationsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void handleLogout() {
+        Intent intent = new Intent(requireContext().getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
