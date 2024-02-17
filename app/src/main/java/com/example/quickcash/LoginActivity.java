@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -46,6 +47,14 @@ public class LoginActivity extends AppCompatActivity {
                         ,v, adapter);
                 loginHandler.handleLogin();
             }
+        });
+
+        TextView makeAnAccount = findViewById(R.id.loginTextView_makeAnAccount);
+        makeAnAccount.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+            startActivity(intent);
+            finish();
         });
     }
 
