@@ -33,6 +33,7 @@ public class LoginHandler {
         FirebaseDatabase.getInstance(Constants.firebaseUrl).getReference().child("Users").
                 addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(DataSnapshot snapshot) {
+                boolean accountFound = false;
                 for (DataSnapshot accountSnapshot : snapshot.getChildren()) {
                     if (accountSnapshot.hasChild("email") && accountSnapshot.hasChild(
                             "password")) {
@@ -49,24 +50,25 @@ public class LoginHandler {
                             Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_SUCCESS), -1).show();
                             loginHandlerAdapter.onLoginSuccess();
+                            accountFound = true;
+                            break;
                         } else if (user.getEmail().isEmpty()) {
                             Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_ERROR_EMAIL_EMPTY),
                                     -1).show();
+                            accountFound = true;
+                            break;
                         } else if (user.getPassword().isEmpty()) {
                             Snackbar.make(view, (CharSequence)
                                     context.getString(R.string.LOGIN_ERROR_PASSWORD_EMPTY),
                                     -1).show();
-                        } else if (accEmail.equals(user.getEmail()) && !accPassword.equals(user.getPassword())) {
-                            Snackbar.make(view, (CharSequence)
-                                    context.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT),
-                                    -1).show();
+                            accountFound = true;
+                            break;
                         }
-                    } else {
-                        Snackbar.make(view, (CharSequence)
-                                        context.getString(R.string.LOGIN_ERROR_EMAIL_INVALID),
-                                -1).show();
                     }
+                }
+                if (!accountFound) {
+                    Snackbar.make(view, (CharSequence) context.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT), -1).show();
                 }
             }
 

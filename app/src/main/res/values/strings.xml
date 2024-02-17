@@ -8,7 +8,7 @@
     <string name="LOGIN_ERROR_EMAIL_EMPTY">Email required to log in</string>
     <string name="LOGIN_ERROR_EMAIL_INVALID">Account not found. Please register</string>
     <string name="LOGIN_ERROR_PASSWORD_EMPTY">Password required to log in</string>
-    <string name="LOGIN_ERROR_PASSWORD_INCORRECT">Incorrect password</string>
+    <string name="LOGIN_ERROR_PASSWORD_INCORRECT">Incorrect email or password</string>
     <string name="EMPTY_FIELD_ERROR">Please enter all fields!</string>
     <string name="INVALID_EMAIL_ERROR">Invalid email!</string>
     <string name="REGISTRATION_SUCCESS_MESSAGE">Registration successful :)</string>

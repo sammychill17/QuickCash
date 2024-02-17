@@ -48,6 +48,7 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
         NavigationUI.setupWithNavController(binding.navView, navController);
+        Snackbar.make(navView, (CharSequence) getApplicationContext().getString(R.string.LOGIN_SUCCESS), -1).show();
 
         Intent locationIntent = new Intent(getApplicationContext(), LocationActivity.class);
         locationIntent.putExtra(String.valueOf(R.string.user_email), sp.getString("email", "error!"));
