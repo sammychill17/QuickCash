@@ -1,6 +1,7 @@
 package com.example.quickcash;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -36,6 +37,11 @@ public class DashboardActivity extends AppCompatActivity {
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         
         SharedPreferences sp = getApplicationContext().getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+
+        Intent locationIntent = new Intent(getApplicationContext(), LocationActivity.class);
+        locationIntent.putExtra(String.valueOf(R.string.user_email), sp.getString("email", "error!"));
+        startActivity(locationIntent);
+
         String currentRole = sp.getString("role", "error!");
         if (currentRole.equals("Employee")) {
             navController.setGraph(R.navigation.mobile_navigation_employee);

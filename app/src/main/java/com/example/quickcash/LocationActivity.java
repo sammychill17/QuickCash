@@ -69,8 +69,9 @@ public class LocationActivity extends AppCompatActivity {
             startLocationUpdates();
         }
 
-        Intent main = new Intent(LocationActivity.this, MainActivity.class);
-        startActivity(main);
+//        Intent main = new Intent(LocationActivity.this, MainActivity.class);
+//        startActivity(main);
+        finish();
     }
 
     /*
