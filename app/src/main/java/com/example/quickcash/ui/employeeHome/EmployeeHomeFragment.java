@@ -31,15 +31,20 @@ public class EmployeeHomeFragment extends Fragment {
 
         binding = FragmentEmployeehomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-//        SharedPreferences sp = requireContext().getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+        SharedPreferences sp = requireContext().getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+
+        final String userEmail = sp.getString("email", "Error - cannot get email");
+        final String userPass = sp.getString("password", "Error - cannot get password");
+        final String userName = sp.getString("username", "Error - cannot get username");
 
         final TextView textView = binding.dashboardTextViewWelcome;
         textView.setText("Dashboard");
         final TextView roleView = binding.dashboardTextViewRoleLabel;
-        roleView.setText("I'm an employee!");
+        roleView.setText(userName + " (" + userEmail + ") is an employee!");
 
         LocationTable locationTable = new LocationTable();
         locationTable.retrieveLocationFromDatabase(location -> {
+            locationTable.updateLocationInDatabase(location);
             setLat(String.valueOf(location.getLatitude()));
             setLong(String.valueOf(location.getLongitude()));
         });

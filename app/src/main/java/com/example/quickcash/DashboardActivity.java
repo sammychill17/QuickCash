@@ -38,10 +38,6 @@ public class DashboardActivity extends AppCompatActivity {
         
         SharedPreferences sp = getApplicationContext().getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
 
-        Intent locationIntent = new Intent(getApplicationContext(), LocationActivity.class);
-        locationIntent.putExtra(String.valueOf(R.string.user_email), sp.getString("email", "error!"));
-        startActivity(locationIntent);
-
         String currentRole = sp.getString("role", "error!");
         if (currentRole.equals("Employee")) {
             navController.setGraph(R.navigation.mobile_navigation_employee);
@@ -52,6 +48,10 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        Intent locationIntent = new Intent(getApplicationContext(), LocationActivity.class);
+        locationIntent.putExtra(String.valueOf(R.string.user_email), sp.getString("email", "error!"));
+        startActivity(locationIntent);
     }
 
 }
