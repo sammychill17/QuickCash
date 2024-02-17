@@ -15,4 +15,7 @@
     <string name="DUPLICATE_EMAIL_ERROR">Email already associated with account :/</string>
     <string name="FIREBASE_DATABASE_URL">https://quickcash-6941c-default-rtdb.firebaseio.com/</string>
     <string name="DATABASE_REGISTRATION_ERROR">A Database Error has occurred: </string>
+    <string name="user_email">USER_EMAIL</string>
+    <string name="error_no_location_detected">No Location Detected</string>
+    <string name="error_location_permission_required">Location permission is required to use this feature.</string>
 </resources>

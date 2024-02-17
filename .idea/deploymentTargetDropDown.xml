@@ -5,6 +5,12 @@
       <entry key="EspressoTest">
         <State />
       </entry>
+      <entry key="LocationActivity">
+        <State />
+      </entry>
+      <entry key="RegistrationActivity">
+        <State />
+      </entry>
       <entry key="LoginEspressoTest">
         <State />
       </entry>
@@ -12,9 +18,6 @@
         <State />
       </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="checkIfLongLatIsVisible()">
         <State />
       </entry>
     </value>
