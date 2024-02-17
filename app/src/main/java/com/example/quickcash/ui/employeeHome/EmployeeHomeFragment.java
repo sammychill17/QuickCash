@@ -42,29 +42,42 @@ public class EmployeeHomeFragment extends Fragment {
         final TextView roleView = binding.dashboardTextViewRoleLabel;
         roleView.setText(userName + " is an employee!");
 
+        final TextView latLabel = binding.textViewLat;
+        final TextView longLabel = binding.textViewLong;
+
         LocationTable locationTable = new LocationTable();
         locationTable.retrieveLocationFromDatabase(location -> {
             locationTable.updateLocationInDatabase(location);
-            setLat(String.valueOf(location.getLatitude()));
-            setLong(String.valueOf(location.getLongitude()));
+            setLat(String.valueOf(location.getLatitude()), latLabel);
+            setLong(String.valueOf(location.getLongitude()), longLabel);
         });
 //        setLat("To be implemented");
 //        setLong("To be implemented");
         return root;
     }
 
-    private void setLat(String lat) {
+    private void setLat(String lat, TextView view) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Latitude: ");
-        stringBuilder.append(lat);
-        binding.textViewLat.setText(stringBuilder.toString());
+        if (lat == null) {
+            stringBuilder.append("null");
+        } else {
+            stringBuilder.append(lat);
+        }
+//        TextView latLabel = requireActivity().findViewById(R.id.textViewLat);
+        view.setText(stringBuilder.toString());
     }
 
-    private void setLong(String longitude) {
+    private void setLong(String longitude, TextView view) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Longitude: ");
-        stringBuilder.append(longitude);
-        binding.textViewLong.setText(stringBuilder.toString());
+        if (longitude == null) {
+            stringBuilder.append("null");
+        } else {
+            stringBuilder.append(longitude);
+        }
+//        TextView longLabel = requireActivity().findViewById(R.id.textViewLong);
+        view.setText(stringBuilder.toString());
     }
 
     @Override

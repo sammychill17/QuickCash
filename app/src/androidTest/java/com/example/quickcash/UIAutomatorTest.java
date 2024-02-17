@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.test.core.app.ApplicationProvider;
@@ -80,10 +82,10 @@ public class UIAutomatorTest {
         assertTrue(loginLabel.exists());
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
-        passwordBox.setText("orange");
+        passwordBox.setText("iamspiderman");
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("johnappleseed@website.ru");
+        emailIDBox.setText("peterparker22@outlook.com");
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
@@ -98,13 +100,14 @@ public class UIAutomatorTest {
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("emailJohnson@website.ru");
+        emailIDBox.setText("peterparker22@outlook.com");
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
-        passwordBox.setText("orange");
+        passwordBox.setText("iamspiderman");
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
         UiObject longitudeLabel = device.findObject(new UiSelector().textContains("Longitude"));
         assertTrue(longitudeLabel.exists());
         UiObject latitudeLabel = device.findObject(new UiSelector().textContains("Latitude"));
@@ -117,10 +120,10 @@ public class UIAutomatorTest {
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("emailJohnson@website.ru");
+        emailIDBox.setText("peterparker22@outlook.com");
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
-        passwordBox.setText("orange");
+        passwordBox.setText("iamspiderman");
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
@@ -136,10 +139,10 @@ public class UIAutomatorTest {
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("johnappleseed@website.ru");
+        emailIDBox.setText("Loki360@gmail.com");
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
-        passwordBox.setText("orange");
+        passwordBox.setText("Thor123456");
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
@@ -164,4 +167,17 @@ public class UIAutomatorTest {
 //        UiObject welcomeLabel = device.findObject(new UiSelector().textContains("Welcome"));
 //        assertTrue(welcomeLabel.exists());
 //    }
+
+    private void allowPermissionsIfNeeded()  {
+        if (Build.VERSION.SDK_INT >= 23) {
+            UiObject allowPermissions = device.findObject(new UiSelector().text("Allow"));
+            if (allowPermissions.exists()) {
+                try {
+                    allowPermissions.click();
+                } catch (UiObjectNotFoundException e) {
+                    Log.e("UIAutomator", "There is no permissions dialog to interact with ");
+                }
+            }
+        }
+    }
 }
