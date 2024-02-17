@@ -10,7 +10,7 @@ public class EmployerHomeViewModel extends ViewModel {
 
     public EmployerHomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is employer home fragment");
     }
 
     public LiveData<String> getText() {
