@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.Button;
 
 import androidx.test.core.app.ApplicationProvider;
@@ -36,6 +37,8 @@ public class UIAutomatorTest {
     public void setup() {
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
+        SharedPreferences sp = context.getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+        sp.edit().clear().commit();
         final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
         appIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(appIntent);
@@ -77,10 +80,10 @@ public class UIAutomatorTest {
         assertTrue(loginLabel.exists());
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
-        passwordBox.setText("xy881245");
+        passwordBox.setText("orange");
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("abc123@dal.ca");
+        emailIDBox.setText("johnappleseed@website.ru");
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
@@ -95,10 +98,10 @@ public class UIAutomatorTest {
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("8097@dal.ca");
+        emailIDBox.setText("emailJohnson@website.ru");
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
-        passwordBox.setText("thing");
+        passwordBox.setText("orange");
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
