@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="164dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="163dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="164dp"
         android:text="Registration!"
         android:textAlignment="center"
         android:textSize="45dp"
@@ -23,10 +23,11 @@
 
     <EditText
         android:id="@+id/emailText"
-        android:layout_width="355dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="email@domain.com"
         android:inputType="text"
@@ -37,10 +38,11 @@
 
     <EditText
         android:id="@+id/nameText"
-        android:layout_width="355dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="John Doe"
         android:inputType="text"
@@ -51,10 +53,11 @@
 
     <EditText
         android:id="@+id/passText"
-        android:layout_width="355dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -65,10 +68,10 @@
 
     <RadioGroup
         android:id="@+id/roleGroup"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roleText">
@@ -88,11 +91,11 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="253dp"
+        android:layout_width="match_parent"
         android:layout_height="67dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
         android:text="Register"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,12 +106,10 @@
         android:id="@+id/roleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Select your role :"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passText" />
 
@@ -116,12 +117,9 @@
         android:id="@+id/Ent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:text="Enter your email:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RegistrationWelcome" />
 
@@ -129,11 +127,9 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="264dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Enter your name:"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
@@ -141,11 +137,9 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="237dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Enter your password:"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
@@ -154,9 +148,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="70dp"
         android:clickable="true"
+        android:minHeight="48dp"
         android:text="Already have an account? Log in!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
