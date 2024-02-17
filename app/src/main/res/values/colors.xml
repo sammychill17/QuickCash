@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="employeePink">#FFFFE5EC</color>
+    <color name="employeePinkDark">#FFFB6F92</color>
+    <color name="employerGreen">#FFEFFDEE</color>
+    <color name="employerGreenDark">#FF90CF8E</color>
 </resources>

@@ -2,6 +2,7 @@ package com.example.quickcash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
@@ -24,6 +25,14 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_registration);
         setupRegistrationButton();
         initializeDatabaseAccess();
+
+        TextView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+            startActivity(intent);
+            finish();
+        });
     }
 
     protected String getEmailAddress(){

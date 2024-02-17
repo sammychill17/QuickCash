@@ -3,6 +3,32 @@
   <component name="AndroidTestResultsUserPreferences">
     <option name="androidTestResultsTableState">
       <map>
+        <entry key="-2025157036">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-A4260" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-1738711497">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-A4260" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-1340019878">
           <value>
             <AndroidTestResultsTableState>
@@ -105,6 +131,7 @@
                   <entry key="Medium_Phone_API_34" value="120" />
                   <entry key="Pixel_3a_API_34_extension_level_7_arm64-v8a" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="samsung SM-A4260" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
