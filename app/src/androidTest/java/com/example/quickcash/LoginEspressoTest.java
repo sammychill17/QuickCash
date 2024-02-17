@@ -40,7 +40,7 @@ public class LoginEspressoTest {
     public void setup() {
         scenario = ActivityScenario.launch(LoginActivity.class);
         scenario.onActivity(activity -> {
-
+            //
         });
     }
 
@@ -61,7 +61,7 @@ public class LoginEspressoTest {
         onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
-        onView(withText(res.getString(R.string.LOGIN_ERROR_EMAIL_INVALID))).check(matches(isDisplayed()));
+        onView(withText(res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT))).check(matches(isDisplayed()));
     }
 
     @Test
@@ -75,8 +75,8 @@ public class LoginEspressoTest {
 
     @Test
     public void checkIfPasswordIsValid() {
-        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("testshouldpass@dal.ca"));
-        onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
+        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("Loki360@gmail.com"));
+        onView(withId(R.id.editTextTextPassword)).perform(typeText("Thor123456"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withText(res.getString(R.string.LOGIN_SUCCESS))).check(matches(isDisplayed()));
@@ -84,7 +84,7 @@ public class LoginEspressoTest {
 
     @Test
     public void checkIfPasswordIsInvalid() {
-        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("testshouldfail2@dal.ca"));
+        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("Loki360@gmail.com"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
