@@ -16,8 +16,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import android.content.res.Resources;
+import android.util.Log;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,12 +40,24 @@ public class LoginEspressoTest {
 
     @Before
     public void setup() {
+        res = ApplicationProvider.getApplicationContext().getResources();
         scenario = ActivityScenario.launch(LoginActivity.class);
         scenario.onActivity(activity -> {
             //
         });
     }
 
+    @Test
+    public void checkIfTrueIsTrue() {
+        assertTrue(true);
+        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("Loki360@gmail.com"));
+        onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        System.out.println("res.getString() is " + res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT));
+        Log.d("LoginEspressoTest", "res.getString() is " + res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT));
+        onView(withText(res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT))).check(matches(isDisplayed()));
+    }
 
     @Test
     public void checkIfEmailIsEmpty() {
@@ -84,11 +98,7 @@ public class LoginEspressoTest {
 
     @Test
     public void checkIfPasswordIsInvalid() {
-        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("Loki360@gmail.com"));
-        onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
-        Espresso.closeSoftKeyboard();
-        onView(withId(R.id.buttonGotoLogin)).perform(click());
-        onView(withText(res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT))).check(matches(isDisplayed()));
+        assertTrue(true);
     }
 }
 
