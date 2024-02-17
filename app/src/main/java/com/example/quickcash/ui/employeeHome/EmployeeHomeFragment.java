@@ -40,7 +40,7 @@ public class EmployeeHomeFragment extends Fragment {
         final TextView textView = binding.dashboardTextViewWelcome;
         textView.setText("Dashboard");
         final TextView roleView = binding.dashboardTextViewRoleLabel;
-        roleView.setText(userName + " (" + userEmail + ") is an employee!");
+        roleView.setText(userName + " is an employee!");
 
         LocationTable locationTable = new LocationTable();
         locationTable.retrieveLocationFromDatabase(location -> {
