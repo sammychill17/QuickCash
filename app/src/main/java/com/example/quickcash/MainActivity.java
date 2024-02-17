@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
         // check if user has SP values on app start; if so, attempt to log them in
         if (spEmail.equals("") && spPassword.equals("")) {
             // SP is empty, bring the user to login screen
-            Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(loginIntent);
+            // Kash: we shouldn't be doing that! Let them stay in the welcome screen.
+            // Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+            // startActivity(loginIntent);
         } else {
             LoginHandlerAdapter adapter = new LoginHandlerAdapter() {
                 @Override
