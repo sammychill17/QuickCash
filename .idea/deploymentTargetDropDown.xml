@@ -2,19 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="LoginActivity">
+        <State />
+      </entry>
       <entry key="LoginEspressoTest">
         <State />
       </entry>
       <entry key="app">
         <State />
       </entry>
-      <entry key="checkIfAccountDoesNotExist()">
-        <State />
-      </entry>
-      <entry key="checkIfEmailIsEmpty()">
-        <State />
-      </entry>
       <entry key="checkIfPasswordIsInvalid()">
+        <State />
+      </entry>
+      <entry key="checkIfPasswordIsValid()">
         <State />
       </entry>
       <entry key="checkIfTrueIsTrue()">

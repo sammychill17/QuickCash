@@ -1,5 +1,6 @@
 package com.example.quickcash;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
@@ -13,15 +14,18 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+// import androidx.test.rule.GrantPermissionRule;
 
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.util.Log;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -36,11 +40,14 @@ import org.junit.runner.RunWith;
 public class LoginEspressoTest {
 
     public ActivityScenario<LoginActivity> scenario;
-    Resources res = ApplicationProvider.getApplicationContext().getResources();
+    Resources res = getApplicationContext().getResources();
+
+    //@Rule
+    //public GrantPermissionRule locationPerm = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION);
 
     @Before
     public void setup() {
-        res = ApplicationProvider.getApplicationContext().getResources();
+        res = getApplicationContext().getResources();
         scenario = ActivityScenario.launch(LoginActivity.class);
         scenario.onActivity(activity -> {
             //
@@ -48,14 +55,12 @@ public class LoginEspressoTest {
     }
 
     @Test
-    public void checkIfTrueIsTrue() {
-        assertTrue(true);
+    public void checkIfPasswordIsInvalid() throws InterruptedException {
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("Loki360@gmail.com"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("@password"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
-        System.out.println("res.getString() is " + res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT));
-        Log.d("LoginEspressoTest", "res.getString() is " + res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT));
+        Thread.sleep(1000);
         onView(withText(res.getString(R.string.LOGIN_ERROR_PASSWORD_INCORRECT))).check(matches(isDisplayed()));
     }
 
@@ -87,17 +92,23 @@ public class LoginEspressoTest {
         onView(withText(res.getString(R.string.LOGIN_ERROR_PASSWORD_EMPTY))).check(matches(isDisplayed()));
     }
 
-    @Test
-    public void checkIfPasswordIsValid() {
-        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("Loki360@gmail.com"));
-        onView(withId(R.id.editTextTextPassword)).perform(typeText("Thor123456"));
-        Espresso.closeSoftKeyboard();
-        onView(withId(R.id.buttonGotoLogin)).perform(click());
-        onView(withText(res.getString(R.string.LOGIN_SUCCESS))).check(matches(isDisplayed()));
-    }
+    /*
+    * This test is antiquated. Before the implementation of Dashboards, it would have worked more effectively
+    * But now that we have UI Automator, to test to see if appropriate dashboards are accessed, then the
+    * ultimate purpose of this test is lost.
+     */
+//    @Test
+//    public void checkIfPasswordIsValid() throws InterruptedException {
+//        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("Loki360@gmail.com"));
+//        onView(withId(R.id.editTextTextPassword)).perform(typeText("Thor123456"));
+//        Espresso.closeSoftKeyboard();
+//        onView(withId(R.id.buttonGotoLogin)).perform(click());
+//        Thread.sleep(1000);
+//        onView(withText(res.getString(R.string.LOGIN_SUCCESS))).check(matches(isDisplayed()));
+//    }
 
     @Test
-    public void checkIfPasswordIsInvalid() {
+    public void checkIfTrueIsTrue() {
         assertTrue(true);
     }
 }
