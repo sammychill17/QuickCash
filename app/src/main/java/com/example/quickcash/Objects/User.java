@@ -1,6 +1,6 @@
 package com.example.quickcash.Objects;
-
-public class User extends com.example.quickcash.FirebaseStuff.QuickCashDBObject{
+import com.example.quickcash.FirebaseStuff.QuickCashDBObject;
+public class User extends QuickCashDBObject{
     private String email;
     private String password;
     private String name;
