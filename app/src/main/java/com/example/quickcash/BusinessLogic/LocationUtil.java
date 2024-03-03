@@ -1,4 +1,4 @@
-package com.example.quickcash;
+package com.example.quickcash.BusinessLogic;
 
 /*
  utility class for location testing and edge cases

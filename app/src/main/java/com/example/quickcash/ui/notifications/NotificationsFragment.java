@@ -15,9 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.Constants;
-import com.example.quickcash.MainActivity;
 import com.example.quickcash.databinding.FragmentNotificationsBinding;
 import com.google.android.material.snackbar.Snackbar;
+import com.example.quickcash.Activities.MainActivity;
 
 public class NotificationsFragment extends Fragment {
 

@@ -1,11 +1,13 @@
-package com.example.quickcash;
+package com.example.quickcash.FirebaseStuff;
 
 
+import com.example.quickcash.Objects.UserLocation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.example.quickcash.Objects.User;
 
 /*
 CRUD -
@@ -49,13 +51,16 @@ public class LocationTable {
     parameter- (listener), The listener that handles the retrieved UserLocation objects.
     NOTE: Currently unused, possibly useful in next iteration.
     */
-    public void retrieveLocationFromDatabase(final OnLocationDataReceivedListener listener) {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void retrieveLocationFromDatabase(String email, final OnLocationDataReceivedListener listener) {
+        String sanitizedEmail = sanitizeEmail(email);
+        databaseReference.child(sanitizedEmail).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
-                    UserLocation loc = locationSnapshot.getValue(UserLocation.class);
+                if (dataSnapshot.exists()) {
+                    UserLocation loc = dataSnapshot.getValue(UserLocation.class);
                     listener.onLocationDataReceived(loc);
+                } else {
+                    listener.onLocationDataReceived(null);
                 }
             }
 

@@ -1,8 +1,4 @@
-package com.example.quickcash;
-
-import static android.app.PendingIntent.getActivity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.quickcash.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.quickcash.BusinessLogic.LoginHandler;
+import com.example.quickcash.BusinessLogic.LoginHandlerAdapter;
+import com.example.quickcash.Constants;
+import com.example.quickcash.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class LoginActivity extends AppCompatActivity {
@@ -38,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
+
                     @Override
                     public void onLoginFailure(String message) {
                         Snackbar.make(v, message, Snackbar.LENGTH_SHORT).show();

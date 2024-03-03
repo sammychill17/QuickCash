@@ -1,15 +1,21 @@
-package com.example.quickcash;
+package com.example.quickcash.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.quickcash.BusinessLogic.PermissionsUtil;
+import com.example.quickcash.FirebaseStuff.LocationTable;
+import com.example.quickcash.R;
+import com.example.quickcash.Objects.UserLocation;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
 
@@ -132,7 +138,7 @@ public class LocationActivity extends AppCompatActivity {
                      creates a UserLocation instance and adds it's fields to the LocationTable.
                      */
                     UserLocation userLocation = new UserLocation(userEmail, location.getLatitude(), location.getLongitude());
-                    LocationTable locationTable = new LocationTable();
+                    LocationTable locationTable = new com.example.quickcash.FirebaseStuff.LocationTable();
                     locationTable.addLocationToDatabase(userLocation);
                 }
             };

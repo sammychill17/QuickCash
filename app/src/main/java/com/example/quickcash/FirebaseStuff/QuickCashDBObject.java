@@ -10,11 +10,11 @@
 * and only ever called in the dbScrounger class.
  */
 
-package com.example.quickcash;
+package com.example.quickcash.FirebaseStuff;
 
 public class QuickCashDBObject {
 
-    String email = "";
+    protected String email = "";
 
     public String getEmail(){
         return email;

@@ -1,22 +1,28 @@
-package com.example.quickcash;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.quickcash.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.content.Intent;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.quickcash.BusinessLogic.CredentialValidator;
+import com.example.quickcash.FirebaseStuff.DatabaseScrounger;
+import com.example.quickcash.FirebaseStuff.QuickCashDBObject;
+import com.example.quickcash.Objects.User;
+import com.example.quickcash.R;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
-    CredentialValidator validator = new CredentialValidator();
+    CredentialValidator validator = new com.example.quickcash.BusinessLogic.CredentialValidator();
 
     FirebaseDatabase database = null;
     @Override
@@ -95,12 +101,12 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         void onError(DatabaseError error);
     }
 
-    protected void setupRegistrationButton() {
+    public void setupRegistrationButton() {
         Button registerButton = findViewById(R.id.submitButton);
         registerButton.setOnClickListener(this);
     }
 
-    protected void initializeDatabaseAccess() {
+    public void initializeDatabaseAccess() {
         database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL));
     }
 

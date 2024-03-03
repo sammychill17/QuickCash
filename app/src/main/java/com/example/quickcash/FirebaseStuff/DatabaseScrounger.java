@@ -32,11 +32,9 @@
  * See RegistrationActivity.java for example of implementation.
  */
 
-package com.example.quickcash;
+package com.example.quickcash.FirebaseStuff;
 
 import androidx.annotation.NonNull;
-
-import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

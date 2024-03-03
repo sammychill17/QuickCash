@@ -1,11 +1,14 @@
-package com.example.quickcash;
-import java.util.function.Consumer;
+package com.example.quickcash.BusinessLogic;
+
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import android.Manifest;
+
+import java.util.function.Consumer;
 
 /*
 Class which refactored duplicate and reusable codes previously used

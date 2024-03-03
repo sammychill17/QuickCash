@@ -1,4 +1,6 @@
-package com.example.quickcash;
+package com.example.quickcash.Objects;
+
+import com.example.quickcash.FirebaseStuff.QuickCashDBObject;
 
 public class UserLocation extends QuickCashDBObject {
     private double latitude;

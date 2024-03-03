@@ -1,7 +1,6 @@
 package com.example.quickcash.ui.employeeHome;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.Constants;
-import com.example.quickcash.LocationActivity;
-import com.example.quickcash.LocationTable;
-import com.example.quickcash.R;
-import com.example.quickcash.UserLocation;
+import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.databinding.FragmentEmployeehomeBinding;
+import com.example.quickcash.Objects.UserLocation;
 
 public class EmployeeHomeFragment extends Fragment {
 
@@ -46,10 +43,15 @@ public class EmployeeHomeFragment extends Fragment {
         final TextView longLabel = binding.textViewLong;
 
         LocationTable locationTable = new LocationTable();
-        locationTable.retrieveLocationFromDatabase(location -> {
-            locationTable.updateLocationInDatabase(location);
-            setLat(String.valueOf(location.getLatitude()), latLabel);
-            setLong(String.valueOf(location.getLongitude()), longLabel);
+        locationTable.retrieveLocationFromDatabase(userEmail, location -> {
+            if (location != null) {
+                locationTable.updateLocationInDatabase(location);
+                setLat(String.valueOf(location.getLatitude()), latLabel);
+                setLong(String.valueOf(location.getLongitude()), longLabel);
+            } else {
+                setLat("Location not available", latLabel);
+                setLong("Location not available", longLabel);
+            }
         });
 //        setLat("To be implemented");
 //        setLong("To be implemented");

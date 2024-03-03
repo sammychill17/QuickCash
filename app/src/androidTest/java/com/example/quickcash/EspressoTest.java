@@ -18,6 +18,8 @@ import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertFalse;
 
 
+import com.example.quickcash.Activities.RegistrationActivity;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

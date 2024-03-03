@@ -7,6 +7,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import static org.mockito.Mockito.*;
 
+import com.example.quickcash.Activities.LocationActivity;
+import com.example.quickcash.FirebaseStuff.LocationTable;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.example.quickcash.Objects.UserLocation;
 
 import static org.junit.Assert.*;
 

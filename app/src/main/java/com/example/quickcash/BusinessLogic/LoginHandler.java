@@ -1,9 +1,12 @@
-package com.example.quickcash;
+package com.example.quickcash.BusinessLogic;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 
+import com.example.quickcash.Constants;
+import com.example.quickcash.Objects.User;
+import com.example.quickcash.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
