@@ -41,10 +41,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/TypesOfJobs.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/TypesOfJobs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/quickcash/LocationUnitTesting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/quickcash/LocationUnitTesting.java" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml">
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/UIAutomatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/UIAutomatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/DashboardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/DashboardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/BusinessLogic/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/BusinessLogic/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/dashboard/EmployeeDashboardFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/dashboard/EmployeeDashboardFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employeeHome/EmployeeHomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employeeHome/EmployeeHomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/notifications/NotificationsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/notifications/NotificationsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -630,7 +637,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708209426408</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refactoring - Removed Faulty LocationUnitTest, and added additional functionality and method signatures to Job object.">
+      <option name="closed" value="true" />
+      <created>1709591022383</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709591022383</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml">
+      <option name="closed" value="true" />
+      <created>1709591663903</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709591663903</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -642,6 +665,8 @@
     <MESSAGE value="[Test] Changed test code to remove dependence on accounts that have been deleted and information that is outdated" />
     <MESSAGE value="[Test] Updated LoginEspressoTest" />
     <MESSAGE value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
+    <MESSAGE value="Refactoring - Removed Faulty LocationUnitTest, and added additional functionality and method signatures to Job object." />
+    <MESSAGE value="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml" />
   </component>
 </project>
