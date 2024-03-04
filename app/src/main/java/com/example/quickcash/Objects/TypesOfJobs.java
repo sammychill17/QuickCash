@@ -4,11 +4,17 @@ package com.example.quickcash.Objects;
 joke template for enum -- TypesOfJobs
  */
 public enum TypesOfJobs {
+        UNDEFINED,
+        YARDWORK,
+        PETCARE,
+        BABYSITTING,
+        TUTORING,
+        TECH,
+        MOVING,
         HITMAN,
-        YARD_WORK,
-        POLITICIAN_HITMAN,
-        JOB_TITLE,
-        MONK,
-        WAIFU;
+        ARTS_CREATIVE,
+        COOK,
+        MAGICIAN,
+        POLITICIAN,
 }
 

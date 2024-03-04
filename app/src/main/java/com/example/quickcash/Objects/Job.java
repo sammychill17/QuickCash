@@ -4,12 +4,14 @@ import java.time.Duration;
 
 public class Job {
 
+    private int key;
     private String title;
     private String description;
     private TypesOfJobs jobType;
     private double salary;
     private Duration duration;
     private boolean isAssigned;
+    private boolean isCompleted;
     private String assignedToEmail;
     private String employerEmail;
 
@@ -27,6 +29,7 @@ public class Job {
         default value is false
          */
         this.isAssigned = false;
+        this.isCompleted = false;
         /*
         empty string initially
          */
@@ -51,6 +54,7 @@ public class Job {
     public void setDescription(String description) {
         this.description = description;
     }
+
     /*
     the enumpire strikes back/j
      */
@@ -82,19 +86,24 @@ public class Job {
         return isAssigned;
     }
 
-    public void setAssigned(boolean assigned) {
-        isAssigned = assigned;
-    }
-
-    public String getAssignedToEmail() {
+    public String getAssigneeEmail() {
         return assignedToEmail;
     }
 
-    public void setAssignedToEmail(String assignedToEmail) {
+    public void assignJob(String assignedToEmail) {
+        this.isAssigned = true;
+        if (assignedToEmail.equals("")) {
+            clearAssigned();
+        }
         this.assignedToEmail = assignedToEmail;
     }
 
-    public String getEmployerEmail() {
+    public void clearAssigned() {
+        this.isAssigned = false;
+        this.assignedToEmail = "";
+    }
+
+    public String getEmployer() {
         return employerEmail;
     }
 
@@ -102,10 +111,5 @@ public class Job {
         this.employerEmail = employerEmail;
     }
 
-
-    public void assignJob(String employeeEmail) {
-        this.assignedToEmail = employeeEmail;
-        this.isAssigned = true;
-    }
-
+    //TODO: Make a Job Firebase Helper Class
 }
