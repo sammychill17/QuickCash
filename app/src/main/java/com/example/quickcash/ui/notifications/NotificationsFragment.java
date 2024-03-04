@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.quickcash.Constants;
+import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentNotificationsBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.example.quickcash.Activities.MainActivity;
@@ -53,7 +53,7 @@ public class NotificationsFragment extends Fragment {
 
     private void handleLogout() {
         Context context = requireContext().getApplicationContext();
-        SharedPreferences sp = context.getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         sp.edit().clear().apply();
 
         Intent intent = new Intent(requireContext().getApplicationContext(), MainActivity.class);

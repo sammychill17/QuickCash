@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcash.BusinessLogic.LoginHandler;
 import com.example.quickcash.BusinessLogic.LoginHandlerAdapter;
-import com.example.quickcash.Constants;
 import com.example.quickcash.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -92,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     private void handleSp() {
         Context context = getApplicationContext();
         SharedPreferences sp = context.getSharedPreferences(
-                Constants.sessionData_spID, Context.MODE_PRIVATE);
+                getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
 
         sp.edit().putString("email",getEmail()).commit();
         sp.edit().putString("password",getPassword()).commit();

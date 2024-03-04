@@ -11,7 +11,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.quickcash.Constants;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.ActivityDashboardBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,7 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_dashboard);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         
-        SharedPreferences sp = getApplicationContext().getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
 
         String currentRole = sp.getString("role", "error!");
         if (currentRole.equals("Employee")) {

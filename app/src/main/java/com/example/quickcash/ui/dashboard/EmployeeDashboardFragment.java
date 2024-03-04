@@ -13,7 +13,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.quickcash.Constants;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentDashboardBinding;
 
@@ -33,7 +32,7 @@ public class EmployeeDashboardFragment extends Fragment {
 //        textView.setText("Me fragment");
 //        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         final ImageView imageView = binding.mefragmentNatsu;
-        SharedPreferences sp = requireContext().getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+        SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         if (sp.contains("role") && ("Employer".equals(sp.getString("role", "error!")))) {
                 imageView.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.reisa_happy));
 

@@ -12,10 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.quickcash.Constants;
 import com.example.quickcash.FirebaseStuff.LocationTable;
+import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployeehomeBinding;
-import com.example.quickcash.Objects.UserLocation;
 
 public class EmployeeHomeFragment extends Fragment {
 
@@ -28,7 +27,7 @@ public class EmployeeHomeFragment extends Fragment {
 
         binding = FragmentEmployeehomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        SharedPreferences sp = requireContext().getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+        SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
 
         final String userEmail = sp.getString("email", "Error - cannot get email");
         final String userPass = sp.getString("password", "Error - cannot get password");

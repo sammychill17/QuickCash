@@ -18,4 +18,5 @@
     <string name="user_email">USER_EMAIL</string>
     <string name="error_no_location_detected">No Location Detected</string>
     <string name="error_location_permission_required">Location permission is required to use this feature.</string>
+    <string name="sessionData_spID">session_login</string>
 </resources>

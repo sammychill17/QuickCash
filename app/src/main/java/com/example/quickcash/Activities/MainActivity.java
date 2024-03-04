@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcash.BusinessLogic.LoginHandler;
 import com.example.quickcash.BusinessLogic.LoginHandlerAdapter;
-import com.example.quickcash.Constants;
 import com.example.quickcash.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences(
-                Constants.sessionData_spID, Context.MODE_PRIVATE);
+                getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
 
         Button gotologinbutton = (Button) findViewById(R.id.buttonGotoLogin);
         gotologinbutton.setOnClickListener(new View.OnClickListener() {

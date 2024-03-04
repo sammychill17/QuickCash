@@ -12,6 +12,7 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.uiautomator.By;
@@ -29,7 +30,7 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
-public class UIAutomatorTest {
+public class UIAutomatorTest extends AppCompatActivity {
 
     private static final int LAUNCH_TIMEOUT = 5000;
     final String launcherPackage = "com.example.quickcash";
@@ -39,7 +40,7 @@ public class UIAutomatorTest {
     public void setup() {
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
-        SharedPreferences sp = context.getSharedPreferences(Constants.sessionData_spID, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         sp.edit().clear().commit();
         final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
         appIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 
-import com.example.quickcash.Constants;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.quickcash.Objects.User;
 import com.example.quickcash.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -13,7 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginHandler {
+public class LoginHandler extends AppCompatActivity {
 //    private String email;
 //    private String password;
     private User user;
@@ -33,7 +34,7 @@ public class LoginHandler {
     }
 
     public void handleLogin() {
-        FirebaseDatabase.getInstance(Constants.firebaseUrl).getReference().child("Users").
+        FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL)).getReference().child("Users").
                 addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(DataSnapshot snapshot) {
                 boolean accountFound = false;
@@ -83,7 +84,7 @@ public class LoginHandler {
 
     private void handleSp() {
         SharedPreferences sp = context.getSharedPreferences(
-                Constants.sessionData_spID, Context.MODE_PRIVATE);
+                getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
 
         sp.edit().putString("email",user.getEmail()).commit();
         sp.edit().putString("password",user.getPassword()).commit();
