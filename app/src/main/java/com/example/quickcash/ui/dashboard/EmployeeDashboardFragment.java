@@ -28,9 +28,6 @@ public class EmployeeDashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-//        final TextView textView = binding.textDashboard;
-//        textView.setText("Me fragment");
-//        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         final ImageView imageView = binding.mefragmentNatsu;
         SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         if (sp.contains("role") && ("Employer".equals(sp.getString("role", "error!")))) {

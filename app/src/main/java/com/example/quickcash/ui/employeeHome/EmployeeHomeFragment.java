@@ -30,7 +30,6 @@ public class EmployeeHomeFragment extends Fragment {
         SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
 
         final String userEmail = sp.getString("email", "Error - cannot get email");
-        final String userPass = sp.getString("password", "Error - cannot get password");
         final String userName = sp.getString("username", "Error - cannot get username");
 
         final TextView textView = binding.dashboardTextViewWelcome;
@@ -52,8 +51,6 @@ public class EmployeeHomeFragment extends Fragment {
                 setLong("Location not available", longLabel);
             }
         });
-//        setLat("To be implemented");
-//        setLong("To be implemented");
         return root;
     }
 
@@ -65,7 +62,6 @@ public class EmployeeHomeFragment extends Fragment {
         } else {
             stringBuilder.append(lat);
         }
-//        TextView latLabel = requireActivity().findViewById(R.id.textViewLat);
         view.setText(stringBuilder.toString());
     }
 
@@ -77,7 +73,6 @@ public class EmployeeHomeFragment extends Fragment {
         } else {
             stringBuilder.append(longitude);
         }
-//        TextView longLabel = requireActivity().findViewById(R.id.textViewLong);
         view.setText(stringBuilder.toString());
     }
 

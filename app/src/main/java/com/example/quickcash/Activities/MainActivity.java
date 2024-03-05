@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         if (spEmail.equals("") && spPassword.equals("")) {
             // SP is empty, bring the user to login screen
             // Kash: we shouldn't be doing that! Let them stay in the welcome screen.
-            // Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
-            // startActivity(loginIntent);
         } else {
             LoginHandlerAdapter adapter = new LoginHandlerAdapter() {
                 @Override

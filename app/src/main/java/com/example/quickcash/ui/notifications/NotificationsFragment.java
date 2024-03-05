@@ -41,7 +41,6 @@ public class NotificationsFragment extends Fragment {
                 handleLogout();
             }
         });
-//        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
