@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.quickcash.BusinessLogic.CredentialValidator;
 import com.example.quickcash.FirebaseStuff.DatabaseScrounger;
 import com.example.quickcash.FirebaseStuff.QuickCashDBObject;
+import com.example.quickcash.Objects.Employee;
+import com.example.quickcash.Objects.Employer;
 import com.example.quickcash.Objects.User;
 import com.example.quickcash.R;
 import com.google.firebase.database.DatabaseError;
@@ -133,7 +135,13 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     if (exists) {
                         setStatusMessage(getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim());
                     } else {
-                        User currentUser = new User(email, password, name, role);
+                        User currentUser;
+                        if(role.equals("Employee")){
+                            currentUser = new Employee(email, password, name, role);
+                        }
+                        else{
+                            currentUser = new Employer(email, password, name, role);
+                        }
                         /*
                         Uses push() to generate a unique key for the user and to save the user data
                          */
