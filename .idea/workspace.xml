@@ -41,11 +41,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Rough JobDBHelper created based on DBScrounger">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/FirebaseStuff/JobDBHelper.java" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/JobApplicants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/JobApplicants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -679,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709610326312</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change.">
+      <option name="closed" value="true" />
+      <created>1709611454523</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1709611454523</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -707,6 +712,7 @@
     <MESSAGE value="Added JobApplicants Object" />
     <MESSAGE value="RegistrationActivity now hard sets new users to be either Employee or Employer objects" />
     <MESSAGE value="Rough JobDBHelper created based on DBScrounger" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rough JobDBHelper created based on DBScrounger" />
+    <MESSAGE value="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change." />
   </component>
 </project>
