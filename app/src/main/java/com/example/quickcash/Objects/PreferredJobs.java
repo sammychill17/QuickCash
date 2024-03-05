@@ -17,7 +17,10 @@ public class PreferredJobs extends QuickCashDBObject {
     public void checkJob(JobTypes type){
         if(type != JobTypes.UNDEFINED){
             for (int i = 0; i < enumSize; i++) {
-                if(preferredJobs[i]==JobTypes.UNDEFINED){
+                if(preferredJobs[i]==type){
+                    break;
+                }
+                else if(preferredJobs[i]==JobTypes.UNDEFINED){
                     preferredJobs[i] = type;
                     break;
                 }
