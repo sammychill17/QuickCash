@@ -41,7 +41,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="RegistrationActivity now hard sets new users to be either Employee or Employer objects">
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Rough JobDBHelper created based on DBScrounger">
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/FirebaseStuff/JobDBHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" afterDir="false" />
@@ -671,7 +671,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709608041726</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Rough JobDBHelper created based on DBScrounger">
+      <option name="closed" value="true" />
+      <created>1709610326312</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1709610326312</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -698,6 +706,7 @@
     <MESSAGE value="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml" />
     <MESSAGE value="Added JobApplicants Object" />
     <MESSAGE value="RegistrationActivity now hard sets new users to be either Employee or Employer objects" />
-    <option name="LAST_COMMIT_MESSAGE" value="RegistrationActivity now hard sets new users to be either Employee or Employer objects" />
+    <MESSAGE value="Rough JobDBHelper created based on DBScrounger" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rough JobDBHelper created based on DBScrounger" />
   </component>
 </project>

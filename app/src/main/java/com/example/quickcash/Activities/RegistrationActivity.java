@@ -15,12 +15,14 @@ import com.example.quickcash.FirebaseStuff.DatabaseScrounger;
 import com.example.quickcash.FirebaseStuff.QuickCashDBObject;
 import com.example.quickcash.Objects.Employee;
 import com.example.quickcash.Objects.Employer;
+import com.example.quickcash.Objects.PreferredJobs;
 import com.example.quickcash.Objects.User;
 import com.example.quickcash.R;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
@@ -136,6 +138,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         setStatusMessage(getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim());
                     } else {
                         User currentUser;
+                        AtomicReference<DatabaseReference> preferredRef = null;
                         if(role.equals("Employee")){
                             currentUser = new Employee(email, password, name, role);
                         }
@@ -151,6 +154,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                                  indicates that data has been saved successfully.
                                  */
                                 setStatusMessage(getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim());
+                                if(role.equals("Employee")) {
+                                    preferredRef.set(database.getReference("PreferredJobs"));
+                                    PreferredJobs jobPref = new PreferredJobs(email);
+                                    preferredRef.get().push().setValue(jobPref);
+                                }
                                 /*
                                 Transitioning to LocationActivity,
                                 starts up the LocationActivity and passes the email
