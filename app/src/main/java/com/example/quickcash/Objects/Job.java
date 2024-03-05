@@ -4,7 +4,7 @@ import java.time.Duration;
 
 public class Job {
 
-    private int key;
+    private String key;
     private String title;
     private String description;
     private JobTypes jobType;
@@ -109,6 +109,10 @@ public class Job {
 
     public void setEmployerEmail(String employerEmail) {
         this.employerEmail = employerEmail;
+    }
+
+    public String getKey(){
+        return  key;
     }
 
     //TODO: Make a Job Firebase Helper Class

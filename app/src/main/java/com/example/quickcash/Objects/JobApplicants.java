@@ -4,17 +4,17 @@ import java.util.List;
 
 public class JobApplicants {
 
-    private int key;
+    private String key;
     private List<String> applicants;
 
-    public JobApplicants(int key){
+    public JobApplicants(String key){
         this.key = key;
     }
     public JobApplicants(int key, List<String> applicants){
         this.applicants = applicants;
     }
 
-    public int getKey() {
+    public String getKey() {
         return key;
     }
     public List<String> getApplicants() {
