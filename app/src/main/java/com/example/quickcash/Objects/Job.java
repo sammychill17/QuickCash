@@ -7,7 +7,7 @@ public class Job {
     private int key;
     private String title;
     private String description;
-    private TypesOfJobs jobType;
+    private JobTypes jobType;
     private double salary;
     private Duration duration;
     private boolean isAssigned;
@@ -18,7 +18,7 @@ public class Job {
     /*
     Constructor --
      */
-    public Job(String title, String description, TypesOfJobs jobType, double salary, String duration, String employerEmail) {
+    public Job(String title, String description, JobTypes jobType, double salary, String duration, String employerEmail) {
         this.title = title;
         this.description = description;
         this.jobType = jobType;
@@ -58,11 +58,11 @@ public class Job {
     /*
     the enumpire strikes back/j
      */
-    public TypesOfJobs getJobType() {
+    public JobTypes getJobType() {
         return jobType;
     }
 
-    public void setJobType(TypesOfJobs jobType) {
+    public void setJobType(JobTypes jobType) {
         this.jobType = jobType;
     }
 

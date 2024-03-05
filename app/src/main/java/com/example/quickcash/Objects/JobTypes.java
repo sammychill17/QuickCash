@@ -3,7 +3,7 @@ package com.example.quickcash.Objects;
 /*
 joke template for enum -- TypesOfJobs
  */
-public enum TypesOfJobs {
+public enum JobTypes {
         UNDEFINED,
         YARDWORK,
         PETCARE,
