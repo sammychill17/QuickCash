@@ -24,6 +24,9 @@ public class LoginHandler extends AppCompatActivity {
 
     private LoginHandlerAdapter loginHandlerAdapter;
 
+    private String firebaseURL = "https://quickcash-6941c-default-rtdb.firebaseio.com";
+    private String sessionID = "session_login";
+
     public LoginHandler(String email, String password, Context context, View view, LoginHandlerAdapter loginHandlerAdapter) {
         user = new User();
         user.setEmail(email);
@@ -34,7 +37,7 @@ public class LoginHandler extends AppCompatActivity {
     }
 
     public void handleLogin() {
-        FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL)).getReference().child("Users").
+        FirebaseDatabase.getInstance(firebaseURL).getReference().child("Users").
                 addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(DataSnapshot snapshot) {
                 boolean accountFound = false;
@@ -83,8 +86,7 @@ public class LoginHandler extends AppCompatActivity {
     }
 
     private void handleSp() {
-        SharedPreferences sp = context.getSharedPreferences(
-                getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(sessionID, Context.MODE_PRIVATE);
 
         sp.edit().putString("email",user.getEmail()).commit();
         sp.edit().putString("password",user.getPassword()).commit();
