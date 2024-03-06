@@ -16,13 +16,13 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String sessionID = "session_login";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sp = getApplicationContext().getSharedPreferences(
-                getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences(sessionID, Context.MODE_PRIVATE);
 
         Button gotologinbutton = (Button) findViewById(R.id.buttonGotoLogin);
         gotologinbutton.setOnClickListener(new View.OnClickListener() {
