@@ -40,6 +40,11 @@
           <theme>@style/Theme.Quickcash</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjoblist.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpost.xml">
         <config>
           <theme>@style/Theme.Quickcash</theme>
@@ -51,10 +56,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Experimenting with fragment creation in order to build I2 UI">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjoblist.xml" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Created .xml layours for job post, list, and page fragments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpost.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpost.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpage.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -721,7 +725,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709684813146</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Created .xml layours for job post, list, and page fragments">
+      <option name="closed" value="true" />
+      <created>1709687910496</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1709687910496</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -752,6 +764,7 @@
     <MESSAGE value="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change." />
     <MESSAGE value="Rough EmployeeDBHelper created utilising DatabaseScrounger." />
     <MESSAGE value="Experimenting with fragment creation in order to build I2 UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Experimenting with fragment creation in order to build I2 UI" />
+    <MESSAGE value="Created .xml layours for job post, list, and page fragments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created .xml layours for job post, list, and page fragments" />
   </component>
 </project>
