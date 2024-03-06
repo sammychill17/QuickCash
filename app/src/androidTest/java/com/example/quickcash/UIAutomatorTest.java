@@ -15,6 +15,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
@@ -24,25 +25,30 @@ import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
-public class UIAutomatorTest extends AppCompatActivity {
+public class UIAutomatorTest  {
 
     private static final int LAUNCH_TIMEOUT = 5000;
-    final String launcherPackage = "com.example.quickcash.Activities";
-    final String sessionID = "session_login";
+    final String launcherPackage = "com.example.quickcash";
     private UiDevice device;
 
     @Before
     public void setup() {
-        device = UiDevice.getInstance(getInstrumentation());
-        Context context = ApplicationProvider.getApplicationContext();
-        SharedPreferences sp = context.getSharedPreferences(sessionID, Context.MODE_PRIVATE);
+        /*
+        https://stackoverflow.com/questions/18686655/how-to-get-context-in-uiautomator-test-case
+         */
+        //Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        //SharedPreferences sp = context.getSharedPreferences(context.getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        SharedPreferences sp = context.getSharedPreferences(context.getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+        //Context context = ApplicationProvider.getApplicationContext();
+        //SharedPreferences sp = context.getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         sp.edit().clear().commit();
         final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
         appIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -92,6 +98,7 @@ public class UIAutomatorTest extends AppCompatActivity {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
 //        device.wait(LAUNCH_TIMEOUT);
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
@@ -130,6 +137,7 @@ public class UIAutomatorTest extends AppCompatActivity {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
         UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
         assertTrue(employeeLabel.exists());
         UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
@@ -149,6 +157,7 @@ public class UIAutomatorTest extends AppCompatActivity {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
         UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
         assertFalse(employeeLabel.exists());
         UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
@@ -171,16 +180,14 @@ public class UIAutomatorTest extends AppCompatActivity {
 //        assertTrue(welcomeLabel.exists());
 //    }
 
-    private void allowPermissionsIfNeeded()  {
-        if (Build.VERSION.SDK_INT >= 23) {
-            UiObject allowPermissions = device.findObject(new UiSelector().text("Allow"));
+    /*
+    clicks the "While using the app" button of the location permissions system prompt
+     */
+    private void allowPermissionsIfNeeded() throws UiObjectNotFoundException {
+            UiDevice device = UiDevice.getInstance(getInstrumentation());
+            UiObject allowPermissions = device.findObject(new UiSelector().text("While using the app"));
             if (allowPermissions.exists()) {
-                try {
-                    allowPermissions.click();
-                } catch (UiObjectNotFoundException e) {
-                    Log.e("UIAutomator", "There is no permissions dialog to interact with ");
-                }
-            }
+                allowPermissions.click();
         }
     }
 }
