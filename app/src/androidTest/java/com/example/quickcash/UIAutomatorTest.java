@@ -24,6 +24,7 @@ import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -33,14 +34,15 @@ import java.util.List;
 public class UIAutomatorTest extends AppCompatActivity {
 
     private static final int LAUNCH_TIMEOUT = 5000;
-    final String launcherPackage = "com.example.quickcash";
+    final String launcherPackage = "com.example.quickcash.Activities";
+    final String sessionID = "session_login";
     private UiDevice device;
 
     @Before
     public void setup() {
         device = UiDevice.getInstance(getInstrumentation());
         Context context = ApplicationProvider.getApplicationContext();
-        SharedPreferences sp = context.getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(sessionID, Context.MODE_PRIVATE);
         sp.edit().clear().commit();
         final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
         appIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
