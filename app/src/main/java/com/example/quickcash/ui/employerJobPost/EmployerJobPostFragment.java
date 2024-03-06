@@ -30,7 +30,6 @@ public class EmployerJobPostFragment extends Fragment{
         View root = binding.getRoot();
 
         final Spinner spinner = binding.jobTypeSpinner;
-        Resources res = getResources();
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.job_type_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
