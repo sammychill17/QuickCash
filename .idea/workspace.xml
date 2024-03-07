@@ -45,7 +45,22 @@
           <theme>@style/Theme.Quickcash</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpage.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpost.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation_employer.xml">
         <config>
           <theme>@style/Theme.Quickcash</theme>
         </config>
@@ -57,9 +72,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Created .xml layours for job post, list, and page fragments">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/job_array.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerApplicantPage/EmployerApplicantPageFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerApplicantPage/EmployerApplicantPageViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/JobApplicantsPage/JobApplicantsAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/JobApplicantsPage/JobApplicantsFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/JobApplicantsPage/JobApplicantsViewModel.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +95,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\james\.android\avd\Phone_1.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\parke\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -149,31 +175,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Job__Post__Parker&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/parke/git/csci3130-w24-group17/app/src/main/res/layout&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "Job__Post__Parker",
+    "last_opened_file_path": "C:/Users/parke/git/csci3130-w24-group17/app/src/main/java/com/example/quickcash/ui/jobApplicantsPage",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\parke\git\csci3130-w24-group17\app\src\main\java\com\example\quickcash\ui\jobApplicantsPage" />
+      <recent name="C:\Users\parke\git\csci3130-w24-group17\app\src\main\java\com\example\quickcash\ui\employerJobList" />
       <recent name="C:\Users\parke\git\csci3130-w24-group17\app\src\main\res\layout" />
       <recent name="C:\Users\parke\git\csci3130-w24-group17\app\src\main\java\com\example\quickcash\ui\employerJobPost" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.quickcash.ui.employerApplicantPage" />
+      <recent name="com.example.quickcash.ui.employerJobPage" />
+      <recent name="com.example.quickcash.ui.employerJobList" />
       <recent name="com.example.quickcash.ui.employerJobPost" />
       <recent name="com.example.quickcash.Objects" />
-      <recent name="com.example.quickcash.Activities" />
-      <recent name="com.example.quickcash.User" />
-      <recent name="com.example.quickcash.FirebaseStuff" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.MainActivity">
