@@ -71,21 +71,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Created .xml layours for job post, list, and page fragments">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerApplicantPage/EmployerApplicantPageFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerApplicantPage/EmployerApplicantPageViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageViewModel.java" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Created non-functional Fragments/ViewModels for each remaining LFP page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/JobApplicantsPage/JobApplicantsAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/JobApplicantsPage/JobApplicantsFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/JobApplicantsPage/JobApplicantsViewModel.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -763,7 +750,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709687910496</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Created non-functional Fragments/ViewModels for each remaining LFP page">
+      <option name="closed" value="true" />
+      <created>1709828492915</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709828492915</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -795,6 +790,8 @@
     <MESSAGE value="Rough EmployeeDBHelper created utilising DatabaseScrounger." />
     <MESSAGE value="Experimenting with fragment creation in order to build I2 UI" />
     <MESSAGE value="Created .xml layours for job post, list, and page fragments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created .xml layours for job post, list, and page fragments" />
+    <MESSAGE value="Created non-functional Fragments/ViewModels for each LFP page" />
+    <MESSAGE value="Created non-functional Fragments/ViewModels for each remaining LFP page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created non-functional Fragments/ViewModels for each remaining LFP page" />
   </component>
 </project>
