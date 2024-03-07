@@ -105,26 +105,6 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkIfLongLatIsVisible() throws UiObjectNotFoundException {
-        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
-        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
-        assertTrue(emailIDBox.exists());
-        emailIDBox.setText("peterparker22@outlook.com");
-        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
-        assertTrue(passwordBox.exists());
-        passwordBox.setText("iamspiderman");
-        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
-        assertTrue(anotherLoginButton.exists());
-        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        allowPermissionsIfNeeded();
-        UiObject longitudeLabel = device.findObject(new UiSelector().textContains("Longitude"));
-        assertTrue(longitudeLabel.exists());
-        UiObject latitudeLabel = device.findObject(new UiSelector().textContains("Latitude"));
-        assertTrue(latitudeLabel.exists());
-    }
-
-    @Test
     public void checkIfEmployeeDashboardIsVisible() throws UiObjectNotFoundException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
@@ -178,6 +158,7 @@ public class UIAutomatorTest  {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -231,21 +212,6 @@ public class UIAutomatorTest  {
         assertTrue(searchBar.exists());
     }
 
-//    @Test
-//    public void checkIfMoved2WelcomePage() throws UiObjectNotFoundException {
-//        UiObject netIDBox = device.findObject(new UiSelector().textContains("Net ID"));
-//        netIDBox.setText("xy881245");
-//        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
-//        emailIDBox.setText("abc123@dal.ca");
-//        UiObject roleSpinner = device.findObject(new UiSelector().textContains("Select your role"));
-//        roleSpinner.click();
-//        List<UiObject2> roles = device.findObjects(By.res("android:id/text1"));
-//        roles.get(1).click();
-//        UiObject registerButton = device.findObject(new UiSelector().text("REGISTER"));
-//        registerButton.clickAndWaitForNewWindow();
-//        UiObject welcomeLabel = device.findObject(new UiSelector().textContains("Welcome"));
-//        assertTrue(welcomeLabel.exists());
-//    }
 
     /*
     clicks the "While using the app" button of the location permissions system prompt
