@@ -75,13 +75,14 @@
                     android:id="@+id/loseYourselfButton"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
+                    android:layout_marginTop="60dp"
                     android:background="@android:color/transparent"
+                    android:contentDescription="Lose Money by Posting a Job"
                     android:scaleType="fitCenter"
                     android:src="@drawable/inverted_and_flipped_logo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="Lose Money by Posting a Job" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -92,17 +93,16 @@
 
             <Button
                 android:id="@+id/myJobsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_marginStart="46dp"
-                android:layout_marginTop="384dp"
-                android:layout_marginEnd="46dp"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="90dp"
+                android:layout_marginEnd="90dp"
                 android:backgroundTint="#E91E63"
                 android:text="My Jobs (In the middle of my jobs)"
                 android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

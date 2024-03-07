@@ -11,12 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.quickcash.Activities.LocationActivity;
-import com.example.quickcash.Activities.RegistrationActivity;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerhomeBinding;
 import com.example.quickcash.ui.JobApplicantsPage.JobApplicantsFragment;
