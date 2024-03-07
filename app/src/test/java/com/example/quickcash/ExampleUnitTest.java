@@ -7,6 +7,10 @@ import static org.junit.Assert.*;
 
 import com.example.quickcash.BusinessLogic.CredentialValidator;
 import com.example.quickcash.BusinessLogic.LocationUtil;
+import com.example.quickcash.Objects.PreferredJobs;
+import com.example.quickcash.Objects.JobTypes;
+
+import java.util.Arrays;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -14,10 +18,12 @@ import com.example.quickcash.BusinessLogic.LocationUtil;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-    com.example.quickcash.BusinessLogic.CredentialValidator validator;
+    CredentialValidator validator;
+    PreferredJobs preferredJobs;
     @Before
     public void setup() {
         validator = new CredentialValidator();
+        preferredJobs = new PreferredJobs("macgrubber@yolo.com");
     }
     @Test
     public void checkIfEmailIsValid(){
@@ -70,9 +76,9 @@ public class ExampleUnitTest {
         assertFalse(LocationUtil.isValidLatitude("invalid"));
         assertFalse("Should have returned false when input is " +
                         "greater than maximum allowed value for latitude",
-                        LocationUtil.isValidLatitude("90.1"));
+                LocationUtil.isValidLatitude("90.1"));
         assertFalse("Should have returned false when input is " +
-                "less than minimum allowed value for latitude",
+                        "less than minimum allowed value for latitude",
                 LocationUtil.isValidLatitude("-90.1"));
     }
 
@@ -87,9 +93,38 @@ public class ExampleUnitTest {
         assertFalse(LocationUtil.isValidLongitude("invalid"));
         assertFalse(LocationUtil.isValidLongitude("-200"));
         assertFalse("Should have returned false when input is " +
-                "less than minimum allowed value for longitude",
+                        "less than minimum allowed value for longitude",
                 LocationUtil.isValidLongitude("-180.1"));
         assertFalse("Should have returned false when input is " + "greater than" +
                 "maximum allowed value for longitude",LocationUtil.isValidLongitude("180.1"));
+    }
+
+    @Test
+    public void checkJobAddsJobCorrectly() {
+        preferredJobs.checkJob(JobTypes.HITMAN);
+        assertTrue("Job should be added to the preferred jobs accordingly.",
+                Arrays.asList(preferredJobs.getPreferredJobs()).contains(JobTypes.HITMAN));
+    }
+
+    @Test
+    public void uncheckJobRemovesJobCorrectly() {
+        preferredJobs.checkJob(JobTypes.HITMAN);
+        preferredJobs.checkJob(JobTypes.MAGICIAN);
+        preferredJobs.uncheckJob(JobTypes.HITMAN);
+        assertFalse("Job should be removed from the preferred jobs",
+                Arrays.asList(preferredJobs.getPreferredJobs()).contains(JobTypes.HITMAN));
+    }
+
+    @Test
+    public void doesPreferredReturnsTrueForPreferredJob() {
+        preferredJobs.checkJob(JobTypes.MOVING);
+        assertTrue("Should return true for checked preferred job",
+                preferredJobs.doesPreferred(JobTypes.MOVING));
+    }
+
+    @Test
+    public void doesPreferredReturnsFalseForNotPreferredJob() {
+        assertFalse("Should return false for job which is not checked for preference",
+                preferredJobs.doesPreferred(JobTypes.YARDWORK));
     }
 }
