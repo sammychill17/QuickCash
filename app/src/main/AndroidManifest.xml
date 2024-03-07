@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,31 +17,34 @@
         android:theme="@style/Theme.Quickcash"
         tools:targetApi="31">
         <activity
-            android:name="com.example.quickcash.Activities.DashboardActivity"
+            android:name=".Activities.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DashboardActivity"
             android:exported="false"
             android:label="@string/title_activity_dashboard" />
         <activity
-            android:name="com.example.quickcash.Activities.MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.quickcash.Activities.LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
-            </activity>
-        <activity
-            android:name="com.example.quickcash.Activities.RegistrationActivity"
-            android:exported="true">
         </activity>
         <activity
-            android:name="com.example.quickcash.Activities.LocationActivity"
-            android:exported="true">
-        </activity>
+            android:name=".Activities.RegistrationActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Activities.LocationActivity"
+            android:exported="true"></activity>
     </application>
+
 </manifest>
