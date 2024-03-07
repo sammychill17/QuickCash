@@ -1,9 +1,12 @@
 package com.example.quickcash.ui.employerJobPost;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,8 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.databinding.FragmentEmployerjobpostBinding;
 import com.example.quickcash.ui.employerJobPost.EmployerJobPostViewModel;
+import com.example.quickcash.R;
 
-public class EmployerJobPostFragment extends Fragment {
+public class EmployerJobPostFragment extends Fragment{
 
     private FragmentEmployerjobpostBinding binding;
 
@@ -25,27 +29,12 @@ public class EmployerJobPostFragment extends Fragment {
         binding = FragmentEmployerjobpostBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.dashboardTextViewWelcome;
-        textView.setText("Dashboard");
-        final TextView roleView = binding.dashboardTextViewRoleLabel;
-        roleView.setText("I'm an employer!");
-        setLat("To be implemented");
-        setLong("To be implemented");
+        final Spinner spinner = binding.jobTypeSpinner;
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.job_type_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
         return root;
-    }
-
-    private void setLat(String lat) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Latitude: ");
-        stringBuilder.append(lat);
-        binding.textViewLat.setText(stringBuilder.toString());
-    }
-
-    private void setLong(String longitude) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Longitude: ");
-        stringBuilder.append(longitude);
-        binding.textViewLong.setText(stringBuilder.toString());
     }
 
     @Override

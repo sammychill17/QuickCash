@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import com.example.quickcash.BusinessLogic.CredentialValidator;
 import com.example.quickcash.BusinessLogic.LocationUtil;
+import com.example.quickcash.Objects.JobApplicants;
 import com.example.quickcash.Objects.PreferredJobs;
 import com.example.quickcash.Objects.JobTypes;
 
@@ -20,10 +21,12 @@ import java.util.Arrays;
 public class ExampleUnitTest {
     CredentialValidator validator;
     PreferredJobs preferredJobs;
+    JobApplicants jobApplicants;
     @Before
     public void setup() {
         validator = new CredentialValidator();
         preferredJobs = new PreferredJobs("macgrubber@yolo.com");
+        jobApplicants = new JobApplicants("hi");
     }
     @Test
     public void checkIfEmailIsValid(){
@@ -76,9 +79,9 @@ public class ExampleUnitTest {
         assertFalse(LocationUtil.isValidLatitude("invalid"));
         assertFalse("Should have returned false when input is " +
                         "greater than maximum allowed value for latitude",
-                        LocationUtil.isValidLatitude("90.1"));
+                LocationUtil.isValidLatitude("90.1"));
         assertFalse("Should have returned false when input is " +
-                "less than minimum allowed value for latitude",
+                        "less than minimum allowed value for latitude",
                 LocationUtil.isValidLatitude("-90.1"));
     }
 
@@ -93,7 +96,7 @@ public class ExampleUnitTest {
         assertFalse(LocationUtil.isValidLongitude("invalid"));
         assertFalse(LocationUtil.isValidLongitude("-200"));
         assertFalse("Should have returned false when input is " +
-                "less than minimum allowed value for longitude",
+                        "less than minimum allowed value for longitude",
                 LocationUtil.isValidLongitude("-180.1"));
         assertFalse("Should have returned false when input is " + "greater than" +
                 "maximum allowed value for longitude",LocationUtil.isValidLongitude("180.1"));
@@ -126,5 +129,32 @@ public class ExampleUnitTest {
     public void doesPreferredReturnsFalseForNotPreferredJob() {
         assertFalse("Should return false for job which is not checked for preference",
                 preferredJobs.doesPreferred(JobTypes.YARDWORK));
+    }
+    @Test
+    public void addApplicant_addsCorrectly() {
+        jobApplicants.addApplicant("homeless@canadian.streets");
+        assertTrue(jobApplicants.getApplicants().contains("homeless@canadian.streets"));
+    }
+
+    @Test
+    public void removeApplicant_removesCorrectly() {
+        jobApplicants.addApplicant("gaga@radio.com");
+        jobApplicants.removeApplicant("gaga@radio.com");
+        assertFalse(jobApplicants.getApplicants().contains("gaga@radio.com"));
+    }
+
+    @Test
+    public void ifContainsApplicant_checksCorrectly() {
+        jobApplicants.addApplicant("manowar@war.com");
+        assertTrue(jobApplicants.ifContainsApplicant("manowar@war.com"));
+        assertFalse(jobApplicants.ifContainsApplicant("nonexistent@idontexist.com"));
+    }
+
+    @Test
+    public void clearAllApplicants_clearsCorrectly() {
+        jobApplicants.addApplicant("onclejazz@terabithia.com");
+        jobApplicants.addApplicant("boogles@oogles.com");
+        jobApplicants.clearAllApplicants();
+        assertTrue(jobApplicants.getApplicants().isEmpty());
     }
 }
