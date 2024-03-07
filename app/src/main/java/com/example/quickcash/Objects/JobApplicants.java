@@ -1,5 +1,6 @@
 package com.example.quickcash.Objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JobApplicants {
@@ -9,6 +10,7 @@ public class JobApplicants {
 
     public JobApplicants(String key){
         this.key = key;
+        this.applicants = new ArrayList<>();
     }
     public JobApplicants(int key, List<String> applicants){
         this.applicants = applicants;
