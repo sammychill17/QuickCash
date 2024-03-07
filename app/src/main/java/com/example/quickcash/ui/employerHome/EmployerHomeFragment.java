@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,23 +30,11 @@ public class EmployerHomeFragment extends Fragment {
         textView.setText("Dashboard");
         final TextView roleView = binding.dashboardTextViewRoleLabel;
         roleView.setText("I'm an employer!");
-        setLat("To be implemented");
-        setLong("To be implemented");
+
+        final ImageButton jobPostButton = binding.loseYourselfButton;
+        final Button myJobsButton = binding.myJobsButton;
+
         return root;
-    }
-
-    private void setLat(String lat) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Latitude: ");
-        stringBuilder.append(lat);
-        binding.textViewLat.setText(stringBuilder.toString());
-    }
-
-    private void setLong(String longitude) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Longitude: ");
-        stringBuilder.append(longitude);
-        binding.textViewLong.setText(stringBuilder.toString());
     }
 
     @Override
