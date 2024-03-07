@@ -18,12 +18,12 @@ public class Job {
     /*
     Constructor --
      */
-    public Job(String title, String description, JobTypes jobType, double salary, String duration, String employerEmail) {
+    public Job(String title, String description, JobTypes jobType, double salary, Duration duration, String employerEmail) {
         this.title = title;
         this.description = description;
         this.jobType = jobType;
         this.salary = salary;
-        this.duration = Duration.parse(duration);
+        this.duration = duration;
         this.employerEmail = employerEmail;
         /*
         default value is false
