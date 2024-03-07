@@ -1,2 +1,3 @@
-package com.example.quickcash.ui.JobApplicantsPage;public class JobApplicantsAdapter {
+package com.example.quickcash.ui.JobApplicantsPage;
+public class JobApplicantsAdapter {
 }

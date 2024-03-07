@@ -7,18 +7,6 @@
     android:background="@drawable/employer_background_gradient"
     tools:context=".ui.employeeHome.EmployeeHomeFragment">
 
-    <Button
-        android:id="@+id/myJobsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="45dp"
-        android:backgroundTint="#E91E63"
-        android:text="My Jobs (In the middle of my jobs)"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dashboardCardView" />
-
     <TextView
         android:id="@+id/dashboardTextView_Welcome"
         android:layout_width="wrap_content"
@@ -62,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
+            android:translationY="-60dp"
             app:cardBackgroundColor="#8BC34A"
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp">
@@ -86,15 +75,35 @@
                     android:id="@+id/loseYourselfButton"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:scaleType="fitCenter"
                     android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/inverted_and_flipped_logo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="Lose Money by Posting a Job" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="374dp"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/myJobsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="384dp"
+                android:layout_marginEnd="46dp"
+                android:backgroundTint="#E91E63"
+                android:text="My Jobs (In the middle of my jobs)"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
 
