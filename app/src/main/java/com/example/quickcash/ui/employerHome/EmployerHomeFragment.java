@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerhomeBinding;
-import com.example.quickcash.ui.JobApplicantsPage.JobApplicantsFragment;
+import com.example.quickcash.ui.employerJobList.EmployerJobListFragment;
 import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
 
 public class EmployerHomeFragment extends Fragment {
@@ -55,7 +55,7 @@ public class EmployerHomeFragment extends Fragment {
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.setReorderingAllowed(true);
-                fragmentTransaction.replace(R.id.dashboardCardView, JobApplicantsFragment.class, null);
+                fragmentTransaction.replace(R.id.dashboardCardView, EmployerJobListFragment.class, null);
                 fragmentTransaction.commit();
             }
         });

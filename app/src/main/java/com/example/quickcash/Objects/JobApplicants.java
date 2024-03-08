@@ -12,7 +12,8 @@ public class JobApplicants {
         this.key = key;
         this.applicants = new ArrayList<>();
     }
-    public JobApplicants(int key, List<String> applicants){
+    public JobApplicants(String key, List<String> applicants){
+        this.key = key;
         this.applicants = applicants;
     }
 
