@@ -23,6 +23,7 @@ import com.example.quickcash.ui.employerJobPage.EmployerJobPageViewModel;
 import java.lang.reflect.Array;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EmployerJobListFragment extends Fragment{
 
@@ -56,9 +57,9 @@ public class EmployerJobListFragment extends Fragment{
     }
 
     private ArrayList<Job> getEmployerJobList(){
-        Job job1 = new Job("Burma", "I want to change Myanmar back to Burma! It was better that way!", JobTypes.HITMAN, 120.0, Duration.ofHours(12), "blake.march@villain.fr");
-        Job job2 = new Job("Olive Oil!", "I want to be allowed to drink olive oil! Straight from the bottle!", JobTypes.YARDWORK, 20.0, Duration.ofHours(2), "blake.april@villain.fr");
-        Job job3 = new Job("Please fix my pc!", "I have 129739 viruses on my PC and I need them removed!", JobTypes.TECH, 200.0, Duration.ofHours(8), "blake.january@villain.fr");
+        Job job1 = new Job("Burma", "I want to change Myanmar back to Burma! It was better that way!", JobTypes.HITMAN, 120.0, Duration.ofHours(12), "blake.march@villain.fr", new Date());
+        Job job2 = new Job("Olive Oil!", "I want to be allowed to drink olive oil! Straight from the bottle!", JobTypes.YARDWORK, 20.0, Duration.ofHours(2), "blake.april@villain.fr", new Date());
+        Job job3 = new Job("Please fix my pc!", "I have 129739 viruses on my PC and I need them removed!", JobTypes.TECH, 200.0, Duration.ofHours(8), "blake.january@villain.fr", new Date());
         ArrayList<Job> adapter = new ArrayList<>();
         adapter.add(job1);
         adapter.add(job2);

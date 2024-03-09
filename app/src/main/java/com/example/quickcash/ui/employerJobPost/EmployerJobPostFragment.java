@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.Duration;
+import java.util.Date;
 import java.util.Locale;
 
 public class EmployerJobPostFragment extends Fragment {
@@ -78,7 +79,9 @@ public class EmployerJobPostFragment extends Fragment {
         if (!salaryString.isEmpty()) {
             salaryNum = Double.parseDouble(salaryString);
         }
+
         String dateString = ((Button) getView().findViewById(R.id.jobDateButton)).getText().toString();
+
         String durationString = (((EditText) getView().findViewById(R.id.jobDurationField)).getText().toString());
         long durationLong = 0;
         if (!durationString.isEmpty()) {
@@ -99,13 +102,17 @@ public class EmployerJobPostFragment extends Fragment {
             // Creates a new Job object with the provided details accordingly
             SharedPreferences sharedPrefs = getActivity().getSharedPreferences("session_login", Context.MODE_PRIVATE);
             String employerEmail = sharedPrefs.getString("email", "");
-            Job newJob = new Job(title, description, jobType, salaryNum, durationHours, employerEmail);
+            //TODO: Make sure that date picker is getting a date. Also make date picker.
+            Job newJob = new Job(title, description, jobType, salaryNum, durationHours, employerEmail, new Date());
             newJob.setTitle(title);
             newJob.setDescription(description);
             newJob.setJobType(JobTypes.valueOf(selectedJobType));
             newJob.setDuration(durationLong);
             newJob.setEmployerEmail(employerEmail);
 
+            //newJob.setDate();
+
+            //newJob.setLocation();
 
             DatabaseReference newJobRef = FirebaseDatabase.getInstance().getReference("Posted Jobs").push();
             newJobRef.setValue(newJob);

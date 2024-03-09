@@ -1,6 +1,9 @@
 package com.example.quickcash.Objects;
 
+import android.location.Location;
+
 import java.time.Duration;
+import java.util.Date;
 
 public class Job {
 
@@ -10,6 +13,8 @@ public class Job {
     private JobTypes jobType;
     private double salary;
     private transient Duration duration;
+    private Date date;
+    private Location location;
     private boolean isAssigned;
     private boolean isCompleted;
     private String assignedToEmail;
@@ -18,13 +23,20 @@ public class Job {
     /*
     Constructor --
      */
-    public Job(String title, String description, JobTypes jobType, double salary, Duration duration, String employerEmail) {
+    public Job(String title,
+               String description,
+               JobTypes jobType,
+               double salary,
+               Duration duration,
+               String employerEmail,
+               Date date) {
         this.title = title;
         this.description = description;
         this.jobType = jobType;
         this.salary = salary;
         this.duration = duration;
         this.employerEmail = employerEmail;
+        this.date = date;
         /*
         default value is false
          */
@@ -64,6 +76,10 @@ public class Job {
 
     public void setJobType(JobTypes jobType) {
         this.jobType = jobType;
+    }
+
+    public void setDate(Date date){
+        this.date = date;
     }
 
     public double getSalary() {
@@ -115,5 +131,11 @@ public class Job {
         return  key;
     }
 
-    //TODO: Make a Job Firebase Helper Class
+    public Date getDate(){
+        return date;
+    }
+
+    public void setLocation(Location location){
+        this.location = location;
+    }
 }
