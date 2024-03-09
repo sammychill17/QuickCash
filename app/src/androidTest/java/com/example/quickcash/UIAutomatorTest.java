@@ -15,6 +15,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
@@ -30,7 +31,7 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
-public class UIAutomatorTest extends AppCompatActivity {
+public class UIAutomatorTest  {
 
     private static final int LAUNCH_TIMEOUT = 5000;
     final String launcherPackage = "com.example.quickcash";
@@ -38,9 +39,12 @@ public class UIAutomatorTest extends AppCompatActivity {
 
     @Before
     public void setup() {
-        device = UiDevice.getInstance(getInstrumentation());
-        Context context = ApplicationProvider.getApplicationContext();
-        SharedPreferences sp = context.getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+        /*
+        https://stackoverflow.com/questions/18686655/how-to-get-context-in-uiautomator-test-case
+         */
+        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        SharedPreferences sp = context.getSharedPreferences(context.getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         sp.edit().clear().commit();
         final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
         appIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -50,15 +54,6 @@ public class UIAutomatorTest extends AppCompatActivity {
 
     @Test
     public void checkIfWelcomePageIsVisible() {
-//        UiObject netIDBox = device.findObject(new UiSelector().textContains("Net ID"));
-//        assertTrue(netIDBox.exists());
-//        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
-//        assertTrue(emailIDBox.exists());
-//        UiObject roleSpinner = device.findObject(new UiSelector().textContains("Select your role"));
-//        assertTrue(roleSpinner.exists());
-//        UiObject registerButton = device.findObject(new UiSelector().text("REGISTER"));
-//        assertTrue(registerButton.exists());
-
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         assertTrue(loginButton.exists());
     }
@@ -67,7 +62,6 @@ public class UIAutomatorTest extends AppCompatActivity {
     public void checkIfLoginPageIsVisible() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-//        device.wait(LAUNCH_TIMEOUT);
         UiObject anotherLoginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         assertTrue(anotherLoginButton.exists());
         UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
@@ -78,7 +72,6 @@ public class UIAutomatorTest extends AppCompatActivity {
     public void checkIfDashboardPageIsVisible() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-//        device.wait(LAUNCH_TIMEOUT);
         UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
         assertTrue(loginLabel.exists());
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
@@ -90,7 +83,7 @@ public class UIAutomatorTest extends AppCompatActivity {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-//        device.wait(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
     }
@@ -128,6 +121,7 @@ public class UIAutomatorTest extends AppCompatActivity {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
         UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
         assertTrue(employeeLabel.exists());
         UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
@@ -147,38 +141,21 @@ public class UIAutomatorTest extends AppCompatActivity {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
         UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
         assertFalse(employeeLabel.exists());
         UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
         assertTrue(employerLabel.exists());
     }
 
-//    @Test
-//    public void checkIfMoved2WelcomePage() throws UiObjectNotFoundException {
-//        UiObject netIDBox = device.findObject(new UiSelector().textContains("Net ID"));
-//        netIDBox.setText("xy881245");
-//        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
-//        emailIDBox.setText("abc123@dal.ca");
-//        UiObject roleSpinner = device.findObject(new UiSelector().textContains("Select your role"));
-//        roleSpinner.click();
-//        List<UiObject2> roles = device.findObjects(By.res("android:id/text1"));
-//        roles.get(1).click();
-//        UiObject registerButton = device.findObject(new UiSelector().text("REGISTER"));
-//        registerButton.clickAndWaitForNewWindow();
-//        UiObject welcomeLabel = device.findObject(new UiSelector().textContains("Welcome"));
-//        assertTrue(welcomeLabel.exists());
-//    }
-
-    private void allowPermissionsIfNeeded()  {
-        if (Build.VERSION.SDK_INT >= 23) {
-            UiObject allowPermissions = device.findObject(new UiSelector().text("Allow"));
+    /*
+    clicks the "While using the app" button of the location permissions system prompt
+     */
+    private void allowPermissionsIfNeeded() throws UiObjectNotFoundException {
+            UiDevice device = UiDevice.getInstance(getInstrumentation());
+            UiObject allowPermissions = device.findObject(new UiSelector().text("While using the app"));
             if (allowPermissions.exists()) {
-                try {
-                    allowPermissions.click();
-                } catch (UiObjectNotFoundException e) {
-                    Log.e("UIAutomator", "There is no permissions dialog to interact with ");
-                }
-            }
+                allowPermissions.click();
         }
     }
 }
