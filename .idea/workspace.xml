@@ -71,13 +71,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerHome/EmployerHomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerHome/EmployerHomeFragment.java" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Unfinished functionality in EmployerJobPostFragment, pushing to avoid change loss">
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerhome.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerhome.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpost.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpost.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -763,7 +758,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709828492915</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Unfinished functionality in EmployerJobPostFragment, pushing to avoid change loss">
+      <option name="closed" value="true" />
+      <created>1709949608028</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709949608028</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -797,6 +800,7 @@
     <MESSAGE value="Created .xml layours for job post, list, and page fragments" />
     <MESSAGE value="Created non-functional Fragments/ViewModels for each LFP page" />
     <MESSAGE value="Created non-functional Fragments/ViewModels for each remaining LFP page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created non-functional Fragments/ViewModels for each remaining LFP page" />
+    <MESSAGE value="Unfinished functionality in EmployerJobPostFragment, pushing to avoid change loss" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unfinished functionality in EmployerJobPostFragment, pushing to avoid change loss" />
   </component>
 </project>

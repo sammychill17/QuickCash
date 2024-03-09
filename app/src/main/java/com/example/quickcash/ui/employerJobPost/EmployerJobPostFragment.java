@@ -1,6 +1,8 @@
 package com.example.quickcash.ui.employerJobPost;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,8 +41,12 @@ public class EmployerJobPostFragment extends Fragment{
         binding = FragmentEmployerjobpostBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        SharedPreferences sp = requireContext().getSharedPreferences("session_login",
+                Context.MODE_PRIVATE);
+
         final Spinner spinner = binding.jobTypeSpinner;
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.job_type_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(),
+                R.array.job_type_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -94,10 +100,10 @@ public class EmployerJobPostFragment extends Fragment{
                         JobTypes.valueOf(spinner.getSelectedItem().toString()),
                         Double.parseDouble(String.valueOf(salaryTxt.getText())),
                         Duration.ofHours(Integer.parseInt(durationTxt.getText().toString())),
-                        "Loki360@gmail.com");
+                        sp.getString("email", "default@failedtest.com"));
                 JobDBHelper jobDBHelper = new JobDBHelper(job);
                 jobDBHelper.pushJobToDB();
-                Snackbar.make(postBtn, "Pushed job to database!", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(postBtn, "Successfully posted job!", Snackbar.LENGTH_SHORT).show();
             }
         });
 
