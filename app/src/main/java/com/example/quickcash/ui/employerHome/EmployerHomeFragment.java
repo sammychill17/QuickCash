@@ -18,11 +18,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerhomeBinding;
+import com.example.quickcash.ui.employerJobList.EmployerJobListAdapter;
 import com.example.quickcash.ui.employerJobList.EmployerJobListFragment;
 import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
 import com.google.firebase.database.DatabaseReference;

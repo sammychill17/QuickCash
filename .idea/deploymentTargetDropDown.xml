@@ -8,10 +8,26 @@
       <entry key="MainActivity">
         <State />
       </entry>
-      <entry key="app">
+      <entry key="UIAutomatorTest">
         <State />
       </entry>
-      <entry key="checkIfPasswordIsInvalid()">
+      <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\james\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-03-09T17:47:11.789794600Z" />
+        </State>
+      </entry>
+      <entry key="checkIfJobPostIsVisible()">
         <State />
       </entry>
       <entry key="checkIfPasswordIsValid()">

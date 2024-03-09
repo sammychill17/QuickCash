@@ -23,13 +23,13 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
-        android:id="@+id/employerJobListFragment"
-        android:name="com.example.quickcash.ui.employerJobList.EmployerJobListFragment"
-        android:label="job_list"
-        tools:layout="@layout/fragment_employerjoblist" />
-    <fragment
         android:id="@+id/employerJobPostFragment"
         android:name="com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment"
         android:label="job_post"
         tools:layout="@layout/fragment_employerjobpost"/>
+    <fragment
+        android:id="@+id/employerJobListFragment"
+        android:name="com.example.quickcash.ui.employerJobList.EmployerJobListFragment"
+        android:label="job_list"
+        tools:layout="@layout/employer_job_item_list"/>
 </navigation>
