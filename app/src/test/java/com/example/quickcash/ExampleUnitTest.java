@@ -92,4 +92,5 @@ public class ExampleUnitTest {
         assertFalse("Should have returned false when input is " + "greater than" +
                 "maximum allowed value for longitude",LocationUtil.isValidLongitude("180.1"));
     }
+
 }
