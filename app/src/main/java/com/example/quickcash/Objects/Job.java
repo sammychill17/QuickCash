@@ -35,6 +35,7 @@ public class Job {
          */
         this.assignedToEmail = "";
     }
+    public Job() {}
 
     /*
     getter and setter methods below---
@@ -78,8 +79,12 @@ public class Job {
         return duration;
     }
 
-    public void setDuration(String duration) {
-        this.duration = Duration.parse(duration);
+//    public void setDuration(String duration) {
+//        this.duration = Duration.parse(duration);
+//    }
+
+    public void setDuration(Long duration) {
+        this.duration = Duration.ofHours(duration);
     }
 
     public boolean isAssigned() {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,12 @@ import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentNotificationsBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.example.quickcash.Activities.MainActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.Duration;
 import java.util.Random;
@@ -57,6 +64,32 @@ public class NotificationsFragment extends Fragment {
                 JobDBHelper jobDBHelper = new JobDBHelper(job);
                 jobDBHelper.pushJobToDB();
                 Snackbar.make(binding.pushJobToDbButon, "Pushed job to database!", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+        binding.testSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fireBaseURL = "https://quickcash-6941c-default-rtdb.firebaseio.com/"; //For some reason I was getting null pointer exceptions when I tried to reference strings.xml so I manually added the link here.
+                FirebaseDatabase database = FirebaseDatabase.getInstance(fireBaseURL);
+                DatabaseReference reference = database.getReference("Posted Jobs");
+
+                Query filteredRef = reference.orderByChild("title").equalTo("oui");
+                filteredRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                            Job obj = snapshot1.getValue(Job.class); // This might need adjustment
+                            if (obj != null ) {
+                                binding.textNotifications.setText(binding.textNotifications.getText() + "\n" + obj.getTitle());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
