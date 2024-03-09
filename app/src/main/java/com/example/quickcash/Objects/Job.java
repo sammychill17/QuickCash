@@ -9,7 +9,7 @@ public class Job {
     private String description;
     private JobTypes jobType;
     private double salary;
-    private Duration duration;
+    private transient Duration duration;
     private boolean isAssigned;
     private boolean isCompleted;
     private String assignedToEmail;
@@ -74,12 +74,12 @@ public class Job {
         this.salary = salary;
     }
 
-    public Duration getDuration() {
-        return duration;
+    public long getDuration() {
+        return duration.toHours();
     }
 
-    public void setDuration(String duration) {
-        this.duration = Duration.parse(duration);
+    public void setDuration(long hours) {
+        this.duration = Duration.ofHours(hours);
     }
 
     public boolean isAssigned() {
