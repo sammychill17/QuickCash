@@ -30,7 +30,7 @@ public class EmployerJobPostEspressoTest {
         ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(MainActivity.class);
         activityScenario.onActivity(activity -> {
             EmployerJobPostFragment employerJobPostFragment = new EmployerJobPostFragment();
-            activity.getSupportFragmentManager().beginTransaction().add(R.id.dashboardCardView, employerJobPostFragment).commit();
+            activity.getSupportFragmentManager().beginTransaction().add(R.id.employerJobPostFragment, employerJobPostFragment).commit();
         });
     }
 
@@ -91,13 +91,24 @@ public class EmployerJobPostEspressoTest {
     }
 
     @Test
-    public void testDateForJobPost(){
+    public void testDateForJobPostFail(){
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("parker@morrison.com"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withId(R.id.loseYourselfButton)).perform(click());
         onView(withId(R.id.jobDateButton)).perform(click());
+        onView(withId(R.id.jobPostButton)).perform(click());
+    }
+    @Test
+    public void testTwoFieldsFilledJobPostSuccess(){
+        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("parker@morrison.com"));
+        onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        onView(withId(R.id.loseYourselfButton)).perform(click());
+        onView(withId(R.id.jobSalaryField)).perform(typeText("500"));
+        onView(withId(R.id.jobDescField)).perform(typeText("Job in cold tatamagouche"));
         onView(withId(R.id.jobPostButton)).perform(click());
     }
 }
