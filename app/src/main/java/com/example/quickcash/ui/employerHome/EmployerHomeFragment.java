@@ -31,11 +31,6 @@ public class EmployerHomeFragment extends Fragment {
         binding = FragmentEmployerhomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.dashboardTextViewWelcome;
-        textView.setText("Dashboard");
-        final TextView roleView = binding.dashboardTextViewRoleLabel;
-        roleView.setText("I'm an employer!");
-
         final ImageButton jobPostButton = binding.loseYourselfButton;
 
         jobPostButton.setOnClickListener(new View.OnClickListener() {
