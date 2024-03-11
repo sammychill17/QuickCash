@@ -2,13 +2,13 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="EmployerDashboardEspressoTest">
+        <State />
+      </entry>
+      <entry key="EmployerJobListEspressoTest">
+        <State />
+      </entry>
       <entry key="LoginEspressoTest">
-        <State />
-      </entry>
-      <entry key="MainActivity">
-        <State />
-      </entry>
-      <entry key="UIAutomatorTest">
         <State />
       </entry>
       <entry key="app">
