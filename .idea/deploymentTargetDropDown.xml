@@ -2,22 +2,16 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="LoginEspressoTest">
-        <State />
-      </entry>
-      <entry key="MainActivity">
-        <State />
-      </entry>
-      <entry key="UIAutomatorTest">
-        <State />
-      </entry>
       <entry key="app">
         <State />
       </entry>
-      <entry key="checkIfPasswordIsInvalid()">
+      <entry key="checkIfSearchPageIsVisibleEmployee()">
         <State />
       </entry>
-      <entry key="checkIfPasswordIsValid()">
+      <entry key="jobSearchTestWithTitle()">
+        <State />
+      </entry>
+      <entry key="jobSearchTestWithTitle2()">
         <State />
       </entry>
     </value>

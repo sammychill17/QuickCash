@@ -1,5 +1,6 @@
 package com.example.quickcash;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.example.quickcash.BusinessLogic.CredentialValidator;
@@ -107,5 +108,86 @@ public class JobUnitTest {
             }
         }
         assertTrue(foundYardworkJobs);
+    }
+    @Test
+    public void filterByJobTitleFail (){
+        List<IFilter> filters = new ArrayList<>();
+        TitleFilter titleFilter = new TitleFilter();
+        titleFilter.setValue("oui");
+        filters.add(titleFilter);
+
+        FilterHelper helper = new FilterHelper();
+        helper.setFilters(filters);
+        Set<Job> jobs = helper.run();
+
+        boolean foundHitmanJob = false;
+        for (Job job : jobs) {
+            if (job.getTitle().equals("Hitman for hire")) {
+                foundHitmanJob = true;
+                break;
+            }
+        }
+        assertFalse(foundHitmanJob);
+    }
+    @Test
+    public void filterByDurationFail (){
+        List<IFilter> filters = new ArrayList<>();
+        DurationFilter durationFilter = new DurationFilter();
+        durationFilter.setValue(5);
+        filters.add(durationFilter);
+
+        FilterHelper helper = new FilterHelper();
+        helper.setFilters(filters);
+        Set<Job> jobs = helper.run();
+
+        boolean foundOuiJob = false;
+        for (Job job : jobs) {
+            Duration jobDuraton = Duration.ofHours(0);
+            if (job.getDuration()==jobDuraton) {
+                foundOuiJob = true;
+                break;
+            }
+        }
+        assertFalse(foundOuiJob);
+    }
+    @Test
+    public void filterBySalaryFail (){
+        List<IFilter> filters = new ArrayList<>();
+        SalaryFilter salaryFilter = new SalaryFilter();
+        salaryFilter.setValue(500.0);
+        filters.add(salaryFilter);
+
+        FilterHelper helper = new FilterHelper();
+        helper.setFilters(filters);
+        Set<Job> jobs = helper.run();
+
+        boolean foundOuiJob = false;
+        for (Job job : jobs) {
+            if (job.getSalary()==0.0) {
+                foundOuiJob = true;
+                break;
+            }
+        }
+        assertFalse(foundOuiJob);
+    }
+    @Test
+    public void filterByJobTypeFail (){
+        List<IFilter> filters = new ArrayList<>();
+        JobTypeFilter jobTypeFilter = new JobTypeFilter();
+        jobTypeFilter.setValue(JobTypes.YARDWORK);
+        filters.add(jobTypeFilter);
+
+        FilterHelper helper = new FilterHelper();
+        helper.setFilters(filters);
+        Set<Job> jobs = helper.run();
+
+        boolean foundArtsCreativeJob = false;
+        for (Job job : jobs) {
+            if (job.getJobType()==JobTypes.ARTS_CREATIVE) {
+                foundArtsCreativeJob = true;
+                break;
+            }
+        }
+        assertFalse(foundArtsCreativeJob);
     }
 }
