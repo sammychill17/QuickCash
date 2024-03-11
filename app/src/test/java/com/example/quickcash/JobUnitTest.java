@@ -36,17 +36,22 @@ public class JobUnitTest {
         filters.add(titleFilter);
 
         FilterHelper helper = new FilterHelper();
-        helper.setFilters(filters);
-        Set<Job> jobs = helper.run();
-
-        boolean foundOuiJob = false;
-        for (Job job : jobs) {
-            if (job.getTitle().equals("oui")) {
-                foundOuiJob = true;
-                break;
+        FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> searchResult) {
+                boolean foundOuiJob = false;
+                for (Job job : searchResult) {
+                    if (job.getTitle().equals("oui")) {
+                        foundOuiJob = true;
+                        break;
+                    }
+                }
+                assertTrue(foundOuiJob);
             }
-        }
-        assertTrue(foundOuiJob);
+        };
+        helper.setCallback(callback);
+        helper.setFilters(filters);
+        helper.run();
     }
     @Test
     public void filterByDuration (){
@@ -56,18 +61,22 @@ public class JobUnitTest {
         filters.add(durationFilter);
 
         FilterHelper helper = new FilterHelper();
-        helper.setFilters(filters);
-        Set<Job> jobs = helper.run();
-
-        boolean foundHitmanJobs = false;
-        for (Job job : jobs) {
-            Duration jobDuraton = Duration.ofHours(5);
-            if (job.getDuration()==jobDuraton) {
-                foundHitmanJobs = true;
-                break;
+        helper.setCallback(new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> jobs) {
+                boolean foundHitmanJobs = false;
+                for (Job job : jobs) {
+                    Duration jobDuraton = Duration.ofHours(5);
+                    if (job.getDuration()==jobDuraton) {
+                        foundHitmanJobs = true;
+                        break;
+                    }
+                }
+                assertTrue(foundHitmanJobs);
             }
-        }
-        assertTrue(foundHitmanJobs);
+        });
+        helper.setFilters(filters);
+        helper.run();
     }
     @Test
     public void filterBySalary (){
@@ -78,16 +87,20 @@ public class JobUnitTest {
 
         FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
-        Set<Job> jobs = helper.run();
-
-        boolean foundHitmanJobs = false;
-        for (Job job : jobs) {
-            if (job.getSalary()==500.0) {
-                foundHitmanJobs = true;
-                break;
+        helper.setCallback(new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> jobs) {
+                boolean foundHitmanJobs = false;
+                for (Job job : jobs) {
+                    if (job.getSalary()==500.0) {
+                        foundHitmanJobs = true;
+                        break;
+                    }
+                }
+                assertTrue(foundHitmanJobs);
             }
-        }
-        assertTrue(foundHitmanJobs);
+        });
+        helper.run();
     }
     @Test
     public void filterByJobType (){
@@ -98,16 +111,20 @@ public class JobUnitTest {
 
         FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
-        Set<Job> jobs = helper.run();
-
-        boolean foundYardworkJobs = false;
-        for (Job job : jobs) {
-            if (job.getJobType()==JobTypes.YARDWORK) {
-                foundYardworkJobs = true;
-                break;
+        helper.setCallback(new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> jobs) {
+                boolean foundYardworkJobs = false;
+                for (Job job : jobs) {
+                    if (job.getJobType()==JobTypes.YARDWORK) {
+                        foundYardworkJobs = true;
+                        break;
+                    }
+                }
+                assertTrue(foundYardworkJobs);
             }
-        }
-        assertTrue(foundYardworkJobs);
+        });
+        helper.run();
     }
     @Test
     public void filterByJobTitleFail (){
@@ -118,16 +135,20 @@ public class JobUnitTest {
 
         FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
-        Set<Job> jobs = helper.run();
-
-        boolean foundHitmanJob = false;
-        for (Job job : jobs) {
-            if (job.getTitle().equals("Hitman for hire")) {
-                foundHitmanJob = true;
-                break;
+        helper.setCallback(new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> jobs) {
+                boolean foundHitmanJob = false;
+                for (Job job : jobs) {
+                    if (job.getTitle().equals("Hitman for hire")) {
+                        foundHitmanJob = true;
+                        break;
+                    }
+                }
+                assertFalse(foundHitmanJob);
             }
-        }
-        assertFalse(foundHitmanJob);
+        });
+        helper.run();
     }
     @Test
     public void filterByDurationFail (){
@@ -138,17 +159,21 @@ public class JobUnitTest {
 
         FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
-        Set<Job> jobs = helper.run();
-
-        boolean foundOuiJob = false;
-        for (Job job : jobs) {
-            Duration jobDuraton = Duration.ofHours(0);
-            if (job.getDuration()==jobDuraton) {
-                foundOuiJob = true;
-                break;
+        helper.setCallback(new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> jobs) {
+                boolean foundOuiJob = false;
+                for (Job job : jobs) {
+                    Duration jobDuraton = Duration.ofHours(0);
+                    if (job.getDuration()==jobDuraton) {
+                        foundOuiJob = true;
+                        break;
+                    }
+                }
+                assertFalse(foundOuiJob);
             }
-        }
-        assertFalse(foundOuiJob);
+        });
+        helper.run();
     }
     @Test
     public void filterBySalaryFail (){
@@ -159,16 +184,20 @@ public class JobUnitTest {
 
         FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
-        Set<Job> jobs = helper.run();
-
-        boolean foundOuiJob = false;
-        for (Job job : jobs) {
-            if (job.getSalary()==0.0) {
-                foundOuiJob = true;
-                break;
+        helper.setCallback(new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> jobs) {
+                boolean foundOuiJob = false;
+                for (Job job : jobs) {
+                    if (job.getSalary()==0.0) {
+                        foundOuiJob = true;
+                        break;
+                    }
+                }
+                assertFalse(foundOuiJob);
             }
-        }
-        assertFalse(foundOuiJob);
+        });
+        helper.run();
     }
     @Test
     public void filterByJobTypeFail (){
@@ -179,15 +208,19 @@ public class JobUnitTest {
 
         FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
-        Set<Job> jobs = helper.run();
-
-        boolean foundArtsCreativeJob = false;
-        for (Job job : jobs) {
-            if (job.getJobType()==JobTypes.ARTS_CREATIVE) {
-                foundArtsCreativeJob = true;
-                break;
+        helper.setCallback(new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> jobs) {
+                boolean foundArtsCreativeJob = false;
+                for (Job job : jobs) {
+                    if (job.getJobType()==JobTypes.ARTS_CREATIVE) {
+                        foundArtsCreativeJob = true;
+                        break;
+                    }
+                }
+                assertFalse(foundArtsCreativeJob);
             }
-        }
-        assertFalse(foundArtsCreativeJob);
+        });
+        helper.run();
     }
 }
