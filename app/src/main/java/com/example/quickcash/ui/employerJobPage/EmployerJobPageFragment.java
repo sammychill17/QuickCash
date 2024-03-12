@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,14 @@ public class EmployerJobPageFragment extends Fragment{
 
         binding = FragmentEmployerjobpageBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        Button backButton = binding.jobPageBackBtn;
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().popBackStack();
+            }
+        });
 
         return root;
     }
