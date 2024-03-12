@@ -14,11 +14,13 @@ public class Job {
     private double salary;
     private transient Duration duration;
     private Date date;
-    private Location location;
+    private UserLocation location;
     private boolean isAssigned;
     private boolean isCompleted;
     private String assignedToEmail;
     private String employerEmail;
+    private double latitude;
+    private double longitude;
 
     /*
     Constructor --
@@ -29,7 +31,9 @@ public class Job {
                double salary,
                Duration duration,
                String employerEmail,
-               Date date) {
+               Date date,
+               double latitude,
+               double longitude) {
         this.title = title;
         this.description = description;
         this.jobType = jobType;
@@ -46,6 +50,8 @@ public class Job {
         empty string initially
          */
         this.assignedToEmail = "";
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     /*
@@ -94,6 +100,7 @@ public class Job {
         return duration.toHours();
     }
 
+
     public void setDuration(long hours) {
         this.duration = Duration.ofHours(hours);
     }
@@ -127,6 +134,7 @@ public class Job {
         this.employerEmail = employerEmail;
     }
 
+    public void setKey(String key) {this.key = key;}
     public String getKey(){
         return  key;
     }
@@ -135,7 +143,19 @@ public class Job {
         return date;
     }
 
-    public void setLocation(Location location){
-        this.location = location;
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }
