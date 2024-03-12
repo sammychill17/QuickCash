@@ -22,6 +22,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -30,12 +31,19 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class EmployerJobListEspressoTest {
 
+    Context c = getApplicationContext();
+
     @Before
     public void launchFragment() {
+        SharedPreferences sp = c.getSharedPreferences("session_login", c.MODE_PRIVATE);
+        sp.edit().clear().commit();
         ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(MainActivity.class);
         activityScenario.onActivity(activity -> {
             InstrumentationRegistry.getInstrumentation().getUiAutomation()
@@ -47,21 +55,47 @@ public class EmployerJobListEspressoTest {
     }
 
     @Test
-    public void testMyJobsButton() throws UiObjectNotFoundException {
+    public void testMyJobsButton() throws InterruptedException {
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("parker@morrison.com"));
+        onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        Thread.sleep(4000);
+        onView(withId(R.id.myJobsButton)).perform(click());
+    }
+
+    public void testJobDetailsButton() {
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("parker@morrison.com"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withId(R.id.myJobsButton)).perform(click());
+        //onView(withId(R.id.buttonTv)).perform(click());
     }
 
-    private void allowPermissionsIfNeeded() throws UiObjectNotFoundException {
-        UiDevice device = UiDevice.getInstance(getInstrumentation());
-        UiObject allowPermissions = device.findObject(new UiSelector().text("While using the app"));
-        if (allowPermissions.exists()) {
-            allowPermissions.click();
-        }
+    public void testJobApplicantsButton() {
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("parker@morrison.com"));
+        onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        onView(withId(R.id.myJobsButton)).perform(click());
+        //onView(withId(R.id.buttonTv)).perform(click());
+        //onView(withId(R.id.seeApplicantsButton)).perform(click());
+    }
+
+    public void testChooseApplicantPage(){
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("parker@morrison.com"));
+        onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        onView(withId(R.id.myJobsButton)).perform(click());
+        //onView(withId(R.id.buttonTv)).perform(click());
+        //onView(withId(R.id.seeApplicantsButton)).perform(click());
+        //onView(withId(R.id.buttonTv)).perform(click());
     }
 
 }
