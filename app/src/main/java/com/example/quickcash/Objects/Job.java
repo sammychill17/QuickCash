@@ -3,6 +3,7 @@ package com.example.quickcash.Objects;
 import android.location.Location;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Date;
 
 public class Job {
@@ -52,6 +53,30 @@ public class Job {
         this.assignedToEmail = "";
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    /*
+    * default constructor for Job item with no parameters.
+     */
+    public Job(){
+        this.title = "";
+        this.description = "";
+        this.jobType = JobTypes.UNDEFINED;
+        this.salary = 0;
+        this.duration = Duration.ofHours(0);
+        this.employerEmail = "";
+        this.date = Date.from(Instant.now());
+        /*
+        default value is false
+         */
+        this.isAssigned = false;
+        this.isCompleted = false;
+        /*
+        empty string initially
+         */
+        this.assignedToEmail = "";
+        this.latitude = 0;
+        this.longitude = 0;
     }
 
     /*

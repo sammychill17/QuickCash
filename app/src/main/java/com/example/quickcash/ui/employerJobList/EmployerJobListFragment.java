@@ -68,8 +68,9 @@ public class EmployerJobListFragment extends Fragment{
         mRecyclerView = binding.jobList;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        myAdapter = new EmployerJobListAdapter(this.getContext(), getEmployerJobList());
+        myAdapter = new EmployerJobListAdapter(this.getContext(), null); //This was changed to be initially set to Null on suggestion by ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
         mRecyclerView.setAdapter(myAdapter);
+        getEmployerJobList(); //This method is called following the suggestion of ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
 
         return root;
     }
@@ -84,40 +85,24 @@ public class EmployerJobListFragment extends Fragment{
         }
     }
 
-    private ArrayList<Job> getEmployerJobList(){
-        final ArrayList<String>[] keyAdapter = new ArrayList[1]; // This is a list which will contain all of the jobs that contain the currently logged in employer.
-        EmployerDBHelper helper = new EmployerDBHelper(); // This is an EmployerDBHelper
-        String spEmail = sp.getString("email", ""); // This should be retrieving the email of the currently logged in user (Parker helped me with this)
-        final int[] size = {0};
-        helper.getJobsByEmployer(spEmail, new EmployerDBHelper.JobObjectCallback() { //This should retrieve the list of Job Keys that are associated with jobs that have the logged in user as the employerEmail.
+    /*
+    * This method was redone on suggestion by ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
+     */
+    private void getEmployerJobList(){
+        EmployerDBHelper helper = new EmployerDBHelper();
+        String spEmail = sp.getString("email", "");
+        helper.getJobsByEmployer(spEmail, new EmployerDBHelper.JobObjectCallback() {
             @Override
-            public void onObjectReceived(ArrayList<String> keys) {
-                keyAdapter[0] = keys;
-                size[0] = keys.size();
+            public void onJobsReceived(List<Job> jobs) {
+                myAdapter.updateJobs(jobs);
+                myAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onError(DatabaseError error) {
-
+                Toast.makeText(getContext(), getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + error.toString(), Toast.LENGTH_LONG).show();
             }
         });
-
-        final ArrayList<Job>[] jobAdapter = new ArrayList[1]; //This is the adapter that will contain the Job Objects that are associated with the keys in keyAdapter.
-        JobDBHelper jobHelper = new JobDBHelper(); //This is the DB Helper object that will assist us in what it is that we have to do.
-        for(int i = 0; i < size[0]; i++) { //For every key in the keyAdapter...
-            jobHelper.getJobByKey(keyAdapter[0].get(i), new JobDBHelper.JobObjectCallback()  { //A new call to the getJobByKey function, from JobDBHelper
-                @Override
-                public void onObjectReceived(Job object) { //When a job is found...
-                    jobAdapter[0].add(object); //We add it to the jobAdapter.
-                }
-
-                @Override
-                public void onError(DatabaseError error) {
-
-                }
-            });
-        }
-        return jobAdapter[0]; //We return the adapter with all of the associated jobs.
     }
 
 

@@ -1,11 +1,7 @@
 package com.example.quickcash.FirebaseStuff;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.quickcash.Objects.Job;
-import com.example.quickcash.Objects.PreferredJobs;
-import com.example.quickcash.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,41 +11,43 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployerDBHelper extends AppCompatActivity {
+/*
+* A massive majority of this class was writen by ChatGPT based on an original version I had made which was not working.
+*
+* https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
+ */
+public class EmployerDBHelper {
 
     FirebaseDatabase database;
     DatabaseReference jobsReference;
-    private ArrayList<String> keys = new ArrayList<String>();
 
-    public EmployerDBHelper(){
+    public EmployerDBHelper() {
         database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
         jobsReference = database.getReference("Posted Jobs");
     }
 
     public interface JobObjectCallback {
-        void onObjectReceived(ArrayList<String> keys);
+        void onJobsReceived(List<Job> jobs);
         void onError(DatabaseError error);
     }
 
-    public void getJobsByEmployer(String email, EmployerDBHelper.JobObjectCallback callback) {
-        jobsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void getJobsByEmployer(String email, JobObjectCallback callback) {
+        jobsReference.orderByChild("employer").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<String> jobs = new ArrayList<String>();
+                List<Job> jobs = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Assuming you have a way to deserialize snapshot to a quickCashDbObject
-                    // This often involves manually parsing the DataSnapshot based on your object structure
-                    Job obj = snapshot.getValue(Job.class); // This might need adjustment
-                    if (obj != null && email.equals(obj.getEmployer())) {
-                        jobs.add(obj.getKey());
+                    Job job = snapshot.getValue(Job.class);
+                    if (job != null) {
+                        jobs.add(job);
                     }
                 }
-                callback.onObjectReceived(jobs);
+                callback.onJobsReceived(jobs);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                callback.onError(error);
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError);
             }
         });
     }
