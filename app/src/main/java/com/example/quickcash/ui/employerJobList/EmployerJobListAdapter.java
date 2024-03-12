@@ -17,6 +17,7 @@ import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
 import com.example.quickcash.ui.employerHome.EmployerHomeFragment;
 import com.example.quickcash.ui.employerJobList.EmployerJobListFragment;
+import com.example.quickcash.ui.employerJobPage.EmployerJobPageDirections;
 import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
 
 import java.util.ArrayList;
@@ -51,13 +52,13 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
 
         EmployerJobListHolder.button.setOnClickListener(v -> {
             EmployerJobPageFragment jobPage = new EmployerJobPageFragment();
-            Bundle b = new Bundle();
             Job j = models.get(position);
+            Bundle b = new Bundle();
             b.putSerializable("job", j);
             jobPage.setArguments(b);
 
             NavController navController = NavHostFragment.findNavController(mFragment);
-            navController.navigate((NavDirections) jobPage);
+            navController.navigate(new EmployerJobPageDirections(j));
         });
 
     }

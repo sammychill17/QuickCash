@@ -86,14 +86,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Posted Jobs now create a corresponding JobApplicants Object">
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/EmployerJobPageEspressoTest.java" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="added handling that should give EmployerJobPageFragment details from job list">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageDirections.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation_employer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation_employer.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +213,7 @@
       <recent name="com.example.quickcash.Objects" />
     </key>
   </component>
-  <component name="RunManager" selected="Android Instrumented Tests.EmployerJobPostEspressoTest">
+  <component name="RunManager" selected="Android Instrumented Tests.EmployerJobListEspressoTest">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="quickcash.app.main" />
       <option name="DEPLOY" value="true" />
@@ -602,8 +601,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Android Instrumented Tests.EmployerJobPostEspressoTest" />
         <item itemvalue="Android Instrumented Tests.EmployerJobListEspressoTest" />
+        <item itemvalue="Android Instrumented Tests.EmployerJobPostEspressoTest" />
         <item itemvalue="Android Instrumented Tests.testMyJobsButton()" />
         <item itemvalue="Android Instrumented Tests.EmployerDashboardEspressoTest" />
         <item itemvalue="Android Instrumented Tests.checkIfPasswordIsValid()" />
@@ -859,7 +858,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710272684421</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="created simple test for EmployerJobPageFragment">
+      <option name="closed" value="true" />
+      <created>1710284124545</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1710284124545</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added handling that should give EmployerJobPageFragment details from job list">
+      <option name="closed" value="true" />
+      <created>1710284552588</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1710284552589</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -874,8 +889,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Test] Changed test code to remove dependence on accounts that have been deleted and information that is outdated" />
-    <MESSAGE value="[Test] Updated LoginEspressoTest" />
     <MESSAGE value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
     <MESSAGE value="Refactoring - Removed Faulty LocationUnitTest, and added additional functionality and method signatures to Job object." />
     <MESSAGE value="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml" />
@@ -899,6 +912,8 @@
     <MESSAGE value="Implementation - Database now successfully queries for RecyclerView and shows it on MyJobs. It does appear a little buggy, but it is now showing." />
     <MESSAGE value="Implementation - Merged Database Query Code with Parker's List Code + Sam's Job Post Code to create a way to post a job, and then have it appear in your &quot;My Jobs&quot;" />
     <MESSAGE value="Implementation - Posted Jobs now create a corresponding JobApplicants Object" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Posted Jobs now create a corresponding JobApplicants Object" />
+    <MESSAGE value="created simple test for EmployerJobPageFragment" />
+    <MESSAGE value="added handling that should give EmployerJobPageFragment details from job list" />
+    <option name="LAST_COMMIT_MESSAGE" value="added handling that should give EmployerJobPageFragment details from job list" />
   </component>
 </project>
