@@ -27,6 +27,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Job;
+import com.example.quickcash.Objects.JobApplicants;
 import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.databinding.FragmentEmployerjobpostBinding;
@@ -191,14 +192,25 @@ public class EmployerJobPostFragment extends Fragment {
                          */
                         if (databaseError == null) {
                             Toast.makeText(getContext(), getResources().getString(R.string.JOB_POSTING_SUCCESSFUL), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getContext(), getResources().getString(R.string.JOB_POSTING_FAILED), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    DatabaseReference applicantsRef = FirebaseDatabase.getInstance().getReference("Job Applicants").push();
+                    JobApplicants jobApp = new JobApplicants(jobKey);
+                    applicantsRef.setValue(jobApp, (databaseError, databaseReference) -> {
+
+                        if(databaseError == null) {
                             /*
                              Navigates back to the previous screen- employer home/dashboard page
                              */
                             NavController navController = NavHostFragment.findNavController(EmployerJobPostFragment.this);
                             navController.popBackStack();
-                        } else {
-                            Toast.makeText(getContext(), getResources().getString(R.string.JOB_POSTING_FAILED), Toast.LENGTH_LONG).show();
                         }
+                        else {
+                            Toast.makeText(getContext(), getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + databaseError.toString(), Toast.LENGTH_LONG).show();
+                        }
+
                     });
                 } else {
                     Toast.makeText(getContext(), getResources().getString(R.string.LACK_OF_FILLED_FIELDS), Toast.LENGTH_LONG).show();
