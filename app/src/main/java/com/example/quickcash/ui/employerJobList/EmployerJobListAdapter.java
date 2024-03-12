@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployeeJobListHolder> {
 
     Context c;
-    ArrayList<Job> models;
+    ArrayList<Job> models = new ArrayList<>();
 
     public EmployerJobListAdapter(Context c, ArrayList<Job> models) {
         this.c = c;
