@@ -68,7 +68,7 @@ public class EmployerJobListFragment extends Fragment{
         mRecyclerView = binding.jobList;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        myAdapter = new EmployerJobListAdapter(this.getContext(), null); //This was changed to be initially set to Null on suggestion by ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
+        myAdapter = new EmployerJobListAdapter(this.getContext(), null, this); //This was changed to be initially set to Null on suggestion by ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
         mRecyclerView.setAdapter(myAdapter);
         getEmployerJobList(); //This method is called following the suggestion of ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
 

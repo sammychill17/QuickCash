@@ -17,6 +17,7 @@ import com.example.quickcash.ui.employerJobList.EmployerJobListFragment;
 import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobListHolder> {
 
@@ -53,6 +54,16 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
 
     @Override
     public int getItemCount() {
+        if(models==null){ //I added this on suggestion from ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
+            return 0;
+        }
         return models.size();
+    }
+
+    /*
+     * This entire method was added by suggestion of ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
+     */
+    public void updateJobs(List<Job> jobs) {
+        this.models = (ArrayList<Job>) jobs;
     }
 }
