@@ -19,6 +19,7 @@ import com.example.quickcash.FirebaseStuff.EmployerDBHelper;
 import com.example.quickcash.FirebaseStuff.JobDBHelper;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobTypes;
+import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerjoblistBinding;
 import com.example.quickcash.ui.employerJobPage.EmployerJobPageViewModel;
@@ -31,12 +32,17 @@ import java.util.Date;
 import java.util.List;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 public class EmployerJobListFragment extends Fragment{
 
     RecyclerView mRecyclerView;
     EmployerJobListAdapter myAdapter;
     private FragmentEmployerjoblistBinding binding;
+    private UserLocation currentLocation;
+    private double currentLatitude;
+    private double currentLongitude;
+
 
     SharedPreferences sp;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,6 +72,16 @@ public class EmployerJobListFragment extends Fragment{
         mRecyclerView.setAdapter(myAdapter);
 
         return root;
+    }
+
+    public void onLocationDataReceived(UserLocation location) {
+        if (location != null) {
+            currentLocation = location;
+            double currentLatitude = location.getLatitude();
+            double currentLongitude = location.getLongitude();
+        } else {
+            Toast.makeText(getContext(), "Location could not be retrieved.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private ArrayList<Job> getEmployerJobList(){
