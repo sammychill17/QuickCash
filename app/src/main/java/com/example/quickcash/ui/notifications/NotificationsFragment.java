@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.FirebaseStuff.JobDBHelper;
+import com.example.quickcash.Objects.Filters.FilterHelper;
+import com.example.quickcash.Objects.Filters.IFilter;
+import com.example.quickcash.Objects.Filters.TitleFilter;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
@@ -30,7 +34,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class NotificationsFragment extends Fragment {
 
@@ -57,13 +64,35 @@ public class NotificationsFragment extends Fragment {
         binding.pushJobToDbButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Random random = new Random();
-                JobTypes jobTypes = JobTypes.values()[random.nextInt(11)];
-                Duration duration = Duration.ZERO.plusMillis(random.nextInt(999999999));
-                Job job = new Job(getRandomGibberish(random), getRandomGibberish(random), jobTypes, random.nextDouble(), duration.toString(), "Loki360@gmail.com");
-                JobDBHelper jobDBHelper = new JobDBHelper(job);
-                jobDBHelper.pushJobToDB();
-                Snackbar.make(binding.pushJobToDbButon, "Pushed job to database!", Snackbar.LENGTH_SHORT).show();
+//                Random random = new Random();
+//                JobTypes jobTypes = JobTypes.values()[random.nextInt(11)];
+//                Duration duration = Duration.ZERO.plusMillis(random.nextInt(999999999));
+//                Job job = new Job(getRandomGibberish(random), getRandomGibberish(random), jobTypes, random.nextDouble(), duration.toString(), "Loki360@gmail.com");
+//                JobDBHelper jobDBHelper = new JobDBHelper(job);
+//                jobDBHelper.pushJobToDB();
+//                Snackbar.make(binding.pushJobToDbButon, "Pushed job to database!", Snackbar.LENGTH_SHORT).show();
+                List<IFilter> filters = new ArrayList<>();
+                TitleFilter titleFilter = new TitleFilter();
+                titleFilter.setValue("oui");
+                filters.add(titleFilter);
+
+                FilterHelper helper = new FilterHelper();
+                FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {
+                    @Override
+                    public void onResult(Set<Job> searchResult) {
+                        boolean foundOuiJob = false;
+                        for (Job job : searchResult) {
+                            if (job.getTitle().equals("oui")) {
+                                foundOuiJob = true;
+                                break;
+                            }
+                        }
+                        Log.d("App", "foundOuiJob is " + String.valueOf(foundOuiJob));
+                    }
+                };
+                helper.setCallback(callback);
+                helper.setFilters(filters);
+                helper.run();
             }
         });
         binding.testSearchButton.setOnClickListener(new View.OnClickListener() {

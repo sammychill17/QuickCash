@@ -54,16 +54,20 @@ public class FilterHelper {
         Map<String, Job> filteredResults = new HashMap<>();
 
         for (IFilter filter : filters) {
-            DatabaseReference jobsReference = database.getReference("Jobs");
+            DatabaseReference jobsReference = database.getReference("Posted Jobs");
             Query query = filter.filter(jobsReference);
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Log.d("FilterHelper", "snapshot is " + snapshot.getValue().toString());
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        Log.d("FilterHelper", snapshot1.getValue().toString());
                         Job obj = snapshot1.getValue(Job.class); // This might need adjustment
                         if (obj != null ) {
                             filteredResults.put(obj.getKey(), obj);
                             Log.d("FilterHelper", "Added " + obj.getTitle() + " to the job map");
+                        } else {
+                            Log.d("FilterHelper", "Cannot convert above job to a Job instance.");
                         }
                     }
                     Log.d("FilterHelper", "Thats it for this onDataChange (" + snapshot.getKey() + ")");

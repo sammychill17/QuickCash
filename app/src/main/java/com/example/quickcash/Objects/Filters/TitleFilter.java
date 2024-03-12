@@ -18,7 +18,7 @@ public class TitleFilter implements IFilter {
 
     @Override
     public Query filter(Query query) {
-        return query;
-//        return query.orderByChild("title").equalTo(title);
+//        return query;
+        return query.orderByChild("title").equalTo(title);
     }
 }
