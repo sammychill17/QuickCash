@@ -90,20 +90,13 @@ public class LocationTable {
     }
 
     /*
-    Sanitizes (or splices/simplifies) the email address to be used,
+    Sanitizes the email address to be used,
     as a Firebase key by removing the domain part and replacing periods.
     parameter- (email), the email address to be sanitized.
     @return A sanitized string suitable for use as a Firebase key.
     */
     private String sanitizeEmail(String email) {
-        /*
-         Extracting the username part of the email before the "@"
-         */
-        String key = email.substring(0, email.indexOf('@'));
-        /*
-         Replacing periods as Firebase keys can't contain '.' character
-         */
-        return key.replace(".", ",");
+        return email.replace(".", ",");
     }
 
     /*
