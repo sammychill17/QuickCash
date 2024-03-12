@@ -86,13 +86,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Merged Database Query Code with Parker's List Code + Sam's Job Post Code to create a way to post a job, and then have it appear in your &quot;My Jobs&quot;">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Posted Jobs now create a corresponding JobApplicants Object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobapplicantpage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobapplicantpage.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -851,7 +847,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710270410593</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Implementation - Posted Jobs now create a corresponding JobApplicants Object">
+      <option name="closed" value="true" />
+      <created>1710272684420</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1710272684421</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -866,7 +870,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Implementation] Slight UI change on employee and employer dashboard pages to prevent ugly label overflowing" />
     <MESSAGE value="[Test] Changed test code to remove dependence on accounts that have been deleted and information that is outdated" />
     <MESSAGE value="[Test] Updated LoginEspressoTest" />
     <MESSAGE value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
@@ -891,6 +894,7 @@
     <MESSAGE value="Re-added some of the location stuff Sam added to my branch" />
     <MESSAGE value="Implementation - Database now successfully queries for RecyclerView and shows it on MyJobs. It does appear a little buggy, but it is now showing." />
     <MESSAGE value="Implementation - Merged Database Query Code with Parker's List Code + Sam's Job Post Code to create a way to post a job, and then have it appear in your &quot;My Jobs&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Merged Database Query Code with Parker's List Code + Sam's Job Post Code to create a way to post a job, and then have it appear in your &quot;My Jobs&quot;" />
+    <MESSAGE value="Implementation - Posted Jobs now create a corresponding JobApplicants Object" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Posted Jobs now create a corresponding JobApplicants Object" />
   </component>
 </project>

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickcash.Objects.Job;
+import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
 import com.example.quickcash.ui.employerHome.EmployerHomeFragment;
 import com.example.quickcash.ui.employerJobList.EmployerJobListFragment;
@@ -44,7 +45,7 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
 
         EmployerJobListHolder.title.setText(models.get(position).getTitle());
         EmployerJobListHolder.desc.setText(models.get(position).getDescription());
-        EmployerJobListHolder.imageView.setImageResource(R.drawable.best_logo_ever);
+        setImageIcon(position);
         EmployerJobListHolder.button.setOnClickListener(v -> {
             NavController navController = NavHostFragment.findNavController(mFragment);
             navController.navigate(R.id.employerJobPageFragment);
@@ -58,6 +59,47 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
             return 0;
         }
         return models.size();
+    }
+
+    public void setImageIcon(int pos){
+        JobTypes currJobType = models.get(pos).getJobType();
+        if(currJobType==JobTypes.ARTS_CREATIVE){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.arts_creative);
+        }
+        else if(currJobType==JobTypes.BABYSITTING){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.babysitting);
+        }
+        else if(currJobType==JobTypes.COOK){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.cook);
+        }
+        else if(currJobType==JobTypes.HITMAN){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.hitman);
+        }
+        else if(currJobType==JobTypes.MAGICIAN){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.magician);
+        }
+        else if(currJobType==JobTypes.MOVING){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.moving);
+        }
+        else if(currJobType==JobTypes.PETCARE){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.petcare);
+        }
+        else if(currJobType==JobTypes.POLITICIAN){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.politician);
+        }
+        else if(currJobType==JobTypes.TECH){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.tech);
+        }
+        else if(currJobType==JobTypes.TUTORING){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.tutoring);
+        }
+        else if(currJobType==JobTypes.YARDWORK){
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.yardwork);
+        }
+        else{
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.best_logo_ever);
+
+        }
     }
 
     /*
