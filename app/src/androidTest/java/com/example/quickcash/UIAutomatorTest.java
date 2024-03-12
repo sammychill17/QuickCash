@@ -183,7 +183,6 @@ public class UIAutomatorTest  {
         allowPermissionsIfNeeded();
         UiObject postJobs = device.findObject(new UiSelector().className(ImageButton.class));
         postJobs.click();
-        wait(1000);
         UiObject loseYourselfButton = device.findObject(new UiSelector().textContains("LOSE YOURSELF (Post Job)"));
         UiObject title = device.findObject(new UiSelector().textContains("Title"));
         UiObject description = device.findObject(new UiSelector().textContains("Description"));

@@ -49,7 +49,7 @@ public class EmployerJobListFragment extends Fragment{
         mRecyclerView = binding.jobList;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        myAdapter = new EmployerJobListAdapter(this.getContext(), getEmployerJobList());
+        myAdapter = new EmployerJobListAdapter(this.getContext(), getEmployerJobList(), this);
         mRecyclerView.setAdapter(myAdapter);
 
         return root;
@@ -65,8 +65,6 @@ public class EmployerJobListFragment extends Fragment{
         adapter.add(job3);
         return adapter;
     }
-
-
 
     @Override
     public void onDestroyView() {

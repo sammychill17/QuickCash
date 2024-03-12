@@ -30,11 +30,6 @@
           <theme>@style/Theme.Quickcash</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/employer_job_list_item.xml">
-        <config>
-          <theme>@style/Theme.Quickcash</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml">
         <config>
           <theme>@style/Theme.Quickcash</theme>
@@ -75,6 +70,11 @@
           <theme>@style/Theme.Quickcash</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_notifications.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
         <config>
           <theme>@style/Theme.Quickcash</theme>
@@ -92,19 +92,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Refactor - Altered fragment buttons to take user to correct fragment. Added new testing files and renamed former Espresso Test files.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployeeJobListHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/employer_job_item_list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/CustomViewAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/UIAutomatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/UIAutomatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerHome/EmployerHomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerHome/EmployerHomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/EmployerJobListEspressoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/EmployerJobListEspressoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployeeJobListHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjoblist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjoblist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/employer_job_item_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/employer_job_item_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobpage.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation_employer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation_employer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +117,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\james\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[2A311FDH2009AQ]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -224,7 +227,7 @@
       <recent name="com.example.quickcash.Objects" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android Instrumented Tests.UIAutomatorTest">
     <configuration name="MainActivity" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false" temporary="true">
       <module name="quickcash.app.main" />
       <option name="DEPLOY" value="true" />
@@ -359,11 +362,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEspressoTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployerJobListEspressoTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="quickcash.app.androidTest" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.example.quickcash.LoginEspressoTest" />
+      <option name="CLASS_NAME" value="com.example.quickcash.EmployerJobListEspressoTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -483,11 +486,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="checkIfJobPostIsVisible()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="testJobPageButton()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="quickcash.app.androidTest" />
       <option name="TESTING_TYPE" value="3" />
-      <option name="METHOD_NAME" value="checkIfJobPostIsVisible" />
-      <option name="CLASS_NAME" value="com.example.quickcash.UIAutomatorTest" />
+      <option name="METHOD_NAME" value="testJobPageButton" />
+      <option name="CLASS_NAME" value="com.example.quickcash.EmployerJobListEspressoTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -545,11 +548,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="checkIfPasswordIsValid()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="testMyJobsButton()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="quickcash.app.androidTest" />
       <option name="TESTING_TYPE" value="3" />
-      <option name="METHOD_NAME" value="checkIfPasswordIsValid" />
-      <option name="CLASS_NAME" value="com.example.quickcash.LoginEspressoTest" />
+      <option name="METHOD_NAME" value="testMyJobsButton" />
+      <option name="CLASS_NAME" value="com.example.quickcash.EmployerJobListEspressoTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -610,18 +613,18 @@
     <list>
       <item itemvalue="Android App.app" />
       <item itemvalue="Android App.MainActivity" />
+      <item itemvalue="Android Instrumented Tests.EmployerJobListEspressoTest" />
+      <item itemvalue="Android Instrumented Tests.testJobPageButton()" />
+      <item itemvalue="Android Instrumented Tests.testMyJobsButton()" />
       <item itemvalue="Android Instrumented Tests.UIAutomatorTest" />
-      <item itemvalue="Android Instrumented Tests.checkIfJobPostIsVisible()" />
-      <item itemvalue="Android Instrumented Tests.LoginEspressoTest" />
-      <item itemvalue="Android Instrumented Tests.checkIfPasswordIsValid()" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Android Instrumented Tests.UIAutomatorTest" />
-        <item itemvalue="Android Instrumented Tests.checkIfJobPostIsVisible()" />
+        <item itemvalue="Android Instrumented Tests.testJobPageButton()" />
+        <item itemvalue="Android Instrumented Tests.EmployerJobListEspressoTest" />
+        <item itemvalue="Android Instrumented Tests.testMyJobsButton()" />
         <item itemvalue="Android App.MainActivity" />
-        <item itemvalue="Android Instrumented Tests.LoginEspressoTest" />
-        <item itemvalue="Android Instrumented Tests.checkIfPasswordIsValid()" />
       </list>
     </recent_temporary>
   </component>
