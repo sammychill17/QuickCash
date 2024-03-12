@@ -59,18 +59,22 @@ public class FilterHelper {
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Log.d("FilterHelper", "snapshot is " + snapshot.getValue().toString());
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        Log.d("FilterHelper", snapshot1.getValue().toString());
-                        Job obj = snapshot1.getValue(Job.class); // This might need adjustment
-                        if (obj != null ) {
-                            filteredResults.put(obj.getKey(), obj);
-                            Log.d("FilterHelper", "Added " + obj.getTitle() + " to the job map");
-                        } else {
-                            Log.d("FilterHelper", "Cannot convert above job to a Job instance.");
+                    if (snapshot != null) {
+                        Log.d("FilterHelper", "snapshot is " + String.valueOf(snapshot.getValue()));
+                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                            Log.d("FilterHelper", snapshot1.getValue().toString());
+                            Job obj = snapshot1.getValue(Job.class); // This might need adjustment
+                            if (obj != null ) {
+                                filteredResults.put(obj.getKey(), obj);
+                                Log.d("FilterHelper", "Added " + obj.getTitle() + " to the job map");
+                            } else {
+                                Log.d("FilterHelper", "Cannot convert above job to a Job instance.");
+                            }
                         }
+                        Log.d("FilterHelper", "Thats it for this onDataChange (" + snapshot.getKey() + ")");
+                    } else {
+                        Log.d("FilterHelper", "Snapshot is null! I am sad :(");
                     }
-                    Log.d("FilterHelper", "Thats it for this onDataChange (" + snapshot.getKey() + ")");
                 }
 
                 @Override

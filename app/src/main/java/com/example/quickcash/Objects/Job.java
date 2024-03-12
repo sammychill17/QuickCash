@@ -1,6 +1,7 @@
 package com.example.quickcash.Objects;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class Job {
 
@@ -36,6 +37,27 @@ public class Job {
         this.assignedToEmail = "";
     }
     public Job() {}
+
+    public static Job getRandomJob(Random random) {
+        JobTypes jobTypes = JobTypes.values()[random.nextInt(11)];
+        Duration duration = Duration.ZERO.plusMillis(random.nextInt(999999999));
+        Job job = new Job(getRandomGibberish(random), getRandomGibberish(random), jobTypes, random.nextDouble(), duration.toString(), "Loki360@gmail.com");
+        return job;
+    }
+
+    private static String getRandomGibberish(Random random) {
+        StringBuilder builder = new StringBuilder();
+        try {
+            builder.append(Character.getName(random.nextInt(Character.FINAL_QUOTE_PUNCTUATION)));
+        }  catch (Exception e) {
+            for (int i = 0; i < 16; i++) {
+                String s = e.toString();
+                builder.append(s.charAt(random.nextInt(s.length())));
+            }
+        }
+        builder.append(random.nextInt(999999));
+        return builder.toString();
+    }
 
     /*
     getter and setter methods below---
