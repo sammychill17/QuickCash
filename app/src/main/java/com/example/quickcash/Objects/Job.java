@@ -2,11 +2,12 @@ package com.example.quickcash.Objects;
 
 import android.location.Location;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
-public class Job {
+public class Job implements Serializable {
 
     private String key;
     private String title;
