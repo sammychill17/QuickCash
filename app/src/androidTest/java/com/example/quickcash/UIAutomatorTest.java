@@ -235,8 +235,8 @@ public class UIAutomatorTest  {
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
         assertTrue(searchBar.exists());
-        searchBar.setText("Please God, help me fix my marriage");
-        UiObject searchResult = device.findObject(new UiSelector().textContains("Please God, help me fix my marriage").className(TextView.class));
+        searchBar.setText("oui");
+        UiObject searchResult = device.findObject(new UiSelector().textContains("oui").className(TextView.class));
         assertTrue(searchResult.exists());
     }
     @Test
@@ -262,10 +262,10 @@ public class UIAutomatorTest  {
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
         assertTrue(searchBar.exists());
-        searchBar.setText("Please God, help me fix my marriage");
-        UiObject searchResult = device.findObject(new UiSelector().textContains("Agent 69 for Special Reasons").className(TextView.class));
+        searchBar.setText("oui");
+        UiObject searchResult = device.findObject(new UiSelector().textContains("Hitman for hire").className(TextView.class));
         assertFalse(searchResult.exists());
-        UiObject searchResultCorrect = device.findObject(new UiSelector().textContains("Please God, help me fix my marriage").className(TextView.class));
+        UiObject searchResultCorrect = device.findObject(new UiSelector().textContains("oui").className(TextView.class));
         assertTrue(searchResultCorrect.exists());
     }
 
