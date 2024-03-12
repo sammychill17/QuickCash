@@ -1,16 +1,22 @@
 package com.example.quickcash.Objects.Filters;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.quickcash.Objects.Job;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -43,6 +49,33 @@ public class FilterHelper {
     public void setCallback(FilterHelperCallback callback) { this.callback = callback; }
     public void clearCallback() { this.callback = null; }
     public void run(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com");
+        Set<Job> searchResults = null;
+        Map<String, Job> filteredResults = new HashMap<>();
+
+        for (IFilter filter : filters) {
+            DatabaseReference jobsReference = database.getReference("Jobs");
+            Query query = filter.filter(jobsReference);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        Job obj = snapshot1.getValue(Job.class); // This might need adjustment
+                        if (obj != null ) {
+                            filteredResults.put(obj.getKey(), obj);
+                            Log.d("FilterHelper", "Added " + obj.getTitle() + " to the job map");
+                        }
+                    }
+                    Log.d("FilterHelper", "Thats it for this onDataChange (" + snapshot.getKey() + ")");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
         callCallback(Collections.emptySet());
     }
 

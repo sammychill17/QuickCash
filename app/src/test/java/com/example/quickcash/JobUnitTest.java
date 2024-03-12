@@ -12,9 +12,11 @@ import com.example.quickcash.Objects.Filters.SalaryFilter;
 import com.example.quickcash.Objects.Filters.TitleFilter;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobTypes;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.time.Duration;
 import java.util.ArrayList;
