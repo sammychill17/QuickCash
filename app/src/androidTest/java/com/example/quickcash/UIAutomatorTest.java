@@ -5,22 +5,19 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import static java.lang.Thread.sleep;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
-import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
@@ -28,8 +25,6 @@ import androidx.test.uiautomator.Until;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorTest  {
@@ -190,7 +185,7 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkIfJobTitleExists() throws UiObjectNotFoundException, InterruptedException {
+    public void checkIfSearchBarExists() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
@@ -235,8 +230,9 @@ public class UIAutomatorTest  {
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
         assertTrue(searchBar.exists());
-        searchBar.setText("oui");
-        UiObject searchResult = device.findObject(new UiSelector().textContains("oui").className(TextView.class));
+        searchBar.setText("Make me Dinner!");
+        sleep(5000);
+        UiObject searchResult = device.findObject(new UiSelector().textContains("Make me Dinner!").className(TextView.class));
         assertTrue(searchResult.exists());
     }
     @Test
@@ -262,10 +258,11 @@ public class UIAutomatorTest  {
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
         assertTrue(searchBar.exists());
-        searchBar.setText("oui");
+        searchBar.setText("Make me Dinner!");
+        sleep(5000);
         UiObject searchResult = device.findObject(new UiSelector().textContains("Hitman for hire").className(TextView.class));
         assertFalse(searchResult.exists());
-        UiObject searchResultCorrect = device.findObject(new UiSelector().textContains("oui").className(TextView.class));
+        UiObject searchResultCorrect = device.findObject(new UiSelector().textContains("Make me Dinner!").className(TextView.class));
         assertTrue(searchResultCorrect.exists());
     }
 
