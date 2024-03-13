@@ -16,9 +16,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.quickcash.Objects.Job;
+import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerjobpageBinding;
+import com.example.quickcash.ui.employerHome.EmployerHomeFragment;
+import com.example.quickcash.ui.employerJobApplicants.JobApplicantsDirections;
+import com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -89,6 +95,19 @@ public class EmployerJobPageFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 getParentFragmentManager().popBackStack();
+            }
+        });
+        JobApplicantsFragment fragment = new JobApplicantsFragment();
+        Button applicantsButton = binding.applicantsBtn;
+        EmployerJobPageFragment current = this;
+        applicantsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("job", j);
+                fragment.setArguments(b);
+                NavController navController = NavHostFragment.findNavController(current);
+                navController.navigate(new JobApplicantsDirections(j));
             }
         });
 

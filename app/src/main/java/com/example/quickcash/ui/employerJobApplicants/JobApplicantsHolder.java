@@ -12,14 +12,12 @@ import com.example.quickcash.R;
 
 public class JobApplicantsHolder extends RecyclerView.ViewHolder{
     static TextView name;
-    static ImageView imageView;
     static Button button;
 
     public JobApplicantsHolder(@NonNull View itemView){
         super(itemView);
 
         this.name = itemView.findViewById(R.id.nameJa);
-        this.imageView = itemView.findViewById(R.id.imageJa);
         this.button = itemView.findViewById(R.id.buttonJa);
     }
 }
