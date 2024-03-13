@@ -1,5 +1,8 @@
 package com.example.quickcash.ui.employerJobPage;
 
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +17,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.databinding.FragmentEmployerjobpageBinding;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class EmployerJobPageFragment extends Fragment{
 
     private FragmentEmployerjobpageBinding binding;
     DecimalFormat df = new DecimalFormat("#,###.00");
+
+    private String address = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +66,10 @@ public class EmployerJobPageFragment extends Fragment{
         }
         jDesc.setText(j.getDescription());
 
+        new GeocodeAsyncTask().execute(j.getLatitude(), j.getLongitude());
+
+        jAddress.setText(address);
+
         Button backButton = binding.jobPageBackBtn;
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +79,22 @@ public class EmployerJobPageFragment extends Fragment{
         });
 
         return root;
+    }
+
+    private class GeocodeAsyncTask extends AsyncTask<Double, Void, String> {
+        @Override
+        protected String doInBackground(Double... params){
+            double latitude = params[0];
+            double longitude = params[1];
+
+            return EmployerJobPageGeocoder.getGeocodeAddress(latitude, longitude);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            address = result;
+        }
     }
 
     @Override
