@@ -25,7 +25,7 @@ public class PreferredJobsUnitTests {
     public void checkJobAddsJobCorrectly() {
         preferredJobs.checkJob(JobTypes.HITMAN);
         assertTrue("Job should be added to the preferred jobs accordingly.",
-                preferredJobs.getPreferredJobs().contains(JobTypes.HITMAN.name()));
+                preferredJobs.getPreferredJobs().contains(JobTypes.HITMAN));
     }
 
     @Test
@@ -34,20 +34,20 @@ public class PreferredJobsUnitTests {
         preferredJobs.checkJob(JobTypes.MAGICIAN);
         preferredJobs.uncheckJob(JobTypes.HITMAN);
         assertFalse("Job should be removed from the preferred jobs",
-                preferredJobs.getPreferredJobs().contains(JobTypes.HITMAN.name()));
+                preferredJobs.getPreferredJobs().contains(JobTypes.HITMAN));
     }
 
     @Test
     public void doesPreferredReturnsTrueForPreferredJob() {
         preferredJobs.checkJob(JobTypes.MOVING);
         assertTrue("Should return true for checked preferred job",
-                preferredJobs.doesPreferred(JobTypes.MOVING.name()));
+                preferredJobs.doesPreferred(JobTypes.MOVING));
     }
 
     @Test
     public void doesPreferredReturnsFalseForNotPreferredJob() {
         assertFalse("Should return false for job which is not checked for preference",
-                preferredJobs.doesPreferred(JobTypes.YARDWORK.name()));
+                preferredJobs.doesPreferred(JobTypes.YARDWORK));
     }
     @Test
     public void convertNamesToJobTypes_ConvertsCorrectly() {

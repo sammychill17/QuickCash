@@ -138,7 +138,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         setStatusMessage(getResources().getString(R.string.DUPLICATE_EMAIL_ERROR).trim());
                     } else {
                         User currentUser;
-                        AtomicReference<DatabaseReference> preferredRef = null;
+                        AtomicReference<DatabaseReference> preferredRef = new AtomicReference<DatabaseReference>();
+                        preferredRef.set(database.getReference("PreferredJobs"));
                         if(role.equals("Employee")){
                             currentUser = new Employee(email, password, name, role);
                         }
@@ -155,7 +156,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                                  */
                                 setStatusMessage(getResources().getString(R.string.REGISTRATION_SUCCESS_MESSAGE).trim());
                                 if(role.equals("Employee")) {
-                                    preferredRef.set(database.getReference("PreferredJobs"));
                                     PreferredJobs jobPref = new PreferredJobs(email);
                                     preferredRef.get().push().setValue(jobPref);
                                 }
