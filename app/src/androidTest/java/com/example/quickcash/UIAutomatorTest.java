@@ -1,3 +1,4 @@
+
 package com.example.quickcash;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
@@ -22,9 +23,16 @@ import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
+import com.example.quickcash.Objects.Filters.IFilter;
+import com.example.quickcash.Objects.Filters.JobTypeFilter;
+import com.example.quickcash.Objects.JobTypes;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorTest  {
@@ -265,15 +273,201 @@ public class UIAutomatorTest  {
         UiObject searchResultCorrect = device.findObject(new UiSelector().textContains("Make me Dinner!").className(TextView.class));
         assertTrue(searchResultCorrect.exists());
     }
+    @Test
+    public void jobFilterDuration() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        assertTrue(makeMoneyButton.exists());
+        makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
+        assertTrue(searchBar.exists());
+        UiObject filterButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(filterButton.exists());
+        UiObject durationFilter = device.findObject(new UiSelector().className(Button.class));
+        durationFilter.setText("6");
+        sleep(5000);
+        UiObject searchResultDuration = device.findObject(new UiSelector().textContains("I want you to become my new MP!").className(TextView.class));
+        assertTrue(searchResultDuration.exists());
+    }
+    @Test
+    public void jobFilterDurationFail() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        assertTrue(makeMoneyButton.exists());
+        makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
+        assertTrue(searchBar.exists());
+        UiObject filterButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(filterButton.exists());
+        UiObject durationFilter = device.findObject(new UiSelector().className(Button.class));
+        durationFilter.setText("24000");
+        sleep(5000);
+        UiObject searchResultDuration = device.findObject(new UiSelector().textContains("Make me Dinner!").className(TextView.class));
+        assertFalse(searchResultDuration.exists());
+    }
+    @Test
+    public void jobFilterJobType() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        assertTrue(makeMoneyButton.exists());
+        makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
+        assertTrue(searchBar.exists());
+        UiObject filterButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(filterButton.exists());
+        UiObject jobTypeFilter = device.findObject(new UiSelector().className(Button.class));
+        jobTypeFilter.setText("POLITICIAN");
+        sleep(5000);
+        UiObject searchResultJobType = device.findObject(new UiSelector().textContains("I want you to become my new MP!").className(TextView.class));
+        assertTrue(searchResultJobType.exists());
+    }
+    @Test
+    public void jobFilterJobTypeFail() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        assertTrue(makeMoneyButton.exists());
+        makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
+        assertTrue(searchBar.exists());
+        UiObject filterButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(filterButton.exists());
+        UiObject jobTypeFilter = device.findObject(new UiSelector().className(Button.class));
+        jobTypeFilter.setText("24000");
+        sleep(5000);
+        UiObject searchResultJobType = device.findObject(new UiSelector().textContains("I want to see a magic show!").className(TextView.class));
+        assertFalse(searchResultJobType.exists());
+    }
+    public void jobFilterSalary() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        assertTrue(makeMoneyButton.exists());
+        makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
+        assertTrue(searchBar.exists());
+        UiObject filterButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(filterButton.exists());
+        UiObject salaryFilter = device.findObject(new UiSelector().className(Button.class));
+        salaryFilter.setText("1000000");
+        sleep(5000);
+        UiObject searchResultSalary = device.findObject(new UiSelector().textContains("\"Rake\" my \"Leafs\"").className(TextView.class));
+        assertTrue(searchResultSalary.exists());
+    }
+    @Test
+    public void jobFilterSalaryFail() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        assertTrue(makeMoneyButton.exists());
+        makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
+        assertTrue(searchBar.exists());
+        UiObject filterButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(filterButton.exists());
+        UiObject salaryFilter = device.findObject(new UiSelector().className(Button.class));
+        salaryFilter.setText("1000000");
+        sleep(5000);
+        UiObject searchResultSalary = device.findObject(new UiSelector().textContains("Make me Dinner!").className(TextView.class));
+        assertFalse(searchResultSalary.exists());
+    }
 
     /*
     clicks the "While using the app" button of the location permissions system prompt
      */
     private void allowPermissionsIfNeeded() throws UiObjectNotFoundException {
-            UiDevice device = UiDevice.getInstance(getInstrumentation());
-            UiObject allowPermissions = device.findObject(new UiSelector().text("While using the app"));
-            if (allowPermissions.exists()) {
-                allowPermissions.click();
+        UiDevice device = UiDevice.getInstance(getInstrumentation());
+        UiObject allowPermissions = device.findObject(new UiSelector().text("While using the app"));
+        if (allowPermissions.exists()) {
+            allowPermissions.click();
         }
     }
 }
+
