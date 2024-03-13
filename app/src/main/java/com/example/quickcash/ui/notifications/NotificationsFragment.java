@@ -82,7 +82,7 @@ public class NotificationsFragment extends Fragment {
                     public void onResult(Set<Job> searchResult) {
                         boolean foundOuiJob = false;
                         for (Job job : searchResult) {
-                            if (job.getTitle().equals("oui")) {
+                            if (job.getTitle().equals("I want to see a magic show!")) {
                                 foundOuiJob = true;
                                 break;
                             }

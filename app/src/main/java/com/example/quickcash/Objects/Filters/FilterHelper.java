@@ -72,6 +72,9 @@ public class FilterHelper {
                             }
                         }
                         Log.d("FilterHelper", "Thats it for this onDataChange (" + snapshot.getKey() + ")");
+
+                        Set<Job> jobs = Set.copyOf(filteredResults.values());
+                        callCallback(jobs);
                     } else {
                         Log.d("FilterHelper", "Snapshot is null! I am sad :(");
                     }
@@ -84,7 +87,7 @@ public class FilterHelper {
             });
         }
 
-        callCallback(Collections.emptySet());
+//        callCallback(Collections.emptySet());
     }
 
     private void callCallback(Set<Job> searchResult) {
