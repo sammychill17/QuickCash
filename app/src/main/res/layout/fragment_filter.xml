@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/applyFilterButton"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="313dp"
+        android:layout_height="583dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@color/employeePink"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Filters"
+            android:textAlignment="center"
+            android:textFontWeight="@integer/material_motion_duration_long_1"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/jobTitleText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Job Title"-->
+<!--            android:textFontWeight="@integer/material_motion_duration_long_1" />-->
+<!--        <EditText-->
+<!--            android:id="@+id/jobTitleFilter"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="text"-->
+<!--            android:text="Enter Job Title" />-->
+        <TextView
+            android:id="@+id/jobTypeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Job Type"
+            android:textFontWeight="@integer/material_motion_duration_long_1" />
+        <Spinner
+            android:id="@+id/jobTypeFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Select Job Type" />
+        <TextView
+            android:id="@+id/salaryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Salary"
+            android:textFontWeight="@integer/material_motion_duration_long_1" />
+
+        <EditText
+            android:id="@+id/salaryFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Salary"
+            android:inputType="number" />
+        <TextView
+            android:id="@+id/durationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Duration"
+            android:textFontWeight="@integer/material_motion_duration_long_1" />
+        <EditText
+            android:id="@+id/durationFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Duration"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Date"
+            android:textFontWeight="@integer/material_motion_duration_long_1" />
+
+        <Button
+            android:id="@+id/dateFilter"
+            style="?android:attr/spinnerStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="showDatePickerDialog"
+            android:textColor="@color/black"
+            android:text="Select a date"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/distanceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Distance / KM"
+            android:textFontWeight="@integer/material_motion_duration_long_1" />
+
+        <SeekBar
+            android:id="@+id/distanceFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:progress="1"
+            android:min="1"
+            android:max="100"/>
+
+        <TextView
+            android:id="@+id/distanceValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="1"
+            android:textAlignment="center"
+            android:textFontWeight="@integer/material_motion_duration_long_1" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Apply Filter" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

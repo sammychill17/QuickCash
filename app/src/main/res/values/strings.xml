@@ -19,4 +19,18 @@
     <string name="error_no_location_detected">No Location Detected</string>
     <string name="error_location_permission_required">Location permission is required to use this feature.</string>
     <string name="sessionData_spID">session_login</string>
+    <string-array name="job_types_array">
+        <item>UNDEFINED</item>
+        <item>YARDWORK</item>
+        <item>PETCARE</item>
+        <item>BABYSITTING</item>
+        <item>TUTORING</item>
+        <item>TECH</item>
+        <item>MOVING</item>
+        <item>HITMAN</item>
+        <item>ARTS/CREATIVE</item>
+        <item>COOK</item>
+        <item>MAGICIAN</item>
+        <item>POLITICIAN</item>
+    </string-array>
 </resources>

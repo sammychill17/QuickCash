@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
 import com.example.quickcash.Objects.Filters.FilterHelper;
@@ -25,10 +28,11 @@ import java.util.Random;
 import java.util.Set;
 
 public class SearchActivity extends AppCompatActivity {
-
+    private ImageButton filterButton;
     List<Job> jobs = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Log.d("Logcat-chan", "Meow~");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
@@ -80,6 +84,15 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 //
+            }
+        });
+
+        filterButton = findViewById(R.id.filterButton);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FilterActivity filterActivity= new FilterActivity();
+                filterActivity.show(getSupportFragmentManager(), "Filter fragment");
             }
         });
     }
