@@ -97,9 +97,9 @@ public class DatabaseScrounger {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Employee result = null;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Assuming you have a way to deserialize snapshot to a quickCashDbObject
-                    // This often involves manually parsing the DataSnapshot based on your object structure
-                    Employee obj = snapshot.getValue(Employee.class); // This might need adjustment
+
+                    Employee obj = snapshot.getValue(Employee.class);
+
                     if (obj != null && email.equals(obj.getEmail())) {
                         result = obj;
                         break;

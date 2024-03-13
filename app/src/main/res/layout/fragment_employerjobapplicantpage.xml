@@ -51,13 +51,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginStart="12dp"
+                    android:layout_marginTop="417dp"
                     android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="16dp"
                     android:text="ACCEPT APPLICANT"
                     android:textSize="28sp"
                     app:cornerRadius="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/jobPageTitle" />
+
+                <Button
+                    android:id="@+id/backToApplicantsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginBottom="52dp"
+                    android:text="Back"
+                    app:layout_constraintBottom_toTopOf="@+id/jobApplicantAcceptButton"
                     app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
