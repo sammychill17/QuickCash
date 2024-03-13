@@ -1,5 +1,8 @@
 package com.example.quickcash.ui.employerJobPage;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
@@ -20,6 +23,7 @@ import com.example.quickcash.databinding.FragmentEmployerjobpageBinding;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class EmployerJobPageFragment extends Fragment{
@@ -41,6 +45,7 @@ public class EmployerJobPageFragment extends Fragment{
         Job j = (Job) b.getSerializable("job");
 
         TextView jTitle = binding.jobPageTitle;
+        TextView jJobType = binding.jobPageType;
         TextView jAddress = binding.jobPageAddress;
         TextView jSalary = binding.jobPageSalary;
         TextView jDate = binding.jobPageDate;
@@ -52,9 +57,12 @@ public class EmployerJobPageFragment extends Fragment{
         assert j != null;
         String salaryStr = jSalary.getText()+" $"+df.format(j.getSalary());
         String dateStr = jDate.getText()+" "+j.getDate().toString();
-        String employerStr = jEmployer.getText()+" "+j.getEmployer();
+        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("session_login", MODE_PRIVATE);
+        String employeeEmail = sharedPrefs.getString("email", "");
+        String employerStr = jEmployer.getText()+" "+employeeEmail;
 
         jTitle.setText(j.getTitle());
+        jJobType.setText("Job Type: "+j.getJobType().toString());
         jSalary.setText(salaryStr);
         jDate.setText(dateStr);
         jEmployer.setText(employerStr);
@@ -65,9 +73,15 @@ public class EmployerJobPageFragment extends Fragment{
             jApplicant.setText("");
         }
         jDesc.setText(j.getDescription());
-
-        new GeocodeAsyncTask().execute(j.getLatitude(), j.getLongitude());
-
+        Geocoder geocoder;
+        List<Address> addresses = null;
+        geocoder = new Geocoder(this.getContext(), Locale.getDefault());
+        try {
+            addresses = geocoder.getFromLocation(j.getLatitude(), j.getLongitude(), 1);
+            address = addresses.get(0).getAddressLine(0);
+        } catch (IOException e) {
+            address = "Error! Cannot find Address";
+        }
         jAddress.setText(address);
 
         Button backButton = binding.jobPageBackBtn;
@@ -79,22 +93,6 @@ public class EmployerJobPageFragment extends Fragment{
         });
 
         return root;
-    }
-
-    private class GeocodeAsyncTask extends AsyncTask<Double, Void, String> {
-        @Override
-        protected String doInBackground(Double... params){
-            double latitude = params[0];
-            double longitude = params[1];
-
-            return EmployerJobPageGeocoder.getGeocodeAddress(latitude, longitude);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            address = result;
-        }
     }
 
     @Override

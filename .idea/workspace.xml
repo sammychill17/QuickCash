@@ -86,13 +86,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="added handling that should give EmployerJobPageFragment details from job list">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageGeocoder.java" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Added basic Geocoder Functionality">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageGeocoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageGeocoder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -874,7 +871,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710284552589</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Implementation - Added basic Geocoder Functionality">
+      <option name="closed" value="true" />
+      <created>1710293658847</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1710293658848</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -889,7 +894,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
     <MESSAGE value="Refactoring - Removed Faulty LocationUnitTest, and added additional functionality and method signatures to Job object." />
     <MESSAGE value="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml" />
     <MESSAGE value="Added JobApplicants Object" />
@@ -914,17 +918,7 @@
     <MESSAGE value="Implementation - Posted Jobs now create a corresponding JobApplicants Object" />
     <MESSAGE value="created simple test for EmployerJobPageFragment" />
     <MESSAGE value="added handling that should give EmployerJobPageFragment details from job list" />
-    <option name="LAST_COMMIT_MESSAGE" value="added handling that should give EmployerJobPageFragment details from job list" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageGeocoder.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Implementation - Added basic Geocoder Functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Added basic Geocoder Functionality" />
   </component>
 </project>
