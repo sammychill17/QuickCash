@@ -48,6 +48,7 @@ public class EmployerJobPageFragment extends Fragment{
         View root = binding.getRoot();
 
         Bundle b = getArguments();
+        assert b != null;
         Job j = (Job) b.getSerializable("job");
 
         TextView jTitle = binding.jobPageTitle;

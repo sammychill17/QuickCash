@@ -1,14 +1,21 @@
 package com.example.quickcash.ui.employerJobApplicants;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quickcash.Objects.Job;
 import com.example.quickcash.R;
+import com.example.quickcash.ui.employerApplicantPage.EmployerApplicantPageFragment;
 import com.example.quickcash.ui.employerJobList.EmployerJobListFragment;
+import com.example.quickcash.ui.employerJobPage.EmployerJobPageDirections;
+import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +44,16 @@ public class JobApplicantsAdapter extends RecyclerView.Adapter<JobApplicantsHold
         JobApplicantsHolder.name.setText(models.get(position));
 
         JobApplicantsHolder.button.setOnClickListener(v -> {
+            EmployerApplicantPageFragment jobPage = new EmployerApplicantPageFragment();
+            String email = models.get(position);
+            Job job = mFragment.job;
+            Bundle e = new Bundle();
+            e.putSerializable("email", email);
+            e.putSerializable("job", job);
+            jobPage.setArguments(e);
 
+            NavController navController = NavHostFragment.findNavController(mFragment);
+            navController.navigate(new com.example.quickcash.ui.employerJobApplicants.EmployerApplicantPageDirections(email, job));
         });
     }
 
