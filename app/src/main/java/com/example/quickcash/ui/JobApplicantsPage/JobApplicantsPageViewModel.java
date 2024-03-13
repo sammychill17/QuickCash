@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class JobApplicantsViewModel extends ViewModel {
+public class JobApplicantsPageViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public JobApplicantsViewModel() {
+    public JobApplicantsPageViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is employer job applicants fragment");
     }

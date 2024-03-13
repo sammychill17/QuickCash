@@ -226,6 +226,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Google Pixel 7" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="motorola moto g power" value="120" />
                 </map>

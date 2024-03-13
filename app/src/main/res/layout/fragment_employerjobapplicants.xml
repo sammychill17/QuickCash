@@ -34,13 +34,23 @@
                 android:layout_margin="12dp"
                 tools:context=".MainActivity">
 
-                <ListView
-                    android:id="@+id/applicantList"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/jobApplicantList"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="589dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

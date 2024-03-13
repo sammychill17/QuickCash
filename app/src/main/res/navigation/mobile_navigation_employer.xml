@@ -33,6 +33,11 @@
         android:label="job_page"
         tools:layout="@layout/fragment_employerjobpage"/>
     <fragment
+        android:id="@+id/jobApplicantsFragment"
+        android:name="com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment"
+        android:label="job_applicants"
+        tools:layout="@layout/fragment_employerjobapplicants"/>
+    <fragment
         android:id="@+id/employerJobPostFragment"
         android:name="com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment"
         android:label="job_post"
