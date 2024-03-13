@@ -26,21 +26,13 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
     @NonNull
     @Override
     public SearchItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        Context thisContext = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(thisContext);
 
         // Inflate the layout
         View jobItem = inflater.inflate(R.layout.layout_jobitem, parent, false);
 
-//        jobItem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //Recy
-//            }
-//        });
-
-        SearchItemViewHolder viewHolder = new SearchItemViewHolder(jobItem);
-        return viewHolder;
+        return new SearchItemViewHolder(jobItem);
     }
 
     @Override
@@ -49,15 +41,48 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
         Job job = list.get(index);
         holder.titleView.setText(job.getTitle());
         holder.descView.setText(job.getDescription());
+
+        switch (job.getJobType()) {
+            case COOK:
+                holder.picView.setImageResource(R.drawable.icon_cook);
+                break;
+            case TECH:
+                holder.picView.setImageResource(R.drawable.icon_tech);
+                break;
+            case HITMAN:
+                holder.picView.setImageResource(R.drawable.icon_hitman);
+                break;
+            case MOVING:
+                holder.picView.setImageResource(R.drawable.icon_moving);
+                break;
+            case PETCARE:
+                holder.picView.setImageResource(R.drawable.icon_petcare);
+                break;
+            case MAGICIAN:
+                holder.picView.setImageResource(R.drawable.icon_magician);
+                break;
+            case TUTORING:
+                holder.picView.setImageResource(R.drawable.icon_tutoring);
+                break;
+            case YARDWORK:
+                holder.picView.setImageResource(R.drawable.icon_yardwork);
+                break;
+            case POLITICIAN:
+                holder.picView.setImageResource(R.drawable.icon_politician);
+                break;
+            case BABYSITTING:
+                holder.picView.setImageResource(R.drawable.icon_babysitting);
+                break;
+            case ARTS_CREATIVE:
+                holder.picView.setImageResource(R.drawable.icon_arts_creative);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
         return list.size();
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
     }
 }
