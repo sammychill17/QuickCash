@@ -19,12 +19,12 @@ public class JobDBHelper extends AppCompatActivity {
     public JobDBHelper(Job job){
         this.job = job;
         database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL));
-        applicantsReference = database.getReference("JobApplicants");
+        applicantsReference = database.getReference("Job Applicants");
         jobsReference = database.getReference("Jobs");
     }
     public JobDBHelper(){
         database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
-        applicantsReference = database.getReference("JobApplicants");
+        applicantsReference = database.getReference("Job Applicants");
         jobsReference = database.getReference("Jobs");
     }
 
@@ -39,7 +39,7 @@ public class JobDBHelper extends AppCompatActivity {
     }
 
     public void getJobByKey(String key, JobDBHelper.JobObjectCallback callback) {
-        jobsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        jobsReference.orderByChild("key").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Job result = null;
@@ -63,7 +63,7 @@ public class JobDBHelper extends AppCompatActivity {
     }
 
     public void getApplicantsByKey(String key, JobDBHelper.ApplicantsObjectCallback callback) {
-        applicantsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        applicantsReference.orderByChild("applicants").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 JobApplicants result = null;
