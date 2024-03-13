@@ -23,6 +23,7 @@ import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -51,7 +52,7 @@ public class EmployerJobApplicantsEspressoTest {
     }
 
     @Test
-    public void testJobApplicantsPage() throws InterruptedException {
+    public void testJobApplicantsPageTransition() throws InterruptedException {
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("parker@morrison.com"));
         onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
@@ -64,5 +65,26 @@ public class EmployerJobApplicantsEspressoTest {
         Thread.sleep(1000);
         onView(withId(R.id.applicantsBtn)).perform(click());
         Thread.sleep(1000);
+        onView(withId(R.id.applicantsBtn)).check(doesNotExist());
+    }
+
+    @Test
+    public void testJobApplicantsDetailsPage() throws InterruptedException{
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        onView(withId(R.id.editTextTextEmailAddress)).perform(typeText("parker@morrison.com"));
+        onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.buttonGotoLogin)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.myJobsButton)).perform(click());
+        onView(withId(R.id.jobList)).perform(actionOnItemAtPosition(0, CustomViewAction.
+                clickChildViewWithId(R.id.buttonTv)));
+        Thread.sleep(1000);
+        onView(withId(R.id.applicantsBtn)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.jobApplicantList)).perform(actionOnItemAtPosition(0, CustomViewAction.
+                clickChildViewWithId(R.id.buttonJa)));
+        Thread.sleep(4000);
+        onView(withId(R.id.jobApplicantList)).check(doesNotExist());
     }
 }

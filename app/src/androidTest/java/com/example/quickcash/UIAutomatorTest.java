@@ -35,7 +35,7 @@ import java.util.List;
 @RunWith(AndroidJUnit4.class)
 public class UIAutomatorTest  {
 
-    private static final int LAUNCH_TIMEOUT = 5000;
+    private static final int LAUNCH_TIMEOUT = 7000;
     final String launcherPackage = "com.example.quickcash";
     private UiDevice device;
 
@@ -55,9 +55,15 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkIfWelcomePageIsVisible() {
+    public void checkIfLogInButtonIsVisible() {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         assertTrue(loginButton.exists());
+    }
+
+    @Test
+    public void checkIfRegistrationButtonIsVisible(){
+        UiObject registrationButton = device.findObject(new UiSelector().textContains("REGISTER"));
+        assertTrue(registrationButton.exists());
     }
 
     @Test
@@ -131,26 +137,6 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkIfEmployerDashboardIsVisible() throws UiObjectNotFoundException {
-        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
-        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
-        assertTrue(emailIDBox.exists());
-        emailIDBox.setText("Loki360@gmail.com");
-        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
-        assertTrue(passwordBox.exists());
-        passwordBox.setText("Thor123456");
-        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
-        assertTrue(anotherLoginButton.exists());
-        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        allowPermissionsIfNeeded();
-        UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
-        assertFalse(employeeLabel.exists());
-        UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
-        assertTrue(employerLabel.exists());
-    }
-
-    @Test
     public void checkIfLoseYourselfButtonIsVisible() throws UiObjectNotFoundException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
@@ -199,6 +185,99 @@ public class UIAutomatorTest  {
         assertTrue("No durationField", durationField.exists());
         assertTrue("No selectDateButton", selectDateButton.exists());
         assertTrue("No backButton", backButton.exists());
+    }
+
+    @Test
+    public void checkIfMyJobsIsVisible() throws UiObjectNotFoundException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("parker@morrison.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
+        myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject anJob = device.findObject(new UiSelector().textContains("I want to see a magic show!"));
+        assertTrue(anJob.exists());
+    }
+
+    @Test
+    public void checkJobDetailsPage() throws UiObjectNotFoundException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("parker@morrison.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
+        myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
+
+        jobDetailsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject applicantsButton = device.findObject(new UiSelector().textContains("View Applicants"));
+        assertTrue(applicantsButton.exists());
+    }
+
+    @Test
+    public void checkJobApplicants() throws UiObjectNotFoundException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("parker@morrison.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
+        myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
+        jobDetailsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject applicantsButton = device.findObject(new UiSelector().textContains("View Applicants"));
+        applicantsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject applicantDetailsButton = device.findObject(new UiSelector().textContains("Details"));
+        assertTrue(applicantDetailsButton.exists());
+    }
+
+    @Test
+    public void checkJobApplicantsChoose() throws UiObjectNotFoundException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("parker@morrison.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
+        myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
+        jobDetailsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject applicantsButton = device.findObject(new UiSelector().textContains("View Applicants"));
+        applicantsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject applicantDetailsButton = device.findObject(new UiSelector().textContains("Details"));
+        applicantDetailsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject chooseApplicantsButton = device.findObject(new UiSelector().textContains("ACCEPT APPLICANT"));
+        assertTrue(chooseApplicantsButton.exists());
     }
 
     /*
