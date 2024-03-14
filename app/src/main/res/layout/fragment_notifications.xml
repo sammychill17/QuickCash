@@ -43,4 +43,20 @@
         app:layout_constraintBottom_toTopOf="@+id/text_notifications"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/preferencesButton"
+        android:layout_width="157dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="610dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="75dp"
+        android:text="Preferences"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
