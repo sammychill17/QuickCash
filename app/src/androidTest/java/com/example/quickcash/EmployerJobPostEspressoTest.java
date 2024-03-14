@@ -1,6 +1,5 @@
 package com.example.quickcash;
 
-import static androidx.test.core.app.ActivityScenario.launch;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -11,7 +10,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.instanceOf;
@@ -23,12 +21,10 @@ import android.widget.DatePicker;
 import androidx.fragment.app.testing.FragmentScenario;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import com.example.quickcash.Activities.MainActivity;
 import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
 
 import org.hamcrest.Matchers;
