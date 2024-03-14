@@ -62,7 +62,7 @@ public class FilterHelper {
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Log.d("FilterHelper", "I am a " + filter.getClass().getName() + " filter qwertyuiop");
+                    Log.d("FilterHelper", "I am a " + filter.getClass().getName() + " filter qwertyuiop, value is " + filter.getValue());
 //                    Log.d("FilterHelper", "snapshot is " + String.valueOf(snapshot.getValue()));
                     Set<String> localSearchResults = new HashSet<>();
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {

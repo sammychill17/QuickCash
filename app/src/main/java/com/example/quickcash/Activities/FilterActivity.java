@@ -42,7 +42,7 @@ public class FilterActivity extends DialogFragment
     private Button dateFilter;
     private SeekBar distanceFilter;
     private TextView distanceValue;
-    private Date selectedDate;
+    private Date selectedDate = null;
     private List<IFilter> filterList;
     private FilterCompleteCallback callback;
 
@@ -133,7 +133,7 @@ public class FilterActivity extends DialogFragment
                     filterDuration.setValue(durationInt);
                 }
                 IFilter filterDate = null;
-                if (dateFilter!=null){
+                if (selectedDate != null){
                     Date dateDate = selectedDate;
                     filterDate = new DateFilter();
                     filterDate.setValue(dateDate);
@@ -147,7 +147,7 @@ public class FilterActivity extends DialogFragment
 
                 if (filterJobType != null) {
                     filterList.add(filterJobType);
-                };
+                }
                 if (filterSalary != null){
                     filterList.add(filterSalary);
                 }
