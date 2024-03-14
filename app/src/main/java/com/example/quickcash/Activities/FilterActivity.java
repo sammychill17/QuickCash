@@ -18,9 +18,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.quickcash.Objects.Filters.DateFilter;
+import com.example.quickcash.Objects.Filters.DistanceFilter;
+import com.example.quickcash.Objects.Filters.DurationFilter;
+import com.example.quickcash.Objects.Filters.IFilter;
+import com.example.quickcash.Objects.Filters.JobTypeFilter;
+import com.example.quickcash.Objects.Filters.SalaryFilter;
+import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class FilterActivity extends DialogFragment
@@ -32,6 +42,20 @@ public class FilterActivity extends DialogFragment
     private Button dateFilter;
     private SeekBar distanceFilter;
     private TextView distanceValue;
+    private Date selectedDate;
+    private List<IFilter> filterList;
+    private FilterCompleteCallback callback;
+
+    public static class FilterCompleteCallback {
+        public void onResult(List<IFilter> filters) {}
+    }
+
+    public void setCallback(FilterCompleteCallback callback) {
+        this.callback = callback;
+    }
+    public FilterCompleteCallback getCallback() {
+        return callback;
+    }
 
     @Nullable
     @Override
@@ -46,6 +70,7 @@ public class FilterActivity extends DialogFragment
         distanceFilter = view.findViewById(R.id.distanceFilter);
         distanceValue = view.findViewById(R.id.distanceValue);
 
+        // Set job type
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.job_types_array,
@@ -54,6 +79,7 @@ public class FilterActivity extends DialogFragment
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         jobTypeFilter.setAdapter(adapter);
 
+        // Set distance
         distanceValue.setText(String.valueOf(distanceFilter.getProgress()));
         distanceFilter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -70,7 +96,6 @@ public class FilterActivity extends DialogFragment
             }
         });
 
-
         /*
         The implementation of datepicker was aided by
         https://developer.android.com/develop/ui/views/components/pickers
@@ -82,6 +107,64 @@ public class FilterActivity extends DialogFragment
                 showDatePickerDialog();
             }
         });
+
+        Button applyButton = (Button) view.findViewById(R.id.applyFilterButton);
+        applyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IFilter filterJobType = null;
+                if (jobTypeFilter.getSelectedItemPosition() != 0) {
+                    // Create a filter for that job
+                    String jobTypeString = jobTypeFilter.getSelectedItem().toString();
+                    JobTypes jobType = JobTypes.valueOf(jobTypeString);
+                    filterJobType = new JobTypeFilter();
+                    filterJobType.setValue(jobType);
+                }
+                IFilter filterSalary = null;
+                if (salaryFilter.getText().length()!=0){
+                    Double salaryDouble = Double.valueOf(salaryFilter.getText().toString());
+                    filterSalary = new SalaryFilter();
+                    filterSalary.setValue(salaryDouble);
+                }
+                IFilter filterDuration = null;
+                if (durationFilter.getText().length()!=0){
+                    Integer durationInt = Integer.valueOf(durationFilter.getText().toString());
+                    filterDuration = new DurationFilter();
+                    filterDuration.setValue(durationInt);
+                }
+                IFilter filterDate = null;
+                if (dateFilter!=null){
+                    Date dateDate = selectedDate;
+                    filterDate = new DateFilter();
+                    filterDate.setValue(dateDate);
+                }
+                IFilter filterDistance = new DistanceFilter();
+                filterDistance.setValue(filterDistance.getValue());
+
+                if (filterList == null) {
+                    filterList = new ArrayList<>();
+                }
+
+                if (filterJobType != null) {
+                    filterList.add(filterJobType);
+                };
+                if (filterSalary != null){
+                    filterList.add(filterSalary);
+                }
+                if (filterDuration != null) {
+                    filterList.add(filterDuration);
+                }
+                if (filterDate!=null){
+                    filterList.add(filterDate);
+                }
+                filterList.add(filterDistance);
+
+                if (callback != null) {
+                    callback.onResult(filterList);
+                }
+            }
+        });
+
         return view;
     }
 
@@ -105,5 +188,6 @@ public class FilterActivity extends DialogFragment
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth);
         dateFilter.setText(selectedDate);
+        this.selectedDate = new Date(year, month, dayOfMonth);
     }
 }

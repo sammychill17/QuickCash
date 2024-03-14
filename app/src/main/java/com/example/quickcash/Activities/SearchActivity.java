@@ -29,7 +29,10 @@ import java.util.Set;
 
 public class SearchActivity extends AppCompatActivity {
     private ImageButton filterButton;
+    private RecyclerView recyclerView;
+    private EditText searchBar;
     List<Job> jobs = new ArrayList<>();
+    List<IFilter> filters = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,18 +40,14 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.searchResultsRecycler);
+        recyclerView = (RecyclerView) findViewById(R.id.searchResultsRecycler);
         SearchItemAdapter adapter = new SearchItemAdapter(jobs, getApplicationContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.getAdapter().notifyDataSetChanged();
-//        Random random = new Random();
-//        for (int i = 0; i < 50; i++) {
-//            jobs.add(Job.getRandomJob(random));
-//        }
 
 
-        EditText searchBar = (EditText) findViewById(R.id.searchBar);
+        searchBar = (EditText) findViewById(R.id.searchBar);
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -58,27 +57,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 Log.d("SearchActivity", "You typed: " + s);
-                jobs.clear();
-                recyclerView.getAdapter().notifyDataSetChanged();
-                List<IFilter> filters = new ArrayList<>();
-                TitleFilter titleFilter = new TitleFilter();
-                titleFilter.setValue(s);
-                filters.add(titleFilter);
 
-                FilterHelper helper = new FilterHelper();
-                FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {
-                    @Override
-                    public void onResult(Set<Job> searchResult) {
-                        for (Job job : searchResult) {
-                            Log.d("SearchActivity", "I see " + job.getTitle());
-                            jobs.add(job);
-                            recyclerView.getAdapter().notifyItemChanged(jobs.size() - 2, job);
-                        }
-                    }
-                };
-                helper.setCallback(callback);
-                helper.setFilters(filters);
-                helper.run();
+                applyFiltersAndSearch();
             }
 
             @Override
@@ -94,34 +74,41 @@ public class SearchActivity extends AppCompatActivity {
                 FilterActivity filterActivity = new FilterActivity();
                 filterActivity.setCallback(new FilterActivity.FilterCompleteCallback() {
                     @Override
-                    public void onResult(List<IFilter> filters) {
-                        jobs.clear();
-                        recyclerView.getAdapter().notifyDataSetChanged();
-                        // TODO: Apply new filters
-                        if (searchBar.getText().length() != 0) {
-                            TitleFilter titleFilter = new TitleFilter();
-                            titleFilter.setValue(searchBar.getText().toString());
-                            filters.add(titleFilter);
-                        }
+                    public void onResult(List<IFilter> newFilters) {
+                        filters = newFilters;
 
-                        FilterHelper helper = new FilterHelper();
-                        FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {
-                            @Override
-                            public void onResult(Set<Job> searchResult) {
-                                for (Job job : searchResult) {
-                                    Log.d("SearchActivity", "I see " + job.getTitle());
-                                    jobs.add(job);
-                                    recyclerView.getAdapter().notifyItemChanged(jobs.size() - 2, job);
-                                }
-                            }
-                        };
-                        helper.setCallback(callback);
-                        helper.setFilters(filters);
-                        helper.run();
+                        applyFiltersAndSearch();
                     }
                 });
                 filterActivity.show(getSupportFragmentManager(), "Filter fragment");
             }
         });
+    }
+
+    private void applyFiltersAndSearch() {
+        jobs.clear();
+        recyclerView.getAdapter().notifyDataSetChanged();
+
+        List<IFilter> filters1 = new ArrayList<>(filters);
+        if (searchBar.getText().length() != 0) {
+            TitleFilter titleFilter = new TitleFilter();
+            titleFilter.setValue(searchBar.getText().toString());
+            filters1.add(titleFilter);
+        }
+
+        FilterHelper helper = new FilterHelper();
+        FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {
+            @Override
+            public void onResult(Set<Job> searchResult) {
+                for (Job job : searchResult) {
+                    Log.d("SearchActivity", "I see " + job.getTitle());
+                    jobs.add(job);
+                    recyclerView.getAdapter().notifyItemChanged(jobs.size() - 2, job);
+                }
+            }
+        };
+        helper.setCallback(callback);
+        helper.setFilters(filters1);
+        helper.run();
     }
 }
