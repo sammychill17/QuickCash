@@ -89,7 +89,8 @@
     <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Added basic Geocoder Functionality">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageGeocoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPage/EmployerJobPageGeocoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Job.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +100,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\james\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[ZY22BX9LPL]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

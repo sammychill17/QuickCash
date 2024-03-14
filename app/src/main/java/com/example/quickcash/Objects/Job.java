@@ -16,6 +16,7 @@ public class Job implements Serializable {
     private double salary;
     private transient Duration duration;
     private Date date;
+    private long epoch;
     private UserLocation location;
     private boolean isAssigned;
     private boolean isCompleted;
@@ -54,6 +55,7 @@ public class Job implements Serializable {
         this.assignedToEmail = "";
         this.latitude = latitude;
         this.longitude = longitude;
+        this.epoch = date.getTime();
     }
 
     /*
@@ -78,6 +80,7 @@ public class Job implements Serializable {
         this.assignedToEmail = "";
         this.latitude = 0;
         this.longitude = 0;
+        this.epoch = 0;
     }
 
     /*
@@ -183,5 +186,13 @@ public class Job implements Serializable {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public void setEpoch(long epoch){
+        this.epoch = epoch;
+    }
+
+    public long getEpoch(){
+        return epoch;
     }
 }
