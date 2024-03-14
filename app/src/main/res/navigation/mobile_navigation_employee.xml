@@ -22,4 +22,9 @@
         android:name="com.example.quickcash.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/employeePreferredJobs"
+        android:name="com.example.quickcash.ui.employeePreferredJobs.EmployeePreferredJobsFragment"
+        android:label="Preferences"
+        tools:layout="@layout/preferred_job_type_items"/>
 </navigation>
