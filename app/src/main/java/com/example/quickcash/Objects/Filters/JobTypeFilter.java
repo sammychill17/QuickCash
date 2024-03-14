@@ -17,7 +17,7 @@ public class JobTypeFilter implements IFilter{
 
     @Override
     public Query filter(Query query) {
-        return query;
-//        return query.orderByChild("jobType").equalTo(JobType.name());
+//        return query;
+        return query.orderByChild("jobType").equalTo(JobType.name());
     }
 }

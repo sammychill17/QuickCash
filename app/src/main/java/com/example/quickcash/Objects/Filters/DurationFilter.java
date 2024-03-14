@@ -19,7 +19,7 @@ public class DurationFilter implements IFilter{
 
     @Override
     public Query filter(Query query) {
-        return query;
-//        return query.orderByChild("duration").endAt(Duration);
+//        return query;
+        return query.orderByChild("duration").endAt(Duration);
     }
 }

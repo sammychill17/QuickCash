@@ -91,7 +91,35 @@ public class SearchActivity extends AppCompatActivity {
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FilterActivity filterActivity= new FilterActivity();
+                FilterActivity filterActivity = new FilterActivity();
+                filterActivity.setCallback(new FilterActivity.FilterCompleteCallback() {
+                    @Override
+                    public void onResult(List<IFilter> filters) {
+                        jobs.clear();
+                        recyclerView.getAdapter().notifyDataSetChanged();
+                        // TODO: Apply new filters
+                        if (searchBar.getText().length() != 0) {
+                            TitleFilter titleFilter = new TitleFilter();
+                            titleFilter.setValue(searchBar.getText().toString());
+                            filters.add(titleFilter);
+                        }
+
+                        FilterHelper helper = new FilterHelper();
+                        FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {
+                            @Override
+                            public void onResult(Set<Job> searchResult) {
+                                for (Job job : searchResult) {
+                                    Log.d("SearchActivity", "I see " + job.getTitle());
+                                    jobs.add(job);
+                                    recyclerView.getAdapter().notifyItemChanged(jobs.size() - 2, job);
+                                }
+                            }
+                        };
+                        helper.setCallback(callback);
+                        helper.setFilters(filters);
+                        helper.run();
+                    }
+                });
                 filterActivity.show(getSupportFragmentManager(), "Filter fragment");
             }
         });

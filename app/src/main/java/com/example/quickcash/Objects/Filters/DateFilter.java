@@ -18,6 +18,7 @@ public class DateFilter implements IFilter{
 
     @Override
     public Query filter(Query query) {
+        // TODO: implement DateFilter
         return query;
 //        return query.orderByChild("date").endAt(Date);
     }

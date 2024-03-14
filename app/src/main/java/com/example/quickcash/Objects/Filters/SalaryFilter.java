@@ -17,7 +17,7 @@ public class SalaryFilter implements IFilter{
 
     @Override
     public Query filter(Query query) {
-        return  query;
-//        return query.orderByChild("salary").startAfter(Salary);
+//        return  query;
+        return query.orderByChild("salary").startAfter(Salary);
     }
 }

@@ -14,8 +14,8 @@ public class DistanceFilter implements IFilter{
     }
     @Override
     public Query filter(Query query) {
-        return query;
-//       return query.orderByChild("distance").endAt(Distance);
+//        return query;
+       return query.orderByChild("distance").endAt(Distance);
     }
 
 }
