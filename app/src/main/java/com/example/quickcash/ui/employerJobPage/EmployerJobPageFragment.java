@@ -2,6 +2,7 @@ package com.example.quickcash.ui.employerJobPage;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
@@ -82,12 +83,16 @@ public class EmployerJobPageFragment extends Fragment{
         jDesc.setText(j.getDescription());
         Geocoder geocoder;
         List<Address> addresses = null;
-        geocoder = new Geocoder(this.getContext(), Locale.getDefault());
+        Context c = this.requireContext();
+        geocoder = new Geocoder(c, Locale.getDefault());
         try {
-            addresses = geocoder.getFromLocation(j.getLatitude(), j.getLongitude(), 1);
+            double lat = j.getLatitude();
+            double lon = j.getLongitude();
+            addresses = geocoder.getFromLocation(lat, lon, 1);
             address = addresses.get(0).getAddressLine(0);
         } catch (IOException e) {
-            address = "Error! Cannot find Address";
+//            address = "Error! Cannot find Address";
+            address = e.getStackTrace().toString();
         }
         jAddress.setText(address);
 
