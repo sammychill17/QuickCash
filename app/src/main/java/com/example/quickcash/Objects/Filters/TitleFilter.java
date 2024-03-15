@@ -1,5 +1,6 @@
 package com.example.quickcash.Objects.Filters;
 
+import com.example.quickcash.Objects.Job;
 import com.google.firebase.database.Query;
 
 public class TitleFilter implements IFilter {
@@ -20,5 +21,10 @@ public class TitleFilter implements IFilter {
     public Query filter(Query query) {
 //        return query;
         return query.orderByChild("title").equalTo(title);
+    }
+
+    @Override
+    public boolean shouldRetain(Job job) {
+        return (job.getTitle().toLowerCase().contains(title.toLowerCase()));
     }
 }
