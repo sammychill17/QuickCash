@@ -72,34 +72,6 @@ public class NotificationsFragment extends Fragment {
             Snackbar.make(view, "Logging out!", Snackbar.LENGTH_SHORT).show();
             handleLogout();
         });
-
-        binding.testSearchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String fireBaseURL = "https://quickcash-6941c-default-rtdb.firebaseio.com/"; //For some reason I was getting null pointer exceptions when I tried to reference strings.xml so I manually added the link here.
-                FirebaseDatabase database = FirebaseDatabase.getInstance(fireBaseURL);
-                DatabaseReference reference = database.getReference("Posted Jobs");
-
-                Query filteredRef = reference.orderByChild("title").equalTo("oui");
-                filteredRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                            Job obj = snapshot1.getValue(Job.class); // This might need adjustment
-                            if (obj != null ) {
-                                binding.textNotifications.setText(binding.textNotifications.getText() + "\n" + obj.getTitle());
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        });
-
         return root;
     }
 
