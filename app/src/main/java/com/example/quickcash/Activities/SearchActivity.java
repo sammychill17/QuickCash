@@ -77,6 +77,8 @@ public class SearchActivity extends AppCompatActivity {
                     public void onResult(List<IFilter> newFilters) {
                         filters = newFilters;
 
+                        filterActivity.dismiss();
+
                         applyFiltersAndSearch();
                     }
                 });
