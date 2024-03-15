@@ -1,59 +1,54 @@
 package com.example.quickcash;
 
-import static android.app.PendingIntent.getActivity;
-
-import androidx.fragment.app.testing.FragmentScenario;
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-
-import com.example.quickcash.Activities.MainActivity;
-import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import static androidx.test.core.app.ActivityScenario.launch;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.mock;
+
+import android.widget.DatePicker;
+
+import androidx.fragment.app.testing.FragmentScenario;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.test.espresso.contrib.PickerActions;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+
+import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
+
+import org.hamcrest.Matchers;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class EmployerJobPostEspressoTest {
 
     @Before
-    public void launchFragment() {
-        ActivityScenario<MainActivity> activityScenario = launch(MainActivity.class);
-        activityScenario.onActivity(activity -> {
-            getInstrumentation().getUiAutomation()
-                    .grantRuntimePermission(activity.getPackageName(), "android.permission.ACCESS_COARSE_LOCATION");
-            getInstrumentation().getUiAutomation()
-                    .grantRuntimePermission(activity.getPackageName(), "android.permission.ACCESS_FINE_LOCATION");
-
+    public void setUp() {
+        FragmentScenario<EmployerJobPostFragment> scenario = FragmentScenario.launchInContainer(
+                EmployerJobPostFragment.class
+        );
+        scenario.onFragment(fragment -> {
+            NavController mockNavController = mock(NavController.class);
+            Navigation.setViewNavController(fragment.requireView(), mockNavController);
         });
     }
 
     @Test
     public void testSpinnerSelectionForJobPost() {
-        FragmentScenario<EmployerJobPostFragment> scenario = FragmentScenario.launchInContainer(EmployerJobPostFragment.class);
         onView(withId(R.id.jobTypeSpinner)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Yardwork"))).perform(click());
         onView(withId(R.id.jobTypeSpinner)).check(matches(withSpinnerText(containsString("Yardwork"))));
@@ -61,7 +56,6 @@ public class EmployerJobPostEspressoTest {
 
     @Test
     public void testingTextFieldsForJobPost() {
-        FragmentScenario<EmployerJobPostFragment> scenario = FragmentScenario.launchInContainer(EmployerJobPostFragment.class);
         onView(withId(R.id.jobTitleField)).perform(typeText("Hiring"));
         onView(withId(R.id.jobTitleField)).check(matches(withText(containsString("Hiring"))));
         onView(withId(R.id.jobDescField)).perform(typeText("Hiring for money"));
@@ -72,7 +66,6 @@ public class EmployerJobPostEspressoTest {
 
     @Test
     public void testForJobPostFail() {
-        FragmentScenario.launchInContainer(EmployerJobPostFragment.class);
         onView(withId(R.id.jobTitleField)).perform(typeText("No"), closeSoftKeyboard());
         onView(withId(R.id.jobPostButton)).perform(click());
     }
@@ -80,10 +73,15 @@ public class EmployerJobPostEspressoTest {
 
     @Test
     public void testForJobPostSuccess() {
-        FragmentScenario.launchInContainer(EmployerJobPostFragment.class);
-        onView(withId(R.id.jobTitleField)).perform(typeText("No"), closeSoftKeyboard());
-        onView(withId(R.id.jobDescField)).perform(typeText("No, I have a job for you"), closeSoftKeyboard());
+        onView(withId(R.id.jobTitleField)).perform(typeText("Hi"), closeSoftKeyboard());
+        onView(withId(R.id.jobDescField)).perform(typeText("Hi, TA Vatsal, You are the best TA i've ever had in my entire academic journey!"), closeSoftKeyboard());
         onView(withId(R.id.jobPostButton)).perform(click());
     }
 
+    @Test
+    public void datePickerTest() {
+        onView(withId(R.id.jobDateButton)).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(12, 12, 12));
+        onView(withId(android.R.id.button1)).perform(click());
+    }
 }

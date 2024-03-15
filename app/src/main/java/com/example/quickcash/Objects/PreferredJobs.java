@@ -1,153 +1,74 @@
 package com.example.quickcash.Objects;
 
 import com.example.quickcash.FirebaseStuff.QuickCashDBObject;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PreferredJobs extends QuickCashDBObject {
-    private int enumSize = 11;
     private String employeeEmail;
-    private ArrayList<JobTypes> preferredJobs = new ArrayList<>();
+    private List<String> preferredJobs;
 
-    public PreferredJobs(String email){
-        employeeEmail = email;
-        for (int i = 0; i < enumSize; i++) {
-            preferredJobs.add(JobTypes.UNDEFINED);
+    public PreferredJobs(String email) {
+        this.employeeEmail = email;
+        this.preferredJobs = new ArrayList<>();
+    }
+
+    public void checkJob(JobTypes type) {
+        if (type != JobTypes.UNDEFINED && !preferredJobs.contains(type.name())) {
+            preferredJobs.add(type.name());
         }
     }
 
-    public static List<JobTypes> convertNamesToJobTypes(List<String> names) {
-        List<JobTypes> returnList = new ArrayList<JobTypes>();
-        for (int i = 0; i < names.size(); i++) {
-            String currName = names.get(i);
-            if(currName.matches("ARTS_CREATIVE")){
-                returnList.add(JobTypes.ARTS_CREATIVE);
-            }
-            else if(currName.matches("BABYSITTING")){
-                returnList.add(JobTypes.BABYSITTING);
-            }
-            else if(currName.matches("COOK")){
-                returnList.add(JobTypes.COOK);
-            }
-            else if(currName.matches("HITMAN")){
-                returnList.add(JobTypes.HITMAN);
-            }
-            else if(currName.matches("MAGICIAN")){
-                returnList.add(JobTypes.MAGICIAN);
-            }
-            else if(currName.matches("MOVING")){
-                returnList.add(JobTypes.MOVING);
-            }
-            else if(currName.matches("PETCARE")){
-                returnList.add(JobTypes.PETCARE);
-            }
-            else if(currName.matches("POLITICIAN")){
-                returnList.add(JobTypes.POLITICIAN);
-            }
-            else if(currName.matches("TECH")){
-                returnList.add(JobTypes.TECH);
-            }
-            else if(currName.matches("TUTORING")){
-                returnList.add(JobTypes.TUTORING);
-            }
-            else if(currName.matches("YARDWORD")){
-                returnList.add(JobTypes.YARDWORK);
-            }
-            else{
-                returnList.add(JobTypes.UNDEFINED);
-            }
-        }
-        return returnList;
+    public void uncheckJob(JobTypes type) {
+        preferredJobs.remove(type.name());
     }
 
-    public static List<String> convertJobTypesToNames(List<JobTypes> jobTypes) {
-        List<String> returnList = new ArrayList<String>();
-        for (int i = 0; i < jobTypes.size(); i++) {
-            JobTypes currJob = jobTypes.get(i);
-            if(currJob == JobTypes.ARTS_CREATIVE){
-                returnList.add("ARTS_CREATIVE");
-            }
-            else if(currJob == JobTypes.BABYSITTING){
-                returnList.add("BABYSITTING");
-            }
-            else if(currJob == JobTypes.COOK){
-                returnList.add("COOK");
-            }
-            else if(currJob == JobTypes.HITMAN){
-                returnList.add("HITMAN");
-            }
-            else if(currJob == JobTypes.MAGICIAN){
-                returnList.add("MAGICIAN");
-            }
-            else if(currJob == JobTypes.MOVING){
-                returnList.add("MOVING");
-            }
-            else if(currJob == JobTypes.PETCARE){
-                returnList.add("PETCARE");
-            }
-            else if(currJob == JobTypes.POLITICIAN){
-                returnList.add("POLITICIAN");
-            }
-            else if(currJob == JobTypes.TECH){
-                returnList.add("TECH");
-            }
-            else if(currJob == JobTypes.TUTORING){
-                returnList.add("TUTORING");
-            }
-            else if(currJob == JobTypes.YARDWORK){
-                returnList.add("YARDWORK");
-            }
-            else{
-                returnList.add("UNDEFINED");
-            }
-        }
-        return returnList;
-    }
-
-    public void checkJob(JobTypes type){
-        if(type != JobTypes.UNDEFINED){
-            for (int i = 0; i < enumSize; i++) {
-                if(preferredJobs.get(i)==type){
-                    break;
-                }
-                else if(preferredJobs.get(i)==JobTypes.UNDEFINED){
-                    preferredJobs.set(i, type);
-                    break;
-                }
-            }
-        }
-    }
-    public void uncheckJob(JobTypes type){
-        if(type != JobTypes.UNDEFINED){
-            for (int i = 0; i < enumSize; i++) {
-                if(preferredJobs.get(i)==type){
-                    preferredJobs.set(i, JobTypes.UNDEFINED);
-                    break;
-                }
-            }
-        }
-    }
-
-    public boolean doesPreferred(JobTypes type){
-        if(type != JobTypes.UNDEFINED){
-            for (int i = 0; i < enumSize; i++) {
-                if(preferredJobs.get(i)==type){
-                    return true;
-                }
-            }
-            return false;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public ArrayList<JobTypes>  getPreferredJobs(){
+    public List<String> getPreferredJobs() {
         return preferredJobs;
     }
 
-    public String getEmail(){
+    public void setPreferredJobs(List<String> preferredJobs) {
+        this.preferredJobs = preferredJobs;
+    }
+
+    public String getEmail() {
         return employeeEmail;
     }
+
+    public void setEmail(String email) {
+        this.employeeEmail = email;
+    }
+
+    public boolean doesPreferred(String jobName) {
+        return preferredJobs.contains(jobName);
+    }
+
+    /*
+     this is a helper method that converts list of job type names to list of JobTypes
+     */
+    public static List<JobTypes> convertNamesToJobTypes(List<String> names) {
+        List<JobTypes> jobTypes = new ArrayList<>();
+        for (String name : names) {
+                jobTypes.add(JobTypes.valueOf(name));
+            }
+        return jobTypes;
+    }
+
+    /*
+    another method thats gonna be "helping" us,
+    this method will convert list of JobTypes to list of job type names
+     */
+
+    public static List<String> convertJobTypesToNames(List<JobTypes> jobTypes) throws IllegalArgumentException {
+        List<String> names = new ArrayList<>();
+        for (JobTypes jobType : jobTypes) {
+            names.add(jobType.name());
+        }
+        return names;
+    }
+
 }

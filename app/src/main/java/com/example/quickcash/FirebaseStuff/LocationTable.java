@@ -1,6 +1,7 @@
 package com.example.quickcash.FirebaseStuff;
 
 
+import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.Objects.UserLocation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -75,7 +76,7 @@ public class LocationTable {
     parameter-(userLocation), The UserLocation object to be updated.
     */
     public void updateLocationInDatabase(UserLocation userLocation) {
-        String sanitizedEmail = sanitizeEmail(userLocation.getEmail());
+        String sanitizedEmail = SanitizeEmail.sanitizeEmail(userLocation.getEmail());
         databaseReference.child(sanitizedEmail).setValue(userLocation);
     }
 
