@@ -1,31 +1,49 @@
 package com.example.quickcash.Objects;
 
+import android.location.Location;
+
+import java.io.Serializable;
 import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Random;
 
-public class Job {
+public class Job implements Serializable {
 
     private String key;
     private String title;
     private String description;
     private JobTypes jobType;
     private double salary;
-    private Duration duration;
+    private transient Duration duration;
+    private Date date;
+    private UserLocation location;
     private boolean isAssigned;
     private boolean isCompleted;
     private String assignedToEmail;
     private String employerEmail;
+    private double latitude;
+    private double longitude;
 
     /*
     Constructor --
      */
-    public Job(String title, String description, JobTypes jobType, double salary, String duration, String employerEmail) {
+    public Job(String title,
+               String description,
+               JobTypes jobType,
+               double salary,
+               Duration duration,
+               String employerEmail,
+               Date date,
+               double latitude,
+               double longitude) {
         this.title = title;
         this.description = description;
         this.jobType = jobType;
         this.salary = salary;
-        this.duration = Duration.parse(duration);
+        this.duration = duration;
         this.employerEmail = employerEmail;
+        this.date = date;
         /*
         default value is false
          */
@@ -35,28 +53,32 @@ public class Job {
         empty string initially
          */
         this.assignedToEmail = "";
-    }
-    public Job() {}
-
-    public static Job getRandomJob(Random random) {
-        JobTypes jobTypes = JobTypes.values()[random.nextInt(11)];
-        Duration duration = Duration.ZERO.plusMillis(random.nextInt(999999999));
-        Job job = new Job(getRandomGibberish(random), getRandomGibberish(random), jobTypes, random.nextDouble(), duration.toString(), "Loki360@gmail.com");
-        return job;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    private static String getRandomGibberish(Random random) {
-        StringBuilder builder = new StringBuilder();
-        try {
-            builder.append(Character.getName(random.nextInt(Character.FINAL_QUOTE_PUNCTUATION)));
-        }  catch (Exception e) {
-            for (int i = 0; i < 16; i++) {
-                String s = e.toString();
-                builder.append(s.charAt(random.nextInt(s.length())));
-            }
-        }
-        builder.append(random.nextInt(999999));
-        return builder.toString();
+    /*
+     * default constructor for Job item with no parameters.
+     */
+    public Job(){
+        this.title = "";
+        this.description = "";
+        this.jobType = JobTypes.UNDEFINED;
+        this.salary = 0;
+        this.duration = Duration.ofHours(0);
+        this.employerEmail = "";
+        this.date = Date.from(Instant.now());
+        /*
+        default value is false
+         */
+        this.isAssigned = false;
+        this.isCompleted = false;
+        /*
+        empty string initially
+         */
+        this.assignedToEmail = "";
+        this.latitude = 0;
+        this.longitude = 0;
     }
 
     /*
@@ -89,6 +111,10 @@ public class Job {
         this.jobType = jobType;
     }
 
+    public void setDate(Date date){
+        this.date = date;
+    }
+
     public double getSalary() {
         return salary;
     }
@@ -97,16 +123,13 @@ public class Job {
         this.salary = salary;
     }
 
-    public Duration getDuration() {
-        return duration;
+    public long getDuration() {
+        return duration.toHours();
     }
 
-//    public void setDuration(String duration) {
-//        this.duration = Duration.parse(duration);
-//    }
 
-    public void setDuration(Long duration) {
-        this.duration = Duration.ofHours(duration);
+    public void setDuration(long hours) {
+        this.duration = Duration.ofHours(hours);
     }
 
     public boolean isAssigned() {
@@ -138,9 +161,66 @@ public class Job {
         this.employerEmail = employerEmail;
     }
 
+    public void setKey(String key) {this.key = key;}
     public String getKey(){
         return  key;
     }
 
-    //TODO: Make a Job Firebase Helper Class
+    public Date getDate(){
+        return date;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public static Job getRandomJob(Random random) {
+        JobTypes jobTypes = JobTypes.values()[random.nextInt(11)];
+        Duration duration = Duration.ZERO.plusMillis(random.nextInt(999999999));
+        int year = (random.nextDouble() > 0.5) ? 2024 : 2025;
+        int month = random.nextInt(11);
+        int day = random.nextInt(28);
+        int randomPositiveNegative = (random.nextBoolean() ? 1 : -1);
+        double randomLong = random.nextDouble() * random.nextInt(90) * randomPositiveNegative;
+        randomPositiveNegative = (random.nextBoolean() ? 1 : -1);
+        double randomLat = random.nextDouble() * random.nextInt(90) * randomPositiveNegative;
+        return new Job(
+                getRandomGibberish(random),
+                getRandomGibberish(random),
+                jobTypes,
+                random.nextDouble(),
+                duration,
+                "Loki360@gmail.com",
+                new Date(year, month, day),
+                randomLong,
+                randomLat
+        );
+    }
+
+    private static String getRandomGibberish(Random random) {
+        StringBuilder builder = new StringBuilder();
+        try {
+            builder.append(Character.getName(random.nextInt(Character.FINAL_QUOTE_PUNCTUATION)));
+        }  catch (Exception e) {
+            for (int i = 0; i < 16; i++) {
+                String s = e.toString();
+                builder.append(s.charAt(random.nextInt(s.length())));
+            }
+        }
+        builder.append(random.nextInt(999999));
+        return builder.toString();
+    }
 }
+
