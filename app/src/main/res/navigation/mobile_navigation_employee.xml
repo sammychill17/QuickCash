@@ -32,9 +32,4 @@
         android:name="com.example.quickcash.ui.map.MapFragment"
         android:label="Map"
         tools:layout="@layout/fragment_employee_map_activity"/>
-    <fragment
-        android:id="@+id/mapDirections"
-        android:name="com.example.quickcash.ui.map.MapFragment"
-        android:label="Map"
-        tools:layout="@layout/fragment_employee_map_activity"/>
 </navigation>
