@@ -1,9 +1,12 @@
 package com.example.quickcash.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,18 +22,18 @@ import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.TitleFilter;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.R;
+import com.example.quickcash.ui.map.MapDirections;
+import com.example.quickcash.ui.map.MapFragment;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 public class SearchActivity extends AppCompatActivity {
     private ImageButton filterButton;
     private RecyclerView recyclerView;
     private EditText searchBar;
+    private Button mapsButton;
     List<Job> jobs = new ArrayList<>();
     List<IFilter> filters = new ArrayList<>();
     @Override
@@ -81,6 +84,21 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 });
                 filterActivity.show(getSupportFragmentManager(), "Filter fragment");
+            }
+        });
+
+        mapsButton = findViewById(R.id.mapButton);
+        mapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SearchItemAdapter mapAdapter = (SearchItemAdapter) recyclerView.getAdapter();
+                MapFragment mapPage = new MapFragment();
+                Bundle b = new Bundle();
+                b.putSerializable("adapter", mapAdapter);
+                mapPage.setArguments(b);
+
+                NavController controller = new NavController(getApplicationContext());
+                controller.navigate(new MapDirections(adapter));
             }
         });
     }

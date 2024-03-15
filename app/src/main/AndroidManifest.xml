@@ -41,10 +41,10 @@
         </activity>
         <activity
             android:name=".Activities.RegistrationActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".Activities.LocationActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
     </application>
 
 </manifest>

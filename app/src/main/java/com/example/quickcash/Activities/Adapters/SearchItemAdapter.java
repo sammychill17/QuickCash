@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.R;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder> {
+public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder> implements Serializable {
     List<Job> list = Collections.emptyList();
     Context context;
 

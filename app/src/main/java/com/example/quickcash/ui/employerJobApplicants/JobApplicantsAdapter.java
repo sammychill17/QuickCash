@@ -14,7 +14,6 @@ import com.example.quickcash.Objects.Job;
 import com.example.quickcash.R;
 import com.example.quickcash.ui.employerApplicantPage.EmployerApplicantPageFragment;
 import com.example.quickcash.ui.employerJobList.EmployerJobListFragment;
-import com.example.quickcash.ui.employerJobPage.EmployerJobPageDirections;
 import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
 
 import java.util.ArrayList;
