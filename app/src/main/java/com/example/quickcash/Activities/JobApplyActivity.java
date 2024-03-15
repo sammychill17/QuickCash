@@ -8,31 +8,46 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.quickcash.FirebaseStuff.JobDBHelper;
+import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobApplicants;
+import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerjobpageBinding;
 import com.example.quickcash.ui.employerJobApplicants.JobApplicantsDirections;
 import com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment;
 import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
+import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class JobApplyActivity extends AppCompatActivity {
 
     private JobApplicants jobApplicants;
+
+    private double currentLatitude;
+    private double currentLongitude;
 
     DecimalFormat df = new DecimalFormat("#,###.00");
 
@@ -126,15 +141,53 @@ public class JobApplyActivity extends AppCompatActivity {
             }
         });
         Button applyButton = findViewById(R.id.applyButton);
+
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            applyJob();
             }
         });
 
+    }
+    public void applyJob() {
+        /*
+        Retrieves the employer email from shared preferences
+         */
+        SharedPreferences sharedPrefs = getSharedPreferences("session_login", MODE_PRIVATE);
+        String employeeEmail = sharedPrefs.getString("email", "");
 
+        Intent intent = getIntent();
+        Job j = (Job) intent.getSerializableExtra("job");
 
+        // Get the job key and title
+        String jobKey = j.getKey();
+        String jobTitle = j.getTitle();
+
+        // Save the job key, title and current employee email to the "applications" branch
+        DatabaseReference applicationsRef = FirebaseDatabase.getInstance().getReference("Job Applicants");
+
+        //if theres no child of applicationsRef that matches the job key i am on, make a new
+        //child node, and add the interested applicants/users
+        if (applicationsRef.child(jobKey) == null){
+            applicationsRef.child("jobKey").setValue(jobKey);
+        }
+
+        applicationsRef.child(jobKey).child("Applicants").child("employeeEmail").setValue(employeeEmail);
+        applicationsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    Toast.makeText(JobApplyActivity.this, "Applied for job: "+ jobTitle, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(JobApplyActivity.this, "Failed to apply for job: "+ jobTitle, Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void getApplicantsList(Job j){
