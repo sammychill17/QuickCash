@@ -1,12 +1,14 @@
 package com.example.quickcash.ui.employerJobList;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +17,7 @@ import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
 import com.example.quickcash.ui.employerHome.EmployerHomeFragment;
 import com.example.quickcash.ui.employerJobList.EmployerJobListFragment;
+import com.example.quickcash.ui.employerJobPage.EmployerJobPageDirections;
 import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
 
 import java.util.ArrayList;
@@ -46,9 +49,16 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
         EmployerJobListHolder.title.setText(models.get(position).getTitle());
         EmployerJobListHolder.desc.setText(models.get(position).getDescription());
         setImageIcon(position);
+
         EmployerJobListHolder.button.setOnClickListener(v -> {
+            EmployerJobPageFragment jobPage = new EmployerJobPageFragment();
+            Job j = models.get(position);
+            Bundle b = new Bundle();
+            b.putSerializable("job", j);
+            jobPage.setArguments(b);
+
             NavController navController = NavHostFragment.findNavController(mFragment);
-            navController.navigate(R.id.employerJobPageFragment);
+            navController.navigate(new EmployerJobPageDirections(j));
         });
 
     }

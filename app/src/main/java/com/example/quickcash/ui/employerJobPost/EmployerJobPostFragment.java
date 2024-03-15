@@ -148,6 +148,7 @@ public class EmployerJobPostFragment extends Fragment {
                     }
                 } catch (NumberFormatException ex) {
                     Toast.makeText(getContext(), "Salary format not applicable", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 String durationString = (((EditText) getView().findViewById(R.id.jobDurationField)).getText().toString());

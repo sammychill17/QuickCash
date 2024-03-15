@@ -8,6 +8,10 @@ public class JobApplicants {
     private String key;
     private List<String> applicants;
 
+    public JobApplicants(){
+        this.key = "";
+        this.applicants = new ArrayList<>();
+    }
     public JobApplicants(String key){
         this.key = key;
         this.applicants = new ArrayList<>();

@@ -86,11 +86,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Posted Jobs now create a corresponding JobApplicants Object">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-    </list>
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Added new Epoch variable to Job class for ease of use in future filtering/queries." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +95,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\james\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[ZY22BX9LPL]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -402,11 +398,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEspressoTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployerJobPostEspressoTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="quickcash.app.androidTest" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.example.quickcash.LoginEspressoTest" />
+      <option name="CLASS_NAME" value="com.example.quickcash.EmployerJobPostEspressoTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -590,19 +586,19 @@
     </configuration>
     <list>
       <item itemvalue="Android App.app" />
+      <item itemvalue="Android Instrumented Tests.EmployerJobPostEspressoTest" />
       <item itemvalue="Android Instrumented Tests.EmployerDashboardEspressoTest" />
       <item itemvalue="Android Instrumented Tests.EmployerJobListEspressoTest" />
       <item itemvalue="Android Instrumented Tests.testMyJobsButton()" />
-      <item itemvalue="Android Instrumented Tests.LoginEspressoTest" />
       <item itemvalue="Android Instrumented Tests.checkIfPasswordIsValid()" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Android Instrumented Tests.EmployerJobListEspressoTest" />
+        <item itemvalue="Android Instrumented Tests.EmployerJobPostEspressoTest" />
         <item itemvalue="Android Instrumented Tests.testMyJobsButton()" />
         <item itemvalue="Android Instrumented Tests.EmployerDashboardEspressoTest" />
         <item itemvalue="Android Instrumented Tests.checkIfPasswordIsValid()" />
-        <item itemvalue="Android Instrumented Tests.LoginEspressoTest" />
       </list>
     </recent_temporary>
   </component>
@@ -855,7 +851,39 @@
       <option name="project" value="LOCAL" />
       <updated>1710272684421</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="created simple test for EmployerJobPageFragment">
+      <option name="closed" value="true" />
+      <created>1710284124545</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1710284124545</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added handling that should give EmployerJobPageFragment details from job list">
+      <option name="closed" value="true" />
+      <created>1710284552588</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1710284552589</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Implementation - Added basic Geocoder Functionality">
+      <option name="closed" value="true" />
+      <created>1710293658847</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1710293658848</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Implementation - Added new Epoch variable to Job class for ease of use in future filtering/queries.">
+      <option name="closed" value="true" />
+      <created>1710436204318</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1710436204318</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -870,10 +898,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Test] Changed test code to remove dependence on accounts that have been deleted and information that is outdated" />
-    <MESSAGE value="[Test] Updated LoginEspressoTest" />
-    <MESSAGE value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
-    <MESSAGE value="Refactoring - Removed Faulty LocationUnitTest, and added additional functionality and method signatures to Job object." />
     <MESSAGE value="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml" />
     <MESSAGE value="Added JobApplicants Object" />
     <MESSAGE value="RegistrationActivity now hard sets new users to be either Employee or Employer objects" />
@@ -895,6 +919,10 @@
     <MESSAGE value="Implementation - Database now successfully queries for RecyclerView and shows it on MyJobs. It does appear a little buggy, but it is now showing." />
     <MESSAGE value="Implementation - Merged Database Query Code with Parker's List Code + Sam's Job Post Code to create a way to post a job, and then have it appear in your &quot;My Jobs&quot;" />
     <MESSAGE value="Implementation - Posted Jobs now create a corresponding JobApplicants Object" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Posted Jobs now create a corresponding JobApplicants Object" />
+    <MESSAGE value="created simple test for EmployerJobPageFragment" />
+    <MESSAGE value="added handling that should give EmployerJobPageFragment details from job list" />
+    <MESSAGE value="Implementation - Added basic Geocoder Functionality" />
+    <MESSAGE value="Implementation - Added new Epoch variable to Job class for ease of use in future filtering/queries." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Added new Epoch variable to Job class for ease of use in future filtering/queries." />
   </component>
 </project>

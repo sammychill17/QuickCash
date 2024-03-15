@@ -2,11 +2,12 @@ package com.example.quickcash.Objects;
 
 import android.location.Location;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
-public class Job {
+public class Job implements Serializable {
 
     private String key;
     private String title;
@@ -15,6 +16,7 @@ public class Job {
     private double salary;
     private transient Duration duration;
     private Date date;
+    private long epoch;
     private UserLocation location;
     private boolean isAssigned;
     private boolean isCompleted;
@@ -53,6 +55,7 @@ public class Job {
         this.assignedToEmail = "";
         this.latitude = latitude;
         this.longitude = longitude;
+        this.epoch = date.getTime();
     }
 
     /*
@@ -77,6 +80,7 @@ public class Job {
         this.assignedToEmail = "";
         this.latitude = 0;
         this.longitude = 0;
+        this.epoch = 0;
     }
 
     /*
@@ -182,5 +186,13 @@ public class Job {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public void setEpoch(long epoch){
+        this.epoch = epoch;
+    }
+
+    public long getEpoch(){
+        return epoch;
     }
 }

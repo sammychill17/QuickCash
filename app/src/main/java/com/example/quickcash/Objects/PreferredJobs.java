@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PreferredJobs extends QuickCashDBObject {
     private String employeeEmail;
     private List<String> preferredJobs;
