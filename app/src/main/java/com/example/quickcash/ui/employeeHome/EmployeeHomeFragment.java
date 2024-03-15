@@ -1,17 +1,20 @@
 package com.example.quickcash.ui.employeeHome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.quickcash.Activities.SearchActivity;
 import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployeehomeBinding;
@@ -37,43 +40,18 @@ public class EmployeeHomeFragment extends Fragment {
         final TextView roleView = binding.dashboardTextViewRoleLabel;
         roleView.setText(userName + " is an employee!");
 
-        final TextView latLabel = binding.textViewLat;
-        final TextView longLabel = binding.textViewLong;
-
-        LocationTable locationTable = new LocationTable();
-        locationTable.retrieveLocationFromDatabase(userEmail, location -> {
-            if (location != null) {
-                locationTable.updateLocationInDatabase(location);
-                setLat(String.valueOf(location.getLatitude()), latLabel);
-                setLong(String.valueOf(location.getLongitude()), longLabel);
-            } else {
-                setLat("Location not available", latLabel);
-                setLong("Location not available", longLabel);
+        final ImageButton makeMoneyButton = binding.makeMoneyButton;
+        View.OnClickListener goToSearchPage = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireContext(), SearchActivity.class);
+                startActivity(intent);
             }
-        });
+        };
+        makeMoneyButton.setOnClickListener(goToSearchPage);
+        binding.title.setOnClickListener(goToSearchPage);
+
         return root;
-    }
-
-    private void setLat(String lat, TextView view) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Latitude: ");
-        if (lat == null) {
-            stringBuilder.append("null");
-        } else {
-            stringBuilder.append(lat);
-        }
-        view.setText(stringBuilder.toString());
-    }
-
-    private void setLong(String longitude, TextView view) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Longitude: ");
-        if (longitude == null) {
-            stringBuilder.append("null");
-        } else {
-            stringBuilder.append(longitude);
-        }
-        view.setText(stringBuilder.toString());
     }
 
     @Override
