@@ -9,7 +9,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -18,21 +17,21 @@ import com.example.quickcash.Objects.Filters.FilterHelper;
 import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.TitleFilter;
 import com.example.quickcash.Objects.Job;
+import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.R;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 public class SearchActivity extends AppCompatActivity {
+    private static final int UNDEFINED_VALUE = -999;
     private ImageButton filterButton;
     private RecyclerView recyclerView;
     private EditText searchBar;
-    List<Job> jobs = new ArrayList<>();
-    List<IFilter> filters = new ArrayList<>();
+    private List<Job> jobs = new ArrayList<>();
+    private List<IFilter> filters = new ArrayList<>();
+    private UserLocation location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,8 +43,15 @@ public class SearchActivity extends AppCompatActivity {
         SearchItemAdapter adapter = new SearchItemAdapter(jobs, getApplicationContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.getAdapter().notifyDataSetChanged();
+//        recyclerView.getAdapter().notifyDataSetChanged();
 
+        double currLong = getIntent().getDoubleExtra("currLong", UNDEFINED_VALUE);
+        double currLat = getIntent().getDoubleExtra("currLat", UNDEFINED_VALUE);
+        if (currLat != UNDEFINED_VALUE && currLong != UNDEFINED_VALUE) {
+            location = new UserLocation();
+            location.setLatitude(currLat);
+            location.setLongitude(currLong);
+        }
 
         searchBar = (EditText) findViewById(R.id.searchBar);
         searchBar.addTextChangedListener(new TextWatcher() {
@@ -72,6 +78,9 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FilterActivity filterActivity = new FilterActivity();
+                if (location != null) {
+                    filterActivity.setUserLocation(location);
+                }
                 filterActivity.setCallback(new FilterActivity.FilterCompleteCallback() {
                     @Override
                     public void onResult(List<IFilter> newFilters) {
@@ -88,8 +97,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void applyFiltersAndSearch() {
+        int oldJobSize = jobs.size();
         jobs.clear();
-        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.getAdapter().notifyItemRangeRemoved(0, oldJobSize);
 
         List<IFilter> filters1 = new ArrayList<>(filters);
         if (searchBar.getText().length() != 0) {

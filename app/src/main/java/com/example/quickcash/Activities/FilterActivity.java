@@ -25,6 +25,7 @@ import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.JobTypeFilter;
 import com.example.quickcash.Objects.Filters.SalaryFilter;
 import com.example.quickcash.Objects.JobTypes;
+import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.R;
 
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class FilterActivity extends DialogFragment
     private List<IFilter> filterList;
     private FilterCompleteCallback callback;
 
+    private UserLocation userLocation;
+
     public static class FilterCompleteCallback {
         public void onResult(List<IFilter> filters) {}
     }
@@ -56,6 +59,9 @@ public class FilterActivity extends DialogFragment
     public FilterCompleteCallback getCallback() {
         return callback;
     }
+
+    public UserLocation getUserLocation() { return userLocation; }
+    public void setUserLocation(UserLocation userLocation) { this.userLocation = userLocation; }
 
     @Nullable
     @Override
@@ -84,7 +90,11 @@ public class FilterActivity extends DialogFragment
         distanceFilter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                distanceValue.setText(String.valueOf(progress));
+                if (progress == 0) {
+                    distanceValue.setText("Any distance");
+                } else {
+                    distanceValue.setText(String.valueOf(progress));
+                }
             }
 
             @Override
@@ -138,8 +148,12 @@ public class FilterActivity extends DialogFragment
                     filterDate = new DateFilter();
                     filterDate.setValue(dateDate);
                 }
-                IFilter filterDistance = new DistanceFilter();
-                filterDistance.setValue(filterDistance.getValue());
+                DistanceFilter filterDistance = null;
+                if (distanceFilter.getProgress() > 0) {
+                    filterDistance = new DistanceFilter();
+                    filterDistance.setValue(filterDistance.getValue());
+                    filterDistance.setCurrentLocation(userLocation);
+                }
 
                 if (filterList == null) {
                     filterList = new ArrayList<>();
@@ -157,7 +171,9 @@ public class FilterActivity extends DialogFragment
                 if (filterDate!=null){
                     filterList.add(filterDate);
                 }
-                filterList.add(filterDistance);
+                if (filterDistance != null) {
+                    filterList.add(filterDistance);
+                }
 
                 if (callback != null) {
                     callback.onResult(filterList);

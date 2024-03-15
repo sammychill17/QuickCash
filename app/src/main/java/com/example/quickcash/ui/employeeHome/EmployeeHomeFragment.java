@@ -16,12 +16,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.Activities.SearchActivity;
 import com.example.quickcash.FirebaseStuff.LocationTable;
+import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployeehomeBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class EmployeeHomeFragment extends Fragment {
 
     private FragmentEmployeehomeBinding binding;
+    private boolean isLocationFetched = false;
+    private UserLocation location;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,12 +48,30 @@ public class EmployeeHomeFragment extends Fragment {
         View.OnClickListener goToSearchPage = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), SearchActivity.class);
-                startActivity(intent);
+                if (isLocationFetched) {
+                    Intent intent = new Intent(requireContext(), SearchActivity.class);
+                    intent.putExtra("currLong", location.getLongitude());
+                    intent.putExtra("currLat", location.getLatitude());
+                    startActivity(intent);
+                } else {
+                    Snackbar.make(makeMoneyButton, "Please wait as we try to fetch your location.", Snackbar.LENGTH_SHORT);
+                }
             }
         };
         makeMoneyButton.setOnClickListener(goToSearchPage);
         binding.title.setOnClickListener(goToSearchPage);
+
+        LocationTable locationTable = new LocationTable();
+        locationTable.retrieveLocationFromDatabase(userEmail, location -> {
+            if (location != null) {
+                locationTable.updateLocationInDatabase(location);
+                this.location = location;
+                isLocationFetched = true;
+            } else {
+                // Location not available!
+            }
+        });
+
 
         return root;
     }
