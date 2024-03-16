@@ -2,11 +2,13 @@ package com.example.quickcash.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
 import com.example.quickcash.Objects.Filters.FilterHelper;
@@ -22,7 +25,7 @@ import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.TitleFilter;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.R;
-import com.example.quickcash.ui.map.MapDirections;
+
 import com.example.quickcash.ui.map.MapFragment;
 
 import java.util.ArrayList;
@@ -88,18 +91,11 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         mapsButton = findViewById(R.id.mapButton);
-        mapsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SearchItemAdapter mapAdapter = (SearchItemAdapter) recyclerView.getAdapter();
-                MapFragment mapPage = new MapFragment();
-                Bundle b = new Bundle();
-                b.putSerializable("adapter", mapAdapter);
-                mapPage.setArguments(b);
-
-                NavController controller = new NavController(getApplicationContext());
-                controller.navigate(new MapDirections(adapter));
-            }
+        mapsButton.setOnClickListener(v -> {
+            MapFragment mapFragment = new MapFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.map, mapFragment)
+                    .commit();
         });
     }
 
@@ -129,4 +125,5 @@ public class SearchActivity extends AppCompatActivity {
         helper.setFilters(filters1);
         helper.run();
     }
+
 }
