@@ -164,28 +164,38 @@ public class JobApplyActivity extends AppCompatActivity {
         String jobKey = j.getKey();
         String jobTitle = j.getTitle();
 
-        // Save the job key, title and current employee email to the "applications" branch
         DatabaseReference applicationsRef = FirebaseDatabase.getInstance().getReference("Job Applicants");
+        // Ensure the job key is set only once
+        applicationsRef.child(jobKey).child("key").setValue(jobKey);
 
-        //if theres no child of applicationsRef that matches the job key i am on, make a new
-        //child node, and add the interested applicants/users
-        if (applicationsRef.child(jobKey) == null){
-            applicationsRef.child("key").setValue(jobKey);
-        }
+        /*
+        Store the applicant's email under the Applicants node below the job key
+        and avoid duplicates
+        */
+        DatabaseReference applicantsNodeRef = applicationsRef.child(jobKey).child("Applicants");
 
-        applicationsRef.child(jobKey).child("Applicants").child("employeeEmail").setValue(employeeEmail);
-        applicationsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        applicantsNodeRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    Toast.makeText(JobApplyActivity.this, "Applied for job: "+ jobTitle, Toast.LENGTH_SHORT).show();
+                boolean emailExists = false;
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String email = dataSnapshot.getValue(String.class);
+                    if (email != null && email.equals(employeeEmail)) {
+                        emailExists = true;
+                        break;
+                    }
+                }
+                if (!emailExists) {
+                    applicantsNodeRef.push().setValue(employeeEmail);
+                    Toast.makeText(JobApplyActivity.this, "Applied for job: " + jobTitle, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(JobApplyActivity.this, "Failed to apply for job: "+ jobTitle, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(JobApplyActivity.this, "You have already applied for this job", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(JobApplyActivity.this, "Failed to apply for job: " + jobTitle, Toast.LENGTH_SHORT).show();
             }
         });
     }
