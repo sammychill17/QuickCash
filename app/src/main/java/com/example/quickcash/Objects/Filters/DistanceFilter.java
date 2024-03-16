@@ -37,7 +37,7 @@ public class DistanceFilter implements IFilter{
         );
         Log.d("DistanceFilter", "You are apparently at long=" + currentLocation.getLongitude() + ", lat=" + currentLocation.getLatitude());
         Log.d("DistanceFilter", "Distance is apparently " + jobDistance);
-        return ((jobDistance * 1000) <= doubleDistance);
+        return ((jobDistance) <= doubleDistance);
     }
 
     // Distance formula from SO: https://stackoverflow.com/a/27943
