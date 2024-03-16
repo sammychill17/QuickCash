@@ -19,6 +19,10 @@
         <activity
             android:name=".Activities.SearchActivity"
             android:exported="false" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC5cZia3BFONTVXrHZNN-VjAN3k2oyPvMY"></meta-data>
+
         <activity
             android:name=".Activities.DashboardActivity"
             android:exported="false"
