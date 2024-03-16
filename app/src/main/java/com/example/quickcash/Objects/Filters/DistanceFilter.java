@@ -1,5 +1,7 @@
 package com.example.quickcash.Objects.Filters;
 
+import android.util.Log;
+
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.UserLocation;
 import com.google.firebase.database.Query;
@@ -33,7 +35,9 @@ public class DistanceFilter implements IFilter{
                 currentLocation.getLatitude(),
                 currentLocation.getLongitude()
         );
-        return (jobDistance <= doubleDistance);
+        Log.d("DistanceFilter", "You are apparently at long=" + currentLocation.getLongitude() + ", lat=" + currentLocation.getLatitude());
+        Log.d("DistanceFilter", "Distance is apparently " + jobDistance);
+        return ((jobDistance * 1000) <= doubleDistance);
     }
 
     // Distance formula from SO: https://stackoverflow.com/a/27943

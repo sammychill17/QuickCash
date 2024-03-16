@@ -63,9 +63,13 @@ public class FilterExecutionSetIntersectionStrategy implements FilterExecutionSt
                         Log.d("FilterHelper", snapshot1.getValue().toString());
                         Job obj = snapshot1.getValue(Job.class); // This might need adjustment
                         if (obj != null ) {
-                            filteredResults.put(obj.getKey(), obj);
-                            localSearchResults.add(obj.getKey());
-                            Log.d("FilterHelper", "Added " + obj.getTitle() + " to the job map");
+                            if (obj.isAssigned()) {
+                                filteredResults.put(obj.getKey(), obj);
+                                localSearchResults.add(obj.getKey());
+                                Log.d("FilterHelper", "Added " + obj.getTitle() + " to the job map");
+                            } else {
+                                Log.d("FilterHelpr", obj.getTitle() + " is assigned");
+                            }
                         } else {
                             Log.d("FilterHelper", "Cannot convert above job to a Job instance.");
                         }

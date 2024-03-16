@@ -50,17 +50,28 @@ public class FilterExecutionLoopStrategy implements FilterExecutionStrategy{
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     // Run each filter
+                    Log.d("LoopStrategy", "Loop");
+                    for (IFilter filter : filters) {
+                        Log.d("LoopStrategy", "I am a " + filter.getClass().getName() + " with value " + filter.getValue());
+                    }
                     Job obj = snapshot1.getValue(Job.class); // This might need adjustment
                     if (obj != null ) {
+                        Log.d("LoopStrategy", "I see " + obj.getTitle());
                         boolean shouldAddToResultSet = true;
                         for (IFilter filter : filters) {
+                            Log.d("LoopStrategy", "Running against " + filter.getClass().getName() + " (" + filter.getValue() + ") - " + filter.shouldRetain(obj));
                             if (!filter.shouldRetain(obj)) {
                                 shouldAddToResultSet = false;
                                 break;
                             }
                         }
                         if (shouldAddToResultSet) {
-                            resultSet.add(obj);
+                            if (!obj.isAssigned()) {
+                                resultSet.add(obj);
+                                Log.d("LoopStrategy", "Added " + obj.getTitle());
+                            } else {
+                                Log.d("LoopStrategy", obj.getTitle() + " is already assigned");
+                            }
                         }
                     } else {
                         Log.d("FilterHelper", "Cannot convert above job to a Job instance.");

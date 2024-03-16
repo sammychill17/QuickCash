@@ -151,7 +151,7 @@ public class FilterActivity extends DialogFragment
                 DistanceFilter filterDistance = null;
                 if (distanceFilter.getProgress() > 0) {
                     filterDistance = new DistanceFilter();
-                    filterDistance.setValue(filterDistance.getValue());
+                    filterDistance.setValue(distanceFilter.getProgress());
                     filterDistance.setCurrentLocation(userLocation);
                 }
 

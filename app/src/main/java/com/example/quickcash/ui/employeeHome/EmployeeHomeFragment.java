@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,7 @@ public class EmployeeHomeFragment extends Fragment {
                     intent.putExtra("currLat", location.getLatitude());
                     startActivity(intent);
                 } else {
-                    Snackbar.make(makeMoneyButton, "Please wait as we try to fetch your location.", Snackbar.LENGTH_SHORT);
+                    Snackbar.make(makeMoneyButton, "Please wait as we try to fetch your location.", Snackbar.LENGTH_SHORT).show();
                 }
             }
         };
@@ -66,6 +67,7 @@ public class EmployeeHomeFragment extends Fragment {
             if (location != null) {
                 locationTable.updateLocationInDatabase(location);
                 this.location = location;
+                Log.d("locationTable", "You are apparently at long=" + location.getLongitude() + ", lat=" + location.getLatitude());
                 isLocationFetched = true;
             } else {
                 // Location not available!
