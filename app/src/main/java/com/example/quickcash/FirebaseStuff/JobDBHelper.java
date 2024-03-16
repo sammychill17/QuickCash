@@ -10,11 +10,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JobDBHelper extends AppCompatActivity {
     private Job job;
     FirebaseDatabase database;
     DatabaseReference applicantsReference;
     DatabaseReference jobsReference;
+    public interface JobListCallback {
+        void onJobsReceived(List<Job> jobs);
+        void onError(DatabaseError error);
+    }
+
 
     public JobDBHelper(Job job){
         this.job = job;
@@ -89,7 +97,26 @@ public class JobDBHelper extends AppCompatActivity {
     public void pushJobToDB(){
         jobsReference.push().setValue(this.job);
     }
+    public void getAllJobsWithCoordinates(final JobDBHelper.JobListCallback callback) {
+        jobsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Job> jobList = new ArrayList<>();
+                for (DataSnapshot jobSnapshot : dataSnapshot.getChildren()) {
+                    Job job = jobSnapshot.getValue(Job.class);
+                    if (job != null && job.getLatitude() != 0 && job.getLongitude() != 0) {
+                        jobList.add(job);
+                    }
+                }
+                callback.onJobsReceived(jobList);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError);
+            }
+        });
+    }
     public void updateJobInDB(String key){
         //TODO: Make method to update specified job in database with variable job info
     }
