@@ -27,14 +27,5 @@
         android:name="com.example.quickcash.ui.employeePreferredJobs.EmployeePreferredJobsFragment"
         android:label="Preferences"
         tools:layout="@layout/preferred_job_type_items"/>
-    <fragment
-        android:id="@+id/mapFragment"
-        android:name="com.example.quickcash.ui.map.MapFragment"
-        android:label="Map"
-        tools:layout="@layout/fragment_employee_map_activity"/>
-    <fragment
-        android:id="@+id/mapDirections"
-        android:name="com.example.quickcash.ui.map.MapFragment"
-        android:label="Map"
-        tools:layout="@layout/fragment_employee_map_activity"/>
+
 </navigation>
