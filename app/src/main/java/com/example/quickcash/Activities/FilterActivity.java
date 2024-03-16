@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.Objects.Filters.DateFilter;
 import com.example.quickcash.Objects.Filters.DistanceFilter;
@@ -26,6 +27,7 @@ import com.example.quickcash.Objects.Filters.JobTypeFilter;
 import com.example.quickcash.Objects.Filters.SalaryFilter;
 import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
+import com.example.quickcash.ui.map.MapViewModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,6 +37,10 @@ import java.util.Locale;
 
 public class FilterActivity extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
+    public interface OnDistanceSelectedListener {
+        void onDistanceSelected(int distance);
+    }
+
 
     private Spinner jobTypeFilter;
     private EditText salaryFilter;
@@ -81,11 +87,17 @@ public class FilterActivity extends DialogFragment
 
         // Set distance
         distanceValue.setText(String.valueOf(distanceFilter.getProgress()));
+        /*
+        james look through this, this is how i try to use the seekbar press of the map button to get filtered distance
+         */
         distanceFilter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 distanceValue.setText(String.valueOf(progress));
+                MapViewModel mapViewModel = new ViewModelProvider(getActivity()).get(MapViewModel.class);
+                mapViewModel.setSelectedDistance(progress);
             }
+
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
