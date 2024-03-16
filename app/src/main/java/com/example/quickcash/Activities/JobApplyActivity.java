@@ -170,7 +170,7 @@ public class JobApplyActivity extends AppCompatActivity {
         //if theres no child of applicationsRef that matches the job key i am on, make a new
         //child node, and add the interested applicants/users
         if (applicationsRef.child(jobKey) == null){
-            applicationsRef.child("jobKey").setValue(jobKey);
+            applicationsRef.child("key").setValue(jobKey);
         }
 
         applicationsRef.child(jobKey).child("Applicants").child("employeeEmail").setValue(employeeEmail);
