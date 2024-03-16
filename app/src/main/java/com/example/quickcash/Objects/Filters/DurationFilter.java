@@ -1,25 +1,29 @@
 package com.example.quickcash.Objects.Filters;
 
+import com.example.quickcash.Objects.Job;
 import com.google.firebase.database.Query;
-
-import java.time.Duration;
 
 public class DurationFilter implements IFilter{
 
-    private int Duration;
+    private int duration;
     @Override
     public void setValue(Object value) {
-        Duration = (Integer) value;
+        duration = (Integer) value;
     }
 
     @Override
     public Object getValue() {
-        return Duration;
+        return duration;
     }
 
     @Override
     public Query filter(Query query) {
 //        return query;
-        return query.orderByChild("duration").endAt(Duration);
+        return query.orderByChild("duration").endAt(duration);
+    }
+
+    @Override
+    public boolean shouldRetain(Job job) {
+        return (job.getDuration() <= duration);
     }
 }
