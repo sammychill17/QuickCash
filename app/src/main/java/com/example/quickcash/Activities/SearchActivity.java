@@ -28,6 +28,7 @@ import com.example.quickcash.R;
 
 import com.example.quickcash.ui.map.MapFragment;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -92,7 +93,9 @@ public class SearchActivity extends AppCompatActivity {
 
         mapsButton = findViewById(R.id.mapButton);
         mapsButton.setOnClickListener(v -> {
-            MapFragment mapFragment = new MapFragment();
+            SearchItemAdapter itemAdapter = (SearchItemAdapter) recyclerView.getAdapter();
+            ArrayList<Job> jobs = (ArrayList<Job>) itemAdapter.getList();
+            MapFragment mapFragment = new MapFragment(jobs);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.map, mapFragment)
                     .commit();

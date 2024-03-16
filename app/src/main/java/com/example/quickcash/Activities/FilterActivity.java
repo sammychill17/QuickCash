@@ -27,7 +27,6 @@ import com.example.quickcash.Objects.Filters.JobTypeFilter;
 import com.example.quickcash.Objects.Filters.SalaryFilter;
 import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
-import com.example.quickcash.ui.map.MapViewModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -94,8 +93,8 @@ public class FilterActivity extends DialogFragment
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 distanceValue.setText(String.valueOf(progress));
-                MapViewModel mapViewModel = new ViewModelProvider(getActivity()).get(MapViewModel.class);
-                mapViewModel.setSelectedDistance(progress);
+//                MapViewModel mapViewModel = new ViewModelProvider(getActivity()).get(MapViewModel.class);
+//                mapViewModel.setSelectedDistance(progress);
             }
 
 

@@ -1,6 +1,8 @@
 package com.example.quickcash.FirebaseStuff;
 
 
+import android.widget.Toast;
+
 import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.Objects.UserLocation;
 import com.google.firebase.database.DataSnapshot;
@@ -60,13 +62,15 @@ public class LocationTable {
                 if (dataSnapshot.exists()) {
                     UserLocation loc = dataSnapshot.getValue(UserLocation.class);
                     listener.onLocationDataReceived(loc);
-                } else {
+                }
+                else {
                     listener.onLocationDataReceived(null);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
