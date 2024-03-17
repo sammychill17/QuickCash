@@ -69,6 +69,10 @@ public class EmployerJobPageFragment extends Fragment{
         String salaryStr = jSalary.getText()+" $"+df.format(j.getSalary());
         String dateStr = jDate.getText()+" "+j.getDate().toString();
         String employerEmail = j.getEmployer();
+        if (employerEmail.length() == 0) {
+            SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+            employerEmail = sp.getString("email", "Error - cannot get email");
+        }
         String employerStr = jEmployer.getText()+" "+employerEmail;
 
         jTitle.setText(j.getTitle());
