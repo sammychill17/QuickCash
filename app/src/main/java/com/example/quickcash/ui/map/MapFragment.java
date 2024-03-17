@@ -10,14 +10,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.Activities.JobApplyActivity;
-import com.example.quickcash.Activities.SearchActivity;
 import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.UserLocation;
@@ -33,7 +30,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private FragmentEmployeeMapActivityBinding binding;
@@ -58,18 +54,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-        //setupViewModel();
-//        Button backButton = root.findViewById(R.id.backFromMaps);
-//
-//        backButton.setOnClickListener(view -> {
-//            Intent intent = new Intent(getActivity(), SearchActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//            startActivity(intent);
-//        });
-
         return root;
     }
 
+    /*
+    sets up location table, shared preferences and retrieves location coordinates from
+    the firebase.
+     */
     private void setupLocationListener() {
         LocationTable locationTable = new LocationTable();
         SharedPreferences sharedPrefs = getActivity().getSharedPreferences("session_login", MODE_PRIVATE);
@@ -80,13 +71,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             */
             locationTable.retrieveLocationFromDatabase(userEmail, location -> {
                 if (location != null) {
-                    setUserCurrentLocation(location);
+                    setUserCurrentLocationAndJob(location);
                 }
             });
         }
     }
 
-    public void setUserCurrentLocation(UserLocation location) {
+    /*
+    this method is a method that
+     calls 2 methods such as addMarkerForCurrentUserLocation
+     and displayJobMarkers, which in turn
+     sets a marker on the user's current location and for jobs
+     */
+    public void setUserCurrentLocationAndJob(UserLocation location) {
         userCurrentLocation = location;
         if (googleMap != null) {
             addMarkerForCurrentUserLocation();
@@ -97,14 +94,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
          */
         displayJobMarkers(jobList);
     }
-
+    /*
+    method that initializes marker for the user's current location
+    (doesn't set marker until its called by setU)
+     */
     private void addMarkerForCurrentUserLocation() {
         if (googleMap != null && userCurrentLocation != null) {
             LatLng userLatLng = new LatLng(userCurrentLocation.getLatitude(), userCurrentLocation.getLongitude());
             googleMap.addMarker(new MarkerOptions().position(userLatLng).title("Your Location"));
         }
     }
-
+    /*
+    moves camera view and centers the view towards the user's location
+     */
     private void moveCameraToUserLocation() {
         if (googleMap != null && userCurrentLocation != null) {
             LatLng currentUserLatLng = new LatLng(userCurrentLocation.getLatitude(), userCurrentLocation.getLongitude());
@@ -112,6 +114,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    /*
+    method adds job markers to display them
+     */
     @SuppressLint("PotentialBehaviorOverride")
     private void displayJobMarkers(ArrayList<Job> jobs) {
         if (googleMap != null && jobs != null) {
@@ -132,20 +137,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Marker marker = googleMap.addMarker(markerOptions);
                 marker.setTag(job);
                 markerJobMap.put(marker, job);
-                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @SuppressLint("PotentialBehaviorOverride")
-                    @Override
-                    public boolean onMarkerClick(@NonNull final Marker marker) {
+                googleMap.setOnMarkerClickListener(marker1 -> {
 
-                        Job job = markerJobMap.get(marker);
-                        if(job!=null) {
-                            showJobDetailsPrompt(job);
-                            return true;
-                        }
-                        else{
-                            showUserPrompt();
-                            return true;
-                        }
+                    Job job1 = markerJobMap.get(marker1);
+                    if(job1 !=null) {
+                        showJobDetailsPrompt(job1);
+                        return true;
+                    }
+                    else{
+                        showUserPrompt();
+                        return true;
                     }
                 });
             }
@@ -167,6 +168,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         binding = null;
     }
 
+    /*
+    shows a prompt for the job's marker with options to view or dismiss.
+     */
     private void showJobDetailsPrompt(Job job) {
         new AlertDialog.Builder(getContext())
                 .setTitle(job.getTitle())
@@ -176,6 +180,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 .show();
     }
 
+    /*
+    shows a prompt for the user's marker with options to view or dismiss.
+     */
     private void showUserPrompt(){
         new AlertDialog.Builder(getContext())
                 .setTitle("Current User Location")
@@ -185,6 +192,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 .show();
     }
 
+    /*
+    method connects JobApplyActivity with MapFragment once the dialog prompt
+    is answered with a positive response ("yes") after clicking on a job marker
+    ,redirecting them to job details page.
+     */
     private void openJobDetailsActivity(Job j){
         Intent intent = new Intent(this.getActivity(), JobApplyActivity.class);
         intent.putExtra("job", j);
