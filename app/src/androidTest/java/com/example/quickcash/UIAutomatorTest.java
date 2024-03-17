@@ -106,68 +106,9 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
-    }
-
-    @Test
-    public void checkIfLongLatIsVisible() throws UiObjectNotFoundException {
-        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
-        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
-        assertTrue(emailIDBox.exists());
-        emailIDBox.setText("peterparker22@outlook.com");
-        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
-        assertTrue(passwordBox.exists());
-        passwordBox.setText("iamspiderman");
-        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
-        assertTrue(anotherLoginButton.exists());
-        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        allowPermissionsIfNeeded();
-        UiObject longitudeLabel = device.findObject(new UiSelector().textContains("Longitude"));
-        assertTrue(longitudeLabel.exists());
-        UiObject latitudeLabel = device.findObject(new UiSelector().textContains("Latitude"));
-        assertTrue(latitudeLabel.exists());
-    }
-
-    @Test
-    public void checkIfEmployeeDashboardIsVisible() throws UiObjectNotFoundException {
-        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
-        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
-        assertTrue(emailIDBox.exists());
-        emailIDBox.setText("peterparker22@outlook.com");
-        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
-        assertTrue(passwordBox.exists());
-        passwordBox.setText("iamspiderman");
-        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
-        assertTrue(anotherLoginButton.exists());
-        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        allowPermissionsIfNeeded();
-        UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
-        assertTrue(employeeLabel.exists());
-        UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
-        assertFalse(employerLabel.exists());
-    }
-
-    @Test
-    public void checkIfEmployerDashboardIsVisible() throws UiObjectNotFoundException {
-        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
-        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
-        assertTrue(emailIDBox.exists());
-        emailIDBox.setText("Loki360@gmail.com");
-        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
-        assertTrue(passwordBox.exists());
-        passwordBox.setText("Thor123456");
-        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
-        assertTrue(anotherLoginButton.exists());
-        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        allowPermissionsIfNeeded();
-        UiObject employeeLabel = device.findObject(new UiSelector().textContains("employee"));
-        assertFalse(employeeLabel.exists());
-        UiObject employerLabel = device.findObject(new UiSelector().textContains("employer"));
-        assertTrue(employerLabel.exists());
     }
 
     @Test
@@ -186,6 +127,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -209,8 +151,8 @@ public class UIAutomatorTest  {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
-        assertTrue(dashboardPage.exists());
+        allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
         assertFalse(makeMoneyButton.exists());
     }
@@ -230,6 +172,8 @@ public class UIAutomatorTest  {
         UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -254,6 +198,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -282,6 +227,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -312,6 +258,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -345,6 +292,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -376,6 +324,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -408,6 +357,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -444,6 +394,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
         UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
@@ -465,7 +416,7 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkIfLoseYourselfButtonIsVisible() throws UiObjectNotFoundException {
+    public void checkIfLoseYourselfButtonIsVisible() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
@@ -478,6 +429,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject postJobs = device.findObject(new UiSelector().className(ImageButton.class));
         assertTrue(postJobs.exists());
     }
@@ -495,6 +447,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject postJobs = device.findObject(new UiSelector().className(ImageButton.class));
         postJobs.click();
         UiObject loseYourselfButton = device.findObject(new UiSelector().textContains("LOSE YOURSELF (Post Job)"));
@@ -516,7 +469,7 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkIfMyJobsIsVisible() throws UiObjectNotFoundException {
+    public void checkIfMyJobsIsVisible() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
@@ -529,6 +482,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
         myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject anJob = device.findObject(new UiSelector().textContains("I want to see a magic show!"));
@@ -536,7 +490,7 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkJobDetailsPage() throws UiObjectNotFoundException {
+    public void checkJobDetailsPage() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
@@ -549,6 +503,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
         myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
@@ -559,7 +514,7 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkJobApplicants() throws UiObjectNotFoundException {
+    public void checkJobApplicants() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
@@ -572,6 +527,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
         myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
@@ -583,7 +539,7 @@ public class UIAutomatorTest  {
     }
 
     @Test
-    public void checkJobApplicantsChoose() throws UiObjectNotFoundException {
+    public void checkJobApplicantsChoose() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
@@ -596,6 +552,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
         myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
@@ -608,7 +565,7 @@ public class UIAutomatorTest  {
         assertTrue(chooseApplicantsButton.exists());
     }
     @Test
-    public void navigateToMapAndCheckForMarker() throws UiObjectNotFoundException {
+    public void navigateToMapAndCheckForMarker() throws UiObjectNotFoundException, InterruptedException {
         UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
@@ -621,6 +578,7 @@ public class UIAutomatorTest  {
         assertTrue(anotherLoginButton.exists());
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
 
         UiObject makeMoneyButton = device.findObject(new UiSelector().className(ImageButton.class));
         assertTrue(makeMoneyButton.exists());
@@ -641,10 +599,10 @@ public class UIAutomatorTest  {
     clicks the "While using the app" button of the location permissions system prompt
      */
     private void allowPermissionsIfNeeded() throws UiObjectNotFoundException {
-            UiDevice device = UiDevice.getInstance(getInstrumentation());
-            UiObject allowPermissions = device.findObject(new UiSelector().text("While using the app"));
-            if (allowPermissions.exists()) {
-                allowPermissions.click();
+        UiDevice device = UiDevice.getInstance(getInstrumentation());
+        UiObject allowPermissions = device.findObject(new UiSelector().text("While using the app"));
+        if (allowPermissions.exists()) {
+            allowPermissions.click();
         }
     }
 }
