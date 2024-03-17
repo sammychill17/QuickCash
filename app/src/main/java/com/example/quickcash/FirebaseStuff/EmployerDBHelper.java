@@ -32,7 +32,7 @@ public class EmployerDBHelper {
     }
 
     public void getJobsByEmployer(String email, JobObjectCallback callback) {
-        jobsReference.orderByChild("employer").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+        jobsReference.orderByChild("employerEmail").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Job> jobs = new ArrayList<>();

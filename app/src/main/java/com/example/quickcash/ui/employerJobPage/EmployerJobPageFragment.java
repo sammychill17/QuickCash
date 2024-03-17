@@ -65,9 +65,8 @@ public class EmployerJobPageFragment extends Fragment{
         assert j != null;
         String salaryStr = jSalary.getText()+" $"+df.format(j.getSalary());
         String dateStr = jDate.getText()+" "+j.getDate().toString();
-        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("session_login", MODE_PRIVATE);
-        String employeeEmail = sharedPrefs.getString("email", "");
-        String employerStr = jEmployer.getText()+" "+employeeEmail;
+        String employerEmail = j.getEmployer();
+        String employerStr = jEmployer.getText()+" "+employerEmail;
 
         jTitle.setText(j.getTitle());
         jJobType.setText("Job Type: "+j.getJobType().toString());
@@ -91,7 +90,6 @@ public class EmployerJobPageFragment extends Fragment{
             addresses = geocoder.getFromLocation(lat, lon, 1);
             address = addresses.get(0).getAddressLine(0);
         } catch (IOException e) {
-//            address = "Error! Cannot find Address";
             address = e.getStackTrace().toString();
         }
         jAddress.setText(address);

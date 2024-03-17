@@ -8,31 +8,46 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.quickcash.FirebaseStuff.JobDBHelper;
+import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobApplicants;
+import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerjobpageBinding;
 import com.example.quickcash.ui.employerJobApplicants.JobApplicantsDirections;
 import com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment;
 import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
+import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class JobApplyActivity extends AppCompatActivity {
 
     private JobApplicants jobApplicants;
+
+    private double currentLatitude;
+    private double currentLongitude;
 
     DecimalFormat df = new DecimalFormat("#,###.00");
 
@@ -81,15 +96,14 @@ public class JobApplyActivity extends AppCompatActivity {
         * and I suspect it is why I was encountering errors when trying to do j.getEmployer() returning an empty string.
          */
 
-//        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("session_login", MODE_PRIVATE);
-//        String employeeEmail = sharedPrefs.getString("email", "");
-//        String employerStr = jEmployer.getText()+" "+employeeEmail;
+        String employerEmail = j.getEmployer();
+        String employerStr = jEmployer.getText()+" "+employerEmail;
 
         jTitle.setText(j.getTitle());
         jJobType.setText("Job Type: "+j.getJobType().toString());
         jSalary.setText(salaryStr);
         jDate.setText(dateStr);
-//        jEmployer.setText(employerStr);
+        jEmployer.setText(employerStr);
         if (j.getAssigneeEmail().equals("")) {
             jApplicant.setText("No applicant chosen yet");
         } else {
@@ -126,14 +140,52 @@ public class JobApplyActivity extends AppCompatActivity {
             }
         });
         Button applyButton = findViewById(R.id.applyButton);
+
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            applyJob();
             }
         });
 
+    }
+    public void applyJob() {
+        /*
+        Retrieves the employer email from shared preferences
+         */
+        SharedPreferences sharedPrefs = getSharedPreferences("session_login", MODE_PRIVATE);
+        String employeeEmail = sharedPrefs.getString("email", "");
 
+        Intent intent = getIntent();
+        Job j = (Job) intent.getSerializableExtra("job");
+
+        // Get the job key and title
+        String jobKey = j.getKey();
+        String jobTitle = j.getTitle();
+
+        DatabaseReference applicationsRef = FirebaseDatabase.getInstance().getReference("Job Applicants");
+
+        /*
+        Store the applicant's email under the Applicants node below the job key
+        and avoid duplicates
+        */
+
+
+        if(!jobApplicants.ifContainsApplicant(employeeEmail)) {
+            jobApplicants.addApplicant(employeeEmail);
+            applicationsRef.child(jobKey).setValue(jobApplicants, (databaseError, databaseReference) -> {
+
+                if(databaseError == null) {
+                    Toast.makeText(JobApplyActivity.this, "Applied for job: " + jobTitle, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(JobApplyActivity.this, "Failed to apply for job: " + jobTitle, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else{
+            Toast.makeText(JobApplyActivity.this, "You have already applied for this job", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
