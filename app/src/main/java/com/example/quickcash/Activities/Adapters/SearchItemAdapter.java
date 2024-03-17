@@ -162,4 +162,8 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
     public int getItemCount() {
         return list.size();
     }
+
+    public List<Job> getList(){
+        return list;
+    }
 }

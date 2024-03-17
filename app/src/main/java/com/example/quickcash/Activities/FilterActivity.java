@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Filters.DateFilter;
@@ -39,6 +40,10 @@ import java.util.Locale;
 
 public class FilterActivity extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
+    public interface OnDistanceSelectedListener {
+        void onDistanceSelected(int distance);
+    }
+
 
     private Spinner jobTypeFilter;
     private EditText salaryFilter;
@@ -46,7 +51,7 @@ public class FilterActivity extends DialogFragment
     private Button dateFilter;
     private SeekBar distanceFilter;
     private TextView distanceValue;
-    private Date selectedDate = null;
+    private Date selectedDate;
     private List<IFilter> filterList;
     private FilterCompleteCallback callback;
 
@@ -103,6 +108,9 @@ public class FilterActivity extends DialogFragment
 
         // Set distance
         distanceValue.setText(String.valueOf(distanceFilter.getProgress()));
+        /*
+        james look through this, this is how i try to use the seekbar press of the map button to get filtered distance
+         */
         distanceFilter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -112,6 +120,7 @@ public class FilterActivity extends DialogFragment
                     distanceValue.setText(String.valueOf(progress));
                 }
             }
+
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -130,7 +139,7 @@ public class FilterActivity extends DialogFragment
         dateFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(v);
+                showDatePickerDialog();
             }
         });
 

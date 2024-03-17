@@ -2,7 +2,10 @@ package com.example.quickcash;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
+import static org.hamcrest.Matchers.describedAs;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import static java.lang.Thread.sleep;
@@ -603,6 +606,34 @@ public class UIAutomatorTest  {
         applicantDetailsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject chooseApplicantsButton = device.findObject(new UiSelector().textContains("ACCEPT APPLICANT"));
         assertTrue(chooseApplicantsButton.exists());
+    }
+    @Test
+    public void navigateToMapAndCheckForMarker() throws UiObjectNotFoundException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("sam@chai.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+
+        UiObject makeMoneyButton = device.findObject(new UiSelector().className(ImageButton.class));
+        assertTrue(makeMoneyButton.exists());
+
+        UiObject makeMoneyOption = device.findObject(new UiSelector().text("Make Money"));
+        makeMoneyOption.clickAndWaitForNewWindow();
+
+        UiObject mapButton = device.findObject(new UiSelector().text("See on map"));
+        mapButton.clickAndWaitForNewWindow();
+
+        UiObject marker=device.findObject(new UiSelector().descriptionContains("Your Location"));
+        marker.click();
+        assertTrue(marker.exists());
     }
 
 
