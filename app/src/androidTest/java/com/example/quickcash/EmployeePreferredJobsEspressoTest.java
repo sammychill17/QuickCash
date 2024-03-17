@@ -43,9 +43,9 @@ public class EmployeePreferredJobsEspressoTest {
     @Test
     public void testSavePreferencesButton() {
         FragmentScenario<EmployeePreferredJobsFragment> scenario = FragmentScenario.launchInContainer(EmployeePreferredJobsFragment.class);
-        onView(withId(R.id.savePreferencesButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.backButtonFromPreferences)).check(matches(isDisplayed()));
         onView(withTagValue(is("YARDWORK"))).perform(click());
-        onView(withId(R.id.savePreferencesButton)).perform(click());
+        onView(withId(R.id.backButtonFromPreferences)).perform(click());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class EmployeePreferredJobsEspressoTest {
     public void testUncheckItemInCheckBox() {
         FragmentScenario<EmployeePreferredJobsFragment> scenario = FragmentScenario.launchInContainer(EmployeePreferredJobsFragment.class);
         onView(withTagValue(is("YARDWORK"))).perform(click()).perform(click());
-        onView(withId(R.id.savePreferencesButton)).perform(click());
+        onView(withId(R.id.backButtonFromPreferences)).perform(click());
     }
 
 }

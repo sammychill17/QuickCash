@@ -69,7 +69,7 @@ public class JobUnitTest {
                 boolean foundHitmanJobs = false;
                 for (Job job : jobs) {
                     Duration jobDuraton = Duration.ofHours(5);
-                    if (job.getDuration()==jobDuraton) {
+                    if (job.getDuration()==jobDuraton.toHours()) {
                         foundHitmanJobs = true;
                         break;
                     }
@@ -167,7 +167,7 @@ public class JobUnitTest {
                 boolean foundOuiJob = false;
                 for (Job job : jobs) {
                     Duration jobDuraton = Duration.ofHours(0);
-                    if (job.getDuration()==jobDuraton) {
+                    if (job.getDuration()==jobDuraton.toHours()) {
                         foundOuiJob = true;
                         break;
                     }
