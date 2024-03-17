@@ -33,13 +33,13 @@ import java.util.List;
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private FragmentEmployeeMapActivityBinding binding;
     private GoogleMap googleMap;
+    private UserLocation userCurrentLocation;
+    private ArrayList<Job> jobList;
+
     /*
     this will hold the user's current location
      */
-    private UserLocation userCurrentLocation;
-
-    private ArrayList<Job> jobList;
-    public MapFragment(ArrayList<Job> jobs){
+    public MapFragment(ArrayList<Job> jobs) {
         this.jobList = jobs;
     }
 
@@ -47,9 +47,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentEmployeeMapActivityBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
         //setupViewModel();
 //        Button backButton = root.findViewById(R.id.backFromMaps);
 //
@@ -58,53 +59,38 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 //            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 //            startActivity(intent);
 //        });
+
         return root;
-    }
-
-    private void displayJobMarkers(List<Job> jobs) {
-        /*
-         clears existing markers
-         */
-        googleMap.clear();
-        /*
-        re-adds the user's location marker
-        */
-        addMarkerForCurrentUserLocation();
-
-        /*
-        loops through all jobs and adds markers for them
-        */
-        for (Job job : jobs) {
-            LatLng jobPosition = new LatLng(job.getLatitude(), job.getLongitude());
-            googleMap.addMarker(new MarkerOptions().position(jobPosition).title(job.getTitle()));
-        }
     }
 
     private void setupLocationListener() {
         LocationTable locationTable = new LocationTable();
         SharedPreferences sharedPrefs = getActivity().getSharedPreferences("session_login", MODE_PRIVATE);
         String userEmail = sharedPrefs.getString("email", "");
-        userCurrentLocation = new UserLocation();
-        /*
-        retrieves the current user's (employee) location from the database
-         */
-        locationTable.retrieveLocationFromDatabase(userEmail, this::setUserCurrentLocation);
-        moveCameraToUserLocation();
-    }
-
-    /*
-    moves camera towards the User's (employee) Location
-     */
-    private void moveCameraToUserLocation() {
-        if (googleMap != null && userCurrentLocation != null) {
-            LatLng currentUserLatLng = new LatLng(userCurrentLocation.getLatitude(), userCurrentLocation.getLongitude());
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentUserLatLng, 15)); // Adjust the zoom level
+        if (userEmail != null && !userEmail.isEmpty()) {
+            /*
+            retrieves the current user's (employee) location from the database
+            */
+            locationTable.retrieveLocationFromDatabase(userEmail, location -> {
+                if (location != null) {
+                    setUserCurrentLocation(location);
+                }
+            });
         }
     }
 
-    /*
-    adds marker to the employee's location
-     */
+    public void setUserCurrentLocation(UserLocation location) {
+        userCurrentLocation = location;
+        if (googleMap != null) {
+            addMarkerForCurrentUserLocation();
+            moveCameraToUserLocation();
+        }
+        /*
+        updates job markers as required
+         */
+        displayJobMarkers(jobList);
+    }
+
     private void addMarkerForCurrentUserLocation() {
         if (googleMap != null && userCurrentLocation != null) {
             LatLng userLatLng = new LatLng(userCurrentLocation.getLatitude(), userCurrentLocation.getLongitude());
@@ -112,19 +98,40 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    public void setUserCurrentLocation(UserLocation location) {
-        userCurrentLocation = location;
+    private void moveCameraToUserLocation() {
+        if (googleMap != null && userCurrentLocation != null) {
+            LatLng currentUserLatLng = new LatLng(userCurrentLocation.getLatitude(), userCurrentLocation.getLongitude());
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUserLatLng, 0));
+        }
     }
 
+    private void displayJobMarkers(ArrayList<Job> jobs) {
+        if (googleMap != null && jobs != null) {
+            /*
+            clears existing markers
+            */
+            googleMap.clear();
+            /*
+            re-adds the user's location marker
+            */
+            addMarkerForCurrentUserLocation();
+            /*
+            loops through all jobs and adds markers for them
+            */
+            for (Job job : jobs) {
+                LatLng jobPosition = new LatLng(job.getLatitude(), job.getLongitude());
+                googleMap.addMarker(new MarkerOptions().position(jobPosition).title(job.getTitle()));
+            }
+        }
+    }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        this.googleMap = googleMap;
         /*
         starts listening for the user's location
          */
+        this.googleMap = googleMap;
         setupLocationListener();
-        displayJobMarkers(jobList);
     }
 
     @Override
@@ -133,4 +140,5 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         binding = null;
     }
 }
+
 
