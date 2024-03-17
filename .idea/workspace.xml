@@ -41,8 +41,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Rough EmployeeDBHelper created utilising DatabaseScrounger.">
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt">
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +56,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\james\.android\avd\Phone_1.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[2A311FDH2009AQ]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -126,29 +130,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;registration__location__test&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/TraxS/CSCI_3130/csci3130-courseproject/csci3130-w24-group17&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "Employee__Search__Branch",
+    "last_opened_file_path": "C:/Users/TraxS/CSCI_3130/csci3130-courseproject/csci3130-w24-group17",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.example.quickcash.Objects" />
-      <recent name="com.example.quickcash.Activities" />
-      <recent name="com.example.quickcash.User" />
-      <recent name="com.example.quickcash.FirebaseStuff" />
-      <recent name="com.example.quickcash.BusinessLogic" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager" selected="Android App.MainActivity">
     <configuration name="LoginActivity" type="AndroidRunConfigurationType" factoryName="Android App" temporary="true">
       <module name="quickcash.app.main" />
@@ -628,83 +623,8 @@
       <option name="project" value="LOCAL" />
       <updated>1708209426408</updated>
     </task>
-    <task id="LOCAL-00009" summary="Refactoring - Removed Faulty LocationUnitTest, and added additional functionality and method signatures to Job object.">
-      <option name="closed" value="true" />
-      <created>1709591022383</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1709591022383</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml">
-      <option name="closed" value="true" />
-      <created>1709591663903</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1709591663903</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml">
-      <option name="closed" value="true" />
-      <created>1709591829986</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1709591829986</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Added JobApplicants Object">
-      <option name="closed" value="true" />
-      <created>1709607835937</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1709607835937</updated>
-    </task>
-    <task id="LOCAL-00013" summary="RegistrationActivity now hard sets new users to be either Employee or Employer objects">
-      <option name="closed" value="true" />
-      <created>1709608041726</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1709608041726</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Rough JobDBHelper created based on DBScrounger">
-      <option name="closed" value="true" />
-      <created>1709610326312</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1709610326312</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change.">
-      <option name="closed" value="true" />
-      <created>1709611454523</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1709611454523</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Rough EmployeeDBHelper created utilising DatabaseScrounger.">
-      <option name="closed" value="true" />
-      <created>1709613843325</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1709613843325</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="9" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[Implementation] Implemented merge between the location and login/register branch" />
@@ -715,13 +635,6 @@
     <MESSAGE value="[Test] Changed test code to remove dependence on accounts that have been deleted and information that is outdated" />
     <MESSAGE value="[Test] Updated LoginEspressoTest" />
     <MESSAGE value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
-    <MESSAGE value="Refactoring - Removed Faulty LocationUnitTest, and added additional functionality and method signatures to Job object." />
-    <MESSAGE value="Refactoring - Removed Constants.java and replaced funtionality with use of strings.xml" />
-    <MESSAGE value="Added JobApplicants Object" />
-    <MESSAGE value="RegistrationActivity now hard sets new users to be either Employee or Employer objects" />
-    <MESSAGE value="Rough JobDBHelper created based on DBScrounger" />
-    <MESSAGE value="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change." />
-    <MESSAGE value="Rough EmployeeDBHelper created utilising DatabaseScrounger." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rough EmployeeDBHelper created utilising DatabaseScrounger." />
+    <option name="LAST_COMMIT_MESSAGE" value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
   </component>
 </project>

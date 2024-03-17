@@ -22,4 +22,39 @@
         android:name="com.example.quickcash.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/employerJobPageFragment"
+        android:name="com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment"
+        android:label="job_page"
+        tools:layout="@layout/fragment_employerjobpage"/>
+    <fragment
+        android:id="@+id/employerJobPageDestFragment"
+        android:name="com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment"
+        android:label="job_page"
+        tools:layout="@layout/fragment_employerjobpage"/>
+    <fragment
+        android:id="@+id/jobApplicantsDestFragment"
+        android:name="com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment"
+        android:label="job_applicants"
+        tools:layout="@layout/fragment_employerjobapplicants"/>
+    <fragment
+        android:id="@+id/jobApplicantsFragment"
+        android:name="com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment"
+        android:label="job_applicants"
+        tools:layout="@layout/fragment_employerjobapplicants"/>
+    <fragment
+        android:id="@+id/employerApplicantPageDestFragment"
+        android:name="com.example.quickcash.ui.employerApplicantPage.EmployerApplicantPageFragment"
+        android:label="job_applicants"
+        tools:layout="@layout/fragment_employerjobapplicantpage"/>
+    <fragment
+        android:id="@+id/employerJobPostFragment"
+        android:name="com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment"
+        android:label="job_post"
+        tools:layout="@layout/fragment_employerjobpost"/>
+    <fragment
+        android:id="@+id/employerJobListFragment"
+        android:name="com.example.quickcash.ui.employerJobList.EmployerJobListFragment"
+        android:label="job_list"
+        tools:layout="@layout/employer_job_item_list"/>
 </navigation>

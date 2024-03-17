@@ -10,22 +10,33 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/*
+* This database helper is designed to retrieve Jobs based on key and JobApplicants based on key all from the database.
+ */
 public class JobDBHelper extends AppCompatActivity {
     private Job job;
     FirebaseDatabase database;
     DatabaseReference applicantsReference;
     DatabaseReference jobsReference;
+    public interface JobListCallback {
+        void onJobsReceived(List<Job> jobs);
+        void onError(DatabaseError error);
+    }
+
 
     public JobDBHelper(Job job){
         this.job = job;
         database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL));
-        applicantsReference = database.getReference("JobApplicants");
-        jobsReference = database.getReference("Jobs");
+        applicantsReference = database.getReference("Job Applicants");
+        jobsReference = database.getReference("Posted Jobs");
     }
     public JobDBHelper(){
-        database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL));
-        applicantsReference = database.getReference("JobApplicants");
-        jobsReference = database.getReference("Jobs");
+        database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
+        applicantsReference = database.getReference("Job Applicants");
+        jobsReference = database.getReference("Posted Jobs");
     }
 
     public interface JobObjectCallback {
@@ -39,7 +50,7 @@ public class JobDBHelper extends AppCompatActivity {
     }
 
     public void getJobByKey(String key, JobDBHelper.JobObjectCallback callback) {
-        jobsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        jobsReference.orderByChild("key").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Job result = null;
@@ -63,7 +74,7 @@ public class JobDBHelper extends AppCompatActivity {
     }
 
     public void getApplicantsByKey(String key, JobDBHelper.ApplicantsObjectCallback callback) {
-        applicantsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        applicantsReference.orderByChild("applicants").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 JobApplicants result = null;
@@ -89,7 +100,26 @@ public class JobDBHelper extends AppCompatActivity {
     public void pushJobToDB(){
         jobsReference.push().setValue(this.job);
     }
+    public void getAllJobsWithCoordinates(final JobDBHelper.JobListCallback callback) {
+        jobsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Job> jobList = new ArrayList<>();
+                for (DataSnapshot jobSnapshot : dataSnapshot.getChildren()) {
+                    Job job = jobSnapshot.getValue(Job.class);
+                    if (job != null && job.getLatitude() != 0 && job.getLongitude() != 0) {
+                        jobList.add(job);
+                    }
+                }
+                callback.onJobsReceived(jobList);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError);
+            }
+        });
+    }
     public void updateJobInDB(String key){
         //TODO: Make method to update specified job in database with variable job info
     }

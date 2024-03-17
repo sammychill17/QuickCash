@@ -11,6 +11,9 @@
     <string name="LOGIN_ERROR_PASSWORD_INCORRECT">Incorrect email or password</string>
     <string name="EMPTY_FIELD_ERROR">Please enter all fields!</string>
     <string name="INVALID_EMAIL_ERROR">Invalid email!</string>
+    <string name="JOB_POSTING_SUCCESSFUL">Job has been posted successfully :D</string>
+    <string name="JOB_POSTING_FAILED">Job could not be posted :o</string>
+    <string name="LACK_OF_FILLED_FIELDS">Fill up 2 or more fields to post a job</string>
     <string name="REGISTRATION_SUCCESS_MESSAGE">Registration successful :)</string>
     <string name="DUPLICATE_EMAIL_ERROR">Email already associated with account :/</string>
     <string name="FIREBASE_DATABASE_URL">https://quickcash-6941c-default-rtdb.firebaseio.com/</string>
@@ -19,4 +22,18 @@
     <string name="error_no_location_detected">No Location Detected</string>
     <string name="error_location_permission_required">Location permission is required to use this feature.</string>
     <string name="sessionData_spID">session_login</string>
+    <string-array name="job_types_array">
+        <item>ALL JOBS</item>
+        <item>YARDWORK</item>
+        <item>PETCARE</item>
+        <item>BABYSITTING</item>
+        <item>TUTORING</item>
+        <item>TECH</item>
+        <item>MOVING</item>
+        <item>HITMAN</item>
+        <item>ARTS_CREATIVE</item>
+        <item>COOK</item>
+        <item>MAGICIAN</item>
+        <item>POLITICIAN</item>
+    </string-array>
 </resources>

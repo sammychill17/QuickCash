@@ -36,6 +36,7 @@ package com.example.quickcash.FirebaseStuff;
 
 import androidx.annotation.NonNull;
 
+import com.example.quickcash.Objects.Employee;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,6 +62,11 @@ public class DatabaseScrounger {
         void onError(DatabaseError error);
     }
 
+    public interface EmployeeCallback {
+        void onObjectReceived(Employee object);
+        void onError(DatabaseError error);
+    }
+
     public void getObjectByEmail(String email, ObjectCallback callback) {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -70,6 +76,30 @@ public class DatabaseScrounger {
                     // Assuming you have a way to deserialize snapshot to a quickCashDbObject
                     // This often involves manually parsing the DataSnapshot based on your object structure
                     QuickCashDBObject obj = snapshot.getValue(QuickCashDBObject.class); // This might need adjustment
+                    if (obj != null && email.equals(obj.getEmail())) {
+                        result = obj;
+                        break;
+                    }
+                }
+                callback.onObjectReceived(result);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                callback.onError(error);
+            }
+        });
+    }
+
+    public void getEmployeeByEmail(String email, EmployeeCallback callback) {
+        reference.orderByChild("email").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Employee result = null;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    Employee obj = snapshot.getValue(Employee.class);
+
                     if (obj != null && email.equals(obj.getEmail())) {
                         result = obj;
                         break;
