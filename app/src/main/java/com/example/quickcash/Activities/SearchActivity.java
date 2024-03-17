@@ -79,7 +79,7 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         recyclerView = (RecyclerView) findViewById(R.id.searchResultsRecycler);
-        SearchItemAdapter adapter = new SearchItemAdapter(jobs, getApplicationContext(), this);
+        SearchItemAdapter adapter = new SearchItemAdapter(jobs, getApplicationContext(), currPref, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.getAdapter().notifyDataSetChanged();
