@@ -101,7 +101,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void moveCameraToUserLocation() {
         if (googleMap != null && userCurrentLocation != null) {
             LatLng currentUserLatLng = new LatLng(userCurrentLocation.getLatitude(), userCurrentLocation.getLongitude());
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUserLatLng, 0));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUserLatLng, 10));
         }
     }
 

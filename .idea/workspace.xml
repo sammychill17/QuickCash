@@ -10,6 +10,11 @@
           <theme>@style/Theme.Quickcash</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_job_apply.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
         <config>
           <theme>@style/Theme.Quickcash</theme>
@@ -80,6 +85,11 @@
           <theme>@style/Theme.Quickcash</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_jobitem.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
         <config>
           <theme>@style/Theme.Quickcash</theme>
@@ -101,15 +111,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Test - Some basic test made for US5">
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Some basic Map function implemented">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/Adapters/SearchItemAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/Adapters/SearchItemAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/SearchActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/FirebaseStuff/LocationTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/FirebaseStuff/LocationTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/map/MapFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/map/MapFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +183,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Job_Post_Branch" />
+        <entry key="$PROJECT_DIR$" value="Employee_Search_Branch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -610,19 +615,19 @@
     </configuration>
     <list>
       <item itemvalue="Android App.app" />
+      <item itemvalue="Android Instrumented Tests.checkIfPasswordIsValid()" />
       <item itemvalue="Android Instrumented Tests.EmployerJobPostEspressoTest" />
       <item itemvalue="Android Instrumented Tests.EmployerDashboardEspressoTest" />
       <item itemvalue="Android Instrumented Tests.EmployerJobListEspressoTest" />
       <item itemvalue="Android Instrumented Tests.testMyJobsButton()" />
-      <item itemvalue="Android Instrumented Tests.checkIfPasswordIsValid()" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Android Instrumented Tests.EmployerJobListEspressoTest" />
-        <item itemvalue="Android Instrumented Tests.EmployerJobPostEspressoTest" />
-        <item itemvalue="Android Instrumented Tests.testMyJobsButton()" />
-        <item itemvalue="Android Instrumented Tests.EmployerDashboardEspressoTest" />
         <item itemvalue="Android Instrumented Tests.checkIfPasswordIsValid()" />
+        <item itemvalue="Android Instrumented Tests.testMyJobsButton()" />
+        <item itemvalue="Android Instrumented Tests.EmployerJobListEspressoTest" />
+        <item itemvalue="Android Instrumented Tests.EmployerDashboardEspressoTest" />
+        <item itemvalue="Android Instrumented Tests.EmployerJobPostEspressoTest" />
       </list>
     </recent_temporary>
   </component>
@@ -915,7 +920,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710474402677</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Implementation - Some basic Map function implemented">
+      <option name="closed" value="true" />
+      <created>1710474601209</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1710474601209</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -930,7 +943,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added JobApplicants Object" />
     <MESSAGE value="RegistrationActivity now hard sets new users to be either Employee or Employer objects" />
     <MESSAGE value="Rough JobDBHelper created based on DBScrounger" />
     <MESSAGE value="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change." />
@@ -955,17 +967,7 @@
     <MESSAGE value="Implementation - Added basic Geocoder Functionality" />
     <MESSAGE value="Implementation - Added new Epoch variable to Job class for ease of use in future filtering/queries." />
     <MESSAGE value="Test - Some basic test made for US5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test - Some basic test made for US5" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/map/MapFragment.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Implementation - Some basic Map function implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Some basic Map function implemented" />
   </component>
 </project>
