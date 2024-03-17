@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.quickcash.Activities.JobApplyActivity;
 import com.example.quickcash.Activities.SearchActivity;
 import com.example.quickcash.Objects.Job;
+import com.example.quickcash.Objects.JobTypes;
+import com.example.quickcash.Objects.PreferredJobs;
 import com.example.quickcash.R;
 
 import java.io.Serializable;
@@ -24,11 +26,14 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
 
     SearchActivity currActivity;
 
+    private PreferredJobs pref;
 
-    public SearchItemAdapter(List<Job> jobs, Context context, SearchActivity currActivity) {
+
+    public SearchItemAdapter(List<Job> jobs, Context context, PreferredJobs pref, SearchActivity currActivity) {
         list = jobs;
         this.context = context;
         this.currActivity = currActivity;
+        this.pref = pref;
     }
 
     @NonNull
@@ -61,37 +66,92 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
 
         switch (job.getJobType()) {
             case COOK:
-                holder.picView.setImageResource(R.drawable.icon_cook);
+                if(pref.containsJob(JobTypes.COOK)){
+                    holder.picView.setImageResource(R.drawable.icon_cook_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_cook);
+                }
                 break;
             case TECH:
-                holder.picView.setImageResource(R.drawable.icon_tech);
+                if(pref.containsJob(JobTypes.TECH)){
+                    holder.picView.setImageResource(R.drawable.icon_tech_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_tech);
+                }
                 break;
             case HITMAN:
-                holder.picView.setImageResource(R.drawable.icon_hitman);
+                if(pref.containsJob(JobTypes.HITMAN)){
+                    holder.picView.setImageResource(R.drawable.icon_hitman_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_hitman);
+                }
                 break;
             case MOVING:
-                holder.picView.setImageResource(R.drawable.icon_moving);
+                if(pref.containsJob(JobTypes.MOVING)){
+                    holder.picView.setImageResource(R.drawable.icon_moving_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_moving);
+                }
                 break;
             case PETCARE:
-                holder.picView.setImageResource(R.drawable.icon_petcare);
+                if(pref.containsJob(JobTypes.PETCARE)){
+                    holder.picView.setImageResource(R.drawable.icon_petcare_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_petcare);
+                }
                 break;
             case MAGICIAN:
-                holder.picView.setImageResource(R.drawable.icon_magician);
+                if(pref.containsJob(JobTypes.MAGICIAN)){
+                    holder.picView.setImageResource(R.drawable.icon_magician_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_magician);
+                }
                 break;
             case TUTORING:
-                holder.picView.setImageResource(R.drawable.icon_tutoring);
+                if(pref.containsJob(JobTypes.TUTORING)){
+                    holder.picView.setImageResource(R.drawable.icon_tutoring_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_tutoring);
+                }
                 break;
             case YARDWORK:
-                holder.picView.setImageResource(R.drawable.icon_yardwork);
+                if(pref.containsJob(JobTypes.YARDWORK)){
+                    holder.picView.setImageResource(R.drawable.icon_yardwork_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_yardwork);
+                }
                 break;
             case POLITICIAN:
-                holder.picView.setImageResource(R.drawable.icon_politician);
+                if(pref.containsJob(JobTypes.POLITICIAN)){
+                    holder.picView.setImageResource(R.drawable.icon_politician_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_politician);
+                }
                 break;
             case BABYSITTING:
-                holder.picView.setImageResource(R.drawable.icon_babysitting);
+                if(pref.containsJob(JobTypes.BABYSITTING)){
+                    holder.picView.setImageResource(R.drawable.icon_babysitting_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_babysitting);
+                }
                 break;
             case ARTS_CREATIVE:
-                holder.picView.setImageResource(R.drawable.icon_arts_creative);
+                if(pref.containsJob(JobTypes.ARTS_CREATIVE)){
+                    holder.picView.setImageResource(R.drawable.icon_arts_creative_preferred);
+                }
+                else {
+                    holder.picView.setImageResource(R.drawable.icon_arts_creative);
+                }
                 break;
             default:
                 break;

@@ -81,37 +81,37 @@ public class EmployeePreferredAdapter extends ArrayAdapter<JobTypes> {
         if (isChecked) {
             switch (jobType) {
                 case YARDWORK:
-                    imageResId = R.drawable.pref_yardwork;
+                    imageResId = R.drawable.icon_yardwork_preferred;
                     break;
                 case BABYSITTING:
-                    imageResId = R.drawable.pref_babysitting;
+                    imageResId = R.drawable.icon_babysitting_preferred;
                     break;
                 case TECH:
-                    imageResId = R.drawable.pref_tech;
+                    imageResId = R.drawable.icon_tech_preferred;
                     break;
                 case ARTS_CREATIVE:
-                    imageResId = R.drawable.pref_arts_creative;
+                    imageResId = R.drawable.icon_arts_creative_preferred;
                     break;
                 case HITMAN:
-                    imageResId = R.drawable.pref_hitman;
+                    imageResId = R.drawable.icon_hitman_preferred;
                     break;
                 case COOK:
-                    imageResId = R.drawable.pref_cook;
+                    imageResId = R.drawable.icon_cook_preferred;
                     break;
                 case PETCARE:
-                    imageResId = R.drawable.pref_petcare;
+                    imageResId = R.drawable.icon_petcare_preferred;
                     break;
                 case TUTORING:
-                    imageResId = R.drawable.pref_tutoring;
+                    imageResId = R.drawable.icon_tutoring_preferred;
                     break;
                 case MAGICIAN:
-                    imageResId = R.drawable.pref_magician;
+                    imageResId = R.drawable.icon_magician_preferred;
                     break;
                 case POLITICIAN:
-                    imageResId = R.drawable.pref_politician;
+                    imageResId = R.drawable.icon_politician_preferred;
                     break;
                 case MOVING:
-                    imageResId = R.drawable.pref_moving;
+                    imageResId = R.drawable.icon_moving_preferred;
                     break;
                 default:
                     /*
@@ -123,37 +123,37 @@ public class EmployeePreferredAdapter extends ArrayAdapter<JobTypes> {
         } else {
             switch (jobType) {
                 case YARDWORK:
-                    imageResId = R.drawable.yardwork;
+                    imageResId = R.drawable.icon_yardwork;
                     break;
                 case BABYSITTING:
-                    imageResId = R.drawable.babysitting;
+                    imageResId = R.drawable.icon_babysitting;
                     break;
                 case TECH:
-                    imageResId = R.drawable.tech;
+                    imageResId = R.drawable.icon_tech;
                     break;
                 case ARTS_CREATIVE:
-                    imageResId = R.drawable.arts_creative;
+                    imageResId = R.drawable.icon_arts_creative;
                     break;
                 case HITMAN:
-                    imageResId = R.drawable.hitman;
+                    imageResId = R.drawable.icon_hitman;
                     break;
                 case COOK:
-                    imageResId = R.drawable.cook;
+                    imageResId = R.drawable.icon_cook;
                     break;
                 case PETCARE:
-                    imageResId = R.drawable.petcare;
+                    imageResId = R.drawable.icon_petcare;
                     break;
                 case TUTORING:
-                    imageResId = R.drawable.tutoring;
+                    imageResId = R.drawable.icon_tutoring;
                     break;
                 case MAGICIAN:
-                    imageResId = R.drawable.magician;
+                    imageResId = R.drawable.icon_magician;
                     break;
                 case POLITICIAN:
-                    imageResId = R.drawable.politician;
+                    imageResId = R.drawable.icon_politician;
                     break;
                 case MOVING:
-                    imageResId = R.drawable.moving;
+                    imageResId = R.drawable.icon_moving;
                     break;
                 default:
                     imageResId = R.drawable.best_logo_ever;

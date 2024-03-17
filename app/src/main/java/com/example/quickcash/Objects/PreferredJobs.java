@@ -71,4 +71,8 @@ public class PreferredJobs extends QuickCashDBObject {
         return names;
     }
 
+    public boolean containsJob(JobTypes jobTypes){
+        return preferredJobs.contains(jobTypes.name());
+    }
+
 }

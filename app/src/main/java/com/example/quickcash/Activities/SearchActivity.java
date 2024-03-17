@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,10 +18,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
+import com.example.quickcash.FirebaseStuff.FirebasePreferredJobsHelper;
 import com.example.quickcash.Objects.Filters.FilterHelper;
 import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.TitleFilter;
 import com.example.quickcash.Objects.Job;
+import com.example.quickcash.Objects.JobTypes;
+import com.example.quickcash.Objects.PreferredJobs;
 import com.example.quickcash.R;
 import com.example.quickcash.ui.map.MapDirections;
 import com.example.quickcash.ui.map.MapFragment;
@@ -43,8 +47,34 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        FirebasePreferredJobsHelper helper = new FirebasePreferredJobsHelper();
+        SharedPreferences sharedPrefs = this.getSharedPreferences("session_login", MODE_PRIVATE);
+        String employeeEmail = sharedPrefs.getString("email", "");
+        PreferredJobs currPref = new PreferredJobs(employeeEmail);
+        helper.retrievePreferredJobs(employeeEmail, preferredJobs -> {
+            ArrayList<JobTypes> list = new ArrayList<JobTypes>();
+            list.add(JobTypes.ARTS_CREATIVE);
+            list.add(JobTypes.BABYSITTING);
+            list.add(JobTypes.COOK);
+            list.add(JobTypes.HITMAN);
+            list.add(JobTypes.MAGICIAN);
+            list.add(JobTypes.MOVING);
+            list.add(JobTypes.PETCARE);
+            list.add(JobTypes.POLITICIAN);
+            list.add(JobTypes.TECH);
+            list.add(JobTypes.TUTORING);
+            list.add(JobTypes.YARDWORK);
+
+            for (int i = 0; i < 11; i++) {
+                JobTypes jobType = list.get(i);
+                if (preferredJobs.contains(jobType.name())) {
+                    currPref.checkJob(jobType);
+                }
+            }
+        });
+
         recyclerView = (RecyclerView) findViewById(R.id.searchResultsRecycler);
-        SearchItemAdapter adapter = new SearchItemAdapter(jobs, getApplicationContext(), this);
+        SearchItemAdapter adapter = new SearchItemAdapter(jobs, getApplicationContext(), currPref,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.getAdapter().notifyDataSetChanged();

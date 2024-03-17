@@ -74,37 +74,37 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
     public void setImageIcon(int pos){
         JobTypes currJobType = models.get(pos).getJobType();
         if(currJobType==JobTypes.ARTS_CREATIVE){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.arts_creative);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_arts_creative);
         }
         else if(currJobType==JobTypes.BABYSITTING){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.babysitting);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_babysitting);
         }
         else if(currJobType==JobTypes.COOK){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.cook);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_cook);
         }
         else if(currJobType==JobTypes.HITMAN){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.hitman);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_hitman);
         }
         else if(currJobType==JobTypes.MAGICIAN){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.magician);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_magician);
         }
         else if(currJobType==JobTypes.MOVING){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.moving);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_moving);
         }
         else if(currJobType==JobTypes.PETCARE){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.petcare);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_petcare);
         }
         else if(currJobType==JobTypes.POLITICIAN){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.politician);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_politician);
         }
         else if(currJobType==JobTypes.TECH){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.tech);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_tech);
         }
         else if(currJobType==JobTypes.TUTORING){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.tutoring);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_tutoring);
         }
         else if(currJobType==JobTypes.YARDWORK){
-            EmployerJobListHolder.imageView.setImageResource(R.drawable.yardwork);
+            EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_yardwork);
         }
         else{
             EmployerJobListHolder.imageView.setImageResource(R.drawable.best_logo_ever);
