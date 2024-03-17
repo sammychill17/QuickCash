@@ -7,6 +7,9 @@ import com.google.firebase.database.Query;
 
 import java.util.Date;
 
+/**
+ * The Date Filter.
+ */
 public class DateFilter implements IFilter{
     private Date date;
     @Override

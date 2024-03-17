@@ -15,6 +15,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Loop strategy - do the processing client-side, loop through every job in the database.
+ * You must use this strategy for some filters where server-side processing is impossible
+ */
 public class FilterExecutionLoopStrategy implements FilterExecutionStrategy{
 
     private List<IFilter> filters;

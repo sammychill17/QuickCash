@@ -38,9 +38,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * The Filter dialog fragment.
+ */
 public class FilterActivity extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
+    /**
+     * The interface for callbacks for OnDistanceSelectedListener.
+     */
     public interface OnDistanceSelectedListener {
+        /**
+         * On distance selected.
+         * This method will be called when the user selects a distance to filter jobs against
+         *
+         * @param distance the distance to filter jobs against
+         */
         void onDistanceSelected(int distance);
     }
 
@@ -57,18 +69,52 @@ public class FilterActivity extends DialogFragment
 
     private UserLocation userLocation;
 
+    /**
+     * Callback class to notify other classes that the user have finished selecting filters.
+     */
     public static class FilterCompleteCallback {
+        /**
+         * Method that is called when the user clicks on the "Apply Filters" button.
+         * Returns a list of filters the user have selected.
+         *
+         * @param filters the list of filters the user have selected
+         */
         public void onResult(List<IFilter> filters) {}
     }
 
+    /**
+     * Sets the callback to be called when the user finishes selecting filters and clicks "Apply Filter".
+     *
+     * @param callback the callback to be called when the user finishes selecting filters and clicks "Apply Filter"
+     */
     public void setCallback(FilterCompleteCallback callback) {
         this.callback = callback;
     }
+
+    /**
+     * Gets the completion callback.
+     * This callback will be called when the user finishes selecting filters and clicks "Apply Filter".
+     *
+     * @return the callback
+     */
     public FilterCompleteCallback getCallback() {
         return callback;
     }
 
+    /**
+     * Gets the current user location.
+     * This information is used when filtering by distance.
+     *
+     * @return the current user location
+     */
     public UserLocation getUserLocation() { return userLocation; }
+
+    /**
+     * Sets the current user location.
+     * This information is used when filtering by distance.
+     *
+     * @param userLocation the current user location
+     */
     public void setUserLocation(UserLocation userLocation) { this.userLocation = userLocation; }
 
     @Nullable

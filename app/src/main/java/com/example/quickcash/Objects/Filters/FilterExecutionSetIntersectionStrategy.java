@@ -18,6 +18,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Server-side strategy (queries the database once for each filter, gets a set of results for each query,
+ * performs set intersection to get a set of results that sastifies all filters)
+ */
 public class FilterExecutionSetIntersectionStrategy implements FilterExecutionStrategy{
     private List<IFilter> filters;
     private FilterHelper.FilterHelperCallback callback;

@@ -6,19 +6,33 @@ import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.UserLocation;
 import com.google.firebase.database.Query;
 
+/**
+ * The distance filter
+ */
 public class DistanceFilter implements IFilter{
     private int distance;
     private UserLocation currentLocation;
     @Override
     public void setValue(Object value){
         distance = (Integer) value;
-    };
+    }
     @Override
     public Object getValue(){
         return distance;
     }
 
+    /**
+     * Gets the current user location.
+     *
+     * @return the current user location
+     */
     public UserLocation getCurrentLocation() { return currentLocation; }
+
+    /**
+     * Sets the current user location.
+     *
+     * @param location the current user location
+     */
     public void setCurrentLocation(UserLocation location) { currentLocation = location; }
 
     @Override
@@ -40,9 +54,7 @@ public class DistanceFilter implements IFilter{
         return ((jobDistance) <= doubleDistance);
     }
 
-    // Distance formula from SO: https://stackoverflow.com/a/27943
-    // (I suck at math)
-    double getDistanceFromLatLonInKm(double lat1, double lon1, double lat2, double lon2) {
+    private double getDistanceFromLatLonInKm(double lat1, double lon1, double lat2, double lon2) {
         int earthRadius = 6371;
         double dLat = deg2rad(lat2-lat1);
         double dLon = deg2rad(lon2-lon1);
@@ -54,7 +66,7 @@ public class DistanceFilter implements IFilter{
         return earthRadius * c;
     }
 
-    double deg2rad(double deg) {
+    private double deg2rad(double deg) {
         return deg * (Math.PI/180);
     }
 

@@ -4,6 +4,9 @@ import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobTypes;
 import com.google.firebase.database.Query;
 
+/**
+ * Job type filter
+ */
 public class JobTypeFilter implements IFilter{
     private JobTypes jobType;
     @Override

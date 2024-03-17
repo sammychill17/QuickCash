@@ -3,6 +3,9 @@ package com.example.quickcash.Objects.Filters;
 import com.example.quickcash.Objects.Job;
 import com.google.firebase.database.Query;
 
+/**
+ * Duration filter
+ */
 public class DurationFilter implements IFilter{
 
     private int duration;
