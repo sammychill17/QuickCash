@@ -100,6 +100,13 @@ public class SearchActivity extends AppCompatActivity {
                     .replace(R.id.map, mapFragment)
                     .commit();
         });
+
+        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void applyFiltersAndSearch() {
