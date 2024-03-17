@@ -2,6 +2,7 @@ package com.example.quickcash;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import com.example.quickcash.BusinessLogic.CredentialValidator;
 import com.example.quickcash.Objects.Filters.DurationFilter;
@@ -25,9 +26,11 @@ import java.util.Set;
 
 public class JobUnitTest {
     com.example.quickcash.BusinessLogic.CredentialValidator validator;
+    FilterHelper helper;
     @Before
     public void setup() {
         validator = new CredentialValidator();
+        helper = mock(FilterHelper.class);
     }
 
     @Test
@@ -37,7 +40,6 @@ public class JobUnitTest {
         titleFilter.setValue("oui");
         filters.add(titleFilter);
 
-        FilterHelper helper = new FilterHelper();
         FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {
             @Override
             public void onResult(Set<Job> searchResult) {
@@ -62,7 +64,6 @@ public class JobUnitTest {
         durationFilter.setValue(5);
         filters.add(durationFilter);
 
-        FilterHelper helper = new FilterHelper();
         helper.setCallback(new FilterHelper.FilterHelperCallback() {
             @Override
             public void onResult(Set<Job> jobs) {
@@ -87,7 +88,6 @@ public class JobUnitTest {
         salaryFilter.setValue(500.0);
         filters.add(salaryFilter);
 
-        FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
         helper.setCallback(new FilterHelper.FilterHelperCallback() {
             @Override
@@ -111,7 +111,6 @@ public class JobUnitTest {
         jobTypeFilter.setValue(JobTypes.YARDWORK);
         filters.add(jobTypeFilter);
 
-        FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
         helper.setCallback(new FilterHelper.FilterHelperCallback() {
             @Override
@@ -135,7 +134,6 @@ public class JobUnitTest {
         titleFilter.setValue("oui");
         filters.add(titleFilter);
 
-        FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
         helper.setCallback(new FilterHelper.FilterHelperCallback() {
             @Override
@@ -159,7 +157,6 @@ public class JobUnitTest {
         durationFilter.setValue(5);
         filters.add(durationFilter);
 
-        FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
         helper.setCallback(new FilterHelper.FilterHelperCallback() {
             @Override
@@ -184,7 +181,6 @@ public class JobUnitTest {
         salaryFilter.setValue(500.0);
         filters.add(salaryFilter);
 
-        FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
         helper.setCallback(new FilterHelper.FilterHelperCallback() {
             @Override
@@ -208,7 +204,6 @@ public class JobUnitTest {
         jobTypeFilter.setValue(JobTypes.YARDWORK);
         filters.add(jobTypeFilter);
 
-        FilterHelper helper = new FilterHelper();
         helper.setFilters(filters);
         helper.setCallback(new FilterHelper.FilterHelperCallback() {
             @Override
