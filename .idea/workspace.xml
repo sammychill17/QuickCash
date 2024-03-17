@@ -111,10 +111,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Some basic Map function implemented">
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="Implementation - Fixed Map Zoom">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/map/MapFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/map/MapFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -928,7 +928,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710474601209</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Implementation - Fixed Map Zoom">
+      <option name="closed" value="true" />
+      <created>1710639936431</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1710639936433</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -943,7 +951,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="RegistrationActivity now hard sets new users to be either Employee or Employer objects" />
     <MESSAGE value="Rough JobDBHelper created based on DBScrounger" />
     <MESSAGE value="Rough PreferredJobs created based on QuickCashObject. RegistrationActivity further modified to accommodate this change." />
     <MESSAGE value="Rough EmployeeDBHelper created utilising DatabaseScrounger." />
@@ -968,6 +975,7 @@
     <MESSAGE value="Implementation - Added new Epoch variable to Job class for ease of use in future filtering/queries." />
     <MESSAGE value="Test - Some basic test made for US5" />
     <MESSAGE value="Implementation - Some basic Map function implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Some basic Map function implemented" />
+    <MESSAGE value="Implementation - Fixed Map Zoom" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation - Fixed Map Zoom" />
   </component>
 </project>
