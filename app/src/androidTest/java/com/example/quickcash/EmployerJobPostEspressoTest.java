@@ -41,10 +41,6 @@ public class EmployerJobPostEspressoTest {
         FragmentScenario<EmployerJobPostFragment> scenario = FragmentScenario.launchInContainer(
                 EmployerJobPostFragment.class
         );
-        scenario.onFragment(fragment -> {
-            NavController mockNavController = mock(NavController.class);
-            Navigation.setViewNavController(fragment.requireView(), mockNavController);
-        });
     }
 
     @Test
@@ -81,7 +77,7 @@ public class EmployerJobPostEspressoTest {
     @Test
     public void datePickerTest() {
         onView(withId(R.id.jobDateButton)).perform(click());
-        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(12, 12, 12));
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2024, 12, 12));
         onView(withId(android.R.id.button1)).perform(click());
     }
 }
