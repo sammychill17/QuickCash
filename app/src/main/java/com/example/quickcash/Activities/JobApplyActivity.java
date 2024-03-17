@@ -96,15 +96,14 @@ public class JobApplyActivity extends AppCompatActivity {
         * and I suspect it is why I was encountering errors when trying to do j.getEmployer() returning an empty string.
          */
 
-//        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("session_login", MODE_PRIVATE);
-//        String employeeEmail = sharedPrefs.getString("email", "");
-//        String employerStr = jEmployer.getText()+" "+employeeEmail;
+        String employerEmail = j.getEmployer();
+        String employerStr = jEmployer.getText()+" "+employerEmail;
 
         jTitle.setText(j.getTitle());
         jJobType.setText("Job Type: "+j.getJobType().toString());
         jSalary.setText(salaryStr);
         jDate.setText(dateStr);
-//        jEmployer.setText(employerStr);
+        jEmployer.setText(employerStr);
         if (j.getAssigneeEmail().equals("")) {
             jApplicant.setText("No applicant chosen yet");
         } else {
@@ -165,39 +164,29 @@ public class JobApplyActivity extends AppCompatActivity {
         String jobTitle = j.getTitle();
 
         DatabaseReference applicationsRef = FirebaseDatabase.getInstance().getReference("Job Applicants");
-        // Ensure the job key is set only once
-        applicationsRef.child(jobKey).child("key").setValue(jobKey);
 
         /*
         Store the applicant's email under the Applicants node below the job key
         and avoid duplicates
         */
-        DatabaseReference applicantsNodeRef = applicationsRef.child(jobKey).child("Applicants");
 
-        applicantsNodeRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean emailExists = false;
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String email = dataSnapshot.getValue(String.class);
-                    if (email != null && email.equals(employeeEmail)) {
-                        emailExists = true;
-                        break;
-                    }
-                }
-                if (!emailExists) {
-                    applicantsNodeRef.push().setValue(employeeEmail);
+
+        if(!jobApplicants.ifContainsApplicant(employeeEmail)) {
+            jobApplicants.addApplicant(employeeEmail);
+            applicationsRef.child(jobKey).setValue(jobApplicants, (databaseError, databaseReference) -> {
+
+                if(databaseError == null) {
                     Toast.makeText(JobApplyActivity.this, "Applied for job: " + jobTitle, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(JobApplyActivity.this, "You have already applied for this job", Toast.LENGTH_SHORT).show();
                 }
-            }
+                else {
+                    Toast.makeText(JobApplyActivity.this, "Failed to apply for job: " + jobTitle, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else{
+            Toast.makeText(JobApplyActivity.this, "You have already applied for this job", Toast.LENGTH_SHORT).show();
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(JobApplyActivity.this, "Failed to apply for job: " + jobTitle, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void getApplicantsList(Job j){

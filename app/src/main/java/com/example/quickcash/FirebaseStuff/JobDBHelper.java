@@ -20,12 +20,12 @@ public class JobDBHelper extends AppCompatActivity {
         this.job = job;
         database = FirebaseDatabase.getInstance(getResources().getString(R.string.FIREBASE_DATABASE_URL));
         applicantsReference = database.getReference("Job Applicants");
-        jobsReference = database.getReference("Jobs");
+        jobsReference = database.getReference("Posted Jobs");
     }
     public JobDBHelper(){
         database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
         applicantsReference = database.getReference("Job Applicants");
-        jobsReference = database.getReference("Jobs");
+        jobsReference = database.getReference("Posted Jobs");
     }
 
     public interface JobObjectCallback {
