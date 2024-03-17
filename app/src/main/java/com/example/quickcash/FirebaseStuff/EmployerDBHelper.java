@@ -15,7 +15,10 @@ import java.util.List;
 * A massive majority of this class was writen by ChatGPT based on an original version I had made which was not working.
 *
 * https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
+*
+* This class is designed to retrieve a list of jobs given an employer email.
  */
+
 public class EmployerDBHelper {
 
     FirebaseDatabase database;

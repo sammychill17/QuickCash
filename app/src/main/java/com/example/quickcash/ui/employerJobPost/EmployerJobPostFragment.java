@@ -44,6 +44,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/*
+* This fragment is designed to allow an Employer to post a job.
+ */
 public class EmployerJobPostFragment extends Fragment {
 
     private FragmentEmployerjobpostBinding binding;

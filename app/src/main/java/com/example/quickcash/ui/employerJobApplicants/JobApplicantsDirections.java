@@ -8,6 +8,9 @@ import androidx.navigation.NavDirections;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.R;
 
+/*
+* This helps move objects from other fragments to the JobApplicantsFragment.
+ */
 public class JobApplicantsDirections implements NavDirections {
 
     private final Bundle args;

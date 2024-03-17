@@ -27,6 +27,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/*
+* This fragment shows the details on a specific employee so that an employer could choose the specified applicant.
+ */
 public class EmployerApplicantPageFragment extends Fragment{
 
     private FragmentEmployerjobapplicantpageBinding binding;

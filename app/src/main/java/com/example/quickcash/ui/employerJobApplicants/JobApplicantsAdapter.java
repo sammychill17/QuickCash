@@ -19,6 +19,9 @@ import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* This class is designed to store the individual applicant objects which will be displayed in the recycler view.
+ */
 public class JobApplicantsAdapter extends RecyclerView.Adapter<JobApplicantsHolder> {
 
     Context c;
@@ -52,7 +55,7 @@ public class JobApplicantsAdapter extends RecyclerView.Adapter<JobApplicantsHold
             jobPage.setArguments(e);
 
             NavController navController = NavHostFragment.findNavController(mFragment);
-            navController.navigate(new com.example.quickcash.ui.employerJobApplicants.EmployerApplicantPageDirections(email, job));
+            navController.navigate(new com.example.quickcash.ui.employerApplicantPage.EmployerApplicantPageDirections(email, job));
         });
     }
 

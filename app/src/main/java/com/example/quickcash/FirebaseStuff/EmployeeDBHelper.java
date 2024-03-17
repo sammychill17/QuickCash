@@ -44,6 +44,5 @@ public class EmployeeDBHelper extends AppCompatActivity {
             }
         });
 
-        //TODO: Finish implementing the update DB method of EmployeeDBHelper;
     }
 }

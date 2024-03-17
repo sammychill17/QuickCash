@@ -23,6 +23,9 @@ import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* This class is designed to take Job information and populate a recycler view with information about the given job.
+ */
 public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobListHolder> {
 
     Context c;

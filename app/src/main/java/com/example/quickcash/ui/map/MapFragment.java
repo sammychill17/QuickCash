@@ -31,6 +31,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*
+* This is a fragment which takes in a list of jobs and populates a google map with them. Each marker is clickable and takes the user to the apply page.
+ */
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private FragmentEmployeeMapActivityBinding binding;
     private GoogleMap googleMap;

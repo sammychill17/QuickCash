@@ -38,6 +38,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/*
+* This activity is designed to allow the employee to search for jobs in their area by querying the database.
+*
+ */
 public class SearchActivity extends AppCompatActivity {
     private ImageButton filterButton;
     private RecyclerView recyclerView;

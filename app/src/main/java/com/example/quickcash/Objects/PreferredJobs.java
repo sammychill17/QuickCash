@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* This class is designed to store the PreferredJobs object which keeps track of which jobs an employee prefers.
+ */
 public class PreferredJobs extends QuickCashDBObject {
     private String employeeEmail;
     private List<String> preferredJobs;

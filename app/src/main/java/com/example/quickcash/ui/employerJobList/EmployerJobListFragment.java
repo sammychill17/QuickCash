@@ -34,6 +34,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+/*
+* This class is designed to contain a recyclerView that lists all jobs that a given employer has posted to the database.
+ */
 public class EmployerJobListFragment extends Fragment{
 
     RecyclerView mRecyclerView;

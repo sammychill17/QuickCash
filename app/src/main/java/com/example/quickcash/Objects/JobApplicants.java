@@ -3,6 +3,9 @@ package com.example.quickcash.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* This object is designed to hold a list of emails of people who applied to a given job (stored by key).
+ */
 public class JobApplicants {
 
     private String key;

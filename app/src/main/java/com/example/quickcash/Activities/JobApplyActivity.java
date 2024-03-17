@@ -42,12 +42,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/*
+* This method is designed to take in a Job and populate a layout with information about it.
+* It also is designed to allow an Employee to apply to a given Job.
+* 
+* Currently, the Employer Email does not appear, but otherwise this page is fully functional.
+ */
 public class JobApplyActivity extends AppCompatActivity {
 
     private JobApplicants jobApplicants;
-
-    private double currentLatitude;
-    private double currentLongitude;
 
     DecimalFormat df = new DecimalFormat("#,###.00");
 
@@ -62,16 +65,6 @@ public class JobApplyActivity extends AppCompatActivity {
 
         Job j = (Job) intent.getSerializableExtra("job");
 
-        /*
-        * I have taken the liberty of using JobDBHelper to retrieve the associated Job Applicants List for you.
-        * This method I have called should initialise it for you to be the associated one.
-        * If it is not working as intended, please let me know.
-        *
-        * I also recommend taking a look at the EmployerApplicantPage fragment.
-        * It has some code that I used to update Jobs in the database to choose the applicant.
-        *
-        * I think some similar logic (modified slightly) could be used here as well.
-         */
         assert j != null;
         getApplicantsList(j);
 
@@ -85,16 +78,9 @@ public class JobApplyActivity extends AppCompatActivity {
         TextView jApplicant = findViewById(R.id.jobPageApplicant);
         TextView jDesc = findViewById(R.id.jobPageDesc);
 
-        // assertion here to prevent NullException
         assert j != null;
         String salaryStr = jSalary.getText()+" $"+df.format(j.getSalary());
         String dateStr = jDate.getText()+" "+j.getDate().toString();
-        /*
-        * We are going to need to figure out a new solution to getting the Employer Email, as I was unable to do so while making US2.
-        * Perhaps we need to refactor the currently Posted jobs?
-        * I was unsure why they have "employer" listed instead of "employerEmail". I could find no reason for this,
-        * and I suspect it is why I was encountering errors when trying to do j.getEmployer() returning an empty string.
-         */
 
         String employerEmail = j.getEmployer();
         String employerStr = jEmployer.getText()+" "+employerEmail;

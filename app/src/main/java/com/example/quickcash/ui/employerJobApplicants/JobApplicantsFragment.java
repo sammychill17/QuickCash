@@ -22,6 +22,9 @@ import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerjobapplicantsBinding;
 import com.google.firebase.database.DatabaseError;
 
+/*
+* This class is designed to have a recycler view full of Applicant information which can allow an Employer to choose based on email.
+ */
 public class JobApplicantsFragment extends Fragment {
 
     RecyclerView mRecyclerView;

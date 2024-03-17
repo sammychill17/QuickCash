@@ -7,6 +7,9 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
+/*
+* This class is designed to hold the required information on the specific jobs for use in the QuickCash app.
+ */
 public class Job implements Serializable {
 
     private String key;

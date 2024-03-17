@@ -13,6 +13,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* This database helper is designed to retrieve Jobs based on key and JobApplicants based on key all from the database.
+ */
 public class JobDBHelper extends AppCompatActivity {
     private Job job;
     FirebaseDatabase database;

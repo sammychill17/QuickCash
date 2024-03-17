@@ -33,6 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/*
+* This class is designed to list information about a posted job as well as list the applicants so the Employer can choose.
+ */
 public class EmployerJobPageFragment extends Fragment{
 
     private FragmentEmployerjobpageBinding binding;
