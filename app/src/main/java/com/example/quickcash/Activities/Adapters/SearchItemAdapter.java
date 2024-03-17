@@ -54,7 +54,7 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
         Job job = list.get(index);
         holder.titleView.setText(job.getTitle());
         holder.descView.setText(job.getDescription());
-        holder.viewMoreView.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(currActivity, JobApplyActivity.class);
@@ -62,7 +62,9 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 currActivity.startActivity(intent);
             }
-        });
+        };
+        holder.viewMoreView.setOnClickListener(listener);
+        holder.itemView.setOnClickListener(listener);
 
         switch (job.getJobType()) {
             case COOK:
