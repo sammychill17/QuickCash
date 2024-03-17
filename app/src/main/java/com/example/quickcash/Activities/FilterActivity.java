@@ -114,7 +114,7 @@ public class FilterActivity extends DialogFragment
         dateFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog();
+                showDatePickerDialog(v);
             }
         });
 
@@ -184,7 +184,7 @@ public class FilterActivity extends DialogFragment
         return view;
     }
 
-    private void showDatePickerDialog() {
+    private void showDatePickerDialog(View v) {
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);

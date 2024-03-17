@@ -2,35 +2,22 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="EmployeeJobApplyEspressoTest">
+      <entry key="LoginActivity">
         <State />
       </entry>
-      <entry key="EmployerDashboardEspressoTest">
+      <entry key="LoginEspressoTest">
         <State />
       </entry>
-      <entry key="EmployerJobListEspressoTest">
-        <State />
-      </entry>
-      <entry key="EmployerJobPostEspressoTest">
+      <entry key="MainActivity">
         <State />
       </entry>
       <entry key="app">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\james\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-13T02:03:51.284947200Z" />
-        </State>
+        <State />
       </entry>
-      <entry key="testMyJobsButton()">
+      <entry key="checkIfPasswordIsInvalid()">
+        <State />
+      </entry>
+      <entry key="checkIfPasswordIsValid()">
         <State />
       </entry>
     </value>
