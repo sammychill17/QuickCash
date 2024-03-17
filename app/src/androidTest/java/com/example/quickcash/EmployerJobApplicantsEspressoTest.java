@@ -47,13 +47,13 @@ public class EmployerJobApplicantsEspressoTest {
         onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         onView(withId(R.id.myJobsButton)).perform(click());
         onView(withId(R.id.jobList)).perform(actionOnItemAtPosition(0, CustomViewAction.
                 clickChildViewWithId(R.id.buttonTv)));
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         onView(withId(R.id.applicantsBtn)).perform(click());
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         onView(withId(R.id.applyButton)).check(doesNotExist());
     }
 
@@ -64,13 +64,13 @@ public class EmployerJobApplicantsEspressoTest {
         onView(withId(R.id.editTextTextPassword)).perform(typeText("password"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.buttonGotoLogin)).perform(click());
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         onView(withId(R.id.myJobsButton)).perform(click());
         onView(withId(R.id.jobList)).perform(actionOnItemAtPosition(0, CustomViewAction.
                 clickChildViewWithId(R.id.buttonTv)));
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         onView(withId(R.id.applicantsBtn)).perform(click());
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         onView(withId(R.id.jobApplicantList)).perform(actionOnItemAtPosition(0, CustomViewAction.
                 clickChildViewWithId(R.id.buttonJa)));
         Thread.sleep(4000);
