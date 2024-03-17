@@ -62,13 +62,12 @@ public class EmployerJobPageEspressoTest {
         onView(withId(R.id.jobPageType)).check(matches(withText(
                 containsString("Job Type: MAGICIAN"))));
         onView(withId(R.id.jobPageAddress)).check(matches(withText(
-                containsString("Address: 260 Dingle Rd, Halifax, NS"))));
-        onView(withId(R.id.jobPageDate)).check(matches(withText(
-                containsString("Start date: Sat Mar 02 18:57:39 -03:00 2024"))));
+                containsString("5946 Inglis St, Halifax, NS B3H 3C3, Canada"))));
+        // Not checking for startDate because each emulator has different timezones (mine has UTC+8, james has UTC-3, others might have different)
         onView(withId(R.id.jobPageEmployerName)).check(matches(withText(
-                containsString("Employer: parker@morrison.com"))));
+                containsString("parker@morrison.com"))));
         onView(withId(R.id.jobPageApplicant)).check(matches(withText(
-                containsString("No applicant set yet"))));
+                containsString("No applicant chosen yet"))));
         onView(withId(R.id.jobPageDesc)).check(matches(withText(
                 containsString("Do a card trick! Pull a rabbit out of your hat! Anything!"))));
     }
