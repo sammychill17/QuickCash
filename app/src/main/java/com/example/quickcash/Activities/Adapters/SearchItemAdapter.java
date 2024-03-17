@@ -20,15 +20,28 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * RecyclerView adapter for job search items
+ */
 public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder> implements Serializable {
-    List<Job> list = Collections.emptyList();
-    Context context;
 
-    SearchActivity currActivity;
+    private List<Job> list = Collections.emptyList();
+
+    private Context context;
+
+    private SearchActivity currActivity;
 
     private PreferredJobs pref;
 
 
+    /**
+     * Instantiates a new Search item adapter.
+     *
+     * @param jobs         the list of jobs to be displated
+     * @param context      the current context
+     * @param pref         the preferred jobs object
+     * @param currActivity the originating SearchActivity
+     */
     public SearchItemAdapter(List<Job> jobs, Context context, PreferredJobs pref, SearchActivity currActivity) {
         list = jobs;
         this.context = context;
@@ -165,6 +178,11 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
         return list.size();
     }
 
+    /**
+     * Get the current list of jobs to be displayed.
+     *
+     * @return the list of jobs to be displayed
+     */
     public List<Job> getList(){
         return list;
     }
