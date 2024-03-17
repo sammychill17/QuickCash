@@ -52,7 +52,7 @@ public class EmployerJobApplicantsEspressoTest {
         onView(withId(R.id.jobList)).perform(actionOnItemAtPosition(0, CustomViewAction.
                 clickChildViewWithId(R.id.buttonTv)));
         Thread.sleep(1000);
-        onView(withId(R.id.applyButton)).perform(click());
+        onView(withId(R.id.applicantsBtn)).perform(click());
         Thread.sleep(1000);
         onView(withId(R.id.applyButton)).check(doesNotExist());
     }
@@ -69,7 +69,7 @@ public class EmployerJobApplicantsEspressoTest {
         onView(withId(R.id.jobList)).perform(actionOnItemAtPosition(0, CustomViewAction.
                 clickChildViewWithId(R.id.buttonTv)));
         Thread.sleep(1000);
-        onView(withId(R.id.applyButton)).perform(click());
+        onView(withId(R.id.applicantsBtn)).perform(click());
         Thread.sleep(1000);
         onView(withId(R.id.jobApplicantList)).perform(actionOnItemAtPosition(0, CustomViewAction.
                 clickChildViewWithId(R.id.buttonJa)));
