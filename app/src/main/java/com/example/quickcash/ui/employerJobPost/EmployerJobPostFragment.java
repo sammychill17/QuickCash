@@ -199,7 +199,7 @@ public class EmployerJobPostFragment extends Fragment {
                     });
                     DatabaseReference applicantsRef = FirebaseDatabase.getInstance().getReference("Job Applicants").push();
                     JobApplicants jobApp = new JobApplicants(jobKey);
-                    applicantsRef.setValue(jobApp, (databaseError, databaseReference) -> {
+                    applicantsRef.child(jobKey).setValue(jobApp, (databaseError, databaseReference) -> {
 
                         if(databaseError == null) {
                             /*

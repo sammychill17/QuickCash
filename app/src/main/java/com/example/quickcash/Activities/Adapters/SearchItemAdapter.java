@@ -1,6 +1,7 @@
 package com.example.quickcash.Activities.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quickcash.Activities.JobApplyActivity;
+import com.example.quickcash.Activities.SearchActivity;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.R;
 
@@ -19,9 +22,13 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
     List<Job> list = Collections.emptyList();
     Context context;
 
-    public SearchItemAdapter(List<Job> jobs, Context context) {
+    SearchActivity currActivity;
+
+
+    public SearchItemAdapter(List<Job> jobs, Context context, SearchActivity currActivity) {
         list = jobs;
         this.context = context;
+        this.currActivity = currActivity;
     }
 
     @NonNull
@@ -42,6 +49,15 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
         Job job = list.get(index);
         holder.titleView.setText(job.getTitle());
         holder.descView.setText(job.getDescription());
+        holder.viewMoreView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(currActivity, JobApplyActivity.class);
+                intent.putExtra("job", job);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                currActivity.startActivity(intent);
+            }
+        });
 
         switch (job.getJobType()) {
             case COOK:

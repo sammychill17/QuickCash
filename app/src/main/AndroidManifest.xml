@@ -49,6 +49,9 @@
         <activity
             android:name=".Activities.LocationActivity"
             android:exported="true"/>
+        <activity
+            android:name=".Activities.JobApplyActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="EmployeeJobApplyEspressoTest">
+        <State />
+      </entry>
       <entry key="EmployerDashboardEspressoTest">
         <State />
       </entry>
@@ -12,9 +15,6 @@
         <State />
       </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="checkIfPasswordIsValid()">
         <State />
       </entry>
       <entry key="testMyJobsButton()">
