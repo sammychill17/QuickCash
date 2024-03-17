@@ -2,6 +2,8 @@ package com.example.quickcash.Activities;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.SharedPreferences;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Filters.DateFilter;
 import com.example.quickcash.Objects.Filters.DistanceFilter;
 import com.example.quickcash.Objects.Filters.DurationFilter;
@@ -75,6 +78,19 @@ public class FilterActivity extends DialogFragment
         dateFilter = view.findViewById(R.id.dateFilter);
         distanceFilter = view.findViewById(R.id.distanceFilter);
         distanceValue = view.findViewById(R.id.distanceValue);
+
+        LocationTable locationTable = new LocationTable();
+        Context c = this.requireContext();
+        SharedPreferences sharedPrefs = c.getSharedPreferences("session_login", c.MODE_PRIVATE);
+        String userEmail = sharedPrefs.getString("email", "");
+
+        locationTable.retrieveLocationFromDatabase(userEmail, new LocationTable.OnLocationDataReceivedListener() {
+            @Override
+            public void onLocationDataReceived(UserLocation location) {
+                setUserLocation(location);
+            }
+        });
+
 
         // Set job type
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(

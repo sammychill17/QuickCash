@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
+import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.FirebaseStuff.FirebasePreferredJobsHelper;
 import com.example.quickcash.Objects.Filters.FilterHelper;
 import com.example.quickcash.Objects.Filters.IFilter;

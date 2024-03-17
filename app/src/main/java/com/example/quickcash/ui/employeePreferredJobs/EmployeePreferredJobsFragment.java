@@ -112,10 +112,14 @@ public class EmployeePreferredJobsFragment extends Fragment {
     method for listeners (back button and save preferences button)
      */
     private void setupListeners(View root) {
-        Button saveButton = root.findViewById(R.id.savePreferencesButton);
         Button backButton = root.findViewById(R.id.backButtonFromPreferences);
-        backButton.setOnClickListener(view -> getParentFragmentManager().popBackStack());
-        saveButton.setOnClickListener(view -> savePreferences());
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                savePreferences();
+                getParentFragmentManager().popBackStack();
+            }
+        });
     }
 
     /*
