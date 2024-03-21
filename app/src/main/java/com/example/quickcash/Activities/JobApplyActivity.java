@@ -137,7 +137,7 @@ public class JobApplyActivity extends AppCompatActivity {
     }
     public void applyJob() {
         /*
-        Retrieves the employer email from shared preferences
+        Retrieves the employee email from shared preferences
          */
         SharedPreferences sharedPrefs = getSharedPreferences("session_login", MODE_PRIVATE);
         String employeeEmail = sharedPrefs.getString("email", "");
@@ -151,11 +151,11 @@ public class JobApplyActivity extends AppCompatActivity {
 
         DatabaseReference applicationsRef = FirebaseDatabase.getInstance().getReference("Job Applicants");
 
+        applicationsRef.child(jobKey).child("key").setValue(jobKey);
         /*
         Store the applicant's email under the Applicants node below the job key
         and avoid duplicates
         */
-
 
         if(!jobApplicants.ifContainsApplicant(employeeEmail)) {
             jobApplicants.addApplicant(employeeEmail);
