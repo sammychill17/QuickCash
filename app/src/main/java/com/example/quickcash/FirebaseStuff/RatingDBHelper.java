@@ -9,6 +9,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * This class is designed to assist in the Reading of Ratings objects from the Database.
+ *
+ * It has one method, and all it does is retrieve the corresponding Ratings object associated with an employee.
+ */
 public class RatingDBHelper {
 
     FirebaseDatabase database;

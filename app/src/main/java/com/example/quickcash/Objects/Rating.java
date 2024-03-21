@@ -10,6 +10,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This data object class is designed to appear on the database, with one associated per Employee.
+ *
+ * Each Employee has their rating object updated when an Employer leaves a review.
+ *
+ * THey have a double for an Average Star Rating (based on the mean of the number of their individual reviews)
+ *
+ * It also has a list containing all associated reviews.
+ *
+ * It has an int representing the number of reviews (this should always be equal to reviewList.size() but never be compared directly.
+ *
+ * It uses a RatingCallback for future reference.
+ *
+ * It also has pushRatingToDB() function which can both add and update a given Ratings Object in the Database.
+ */
 public class Rating {
 
     private double averageStarRating;
