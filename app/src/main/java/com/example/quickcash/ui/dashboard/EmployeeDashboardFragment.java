@@ -28,12 +28,31 @@ public class EmployeeDashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final ImageView imageView = binding.mefragmentNatsu;
         SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         if (sp.contains("role") && ("Employer".equals(sp.getString("role", "error!")))) {
-                imageView.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.reisa_happy));
-
+            // I am an Employer
+            binding.title.setText("My Employees");
+            View.OnClickListener onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //
+                }
+            };
+            binding.meFragmentButton.setOnClickListener(onClickListener);
+            binding.title.setOnClickListener(onClickListener);
+        } else {
+            // I am an Employee
+            binding.title.setText("My Rating");
+            View.OnClickListener onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //
+                }
+            };
+            binding.meFragmentButton.setOnClickListener(onClickListener);
+            binding.title.setOnClickListener(onClickListener);
         }
+
         return root;
     }
 
