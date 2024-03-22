@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickcash.Activities.MyEmployeesActivity;
@@ -31,6 +29,12 @@ public class MyEmployeesAdapter extends RecyclerView.Adapter<MyEmployeesViewHold
     private Context context;
 
     private MyEmployeesActivity currActivity;
+
+    public MyEmployeesAdapter(List<Employee> employees, Context context, MyEmployeesActivity currActivity) {
+        list = employees;
+        this.context = context;
+        this.currActivity = currActivity;
+    }
 
     @NonNull
     @Override
