@@ -2,6 +2,7 @@ package com.example.quickcash;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
+import static com.google.android.gms.common.ConnectionResult.TIMEOUT;
 import static org.hamcrest.Matchers.describedAs;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
@@ -593,6 +594,69 @@ public class UIAutomatorTest  {
         marker.click();
         assertTrue(marker.exists());
     }
+
+    @Test
+    public void checkEmployeePaymentPageExists() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("employer@website.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+        UiObject myEmployeesButton = device.findObject(new UiSelector().textContains("My Employees"));
+        assertTrue(myEmployeesButton.exists());
+        myEmployeesButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject payButton = device.findObject(new UiSelector().textContains("Pay"));
+        assertTrue(payButton.exists());
+        payButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject payUsingPayPalButton = device.findObject(new UiSelector().textContains("Pay Using PayPal"));
+        assertTrue(payUsingPayPalButton.exists());
+    }
+    @Test
+    public void checkEmployerCanPayEmployee() throws UiObjectNotFoundException, InterruptedException{
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("employer@website.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
+        UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
+        assertTrue(dashboardPage.exists());
+        UiObject myEmployeesButton = device.findObject(new UiSelector().textContains("My Employees"));
+        assertTrue(myEmployeesButton.exists());
+        myEmployeesButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject payButton = device.findObject(new UiSelector().textContains("Pay"));
+        assertTrue(payButton.exists());
+        payButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject payUsingPayPalButton = device.findObject(new UiSelector().textContains("Pay Using PayPal"));
+        assertTrue(payUsingPayPalButton.exists());
+        UiObject amountField = device.findObject(new UiSelector().textContains("Enter amount"));
+        assertTrue(amountField.exists());
+        amountField.setText("60");
+        payUsingPayPalButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+    }
+
+
 
 
     /*
