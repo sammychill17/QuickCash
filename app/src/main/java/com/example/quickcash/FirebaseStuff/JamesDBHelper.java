@@ -1,37 +1,54 @@
 package com.example.quickcash.FirebaseStuff;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import com.example.quickcash.Objects.Employee;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobApplicants;
-import com.example.quickcash.R;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This class 'JamesDBHelper' is a DatabaseHelper function designed to query from multiple
+ * data objects in the database to get a set of all unique Employee objects who are
+ * applied to any and all jobs posted by the given employer email.
+ *
+ * This is used primarily and exclusively by the MyEmployeesActivity activity,
+ * and was made due to the high number of tasks required to retrieve this information.
+ *
+ * Due to the fact that Applicants and Employers are not stored together directly,
+ * in order to gather this information, the Posted Jobs table must be queried
+ * (using EmployerDBHelper) to get all associated jobs with an employer (this is jobList).
+ *
+ * Then, the job keys are extracted from the jobs (keyList) and used (via JobDBHelper) to gat a
+ * list of all JobApplicants objects for the associated jobs to the employer
+ * (this is applicantObjectList).
+ *
+ * Then, the emails of all unique applicants are gathered from those objects and are
+ * placed in a set of emails (this is emailList).
+ *
+ * Those emails are then used (by DatabaseScrounger) to get a list of Employee Objects
+ * that are associated with the unique email (this is the returnList).
+ *
+ * All of these lists are populated and callbacks are used with the runHelper() method.
+ *
+ *
+ * The name JamesDBHelper is a reference to James Gaultois, who was one of the developers for
+ * this application who had a penchant for creating DatabaseHelper and DatabaseScrounger classes.
+ *
+ * The majority of the ones used in this application were made and used by him.
+ */
 public class JamesDBHelper {
-
     String email;
-    EmployerDBHelper employerDBHelper = new EmployerDBHelper();
-
     ArrayList<Employee> returnList;
-
     Set<String> emailList = new HashSet<>();
-
     ArrayList<JobApplicants> applicantObjectList = new ArrayList<>();
-
     List<Job> jobList;
-
     ArrayList<String> keyList = new ArrayList<>();
     private int setApplicantsObjectListSemaphore = 0;
     private int setEmployeeObjectListSemaphore = 0;
-
     public JamesDBHelper(){
         email = "";
         returnList = new ArrayList<>();
@@ -163,7 +180,6 @@ public class JamesDBHelper {
                             public void onResult(List<Employee> list){
                                 callback.onResult(list);
                             }
-
                         });
                     }
                 });

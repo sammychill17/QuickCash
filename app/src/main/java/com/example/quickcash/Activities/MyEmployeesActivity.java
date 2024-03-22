@@ -50,7 +50,7 @@ public class MyEmployeesActivity extends AppCompatActivity {
 
         });
 
-        employees.add(new Employee("Loading", "Loading", "Loading", "Employee"));
+        employees.add(new Employee("Loading", "Loading", "Loading", "Loading"));
 
         recyclerView = (RecyclerView) findViewById(R.id.myEmployeeList);
         MyEmployeesAdapter adapter = new MyEmployeesAdapter(employees, getApplicationContext(), this);

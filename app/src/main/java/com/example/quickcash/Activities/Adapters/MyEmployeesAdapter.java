@@ -51,13 +51,15 @@ public class MyEmployeesAdapter extends RecyclerView.Adapter<MyEmployeesViewHold
     public void onBindViewHolder(@NonNull MyEmployeesViewHolder holder, int position) {
         holder.title.setText(list.get(position).getName());
 
-        holder.payButton.setOnClickListener(v -> {
+        if(!list.get(position).getRole().equals("Loading")) {
+            holder.payButton.setOnClickListener(v -> {
 
-        });
+            });
 
-        holder.rateButton.setOnClickListener(v -> {
+            holder.rateButton.setOnClickListener(v -> {
 
-        });
+            });
+        }
     }
 
     @Override
