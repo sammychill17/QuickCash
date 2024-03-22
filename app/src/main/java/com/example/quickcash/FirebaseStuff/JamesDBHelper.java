@@ -1,5 +1,6 @@
 package com.example.quickcash.FirebaseStuff;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.quickcash.Objects.Employee;
@@ -17,8 +18,6 @@ import java.util.Set;
 public class JamesDBHelper {
 
     String email;
-    FirebaseDatabase database;
-
     EmployerDBHelper employerDBHelper = new EmployerDBHelper();
 
     ArrayList<Employee> returnList;
@@ -27,14 +26,18 @@ public class JamesDBHelper {
 
     ArrayList<JobApplicants> applicantObjectList = new ArrayList<>();
 
+    List<Job> jobList;
+
+    ArrayList<String> keyList = new ArrayList<>();
+    private int setApplicantsObjectListSemaphore = 0;
+    private int setEmployeeObjectListSemaphore = 0;
+
     public JamesDBHelper(){
-        database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
         email = "";
         returnList = new ArrayList<>();
     }
 
     public JamesDBHelper(String email){
-        database = FirebaseDatabase.getInstance("https://quickcash-6941c-default-rtdb.firebaseio.com/");
         this.email = email;
         returnList = new ArrayList<>();
     }
@@ -48,11 +51,19 @@ public class JamesDBHelper {
     }
 
     public ArrayList<Employee> getReturnList() {
-        ArrayList<Job> jobList = new ArrayList<>();
+        return returnList;
+    }
+
+    public static class EmployerDBHelperCallback{
+        public void onResult(List<Job> jobs){}
+    }
+    public void setJobList(String email, EmployerDBHelperCallback callback) {
+        EmployerDBHelper employerDBHelper = new EmployerDBHelper();
         employerDBHelper.getJobsByEmployer(email, new EmployerDBHelper.JobObjectCallback() {
             @Override
             public void onJobsReceived(List<Job> jobs) {
-                jobList.addAll(jobs);
+                jobList = jobs;
+                callback.onResult(jobs);
             }
 
             @Override
@@ -60,46 +71,103 @@ public class JamesDBHelper {
 
             }
         });
+    }
 
+    public void setKeyList(){
+        keyList.clear();
+        for (Job job : jobList) {
+            keyList.add(job.getKey());
+        }
+    }
+
+    public static class JobDBHelperCallback{
+
+        public void onResult(List<JobApplicants> applicants){}
+
+    }
+    public void setApplicantObjectList(JobDBHelperCallback callback){
         JobDBHelper jobDBHelper = new JobDBHelper();
-
-        for (int i = 0; i < jobList.size(); i++) {
-            jobDBHelper.getApplicantsByKey(jobList.get(i).getKey(), new JobDBHelper.ApplicantsObjectCallback() {
+        setApplicantsObjectListSemaphore = keyList.size();
+        for (String key: keyList) {
+            jobDBHelper.getApplicantsByKey(key, new JobDBHelper.ApplicantsObjectCallback() {
                 @Override
                 public void onObjectReceived(JobApplicants object) {
                     applicantObjectList.add(object);
+                    setApplicantsObjectListSemaphore--;
+                    if (setApplicantsObjectListSemaphore == 0) {
+                        // Call callback
+                        callback.onResult(applicantObjectList);
+                    }
                 }
 
                 @Override
                 public void onError(DatabaseError error) {
+                    setApplicantsObjectListSemaphore--;
 
+                    if (setApplicantsObjectListSemaphore == 0) {
+                        // Call callback
+                        callback.onResult(applicantObjectList);
+                    }
                 }
             });
         }
+    }
 
-        for (int i = 0; i < applicantObjectList.size(); i++) {
-            emailList.addAll(applicantObjectList.get(i).getApplicants());
+    public void setEmailList(){
+        for(JobApplicants applicant : applicantObjectList) {
+            emailList.addAll(applicant.getApplicants());
         }
+    }
 
+    public static class DatabaseScroungerCallback{
+
+        public void onResult(List<Employee> list){}
+    }
+
+    public void setReturnList(DatabaseScroungerCallback callback){
         DatabaseScrounger dbScrounger = new DatabaseScrounger("Users");
-
-        Object[] emailArray = emailList.toArray();
-        for (int i = 0; i < emailList.size(); i++) {
-            String employeeEmail = (String) emailArray[i];
-            dbScrounger.getEmployeeByEmail(employeeEmail, new DatabaseScrounger.EmployeeCallback() {
+        setEmployeeObjectListSemaphore = emailList.size();
+        for(String email: emailList) {
+            dbScrounger.getEmployeeByEmail(email, new DatabaseScrounger.EmployeeCallback() {
                 @Override
                 public void onObjectReceived(Employee object) {
                     returnList.add(object);
+                    setEmployeeObjectListSemaphore--;
+                    if(setEmployeeObjectListSemaphore == 0){
+                        callback.onResult(returnList);
+                    }
                 }
 
                 @Override
                 public void onError(DatabaseError error) {
-
+                    setEmployeeObjectListSemaphore--;
+                    if(setEmployeeObjectListSemaphore == 0){
+                        callback.onResult(returnList);
+                    }
                 }
             });
         }
-
-        return returnList;
     }
 
+    public void runHelper(DatabaseScroungerCallback callback){
+        setJobList(email, new EmployerDBHelperCallback() {
+            @Override
+            public void onResult(List<Job> jobs) {
+                setKeyList();
+                setApplicantObjectList(new JobDBHelperCallback() {
+                    @Override
+                    public void onResult(List<JobApplicants> list) {
+                        setEmailList();
+                        setReturnList(new DatabaseScroungerCallback() {
+                            @Override
+                            public void onResult(List<Employee> list){
+                                callback.onResult(list);
+                            }
+
+                        });
+                    }
+                });
+            }
+        });
+    }
 }

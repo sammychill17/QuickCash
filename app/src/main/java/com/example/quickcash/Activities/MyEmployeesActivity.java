@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 
@@ -18,12 +19,13 @@ import com.example.quickcash.Objects.Employee;
 import com.example.quickcash.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyEmployeesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
-    private ArrayList<Employee> employees;
+    private List<Employee> employees = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,20 @@ public class MyEmployeesActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("session_login", MODE_PRIVATE);
         String userEmail = sp.getString("email", "");
         JamesDBHelper jamesDBHelper = new JamesDBHelper(userEmail);
-        employees = jamesDBHelper.getReturnList();
+
+        jamesDBHelper.runHelper(new JamesDBHelper.DatabaseScroungerCallback(){
+
+            @Override
+            public void onResult(List<Employee> list){
+                recyclerView.getAdapter().notifyItemRangeRemoved(0, employees.size());
+                employees.clear();
+                employees.addAll(list);
+                recyclerView.getAdapter().notifyItemRangeInserted(0, employees.size());
+            }
+
+        });
+
+        employees.add(new Employee("Loading", "Loading", "Loading", "Employee"));
 
         recyclerView = (RecyclerView) findViewById(R.id.myEmployeeList);
         MyEmployeesAdapter adapter = new MyEmployeesAdapter(employees, getApplicationContext(), this);
