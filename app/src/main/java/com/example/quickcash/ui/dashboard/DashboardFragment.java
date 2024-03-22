@@ -1,22 +1,22 @@
 package com.example.quickcash.ui.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.quickcash.Activities.MyEmployeesActivity;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentDashboardBinding;
 
-public class EmployeeDashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
 
@@ -35,7 +35,8 @@ public class EmployeeDashboardFragment extends Fragment {
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //
+                    Intent myEmployees = new Intent(requireContext(), MyEmployeesActivity.class);
+                    startActivity(myEmployees);
                 }
             };
             binding.meFragmentButton.setOnClickListener(onClickListener);
