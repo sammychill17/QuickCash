@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 
 import com.example.quickcash.Activities.Adapters.MyEmployeesAdapter;
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
+import com.example.quickcash.FirebaseStuff.JamesDBHelper;
 import com.example.quickcash.Objects.Employee;
 import com.example.quickcash.R;
 
@@ -30,17 +32,10 @@ public class MyEmployeesActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        employees = new ArrayList<Employee>();
-
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren1","Employee"));
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren2","Employee"));
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren3","Employee"));
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren4","Employee"));
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren5","Employee"));
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren6","Employee"));
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren7","Employee"));
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren8","Employee"));
-        employees.add(new Employee("email@email.email","madDog","Elizabeth Warren9","Employee"));
+        SharedPreferences sp = getSharedPreferences("session_login", MODE_PRIVATE);
+        String userEmail = sp.getString("email", "");
+        JamesDBHelper jamesDBHelper = new JamesDBHelper(userEmail);
+        employees = jamesDBHelper.getReturnList();
 
         recyclerView = (RecyclerView) findViewById(R.id.myEmployeeList);
         MyEmployeesAdapter adapter = new MyEmployeesAdapter(employees, getApplicationContext(), this);
