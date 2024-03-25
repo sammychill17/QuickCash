@@ -9,20 +9,25 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.quickcash.BusinessLogic.LoginHandler;
 import com.example.quickcash.BusinessLogic.LoginHandlerAdapter;
 import com.example.quickcash.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
     private String sessionID = "session_login";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences(sessionID, Context.MODE_PRIVATE);
+        FirebaseMessaging.getInstance().subscribeToTopic("Posted Jobs");
 
         Button gotologinbutton = (Button) findViewById(R.id.buttonGotoLogin);
         gotologinbutton.setOnClickListener(new View.OnClickListener() {
