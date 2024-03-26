@@ -2,6 +2,7 @@ package com.example.quickcash.Objects;
 
 import android.widget.Toast;
 
+import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.R;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,8 +33,6 @@ public class Rating {
     private List<Review> reviewList;
     private String employeeEmail;
     private int numReview;
-    private RatingCallback callback;
-
     public static class RatingCallback {
 
         public void onComplete(){}
@@ -44,7 +43,7 @@ public class Rating {
         averageStarRating = 0;
         reviewList = new ArrayList<>();
         employeeEmail = "";
-        numReview = 1;
+        numReview = 0;
     }
 
     public Rating(double totalStarRating, List<Review> reviewList, String employeeEmail, int numReview){
@@ -52,18 +51,6 @@ public class Rating {
         this.reviewList = reviewList;
         this.employeeEmail = employeeEmail;
         this.numReview = numReview;
-    }
-
-    public RatingCallback getCallback() {
-        return callback;
-    }
-
-    public void setCallback(RatingCallback callback) {
-        this.callback = callback;
-    }
-
-    public void clearCallback(){
-        this.callback = null;
     }
 
     public double getAverageStarRating() {
@@ -107,7 +94,7 @@ public class Rating {
 
     public void pushRatingToDB(RatingCallback callback){
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("Ratings");
-        db.child(employeeEmail).setValue(this, (databaseError, databaseReference) -> {
+        db.child(SanitizeEmail.sanitizeEmail(employeeEmail)).setValue(this, (databaseError, databaseReference) -> {
             if (databaseError == null) {
                 if(callback!=null) {
                     callback.onComplete();

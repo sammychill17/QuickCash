@@ -2,6 +2,7 @@ package com.example.quickcash.FirebaseStuff;
 
 import androidx.annotation.NonNull;
 
+import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.Objects.Rating;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,22 +25,21 @@ public class RatingDBHelper {
     }
 
     public static class onRatingReceivedCallback {
-        void onRatingReceived(Rating rating){}
-        void onError(DatabaseError error){}
+        public void onRatingReceived(Rating rating){}
+
+        public void onError(DatabaseError error){}
     }
 
     public void getRatingsByEmployee(String email, RatingDBHelper.onRatingReceivedCallback callback) {
-        ratingsReference = database.getReference("Ratings/"+email);
+        String sanitisedEmail = SanitizeEmail.sanitizeEmail(email);
+        ratingsReference = database.getReference("Ratings/"+sanitisedEmail);
         ratingsReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Rating rating = snapshot.getValue(Rating.class);
-                    if (rating != null && rating.getEmployeeEmail().equals(email)) {
-                        if(callback!=null) {
-                            callback.onRatingReceived(rating);
-                        }
-                        break;
+                Rating rating = dataSnapshot.getValue(Rating.class);
+                if (rating != null && rating.getEmployeeEmail().equals(email)) {
+                    if(callback!=null) {
+                        callback.onRatingReceived(rating);
                     }
                 }
             }

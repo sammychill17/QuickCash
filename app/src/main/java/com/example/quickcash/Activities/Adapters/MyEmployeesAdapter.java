@@ -1,6 +1,9 @@
 package com.example.quickcash.Activities.Adapters;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickcash.Activities.MyEmployeesActivity;
+import com.example.quickcash.Activities.RateEmployeeActivity;
 import com.example.quickcash.Activities.SearchActivity;
 import com.example.quickcash.Objects.Employee;
 import com.example.quickcash.Objects.Job;
@@ -57,7 +61,10 @@ public class MyEmployeesAdapter extends RecyclerView.Adapter<MyEmployeesViewHold
             });
 
             holder.rateButton.setOnClickListener(v -> {
-
+                Intent intent = new Intent(context, RateEmployeeActivity.class);
+                intent.putExtra("employee", list.get(position));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(context, intent, null);
             });
         }
     }

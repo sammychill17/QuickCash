@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Quickcash"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.RateEmployeeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.MyEmployeesActivity"
             android:exported="false" />
         <activity
