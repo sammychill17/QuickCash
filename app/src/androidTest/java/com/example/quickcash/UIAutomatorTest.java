@@ -594,6 +594,92 @@ public class UIAutomatorTest  {
         assertTrue(marker.exists());
     }
 
+    @Test
+    public void seeIfMyEmployeesButtonExists() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("parker@morrison.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(1000);
+        device.findObject(new UiSelector().textContains("Me")).click();
+        Thread.sleep(2000);
+        assertTrue(device.findObject(new UiSelector().textContains("My Employees")).exists());
+        assertFalse(device.findObject(new UiSelector().textContains("My Ratings")).exists());
+    }
+
+    @Test
+    public void seeIfMyRatingsButtonExists() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("employee@website.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(1000);
+        device.findObject(new UiSelector().textContains("Me")).click();
+        Thread.sleep(2000);
+        assertTrue(device.findObject(new UiSelector().textContains("My Ratings")).exists());
+        assertFalse(device.findObject(new UiSelector().textContains("My Employees")).exists());
+    }
+
+    @Test
+    public void seeIfMyEmployeesPageVisible() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("employer@website.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(4000);
+        device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
+        Thread.sleep(2000);
+        device.findObject(new UiSelector().textContains("My Employees")).click();
+        assertTrue(device.findObject(new UiSelector().textContains("Rate")).exists());
+    }
+
+    @Test
+    public void seeIfRatePageVisible() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("employer@website.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("password");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(4000);
+        device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
+        Thread.sleep(2000);
+        device.findObject(new UiSelector().textContains("My Employees")).click();
+        Thread.sleep(1000);
+        device.findObject(new UiSelector().textContains("Rate")).click();
+        Thread.sleep(1000);
+        assertTrue(device.findObject(new UiSelector().textContains("Rate this fool!")).exists());
+    }
 
     /*
     clicks the "While using the app" button of the location permissions system prompt
