@@ -2,6 +2,21 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="EmployeeJobApplyEspressoTest">
+        <State />
+      </entry>
+      <entry key="EmployerJobApplicantsEspressoTest">
+        <State />
+      </entry>
+      <entry key="LoginEspressoTest">
+        <State />
+      </entry>
+      <entry key="MainActivity">
+        <State />
+      </entry>
+      <entry key="Tests in 'com.example.quickcash'">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
