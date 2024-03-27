@@ -60,6 +60,7 @@ public class LocationActivity extends AppCompatActivity {
          */
         Intent intent = getIntent();
         userEmail = intent.getStringExtra(String.valueOf(R.string.user_email));
+        boolean autoLogin = intent.getBooleanExtra("autologin", false);
 
         /*
          checking for location permissions and requesting
@@ -77,6 +78,12 @@ public class LocationActivity extends AppCompatActivity {
 
 //        Intent main = new Intent(LocationActivity.this, MainActivity.class);
 //        startActivity(main);
+        if (autoLogin) {
+            // Bring you to the dashboard
+            Intent evilIntent = new Intent(getApplicationContext(), DashboardActivity.class);
+            evilIntent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+            startActivity(evilIntent);
+        }
         finish();
     }
 
