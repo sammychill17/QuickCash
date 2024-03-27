@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_employer"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.quickcash.ui.employerHome.EmployerHomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_employerhome" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.quickcash.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.quickcash.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/employerJobPageFragment"
+        android:name="com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment"
+        android:label="job_page"
+        tools:layout="@layout/fragment_employerjobpage"/>
+    <fragment
+        android:id="@+id/employerJobPageDestFragment"
+        android:name="com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment"
+        android:label="job_page"
+        tools:layout="@layout/fragment_employerjobpage"/>
+    <fragment
+        android:id="@+id/jobApplicantsDestFragment"
+        android:name="com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment"
+        android:label="job_applicants"
+        tools:layout="@layout/fragment_employerjobapplicants"/>
+    <fragment
+        android:id="@+id/jobApplicantsFragment"
+        android:name="com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment"
+        android:label="job_applicants"
+        tools:layout="@layout/fragment_employerjobapplicants"/>
+    <fragment
+        android:id="@+id/employerApplicantPageDestFragment"
+        android:name="com.example.quickcash.ui.employerApplicantPage.EmployerApplicantPageFragment"
+        android:label="job_applicants"
+        tools:layout="@layout/fragment_employerjobapplicantpage"/>
+    <fragment
+        android:id="@+id/employerJobPostFragment"
+        android:name="com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment"
+        android:label="job_post"
+        tools:layout="@layout/fragment_employerjobpost"/>
+    <fragment
+        android:id="@+id/employerJobListFragment"
+        android:name="com.example.quickcash.ui.employerJobList.EmployerJobListFragment"
+        android:label="job_list"
+        tools:layout="@layout/employer_job_item_list"/>
+</navigation>
