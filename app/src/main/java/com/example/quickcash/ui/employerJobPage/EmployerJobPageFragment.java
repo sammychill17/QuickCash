@@ -1,12 +1,9 @@
 package com.example.quickcash.ui.employerJobPage;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +20,11 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployerjobpageBinding;
-import com.example.quickcash.ui.employerHome.EmployerHomeFragment;
 import com.example.quickcash.ui.employerJobApplicants.JobApplicantsDirections;
 import com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -68,7 +63,7 @@ public class EmployerJobPageFragment extends Fragment{
         assert j != null;
         String salaryStr = jSalary.getText()+" $"+df.format(j.getSalary());
         String dateStr = jDate.getText()+" "+j.getDate().toString();
-        String employerEmail = j.getEmployer();
+        String employerEmail = j.getEmployerEmail();
         if (employerEmail.length() == 0) {
             SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
             employerEmail = sp.getString("email", "Error - cannot get email");

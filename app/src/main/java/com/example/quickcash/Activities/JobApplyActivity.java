@@ -8,37 +8,21 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.quickcash.FirebaseStuff.JobDBHelper;
-import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobApplicants;
-import com.example.quickcash.Objects.JobTypes;
 import com.example.quickcash.R;
-import com.example.quickcash.databinding.FragmentEmployerjobpageBinding;
-import com.example.quickcash.ui.employerJobApplicants.JobApplicantsDirections;
-import com.example.quickcash.ui.employerJobApplicants.JobApplicantsFragment;
-import com.example.quickcash.ui.employerJobPage.EmployerJobPageFragment;
-import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.time.Duration;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -82,7 +66,7 @@ public class JobApplyActivity extends AppCompatActivity {
         String salaryStr = jSalary.getText()+" $"+df.format(j.getSalary());
         String dateStr = jDate.getText()+" "+j.getDate().toString();
 
-        String employerEmail = j.getEmployer();
+        String employerEmail = j.getEmployerEmail();
         String employerStr = jEmployer.getText()+" "+employerEmail;
 
         jTitle.setText(j.getTitle());
