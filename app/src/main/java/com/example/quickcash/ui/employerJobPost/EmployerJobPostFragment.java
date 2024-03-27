@@ -192,9 +192,9 @@ public class EmployerJobPostFragment extends Fragment {
                             Toast.makeText(getContext(), getResources().getString(R.string.JOB_POSTING_FAILED), Toast.LENGTH_LONG).show();
                         }
                     });
-                    DatabaseReference applicantsRef = FirebaseDatabase.getInstance().getReference("Job Applicants").push();
+                    DatabaseReference applicantsRef = FirebaseDatabase.getInstance().getReference("Job Applicants/" + jobKey);
                     JobApplicants jobApp = new JobApplicants(jobKey);
-                    applicantsRef.child(jobKey).setValue(jobApp, (databaseError, databaseReference) -> {
+                    applicantsRef.setValue(jobApp, (databaseError, databaseReference) -> {
 
                         if(databaseError == null) {
                             /*
