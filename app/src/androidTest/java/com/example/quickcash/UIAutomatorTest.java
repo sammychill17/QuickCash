@@ -821,6 +821,27 @@ public class UIAutomatorTest  {
         assertTrue(feedbackText.exists());
     }
 
+    @Test
+    public void seeIfMyMoneyButtonVisible() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(4000);
+        device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
+        Thread.sleep(2000);
+        UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Money"));
+        assertTrue(myMoneyButton.exists());
+    }
+
     /*
     clicks the "While using the app" button of the location permissions system prompt
      */
@@ -829,6 +850,11 @@ public class UIAutomatorTest  {
         UiObject allowPermissions = device.findObject(new UiSelector().text("While using the app"));
         if (allowPermissions.exists()) {
             allowPermissions.click();
+        } else {
+            UiObject allowPermissionsKash = device.findObject(new UiSelector().text("Allow only while using the app"));
+            if (allowPermissionsKash.exists()) {
+                allowPermissionsKash.click();
+            }
         }
     }
 }
