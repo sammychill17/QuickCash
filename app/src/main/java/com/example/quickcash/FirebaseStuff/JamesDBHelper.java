@@ -132,7 +132,9 @@ public class JamesDBHelper {
 
     public void setEmailList(){
         for(JobApplicants applicant : applicantObjectList) {
-            emailList.addAll(applicant.getApplicants());
+            if(applicant!=null) {
+                emailList.addAll(applicant.getApplicants());
+            }
         }
     }
 
