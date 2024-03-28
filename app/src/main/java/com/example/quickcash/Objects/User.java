@@ -1,6 +1,9 @@
 package com.example.quickcash.Objects;
 import com.example.quickcash.FirebaseStuff.QuickCashDBObject;
-public class User extends QuickCashDBObject{
+
+import java.io.Serializable;
+
+public class User extends QuickCashDBObject implements Serializable {
     private String email;
     private String password;
     private String name;

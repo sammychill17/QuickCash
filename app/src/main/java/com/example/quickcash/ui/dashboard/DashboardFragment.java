@@ -1,22 +1,22 @@
 package com.example.quickcash.ui.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.quickcash.Activities.MyEmployeesActivity;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentDashboardBinding;
 
-public class EmployeeDashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
 
@@ -28,12 +28,32 @@ public class EmployeeDashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final ImageView imageView = binding.mefragmentNatsu;
         SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         if (sp.contains("role") && ("Employer".equals(sp.getString("role", "error!")))) {
-                imageView.setImageDrawable(AppCompatResources.getDrawable(requireContext(), R.drawable.reisa_happy));
-
+            // I am an Employer
+            binding.title.setText("My Employees");
+            View.OnClickListener onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent myEmployees = new Intent(requireContext(), MyEmployeesActivity.class);
+                    startActivity(myEmployees);
+                }
+            };
+            binding.meFragmentButton.setOnClickListener(onClickListener);
+            binding.title.setOnClickListener(onClickListener);
+        } else {
+            // I am an Employee
+            binding.title.setText("My Rating");
+            View.OnClickListener onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //
+                }
+            };
+            binding.meFragmentButton.setOnClickListener(onClickListener);
+            binding.title.setOnClickListener(onClickListener);
         }
+
         return root;
     }
 

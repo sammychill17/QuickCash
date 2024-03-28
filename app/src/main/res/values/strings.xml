@@ -22,6 +22,12 @@
     <string name="error_no_location_detected">No Location Detected</string>
     <string name="error_location_permission_required">Location permission is required to use this feature.</string>
     <string name="sessionData_spID">session_login</string>
+    <string name="payment_approved">Good News! Payment approved!</string>
+    <string name="payment_error">Bad News! An error occurred during payment confirmation!</string>
+    <string name="payment_canceled">Payment canceled by Employer!</string>
+    <string name="invalid_payment">Sorry! Invalid PayPal credentials!</string>
+    <string name="empty_amount">Amount cannot be empty! Please set an amount!</string>
+    <string name="employee_data_unavailable">Employee data is currently not available!</string>
     <string-array name="job_types_array">
         <item>ALL JOBS</item>
         <item>YARDWORK</item>

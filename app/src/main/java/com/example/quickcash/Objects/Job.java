@@ -1,7 +1,5 @@
 package com.example.quickcash.Objects;
 
-import android.location.Location;
-
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
@@ -158,7 +156,7 @@ public class Job implements Serializable {
         this.assignedToEmail = "";
     }
 
-    public String getEmployer() {
+    public String getEmployerEmail() {
         return employerEmail;
     }
 

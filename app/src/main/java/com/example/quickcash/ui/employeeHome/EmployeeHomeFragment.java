@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,8 @@ import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentEmployeehomeBinding;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Random;
 
 public class EmployeeHomeFragment extends Fragment {
 
@@ -36,6 +39,14 @@ public class EmployeeHomeFragment extends Fragment {
         binding = FragmentEmployeehomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+
+        ImageView logo = binding.makeMoneyButton;
+
+        Random random = new Random();
+        int funNum = random.nextInt(100);
+        if(funNum == 42){
+            logo.setImageResource(R.drawable.logo__quickkash);
+        }
 
         final String userEmail = sp.getString("email", "Error - cannot get email");
         final String userName = sp.getString("username", "Error - cannot get username");

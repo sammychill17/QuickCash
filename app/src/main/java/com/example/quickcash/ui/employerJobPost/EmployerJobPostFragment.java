@@ -3,11 +3,9 @@ package com.example.quickcash.ui.employerJobPost;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.quickcash.FirebaseStuff.LocationTable;
 import androidx.annotation.NonNull;
@@ -25,20 +22,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobApplicants;
 import com.example.quickcash.Objects.JobTypes;
-import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.databinding.FragmentEmployerjobpostBinding;
-import com.example.quickcash.ui.employerHome.EmployerHomeFragment;
-import com.example.quickcash.ui.employerJobPost.EmployerJobPostViewModel;
 import com.example.quickcash.R;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
@@ -190,6 +181,7 @@ public class EmployerJobPostFragment extends Fragment {
                     DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference("Posted Jobs").push();
                     String jobKey = jobRef.getKey();
                     newJob.setKey(jobKey);
+                    Log.d("Meow", "Job employer email is " + newJob.getEmployerEmail());
                     jobRef.setValue(newJob, (databaseError, databaseReference) -> {
                         /*
                          Checks if the job was successfully posted
@@ -200,9 +192,9 @@ public class EmployerJobPostFragment extends Fragment {
                             Toast.makeText(getContext(), getResources().getString(R.string.JOB_POSTING_FAILED), Toast.LENGTH_LONG).show();
                         }
                     });
-                    DatabaseReference applicantsRef = FirebaseDatabase.getInstance().getReference("Job Applicants").push();
+                    DatabaseReference applicantsRef = FirebaseDatabase.getInstance().getReference("Job Applicants/" + jobKey);
                     JobApplicants jobApp = new JobApplicants(jobKey);
-                    applicantsRef.child(jobKey).setValue(jobApp, (databaseError, databaseReference) -> {
+                    applicantsRef.setValue(jobApp, (databaseError, databaseReference) -> {
 
                         if(databaseError == null) {
                             /*

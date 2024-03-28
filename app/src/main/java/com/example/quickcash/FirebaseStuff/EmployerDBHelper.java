@@ -54,4 +54,30 @@ public class EmployerDBHelper {
             }
         });
     }
+
+    public interface SingleJobObjectCallback {
+        void onJobReceived(Job job);
+        void onError(DatabaseError error);
+    }
+
+    public void getJobByEmployer(String email, SingleJobObjectCallback callback) {
+        jobsReference.orderByChild("employerEmail").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Job job = new Job();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    job = snapshot.getValue(Job.class);
+                    if (job != null) {
+                        break;
+                    }
+                }
+                callback.onJobReceived(job);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onError(databaseError);
+            }
+        });
+    }
 }
