@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickcash.Activities.MyEmployeesActivity;
+import com.example.quickcash.Activities.PayEmployeeActivity;
 import com.example.quickcash.Activities.RateEmployeeActivity;
 import com.example.quickcash.Activities.SearchActivity;
 import com.example.quickcash.Objects.Employee;
@@ -56,15 +57,17 @@ public class MyEmployeesAdapter extends RecyclerView.Adapter<MyEmployeesViewHold
         holder.title.setText(list.get(position).getName());
 
         if(!list.get(position).getRole().equals("Loading")) {
-            holder.payButton.setOnClickListener(v -> {
-
-            });
-
             holder.rateButton.setOnClickListener(v -> {
                 Intent intent = new Intent(context, RateEmployeeActivity.class);
                 intent.putExtra("employee", list.get(position));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(context, intent, null);
+                context.startActivity(intent);
+            });
+            holder.payButton.setOnClickListener(v -> {
+                Intent payIntent = new Intent(context, PayEmployeeActivity.class);
+                payIntent.putExtra("employeeEmail", list.get(position));
+                payIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(payIntent);
             });
         }
     }
