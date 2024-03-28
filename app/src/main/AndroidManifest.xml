@@ -59,6 +59,9 @@
         <activity
             android:name=".Activities.JobApplyActivity"
             android:exported="true" />
+        <activity
+            android:name=".Activities.PayEmployeeActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

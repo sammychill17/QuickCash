@@ -67,6 +67,4 @@ public class MyEmployeesActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }
