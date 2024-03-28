@@ -37,4 +37,9 @@
         android:name="com.example.quickcash.ui.map.MapFragment"
         android:label="Map"
         tools:layout="@layout/fragment_employee_map_activity"/>
+    <fragment
+        android:id="@+id/employeeJobHistoryFragment"
+        android:name="com.example.quickcash.ui.employeeJobHistory.EmployeeJobHistoryFragment"
+        android:label="@string/title_jobhistory"
+        tools:layout="@layout/fragment_employeejobhistory"/>
 </navigation>

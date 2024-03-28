@@ -53,10 +53,8 @@ public class JobHistoryListEspressoTest {
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         Thread.sleep(1000);
         onView(withId(R.id.myJobHistoryButton)).perform(click());
-        onView(withId(R.id.jobHistoryList)).perform(actionOnItemAtPosition(0, CustomViewAction.
-                clickChildViewWithId(R.id.buttonTv)));
         Thread.sleep(1000);
-        onView(withId(R.id.employeeJobHistoryPageFragment)).check(matches(isDisplayed()));
+        onView(withId(R.id.employeeJobHistoryFragment)).check(matches(isDisplayed()));
         onView(withId(R.id.upcomingJobHeader)).check(matches(withText(
                 containsString("Upcoming Jobs"))));
         onView(withId(R.id.previousJobHeader)).check(matches(withText(
