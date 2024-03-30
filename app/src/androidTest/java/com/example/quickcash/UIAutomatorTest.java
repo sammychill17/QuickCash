@@ -2,6 +2,7 @@ package com.example.quickcash;
 
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.Matchers.describedAs;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
@@ -10,6 +11,8 @@ import static org.junit.Assert.assertTrue;
 
 import static java.lang.Thread.sleep;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,15 +38,19 @@ import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
+import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.JobTypeFilter;
+import com.example.quickcash.Objects.Job;
 import com.example.quickcash.Objects.JobTypes;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
@@ -594,6 +601,40 @@ public class UIAutomatorTest  {
         assertTrue(marker.exists());
     }
 
+    /*
+    currently checks if a push notification exists on the user's end
+     */
+    @Test
+    public void checkIfPushNotifIsDisplayed() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        allowPermissionsIfNeeded();
+        Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
+        LocationTable locationTable = new LocationTable();
+        locationTable.retrieveLocationFromDatabase("peterparker22@outlook.com", location -> {
+            if (location != null) {
+                double currentLatitude = location.getLatitude();
+                double currentLongitude = location.getLongitude();
+
+                Job newJob = new Job("Test Job", "desc", JobTypes.YARDWORK,
+                        500, Duration.ofHours(16), "parker@morrison.com",
+                        new Date(), currentLatitude, currentLongitude);
+
+                Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+                NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                assertEquals("Job Available Near You!", manager.getActiveNotifications()[0].getNotification().extras.getString(Notification.EXTRA_TEXT));
+            }
+        });
+    }
 
     /*
     clicks the "While using the app" button of the location permissions system prompt
