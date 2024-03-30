@@ -1,5 +1,6 @@
 package com.example.quickcash.BusinessLogic;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,10 +25,12 @@ import java.util.Map;
 
 public class PushNotifHandler extends AppCompatActivity {
 
+    private Context context;
     private RequestQueue requestQueue;
 
-    public PushNotifHandler() {
-        this.requestQueue = Volley.newRequestQueue(this);
+    public PushNotifHandler(Context context) {
+        this.context = context;
+        this.requestQueue = Volley.newRequestQueue(context.getApplicationContext());
     }
 
     public void sendNotification(String jobKey) {

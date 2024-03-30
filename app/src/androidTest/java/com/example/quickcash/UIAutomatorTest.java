@@ -650,10 +650,11 @@ public class UIAutomatorTest  {
 
                 });
 
-                PushNotifHandler pushNotifHandler = new PushNotifHandler();
+                Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+
+                PushNotifHandler pushNotifHandler = new PushNotifHandler(context);
                 pushNotifHandler.sendNotification(jobKey);
 
-                Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 assertEquals("Job Available Near You!", manager.getActiveNotifications()[0].getNotification().extras.getString(Notification.EXTRA_TEXT));
             }
