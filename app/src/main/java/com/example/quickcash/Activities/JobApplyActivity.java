@@ -63,10 +63,29 @@ public class JobApplyActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Job j = (Job) intent.getSerializableExtra("job");
+        String jid = (String) intent.getSerializableExtra("job_id");
+        final Job[] j = {new Job()};
+        if (jid != null && !jid.equals("")) {
+            JobDBHelper helper = new JobDBHelper();
+            helper.getJobByKey(jid, new JobDBHelper.JobObjectCallback() {
+                @Override
+                public void onObjectReceived(Job object) {
+                    if (object != null) {
+                        j[0] = object;
+                    }
+                }
 
-        assert j != null;
-        getApplicantsList(j);
+                @Override
+                public void onError(DatabaseError error) {
+                    Toast.makeText(c, getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + error.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
+            j[0] = (Job) intent.getSerializableExtra("job");
+        }
+
+        assert j[0] != null;
+        getApplicantsList(j[0]);
 
 
         TextView jTitle = findViewById(R.id.jobPageTitle);
@@ -78,32 +97,32 @@ public class JobApplyActivity extends AppCompatActivity {
         TextView jApplicant = findViewById(R.id.jobPageApplicant);
         TextView jDesc = findViewById(R.id.jobPageDesc);
 
-        assert j != null;
-        String salaryStr = jSalary.getText()+" $"+df.format(j.getSalary());
-        String dateStr = jDate.getText()+" "+j.getDate().toString();
+        assert j[0] != null;
+        String salaryStr = jSalary.getText()+" $"+df.format(j[0].getSalary());
+        String dateStr = jDate.getText()+" "+ j[0].getDate().toString();
 
-        String employerEmail = j.getEmployer();
+        String employerEmail = j[0].getEmployer();
         String employerStr = jEmployer.getText()+" "+employerEmail;
 
-        jTitle.setText(j.getTitle());
-        jJobType.setText("Job Type: "+j.getJobType().toString());
+        jTitle.setText(j[0].getTitle());
+        jJobType.setText("Job Type: "+ j[0].getJobType().toString());
         jSalary.setText(salaryStr);
         jDate.setText(dateStr);
         jEmployer.setText(employerStr);
-        if (j.getAssigneeEmail().equals("")) {
+        if (j[0].getAssigneeEmail().equals("")) {
             jApplicant.setText("No applicant chosen yet");
         } else {
-            String applicantStr = jApplicant.getText()+" "+j.getAssigneeEmail();
+            String applicantStr = jApplicant.getText()+" "+ j[0].getAssigneeEmail();
             jApplicant.setText(applicantStr);
         }
-        jDesc.setText(j.getDescription());
+        jDesc.setText(j[0].getDescription());
         String address = "";
         Geocoder geocoder;
         List<Address> addresses = null;
         Context c = this.getApplicationContext();
         geocoder = new Geocoder(c, Locale.getDefault());
-        double lat = j.getLatitude();
-        double lon = j.getLongitude();
+        double lat = j[0].getLatitude();
+        double lon = j[0].getLongitude();
         try {
             addresses = geocoder.getFromLocation(lat, lon, 1);
             if (addresses != null && addresses.size() > 0) {
@@ -181,7 +200,7 @@ public class JobApplyActivity extends AppCompatActivity {
 
             @Override
             public void onObjectReceived(JobApplicants object) {
-                if(object!=null){
+                if (object!=null) {
                     jobApplicants = object;
                 }
             }

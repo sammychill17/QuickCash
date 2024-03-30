@@ -47,18 +47,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         //getting the data
         final Map<String, String> data = message.getData();
-
         final String jobId = data.get("job_id");
-        final String jobLocation = data.get("jobLocation");
-
-        // dear god I need to change how this is handled asap (Parker M.)
 
         // Create an intent to start activity when the notification is clicked.
         Intent intent = new Intent(this, JobApplyActivity.class);
-        intent.putExtra("title", title);
-        intent.putExtra("body", body);
         intent.putExtra("job_id", jobId);
-        intent.putExtra("jobLocation", jobLocation);
         //based on the flag, the notification will be displayed
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 10, intent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
 
@@ -80,7 +73,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // If the build version is greater than, put the notification in a channel.
         //grouping the notifications
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("jobs", "jobs", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel("jobs", "Posted Jobs", NotificationManager.IMPORTANCE_HIGH);
             notificationManager.createNotificationChannel(channel);
         }
 
