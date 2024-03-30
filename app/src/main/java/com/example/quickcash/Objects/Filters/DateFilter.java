@@ -34,9 +34,13 @@ public class DateFilter implements IFilter{
     @Override
     public boolean shouldRetain(Job job) {
         Date localDate = (Date) date.clone();
-        localDate.setYear(localDate.getYear() - 1900);
+//        localDate.setYear(localDate.getYear() - 1900);
+        localDate.setHours(0);
+        localDate.setMinutes(0);
+        localDate.setSeconds(0);
+        long epochDifference = job.getDate().getTime() - localDate.getTime();
 
-        Log.d("DateFilter", "Job date is " + job.getDate() + ", filter target is " + localDate);
-        return (job.getDate().compareTo(localDate) >= 0);
+        Log.d("DateFilter", "Job date is " + job.getDate() + " (" + job.getDate().getTime() + "), filter target is " + localDate +" (" + localDate.getTime() + "), compareTo is " + epochDifference);
+        return (epochDifference >= 0);
     }
 }
