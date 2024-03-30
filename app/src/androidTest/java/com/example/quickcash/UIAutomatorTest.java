@@ -1,6 +1,8 @@
 package com.example.quickcash;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static androidx.test.uiautomator.By.res;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.Matchers.describedAs;
@@ -16,6 +18,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Build;
 import android.util.Log;
 import android.graphics.Rect;
@@ -67,6 +70,7 @@ public class UIAutomatorTest  {
     private static final int LAUNCH_TIMEOUT = 5000;
     final String launcherPackage = "com.example.quickcash";
     private UiDevice device;
+    private Resources res;
 
     @Before
     public void setup() {
@@ -77,6 +81,7 @@ public class UIAutomatorTest  {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         SharedPreferences sp = context.getSharedPreferences(context.getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         sp.edit().clear().commit();
+        res = getApplicationContext().getResources();
         final Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(launcherPackage);
         appIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(appIntent);
@@ -652,7 +657,9 @@ public class UIAutomatorTest  {
 
                 Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-                PushNotifHandler pushNotifHandler = new PushNotifHandler(context);
+                PushNotifHandler pushNotifHandler = new PushNotifHandler(context,
+                        res.getString(R.string.PUSH_NOTIFICATION_ENDPOINT),
+                        res.getString(R.string.FIREBASE_SERVER_KEY));
                 pushNotifHandler.sendNotification(jobKey);
 
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

@@ -219,7 +219,9 @@ public class EmployerJobPostFragment extends Fragment {
 
                     });
 
-                    PushNotifHandler pushNotifHandler = new PushNotifHandler(requireContext().getApplicationContext());
+                    PushNotifHandler pushNotifHandler = new PushNotifHandler(requireContext().getApplicationContext(),
+                            getResources().getString(R.string.PUSH_NOTIFICATION_ENDPOINT),
+                            getResources().getString(R.string.FIREBASE_SERVER_KEY));
                     pushNotifHandler.sendNotification(jobKey);
 
                 } else {

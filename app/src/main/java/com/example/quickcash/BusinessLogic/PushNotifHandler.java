@@ -27,9 +27,13 @@ public class PushNotifHandler extends AppCompatActivity {
 
     private Context context;
     private RequestQueue requestQueue;
+    private String pushNotificationEndpoint;
+    private String firebaseServerKey;
 
-    public PushNotifHandler(Context context) {
+    public PushNotifHandler(Context context, String pushNotificationEndpoint, String firebaseServerKey) {
         this.context = context;
+        this.pushNotificationEndpoint = pushNotificationEndpoint;
+        this.firebaseServerKey = firebaseServerKey;
         this.requestQueue = Volley.newRequestQueue(context.getApplicationContext());
     }
 
@@ -62,7 +66,7 @@ public class PushNotifHandler extends AppCompatActivity {
             //error listener
             Log.d("LOG", pushNotificationJSONBody.toString());
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
-                    getResources().getString(R.string.PUSH_NOTIFICATION_ENDPOINT),
+                    pushNotificationEndpoint,
                     pushNotificationJSONBody,
                     //lambda syntax
                     response ->
@@ -80,8 +84,7 @@ public class PushNotifHandler extends AppCompatActivity {
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> headers = new HashMap<>();
                     headers.put("Content-Type", "application/json");
-                    headers.put("Authorization", "Bearer " + getResources()
-                            .getString(R.string.FIREBASE_SERVER_KEY));
+                    headers.put("Authorization", "Bearer " + firebaseServerKey);
                     Log.d("headers", headers.toString());
                     return headers;
                 }
