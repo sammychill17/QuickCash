@@ -173,7 +173,7 @@ public class EmployerJobPostFragment extends Fragment {
                  a unique job key and the longitude, latitude of the employer
                  */
                 if (filledFieldsCount >= 2) {
-                    Job newJob = new Job(title, description, jobType, salaryNum, Duration.ofHours(durationLong), employerEmail, new Date(), currentLatitude, currentLongitude);
+                    Job newJob = new Job(title, description, jobType, salaryNum, Duration.ofHours(durationLong), employerEmail, selectedDate.getTime(), currentLatitude, currentLongitude);
 
                     /*
                      Saving the job to Firebase

@@ -163,7 +163,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
                                 // Creating a login handler to store stuff in shared preferences to simulate logging in through the Login page
                                 LoginHandler handler = new LoginHandler(getEmailAddress(), getPassword(), getApplicationContext(), null, null);
-                                handler.handleSpEvil();
+                                //handler.handleSpEvil();
 
                                 /*
                                 Transitioning to LocationActivity,
@@ -175,7 +175,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                                 passes the email to LocationActivity in the code line below.
                                  */
                                 intent.putExtra(String.valueOf(R.string.user_email), email);
-                                intent.putExtra("autologin", true);
+                                //intent.putExtra("autologin", true);
                                 startActivity(intent);
                             } else {
                                 setStatusMessage(getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + error.toString());

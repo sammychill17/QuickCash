@@ -143,11 +143,13 @@ public class Job implements Serializable {
         return assignedToEmail;
     }
 
+    public void setAssigneeEmail(String assigneeEmail) {
+        this.assignedToEmail = assigneeEmail;
+    }
+
     public void assignJob(String assignedToEmail) {
+        if (assignedToEmail.length() == 0) { return; }
         this.isAssigned = true;
-        if (assignedToEmail.equals("")) {
-            clearAssigned();
-        }
         this.assignedToEmail = assignedToEmail;
     }
 
