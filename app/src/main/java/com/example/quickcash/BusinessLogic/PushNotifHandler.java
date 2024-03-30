@@ -26,11 +26,11 @@ public class PushNotifHandler extends AppCompatActivity {
 
     private RequestQueue requestQueue;
 
-    public PushNotifHandler(RequestQueue rq) {
-        rq = Volley.newRequestQueue(this);
+    public PushNotifHandler() {
+        this.requestQueue = Volley.newRequestQueue(this);
     }
 
-    private void sendNotification() {
+    public void sendNotification(String jobKey) {
         //try catch block for JSON exception
         try {
             //the first json object - to
@@ -40,12 +40,11 @@ public class PushNotifHandler extends AppCompatActivity {
 
             // Create the data JSON object
             JSONObject dataJSONBody = new JSONObject();
-            dataJSONBody.put("jobLocation", "Halifax");
-            dataJSONBody.put("job_id", "HF-128369");
+            dataJSONBody.put("job_id", jobKey);
 
             // Create the message JSON object and attach notification and data
             JSONObject messageJSONBody = new JSONObject();
-            messageJSONBody.put("topic", "jobs");
+            messageJSONBody.put("topic", "Posted Jobs");
             messageJSONBody.put("notification", notificationJSONBody);
             messageJSONBody.put("data", dataJSONBody);
 
@@ -62,7 +61,7 @@ public class PushNotifHandler extends AppCompatActivity {
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
                     getResources().getString(R.string.PUSH_NOTIFICATION_ENDPOINT),
                     pushNotificationJSONBody,
-                    //lamda syntax
+                    //lambda syntax
                     response ->
                             Toast.makeText(getApplicationContext(),
                                     "Notification Sent",

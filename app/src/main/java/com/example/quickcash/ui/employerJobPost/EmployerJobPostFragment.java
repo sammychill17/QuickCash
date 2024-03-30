@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.quickcash.BusinessLogic.PushNotifHandler;
 import com.example.quickcash.FirebaseStuff.LocationTable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -204,7 +206,7 @@ public class EmployerJobPostFragment extends Fragment {
                     JobApplicants jobApp = new JobApplicants(jobKey);
                     applicantsRef.child(jobKey).setValue(jobApp, (databaseError, databaseReference) -> {
 
-                        if(databaseError == null) {
+                        if (databaseError == null) {
                             /*
                              Navigates back to the previous screen- employer home/dashboard page
                              */
@@ -216,6 +218,10 @@ public class EmployerJobPostFragment extends Fragment {
                         }
 
                     });
+
+                    PushNotifHandler pushNotifHandler = new PushNotifHandler();
+                    pushNotifHandler.sendNotification(jobKey);
+
                 } else {
                     Toast.makeText(getContext(), getResources().getString(R.string.LACK_OF_FILLED_FIELDS), Toast.LENGTH_LONG).show();
                 }

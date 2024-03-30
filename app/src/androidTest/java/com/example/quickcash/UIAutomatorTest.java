@@ -41,6 +41,7 @@ import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
+import com.example.quickcash.BusinessLogic.PushNotifHandler;
 import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.JobTypeFilter;
@@ -648,6 +649,9 @@ public class UIAutomatorTest  {
                 applicantsRef.child(jobKey).setValue(jobApp, (databaseError, databaseReference) -> {
 
                 });
+
+                PushNotifHandler pushNotifHandler = new PushNotifHandler();
+                pushNotifHandler.sendNotification(jobKey);
 
                 Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

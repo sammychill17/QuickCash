@@ -9,6 +9,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.example.quickcash.Activities.JobApplyActivity;
 import com.example.quickcash.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -53,37 +54,37 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // dear god I need to change how this is handled asap (Parker M.)
 
         // Create an intent to start activity when the notification is clicked.
-//        Intent intent = new Intent(this, ViewPushNotificationActivity.class);
-//        intent.putExtra("title", title);
-//        intent.putExtra("body", body);
-//        intent.putExtra("job_id", jobId);
-//        intent.putExtra("jobLocation", jobLocation);
-//        //based on the flag, the notification will be displayed
-//        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 10, intent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
-//
-//        // Create a notification that will be displayed in the notification tray.
-//        NotificationCompat.Builder notificationBuilder =
-//                new NotificationCompat.Builder(this, "jobs")
-//                        .setSmallIcon(R.drawable.best_logo_ever)
-//                        .setContentTitle(title)
-//                        .setContentText(body)
-//                        .setPriority(NotificationCompat.PRIORITY_HIGH);
-//
-//        // Add the intent to the notification.
-//        notificationBuilder.setContentIntent(pendingIntent);
-//
-//        // Notification manager to display the notification.
-//        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        int id = (int) System.currentTimeMillis();
-//
-//        // If the build version is greater than, put the notification in a channel.
-//        //grouping the notifications
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            NotificationChannel channel = new NotificationChannel("jobs", "jobs", NotificationManager.IMPORTANCE_HIGH);
-//            notificationManager.createNotificationChannel(channel);
-//        }
-//
-//        // Display the push notification.
-//        notificationManager.notify(id, notificationBuilder.build());
+        Intent intent = new Intent(this, JobApplyActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("body", body);
+        intent.putExtra("job_id", jobId);
+        intent.putExtra("jobLocation", jobLocation);
+        //based on the flag, the notification will be displayed
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 10, intent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
+
+        // Create a notification that will be displayed in the notification tray.
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, "jobs")
+                        .setSmallIcon(R.drawable.best_logo_ever)
+                        .setContentTitle(title)
+                        .setContentText(body)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        // Add the intent to the notification.
+        notificationBuilder.setContentIntent(pendingIntent);
+
+        // Notification manager to display the notification.
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        int id = (int) System.currentTimeMillis();
+
+        // If the build version is greater than, put the notification in a channel.
+        //grouping the notifications
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("jobs", "jobs", NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Display the push notification.
+        notificationManager.notify(id, notificationBuilder.build());
     }
 }
