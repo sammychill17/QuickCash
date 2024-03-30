@@ -25,8 +25,11 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -42,7 +45,11 @@ import com.example.quickcash.FirebaseStuff.LocationTable;
 import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.JobTypeFilter;
 import com.example.quickcash.Objects.Job;
+import com.example.quickcash.Objects.JobApplicants;
 import com.example.quickcash.Objects.JobTypes;
+import com.example.quickcash.ui.employerJobPost.EmployerJobPostFragment;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -628,6 +635,19 @@ public class UIAutomatorTest  {
                 Job newJob = new Job("Test Job", "desc", JobTypes.YARDWORK,
                         500, Duration.ofHours(16), "parker@morrison.com",
                         new Date(), currentLatitude, currentLongitude);
+
+                DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference("Posted Jobs").push();
+                String jobKey = jobRef.getKey();
+                newJob.setKey(jobKey);
+                jobRef.setValue(newJob, (databaseError, databaseReference) -> {
+
+                });
+                DatabaseReference applicantsRef = FirebaseDatabase.getInstance().getReference("Job Applicants").push();
+                JobApplicants jobApp = new JobApplicants(jobKey);
+                assert jobKey != null;
+                applicantsRef.child(jobKey).setValue(jobApp, (databaseError, databaseReference) -> {
+
+                });
 
                 Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
