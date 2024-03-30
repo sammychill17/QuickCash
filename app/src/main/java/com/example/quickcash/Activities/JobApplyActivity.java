@@ -66,8 +66,8 @@ public class JobApplyActivity extends AppCompatActivity {
         String jid = (String) intent.getSerializableExtra("job_id");
         final Job[] j = {new Job()};
         if (jid != null && !jid.equals("")) {
-            JobDBHelper helper = new JobDBHelper();
-            helper.getJobByKey(jid, new JobDBHelper.JobObjectCallback() {
+            JobDBHelper idHelper = new JobDBHelper();
+            idHelper.getJobByKey(jid, new JobDBHelper.JobObjectCallback() {
                 @Override
                 public void onObjectReceived(Job object) {
                     if (object != null) {
@@ -195,8 +195,8 @@ public class JobApplyActivity extends AppCompatActivity {
     }
 
     private void getApplicantsList(Job j){
-        JobDBHelper helper = new JobDBHelper();
-        helper.getApplicantsByKey(j.getKey(), new JobDBHelper.ApplicantsObjectCallback() {
+        JobDBHelper applicantsHelper = new JobDBHelper();
+        applicantsHelper.getApplicantsByKey(j.getKey(), new JobDBHelper.ApplicantsObjectCallback() {
 
             @Override
             public void onObjectReceived(JobApplicants object) {
