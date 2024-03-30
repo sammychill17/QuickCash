@@ -58,10 +58,10 @@ public class EmployerApplicantPageFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 job.assignJob(email);
-                DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference("Posted Jobs");
                 String jobKey = job.getKey();
+                DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference("Posted Jobs/"+jobKey);
                 job.setEmployerEmail(employerEmail);
-                jobRef.child(jobKey).setValue(job);
+                jobRef.setValue(job);
                 getParentFragmentManager().popBackStack();
             }
         });

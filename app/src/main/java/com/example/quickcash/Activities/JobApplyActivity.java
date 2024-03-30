@@ -109,12 +109,14 @@ public class JobApplyActivity extends AppCompatActivity {
                 finish();
             }
         });
-        Button applyButton = findViewById(R.id.applyButton);
 
+        Button applyButton = findViewById(R.id.applyButton);
+        applyButton.setEnabled(j.isAssigned());
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            applyJob();
+                applyJob();
+                applyButton.setEnabled(false);
             }
         });
 
