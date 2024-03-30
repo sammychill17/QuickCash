@@ -45,6 +45,12 @@ public class MyEmployeesActivity extends AppCompatActivity {
                 recyclerView.getAdapter().notifyItemRangeRemoved(0, employees.size());
                 employees.clear();
                 employees.addAll(list);
+                for (int i = 0; i < employees.size(); i++) {
+                    if(employees.get(i)==null){
+                        employees.remove(i);
+                        i--;
+                    }
+                }
                 recyclerView.getAdapter().notifyItemRangeInserted(0, employees.size());
             }
 
@@ -67,6 +73,4 @@ public class MyEmployeesActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

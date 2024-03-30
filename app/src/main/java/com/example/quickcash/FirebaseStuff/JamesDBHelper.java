@@ -46,8 +46,7 @@ public class JamesDBHelper {
     Set<String> emailList = new HashSet<>();
     ArrayList<JobApplicants> applicantObjectList = new ArrayList<>();
     List<Job> jobList;
-    ArrayList<String> keyList = new ArrayList<>();
-    private int setApplicantsObjectListSemaphore = 0;
+    ArrayList<String> chosenApplicantList = new ArrayList<>();
     private int setEmployeeObjectListSemaphore = 0;
     public JamesDBHelper(){
         email = "";
@@ -90,49 +89,18 @@ public class JamesDBHelper {
         });
     }
 
-    public void setKeyList(){
-        keyList.clear();
+    public void setChosenApplicantList(){
+        chosenApplicantList.clear();
         for (Job job : jobList) {
-            keyList.add(job.getKey());
-        }
-    }
-
-    public static class JobDBHelperCallback{
-
-        public void onResult(List<JobApplicants> applicants){}
-
-    }
-    public void setApplicantObjectList(JobDBHelperCallback callback){
-        JobDBHelper jobDBHelper = new JobDBHelper();
-        setApplicantsObjectListSemaphore = keyList.size();
-        for (String key: keyList) {
-            jobDBHelper.getApplicantsByKey(key, new JobDBHelper.ApplicantsObjectCallback() {
-                @Override
-                public void onObjectReceived(JobApplicants object) {
-                    applicantObjectList.add(object);
-                    setApplicantsObjectListSemaphore--;
-                    if (setApplicantsObjectListSemaphore == 0) {
-                        // Call callback
-                        callback.onResult(applicantObjectList);
-                    }
-                }
-
-                @Override
-                public void onError(DatabaseError error) {
-                    setApplicantsObjectListSemaphore--;
-
-                    if (setApplicantsObjectListSemaphore == 0) {
-                        // Call callback
-                        callback.onResult(applicantObjectList);
-                    }
-                }
-            });
+            chosenApplicantList.add(job.getAssigneeEmail());
         }
     }
 
     public void setEmailList(){
-        for(JobApplicants applicant : applicantObjectList) {
-            emailList.addAll(applicant.getApplicants());
+        for(String applicant : chosenApplicantList) {
+            if(applicant!=null) {
+                emailList.add(applicant);
+            }
         }
     }
 
@@ -142,6 +110,7 @@ public class JamesDBHelper {
     }
 
     public void setReturnList(DatabaseScroungerCallback callback){
+        returnList.clear();
         DatabaseScrounger dbScrounger = new DatabaseScrounger("Users");
         setEmployeeObjectListSemaphore = emailList.size();
         for(String email: emailList) {
@@ -170,17 +139,12 @@ public class JamesDBHelper {
         setJobList(email, new EmployerDBHelperCallback() {
             @Override
             public void onResult(List<Job> jobs) {
-                setKeyList();
-                setApplicantObjectList(new JobDBHelperCallback() {
+                setChosenApplicantList();
+                setEmailList();
+                setReturnList(new DatabaseScroungerCallback() {
                     @Override
-                    public void onResult(List<JobApplicants> list) {
-                        setEmailList();
-                        setReturnList(new DatabaseScroungerCallback() {
-                            @Override
-                            public void onResult(List<Employee> list){
-                                callback.onResult(list);
-                            }
-                        });
+                    public void onResult(List<Employee> list){
+                        callback.onResult(list);
                     }
                 });
             }
