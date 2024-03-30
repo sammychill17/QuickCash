@@ -200,7 +200,7 @@ public class JobApplyActivity extends AppCompatActivity {
 
             @Override
             public void onObjectReceived(JobApplicants object) {
-                if (object!=null) {
+                if (object != null) {
                     jobApplicants = object;
                 }
             }
