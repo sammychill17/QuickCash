@@ -1,6 +1,7 @@
 package com.example.quickcash.BusinessLogic;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,6 +13,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.quickcash.Activities.MainActivity;
+import com.example.quickcash.FirebaseStuff.LocationTable;
+import com.example.quickcash.Objects.Filters.DistanceFilter;
+import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.R;
 
 import org.json.JSONException;
@@ -29,6 +33,7 @@ public class PushNotifHandler extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String pushNotificationEndpoint;
     private String firebaseServerKey;
+    private UserLocation userLocation;
 
     public PushNotifHandler(Context context, String pushNotificationEndpoint, String firebaseServerKey) {
         this.context = context;
@@ -37,7 +42,7 @@ public class PushNotifHandler extends AppCompatActivity {
         this.requestQueue = Volley.newRequestQueue(context.getApplicationContext());
     }
 
-    public void sendNotification(String jobKey) {
+    public void sendNotification(String jobKey, Double jobLat, Double jobLong) {
         //try catch block for JSON exception
         try {
             //the first json object - to
@@ -48,6 +53,8 @@ public class PushNotifHandler extends AppCompatActivity {
             // Create the data JSON object
             JSONObject dataJSONBody = new JSONObject();
             dataJSONBody.put("job_id", jobKey);
+            dataJSONBody.put("job_lat", jobLat);
+            dataJSONBody.put("job_long", jobLong);
 
             // Create the message JSON object and attach notification and data
             JSONObject messageJSONBody = new JSONObject();
@@ -95,5 +102,34 @@ public class PushNotifHandler extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+    }
+
+    /*
+        this method gets a reference to the current user's location by way of the location table
+        (which uses email as a unique identifier), then compares it to the job's location
+        if it is less than or equal to 5 kilometres in distance, it is within range
+        otherwise it is NOT within range
+     */
+    private boolean isWithinRange(Double jobLat, Double jobLong) {
+        Context c = getApplicationContext();
+        SharedPreferences sharedPrefs = c.getSharedPreferences("session_login", MODE_PRIVATE);
+
+        LocationTable locationTable = new LocationTable();
+        String userEmail = sharedPrefs.getString("email", "");
+
+        locationTable.retrieveLocationFromDatabase(userEmail, new LocationTable.OnLocationDataReceivedListener() {
+            @Override
+            public void onLocationDataReceived(UserLocation location) {
+                userLocation = location;
+            }
+        });
+
+        DistanceFilter distanceFilter = new DistanceFilter();
+        distanceFilter.setValue(5);
+
+        double comp = (double) distanceFilter.getValue();
+        double diff = distanceFilter.getDistanceFromLatLonInKm(jobLat, jobLong,
+                userLocation.getLatitude(), userLocation.getLongitude());
+        return ((diff) <= comp);
     }
 }
