@@ -36,6 +36,8 @@ import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import androidx.test.uiautomator.Until;
 
+import com.github.mikephil.charting.charts.LineChart;
+
 import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.JobTypeFilter;
 import com.example.quickcash.Objects.JobTypes;
@@ -115,5 +117,31 @@ public class VisualizationUITest {
         Thread.sleep(2000);
         UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Money"));
         assertFalse(myMoneyButton.exists());
+    }
+
+    @Test
+    public void checkIfChartExists() throws UiObjectNotFoundException, InterruptedException {
+        UiObject loginButton = device.findObject(new UiSelector().textContains("LOG IN"));
+        loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        UiObject loginLabel = device.findObject(new UiSelector().textContains("Log in!"));
+        assertTrue(loginLabel.exists());
+        UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
+        assertTrue(passwordBox.exists());
+        passwordBox.setText("iamspiderman");
+        UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
+        assertTrue(emailIDBox.exists());
+        emailIDBox.setText("peterparker22@outlook.com");
+        UiObject anotherLoginButton = device.findObject(new UiSelector().className(Button.class));
+        assertTrue(anotherLoginButton.exists());
+        anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        permissionHandler.allowPermissionsIfNeeded();
+        Thread.sleep(4000); // Give me some time to click manually if it cant click automatically
+        device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
+        Thread.sleep(2000);
+        UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Money"));
+        myMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+
+        UiObject lineGraph = device.findObject(new UiSelector().className(LineChart.class));
+        assertTrue(lineGraph.exists());
     }
 }
