@@ -1,5 +1,7 @@
 package com.example.quickcash.BusinessLogic;
 
+
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -22,73 +24,54 @@ import java.util.Map;
 //code lifted from Usmi Mukherjee's Tutorial 10 repo (for now):
 //https://git.cs.dal.ca/umukherjee/csci3130_push_notifications/-/tree/main
 
-public class PushNotifHandler extends AppCompatActivity {
+public class PushNotifHandler {
 
     private RequestQueue requestQueue;
+    private Context context;
 
-    public PushNotifHandler(RequestQueue rq) {
-        rq = Volley.newRequestQueue(this);
+    public PushNotifHandler(Context context) {
+        this.requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+    }
+    public JSONObject createNotificationJSON() throws JSONException {
+        JSONObject notificationJSONBody = new JSONObject();
+        notificationJSONBody.put("title", "Job Available Near You!");
+        notificationJSONBody.put("body", "A new job has been posted in your area.");
+
+        JSONObject dataJSONBody = new JSONObject();
+        dataJSONBody.put("jobLocation", "Halifax");
+        dataJSONBody.put("job_id", "HF-128369");
+
+        /*
+         this creates the final JSON object that includes both notification content and data
+         */
+        JSONObject finalJSONBody = new JSONObject();
+        finalJSONBody.put("notification", notificationJSONBody);
+        finalJSONBody.put("data", dataJSONBody);
+        finalJSONBody.put("to", "topic"); //change the topic if you have to
+
+        return finalJSONBody;
     }
 
-    private void sendNotification() {
-        //try catch block for JSON exception
-        try {
-            //the first json object - to
-            JSONObject notificationJSONBody = new JSONObject();
-            notificationJSONBody.put("title", "Job Available Near You!");
-            notificationJSONBody.put("body", "A new job has been posted in your area.");
 
-            // Create the data JSON object
-            JSONObject dataJSONBody = new JSONObject();
-            dataJSONBody.put("jobLocation", "Halifax");
-            dataJSONBody.put("job_id", "HF-128369");
+    public void sendNotification(JSONObject notificationJSON) {
+        String fcmApiUrl = context.getString(R.string.PUSH_NOTIFICATION_ENDPOINT);
 
-            // Create the message JSON object and attach notification and data
-            JSONObject messageJSONBody = new JSONObject();
-            messageJSONBody.put("topic", "jobs");
-            messageJSONBody.put("notification", notificationJSONBody);
-            messageJSONBody.put("data", dataJSONBody);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fcmApiUrl, notificationJSON,
+                response -> {
+                    Log.d("PushNotifHandler", "Notification sent successfully. YAY");
+                },
+                error -> {
+                    Log.e("PushNotifHandler", "Error sending notification. SADGE");
+                }) {
 
-            // Create the final push notification JSON object and attach the message
-            JSONObject pushNotificationJSONBody = new JSONObject();
-            pushNotificationJSONBody.put("message", messageJSONBody);
-            //parameters sent in the request:
-            //type of request - post- sending data to firebase
-            //url - push notification endpoint
-            //data - body of the notification
-            //toast message
-            //error listener
-            Log.d("LOG", pushNotificationJSONBody.toString());
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
-                    getResources().getString(R.string.PUSH_NOTIFICATION_ENDPOINT),
-                    pushNotificationJSONBody,
-                    //lamda syntax
-                    response ->
-                            Toast.makeText(getApplicationContext(),
-                                    "Notification Sent",
-                                    Toast.LENGTH_SHORT).show(),
-                    //method reference
-                    Throwable::printStackTrace) {
-
-                //adding the header to the endpoint
-                //parameters used:
-                //type of data
-                //using the bearer token for authentication of the network request
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json");
-                    headers.put("Authorization", "Bearer " + getResources()
-                            .getString(R.string.FIREBASE_SERVER_KEY));
-                    Log.d("headers", headers.toString());
-                    return headers;
-                }
-            };
-            //add the request to the queue
-            requestQueue.add(request);
-        } catch (JSONException e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "key=" + context.getString(R.string.FIREBASE_SERVER_KEY));
+                return headers;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
     }
 }
