@@ -54,7 +54,7 @@ public class DistanceFilter implements IFilter{
         return ((jobDistance) <= doubleDistance);
     }
 
-    private double getDistanceFromLatLonInKm(double lat1, double lon1, double lat2, double lon2) {
+    public double getDistanceFromLatLonInKm(double lat1, double lon1, double lat2, double lon2) {
         int earthRadius = 6371;
         double dLat = deg2rad(lat2-lat1);
         double dLon = deg2rad(lon2-lon1);
