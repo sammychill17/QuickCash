@@ -4,11 +4,16 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.example.quickcash.Activities.JobApplyActivity;
+import com.example.quickcash.Activities.MainActivity;
+import com.example.quickcash.BusinessLogic.PushNotifHandler;
+import com.example.quickcash.Objects.UserLocation;
 import com.example.quickcash.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -22,68 +27,94 @@ import java.util.Map;
 //firebase messaging service from the build.gradle file
 //runs in the background
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+/*
+hopefully this foundation of code works for our cause
+ */
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-    //creating a token, registering with the firebase messaging service
+    private FirebasePreferredJobsHelper preferredJobsHelper;
+    private LocationTable locationTable;
+    private PushNotifHandler pushNotifHandler;
+
     @Override
-    public void onNewToken(@NonNull String token) {
-        super.onNewToken(token);
+    public void onCreate() {
+        super.onCreate();
+        preferredJobsHelper = new FirebasePreferredJobsHelper();
+        locationTable = new LocationTable();
+        pushNotifHandler = new PushNotifHandler(this);
     }
 
-    //main method
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
-        super.onMessageReceived(message);
-
-        // If the notification message received is null, return. safety check
-        if (message.getNotification() == null) {
+        /*
+         this exits early if the message doesn't contain data payload
+         */
+        if (message.getData().isEmpty()) {
             return;
         }
 
-        // Extract fields from the notification message.
-        final String title = message.getNotification().getTitle();
-        final String body = message.getNotification().getBody();
+        String jobType = message.getData().get("job_type");
+        String jobLocation = message.getData().get("job_location");
 
-        //getting the data
-        final Map<String, String> data = message.getData();
+        /*
+         this exits if jobType or jobLocation are missing in the data payload
+         */
+        if (jobType == null || jobLocation == null) {
+            return;
+        }
 
-        final String jobId = data.get("job_id");
-        final String jobLocation = data.get("jobLocation");
+        /*
+         this retrieves the user's email from SharedPreferences (check getEmail method below)
+         */
+        String userEmail = getEmployeeEmail();
+        if (userEmail == null) return;
 
-        // dear god I need to change how this is handled asap (Parker M.)
+        /*
+         this retrieves preferred jobs and user location
+         to decide whether to show the notification
+         */
+        preferredJobsHelper.retrievePreferredJobs(userEmail, preferredJobs -> {
+            if (preferredJobs.contains(jobType)) {
+                locationTable.retrieveLocationFromDatabase(userEmail, userLocation -> {
+                    if (isWithinRange(userLocation, jobLocation)) {
+                        String title = "New Job Posted in Your Preferred Category";
+                        String body = "A new " + jobType + " job is available near you. Check it out now!";
+                        try {
+                            /*
+                             creates and send the notification
+                             */
+                            JSONObject notificationJSON = pushNotifHandler.createNotificationJSON();
+                            pushNotifHandler.sendNotification(notificationJSON);
+                        } catch (JSONException e) {
+                            Log.e("MyFirebaseMessagingService", "Error creating notification JSON", e);
+                        }
+                    }
+                });
+            }
+        });
+    }
 
-        // Create an intent to start activity when the notification is clicked.
-//        Intent intent = new Intent(this, ViewPushNotificationActivity.class);
-//        intent.putExtra("title", title);
-//        intent.putExtra("body", body);
-//        intent.putExtra("job_id", jobId);
-//        intent.putExtra("jobLocation", jobLocation);
-//        //based on the flag, the notification will be displayed
-//        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 10, intent,  PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
-//
-//        // Create a notification that will be displayed in the notification tray.
-//        NotificationCompat.Builder notificationBuilder =
-//                new NotificationCompat.Builder(this, "jobs")
-//                        .setSmallIcon(R.drawable.best_logo_ever)
-//                        .setContentTitle(title)
-//                        .setContentText(body)
-//                        .setPriority(NotificationCompat.PRIORITY_HIGH);
-//
-//        // Add the intent to the notification.
-//        notificationBuilder.setContentIntent(pendingIntent);
-//
-//        // Notification manager to display the notification.
-//        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        int id = (int) System.currentTimeMillis();
-//
-//        // If the build version is greater than, put the notification in a channel.
-//        //grouping the notifications
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            NotificationChannel channel = new NotificationChannel("jobs", "jobs", NotificationManager.IMPORTANCE_HIGH);
-//            notificationManager.createNotificationChannel(channel);
-//        }
-//
-//        // Display the push notification.
-//        notificationManager.notify(id, notificationBuilder.build());
+    private String getEmployeeEmail() {
+        SharedPreferences prefs = getSharedPreferences("app_preferences", MODE_PRIVATE);
+        return prefs.getString("session_login", null);
+    }
+
+    private boolean isWithinRange(UserLocation userLocation, String jobLocation) {
+        // TODO: Implement the logic to check if the job location is within the user's preferred range
+        return true;
     }
 }
+
