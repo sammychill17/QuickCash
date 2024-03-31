@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.test.espresso.matcher.ViewMatchers;
 
 import com.example.quickcash.Activities.MyEmployeesActivity;
+import com.example.quickcash.Activities.MyMoneyActivity;
 import com.example.quickcash.R;
 import com.example.quickcash.databinding.FragmentDashboardBinding;
 
@@ -43,6 +44,7 @@ public class DashboardFragment extends Fragment {
             binding.meFragmentButton.setOnClickListener(onClickListener);
             binding.title.setOnClickListener(onClickListener);
             binding.employeeHistoryCardView.setVisibility(View.GONE);
+            binding.myMoneyButton.setOnClickListener(null);
         } else {
             // I am an Employee
             binding.title.setText("My Rating");
@@ -55,6 +57,13 @@ public class DashboardFragment extends Fragment {
             binding.meFragmentButton.setOnClickListener(onClickListener);
             binding.title.setOnClickListener(onClickListener);
             binding.employeeHistoryCardView.setVisibility(View.VISIBLE);
+            binding.myMoneyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent evilIntent = new Intent(requireContext(), MyMoneyActivity.class);
+                    startActivity(evilIntent);
+                }
+            });
         }
 
         return root;
