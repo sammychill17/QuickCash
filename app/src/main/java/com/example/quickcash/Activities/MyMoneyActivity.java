@@ -195,7 +195,7 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         for (int i = 0; i < count; i++) {
 
             float val = (float) (Math.random() * range) - 30;
-            values.add(new Entry(i, val, getResources().getDrawable(R.drawable.best_logo_ever)));
+            values.add(new Entry(i, val, getResources().getDrawable(R.drawable.icon_menhera_view)));
         }
 
         LineDataSet set1;
@@ -250,7 +250,7 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
             // set color of filled area
             if (Utils.getSDKInt() >= 18) {
                 // drawables only supported on api level 18 and above
-                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.icon_menhera_view);
+                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.best_logo_ever);
                 set1.setFillDrawable(drawable);
             } else {
                 set1.setFillColor(Color.BLACK);

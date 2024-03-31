@@ -34,6 +34,7 @@ public class DashboardFragment extends Fragment {
         if (sp.contains("role") && ("Employer".equals(sp.getString("role", "error!")))) {
             // I am an Employer
             binding.title.setText("My Employees");
+            binding.meFragmentButton.setImageResource(R.drawable.icon_comic_4);
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -48,6 +49,7 @@ public class DashboardFragment extends Fragment {
         } else {
             // I am an Employee
             binding.title.setText("My Rating");
+            binding.meFragmentButton.setImageResource(R.drawable.icon_comic_1);
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
