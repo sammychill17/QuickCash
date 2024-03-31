@@ -62,7 +62,7 @@ public class RatingsActivityUITest {
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
         assertTrue(device.findObject(new UiSelector().textContains("My Employees")).exists());
-        assertFalse(device.findObject(new UiSelector().textContains("My Ratings")).exists());
+        assertFalse(device.findObject(new UiSelector().textContains("My Rating")).exists());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class RatingsActivityUITest {
         device.findObject(new UiSelector().textContains("Me")).click();
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
-        assertTrue(device.findObject(new UiSelector().textContains("My Ratings")).exists());
+        assertTrue(device.findObject(new UiSelector().textContains("My Rating")).exists());
         assertFalse(device.findObject(new UiSelector().textContains("My Employees")).exists());
     }
 
@@ -114,7 +114,7 @@ public class RatingsActivityUITest {
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("employer@website.com");
+        emailIDBox.setText("parker@morrison.com");
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
         passwordBox.setText("password");

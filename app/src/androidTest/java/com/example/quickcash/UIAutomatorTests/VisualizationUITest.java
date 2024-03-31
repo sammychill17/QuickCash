@@ -89,6 +89,7 @@ public class VisualizationUITest {
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(2000); // Give me some time to click manually if it cant click automatically
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
+        Thread.sleep(2000);
         UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Money"));
         assertTrue(myMoneyButton.exists());
     }
@@ -111,6 +112,7 @@ public class VisualizationUITest {
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(2000); // Give me some time to click manually if it cant click automatically
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
+        Thread.sleep(2000);
         UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Money"));
         assertFalse(myMoneyButton.exists());
     }
