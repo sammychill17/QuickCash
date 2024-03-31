@@ -3,16 +3,22 @@ package com.example.quickcash.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.test.espresso.remote.EspressoRemoteMessage;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.quickcash.FirebaseStuff.PaymentsDBHelper;
+import com.example.quickcash.Objects.PaymentInfo;
 import com.example.quickcash.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -28,8 +34,11 @@ import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Utils;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
         OnChartValueSelectedListener {
@@ -37,6 +46,8 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
     private LineChart chart;
     private SeekBar seekBarX, seekBarY;
     private TextView tvX, tvY;
+
+    private List<PaymentInfo> paymentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +57,21 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         Toolbar myToolbar = (Toolbar) findViewById(R.id.our_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        String email = this.getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE).getString("email", "Error - cannot get email");
+
+        PaymentsDBHelper paymentsDBHelper = new PaymentsDBHelper();
+        paymentsDBHelper.getAllPayments(email, new PaymentsDBHelper.PaymentObjectCallback() {
+            @Override
+            public void onPaymentsReceived(List<PaymentInfo> paymentInfos) {
+                paymentList = paymentInfos;
+            }
+
+            @Override
+            public void onError(DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "A Database Error has occurred: "+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
 
         tvX = findViewById(R.id.tvXMax);
         tvY = findViewById(R.id.tvYMax);
