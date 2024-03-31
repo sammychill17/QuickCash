@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcash.BusinessLogic.CredentialValidator;
+import com.example.quickcash.BusinessLogic.LoginHandler;
 import com.example.quickcash.FirebaseStuff.DatabaseScrounger;
 import com.example.quickcash.FirebaseStuff.QuickCashDBObject;
 import com.example.quickcash.Objects.Employee;
@@ -159,6 +160,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                                     PreferredJobs jobPref = new PreferredJobs(email);
                                     preferredRef.get().push().setValue(jobPref);
                                 }
+
+                                // Creating a login handler to store stuff in shared preferences to simulate logging in through the Login page
+                                LoginHandler handler = new LoginHandler(getEmailAddress(), getPassword(), getApplicationContext(), null, null);
+                                handler.handleSpEvil();
+
                                 /*
                                 Transitioning to LocationActivity,
                                 starts up the LocationActivity and passes the email
@@ -169,6 +175,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                                 passes the email to LocationActivity in the code line below.
                                  */
                                 intent.putExtra(String.valueOf(R.string.user_email), email);
+                                intent.putExtra("autologin", true);
                                 startActivity(intent);
                             } else {
                                 setStatusMessage(getResources().getString(R.string.DATABASE_REGISTRATION_ERROR) + error.toString());

@@ -120,6 +120,7 @@ public class SearchActivity extends AppCompatActivity {
                         filters = newFilters;
 
                         applyFiltersAndSearch();
+                        filterActivity.dismiss();
                     }
                 });
                 filterActivity.show(getSupportFragmentManager(), "Filter fragment");
