@@ -33,7 +33,6 @@ public class PushNotifHandler extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String pushNotificationEndpoint;
     private String firebaseServerKey;
-    private UserLocation userLocation;
 
     public PushNotifHandler(Context context, String pushNotificationEndpoint, String firebaseServerKey) {
         this.context = context;
@@ -102,34 +101,5 @@ public class PushNotifHandler extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
-    }
-
-    /*
-        this method gets a reference to the current user's location by way of the location table
-        (which uses email as a unique identifier), then compares it to the job's location
-        if it is less than or equal to 5 kilometres in distance, it is within range
-        otherwise it is NOT within range
-     */
-    private boolean isWithinRange(Double jobLat, Double jobLong) {
-        Context c = getApplicationContext();
-        SharedPreferences sharedPrefs = c.getSharedPreferences("session_login", MODE_PRIVATE);
-
-        LocationTable locationTable = new LocationTable();
-        String userEmail = sharedPrefs.getString("email", "");
-
-        locationTable.retrieveLocationFromDatabase(userEmail, new LocationTable.OnLocationDataReceivedListener() {
-            @Override
-            public void onLocationDataReceived(UserLocation location) {
-                userLocation = location;
-            }
-        });
-
-        DistanceFilter distanceFilter = new DistanceFilter();
-        distanceFilter.setValue(5);
-
-        double comp = (double) distanceFilter.getValue();
-        double diff = distanceFilter.getDistanceFromLatLonInKm(jobLat, jobLong,
-                userLocation.getLatitude(), userLocation.getLongitude());
-        return ((diff) <= comp);
     }
 }
