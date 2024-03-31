@@ -59,6 +59,7 @@ public class RatingsActivityUITest {
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(1000);
         device.findObject(new UiSelector().textContains("Me")).click();
+        device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
         assertTrue(device.findObject(new UiSelector().textContains("My Employees")).exists());
         assertFalse(device.findObject(new UiSelector().textContains("My Ratings")).exists());
@@ -80,6 +81,7 @@ public class RatingsActivityUITest {
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(1000);
         device.findObject(new UiSelector().textContains("Me")).click();
+        device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
         assertTrue(device.findObject(new UiSelector().textContains("My Ratings")).exists());
         assertFalse(device.findObject(new UiSelector().textContains("My Employees")).exists());
