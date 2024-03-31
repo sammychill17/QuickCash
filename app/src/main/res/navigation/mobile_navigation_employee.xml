@@ -40,6 +40,6 @@
     <fragment
         android:id="@+id/employeeJobHistoryFragment"
         android:name="com.example.quickcash.ui.employeeJobHistory.EmployeeJobHistoryFragment"
-        android:label="@string/title_jobhistory"
+        android:label="History"
         tools:layout="@layout/fragment_employeejobhistory"/>
 </navigation>
