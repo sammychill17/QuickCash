@@ -222,7 +222,7 @@ public class EmployerJobPostFragment extends Fragment {
                     PushNotifHandler pushNotifHandler = new PushNotifHandler(requireContext().getApplicationContext(),
                             getResources().getString(R.string.PUSH_NOTIFICATION_ENDPOINT),
                             getResources().getString(R.string.FIREBASE_SERVER_KEY));
-                    pushNotifHandler.sendNotification(jobKey);
+                    pushNotifHandler.sendNotification(jobKey, currentLatitude, currentLongitude);
 
                 } else {
                     Toast.makeText(getContext(), getResources().getString(R.string.LACK_OF_FILLED_FIELDS), Toast.LENGTH_LONG).show();

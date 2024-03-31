@@ -660,7 +660,7 @@ public class UIAutomatorTest  {
                 PushNotifHandler pushNotifHandler = new PushNotifHandler(context,
                         res.getString(R.string.PUSH_NOTIFICATION_ENDPOINT),
                         res.getString(R.string.FIREBASE_SERVER_KEY));
-                pushNotifHandler.sendNotification(jobKey);
+                pushNotifHandler.sendNotification(jobKey, currentLatitude, currentLongitude);
 
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 assertEquals("Job Available Near You!", manager.getActiveNotifications()[0].getNotification().extras.getString(Notification.EXTRA_TEXT));
