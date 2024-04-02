@@ -39,7 +39,7 @@ public class PaymentInfo {
 
     public void convert(String receiverEmail){
         setReceiverEmail(receiverEmail);
-        doubleAmount = Integer.parseInt(amount);
+        doubleAmount = Double.parseDouble(amount);
     }
     public void setDoubleAmount(int doubleAmount) {
         this.doubleAmount = doubleAmount;
