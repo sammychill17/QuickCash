@@ -13,27 +13,15 @@ import java.util.Set;
 /**
  * This class 'JamesDBHelper' is a DatabaseHelper function designed to query from multiple
  * data objects in the database to get a set of all unique Employee objects who are
- * applied to any and all jobs posted by the given employer email.
+ * applied and accepted to any and all jobs posted by the given employer email.
  *
  * This is used primarily and exclusively by the MyEmployeesActivity activity,
  * and was made due to the high number of tasks required to retrieve this information.
  *
- * Due to the fact that Applicants and Employers are not stored together directly,
- * in order to gather this information, the Posted Jobs table must be queried
- * (using EmployerDBHelper) to get all associated jobs with an employer (this is jobList).
+ * It starts by gathering all jobs related to a specific employer, and then it grabs all of the emails
+ * of all chosen applicants from all of those jobs.
  *
- * Then, the job keys are extracted from the jobs (keyList) and used (via JobDBHelper) to gat a
- * list of all JobApplicants objects for the associated jobs to the employer
- * (this is applicantObjectList).
- *
- * Then, the emails of all unique applicants are gathered from those objects and are
- * placed in a set of emails (this is emailList).
- *
- * Those emails are then used (by DatabaseScrounger) to get a list of Employee Objects
- * that are associated with the unique email (this is the returnList).
- *
- * All of these lists are populated and callbacks are used with the runHelper() method.
- *
+ * Then it converts those applicants back into users before returning them for use in the MyEmployees activity.
  *
  * The name JamesDBHelper is a reference to James Gaultois, who was one of the developers for
  * this application who had a penchant for creating DatabaseHelper and DatabaseScrounger classes.
