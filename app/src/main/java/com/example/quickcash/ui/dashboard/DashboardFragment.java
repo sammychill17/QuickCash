@@ -33,8 +33,7 @@ public class DashboardFragment extends Fragment {
         SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
         if (sp.contains("role") && ("Employer".equals(sp.getString("role", "error!")))) {
             // I am an Employer
-            binding.title.setText("My Employees");
-            binding.meFragmentButton.setImageResource(R.drawable.icon_comic_4);
+            binding.meFragmentButton.setImageResource(R.drawable.your_employees);
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

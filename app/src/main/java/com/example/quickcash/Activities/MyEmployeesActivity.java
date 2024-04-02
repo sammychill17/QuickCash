@@ -33,6 +33,7 @@ public class MyEmployeesActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("My Employees");
 
         SharedPreferences sp = getSharedPreferences("session_login", MODE_PRIVATE);
         String userEmail = sp.getString("email", "");
