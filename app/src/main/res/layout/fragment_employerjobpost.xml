@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/employer_background_gradient"
+    android:background="#9bcf9f"
     tools:context=".ui.employeeHome.EmployeeHomeFragment">
 
 
@@ -25,21 +25,21 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
-            app:cardBackgroundColor="#8BC34A"
+            app:cardBackgroundColor="#9bcf9f"
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="697dp">
 
                 <EditText
                     android:id="@+id/jobDescField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="347dp"
+                    android:layout_height="49dp"
                     android:layout_marginHorizontal="12sp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Description"
@@ -56,14 +56,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="12sp"
                     android:layout_marginVertical="12sp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
                     android:ems="10"
                     android:hint="Title"
                     android:inputType="text"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="12sp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Salary range"
@@ -91,9 +91,10 @@
                     android:layout_marginHorizontal="12sp"
                     android:layout_marginVertical="12sp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="112dp"
                     android:layout_marginEnd="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobDescField" />
 
@@ -102,14 +103,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Duration (hours)"
                     android:inputType="number"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobSalaryField" />
 
@@ -118,14 +119,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
                     android:backgroundTint="#009688"
                     android:text="Select Date"
+                    android:textColor="@color/black"
                     android:textColorHighlight="#009688"
                     android:textColorLink="#009688"
                     android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#e4e278"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobDurationField" />
 
@@ -134,29 +139,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="28dp"
                     android:layout_marginEnd="12dp"
-                    android:text="LOSE YOURSELF (Post Job)"
+                    android:text="Post Job"
+                    android:textColor="@color/black"
                     android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="#e4e278"
                     app:cornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobDateButton" />
-
-                <Button
-                    android:id="@+id/backButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Go Back to the previous page"
-                    app:layout_constraintTop_toBottomOf="@+id/jobPostButton"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="16dp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="89dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="3dp"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:backgroundTint="#346e2c"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

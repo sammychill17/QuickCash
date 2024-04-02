@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.RateEmployeeActivity">
+    tools:context=".Activities.RateEmployeeActivity"
+    android:background="#9bcf9f">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/our_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="#346e2c"/>
 
     <ScrollView
         android:layout_width="0dp"
@@ -70,11 +71,12 @@
                 android:id="@+id/submitRateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#C33333"
-                android:text="Rate this fool!"
-                android:textColorHighlight="@color/employerGreen"
-                android:textColorLink="@color/employerGreenDark"
-                android:textSize="25dp" />
+                android:text="Submit Rating"
+                app:backgroundTint="#e4e278"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                />
         </LinearLayout>
     </ScrollView>
 
