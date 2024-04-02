@@ -1,6 +1,5 @@
 package com.example.quickcash.Objects;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,7 +7,7 @@ import java.util.Locale;
 
 public class PaymentInfo {
     private String amount;
-    private int intAmount;
+    private double doubleAmount;
     private String date;
     private String receiverEmail;
 
@@ -40,12 +39,12 @@ public class PaymentInfo {
 
     public void convert(String receiverEmail){
         setReceiverEmail(receiverEmail);
-        intAmount = Integer.parseInt(amount);
+        doubleAmount = Integer.parseInt(amount);
     }
-    public void setIntAmount(int intAmount) {
-        this.intAmount = intAmount;
+    public void setDoubleAmount(int doubleAmount) {
+        this.doubleAmount = doubleAmount;
     }
-    public int getIntAmount() {
-        return intAmount;
+    public double getDoubleAmount() {
+        return doubleAmount;
     }
 }
