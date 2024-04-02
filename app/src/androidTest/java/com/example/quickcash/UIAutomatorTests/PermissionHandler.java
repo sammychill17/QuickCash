@@ -65,6 +65,12 @@ public class PermissionHandler {
         UiObject allowPermissionsButton = device.findObject(new UiSelector().text("While using the app"));
         if (allowPermissionsButton.exists()) {
             allowPermissionsButton.click();
+            return;
+        }
+
+        UiObject allowPermissionsButtonKasuga = device.findObject(new UiSelector().text("Allow only while using the app"));
+        if (allowPermissionsButtonKasuga.exists()) {
+            allowPermissionsButtonKasuga.click();
         }
     }
 
