@@ -54,7 +54,7 @@
                     android:layout_marginEnd="8dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/icon_menhera"
+                    android:src="@drawable/best_logo_ever"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

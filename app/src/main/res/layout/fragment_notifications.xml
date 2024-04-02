@@ -39,7 +39,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="32dp"
-        android:src="@drawable/icon_menhera_view"
+        android:src="@drawable/icon_comic_2"
         app:layout_constraintBottom_toTopOf="@+id/text_notifications"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
