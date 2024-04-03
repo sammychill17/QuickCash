@@ -48,7 +48,7 @@ public class PaymentsUITest {
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("employer@website.com");
+        emailIDBox.setText("parker@morrison.com");
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
         passwordBox.setText("password");
@@ -59,11 +59,11 @@ public class PaymentsUITest {
         Thread.sleep(4000);
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
-        device.findObject(new UiSelector().textContains("My Employees")).click();
+        device.findObject(new UiSelector().resourceIdMatches(".*meFragmentButton")).click();
         Thread.sleep(1000);
         device.findObject(new UiSelector().textContains("Pay")).click();
         Thread.sleep(1000);
-        assertTrue(device.findObject(new UiSelector().textContains("Pay the employee I BEG U")).exists());
+        assertTrue(device.findObject(new UiSelector().textContains("Pay Employee")).exists());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class PaymentsUITest {
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("employer@website.com");
+        emailIDBox.setText("parker@morrison.com");
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
         passwordBox.setText("password");
@@ -83,11 +83,11 @@ public class PaymentsUITest {
         Thread.sleep(4000);
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
-        device.findObject(new UiSelector().textContains("My Employees")).click();
+        device.findObject(new UiSelector().resourceIdMatches(".*meFragmentButton")).click();
         Thread.sleep(1000);
         device.findObject(new UiSelector().textContains("Pay")).click();
         Thread.sleep(1000);
-        assertTrue(device.findObject(new UiSelector().textContains("Pay the employee I BEG U")).exists());
+        assertTrue(device.findObject(new UiSelector().textContains("Pay Employee")).exists());
         Thread.sleep(1000);
         device.findObject(new UiSelector().textContains("Pay using PayPal")).click();
         String expectedMessage = ApplicationProvider.getApplicationContext().getString(R.string.empty_amount);
@@ -100,7 +100,7 @@ public class PaymentsUITest {
         loginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject emailIDBox = device.findObject(new UiSelector().textContains("Email"));
         assertTrue(emailIDBox.exists());
-        emailIDBox.setText("employer@website.com");
+        emailIDBox.setText("parker@morrison.com");
         UiObject passwordBox = device.findObject(new UiSelector().textContains("Password"));
         assertTrue(passwordBox.exists());
         passwordBox.setText("password");
@@ -111,11 +111,11 @@ public class PaymentsUITest {
         Thread.sleep(4000);
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
-        device.findObject(new UiSelector().textContains("My Employees")).click();
+        device.findObject(new UiSelector().resourceIdMatches(".*meFragmentButton")).click();
         Thread.sleep(1000);
         device.findObject(new UiSelector().textContains("Pay")).click();
         Thread.sleep(1000);
-        assertTrue(device.findObject(new UiSelector().textContains("Pay the employee I BEG U")).exists());
+        assertTrue(device.findObject(new UiSelector().textContains("Pay Employee")).exists());
         Thread.sleep(1000);
         UiObject amountBox = device.findObject(new UiSelector().resourceId("com.example.quickcash:id/paymentAmountEditText"));
         amountBox.setText("50");

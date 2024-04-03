@@ -57,9 +57,10 @@ public class EmployerJobsUITest {
         assertTrue(anotherLoginButton.exists());
         Thread.sleep(3000);
         anotherLoginButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
+        Thread.sleep(3000);
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
-        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
+        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs"));
         myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject anJob = device.findObject(new UiSelector().textContains("I want to see a magic show!"));
         assertTrue(anJob.exists());
@@ -81,7 +82,7 @@ public class EmployerJobsUITest {
         Thread.sleep(3000);
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
-        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
+        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs"));
         myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
 
@@ -106,7 +107,7 @@ public class EmployerJobsUITest {
         Thread.sleep(3000);
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
-        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
+        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs"));
         myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
         jobDetailsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
@@ -132,7 +133,7 @@ public class EmployerJobsUITest {
         Thread.sleep(3000);
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
-        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs (In the middle of my jobs)"));
+        UiObject myJobsButton = device.findObject(new UiSelector().textContains("My Jobs"));
         myJobsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject jobDetailsButton = device.findObject(new UiSelector().textContains("Details"));
         jobDetailsButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);

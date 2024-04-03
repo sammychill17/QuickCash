@@ -67,7 +67,6 @@ public class EmployeeJobStatsUITest {
         jobHistoryButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject upcomingJobs = device.findObject(new UiSelector().textContains("Upcoming Jobs"));
         assertTrue(upcomingJobs.exists());
-
     }
     @Test
     public void checkEmployeePreviousJobsExist() throws UiObjectNotFoundException, InterruptedException{

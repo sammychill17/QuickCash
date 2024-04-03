@@ -104,7 +104,7 @@ public class RatingsActivityUITest {
         Thread.sleep(4000);
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
-        device.findObject(new UiSelector().textContains("My Employees")).click();
+        device.findObject(new UiSelector().resourceIdMatches(".*meFragmentButton")).click();
         assertTrue(device.findObject(new UiSelector().textContains("Rate")).exists());
     }
 
@@ -125,7 +125,7 @@ public class RatingsActivityUITest {
         Thread.sleep(4000);
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
-        device.findObject(new UiSelector().textContains("My Employees")).click();
+        device.findObject(new UiSelector().resourceIdMatches(".*meFragmentButton")).click();
         Thread.sleep(1000);
         device.findObject(new UiSelector().textContains("Rate")).click();
         Thread.sleep(1000);

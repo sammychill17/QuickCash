@@ -69,7 +69,7 @@ public class FilterActivityUITest {
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
-        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        UiObject makeMoneyButton = device.findObject(new UiSelector().resourceIdMatches(".*makeMoneyButton"));
         assertTrue(makeMoneyButton.exists());
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
@@ -103,7 +103,7 @@ public class FilterActivityUITest {
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
-        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        UiObject makeMoneyButton = device.findObject(new UiSelector().resourceIdMatches(".*makeMoneyButton"));
         assertTrue(makeMoneyButton.exists());
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
@@ -135,7 +135,7 @@ public class FilterActivityUITest {
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
-        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        UiObject makeMoneyButton = device.findObject(new UiSelector().resourceIdMatches(".*makeMoneyButton"));
         assertTrue(makeMoneyButton.exists());
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
@@ -168,7 +168,7 @@ public class FilterActivityUITest {
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
-        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        UiObject makeMoneyButton = device.findObject(new UiSelector().resourceIdMatches(".*makeMoneyButton"));
         assertTrue(makeMoneyButton.exists());
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));
@@ -179,10 +179,10 @@ public class FilterActivityUITest {
         UiObject datePicker = device.findObject(new UiSelector().className(Button.class));
         assertTrue(datePicker.exists());
         datePicker.click();
-        device.findObject(By.desc("12 March 2024")).click();
-        sleep(2000);
+        device.findObject(By.desc("12 April 2024")).click();
+        sleep(5000);
         device.findObject(By.clazz(Button.class)).click();
-        sleep(2000);
+        sleep(5000);
         UiObject applyFilterButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(applyFilterButton.exists());
     }
@@ -205,7 +205,7 @@ public class FilterActivityUITest {
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject dashboardPage = device.findObject(new UiSelector().textContains("Dashboard"));
         assertTrue(dashboardPage.exists());
-        UiObject makeMoneyButton = device.findObject(new UiSelector().textContains("Make Money"));
+        UiObject makeMoneyButton = device.findObject(new UiSelector().resourceIdMatches(".*makeMoneyButton"));
         assertTrue(makeMoneyButton.exists());
         makeMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject searchBar = device.findObject(new UiSelector().textContains("Search"));

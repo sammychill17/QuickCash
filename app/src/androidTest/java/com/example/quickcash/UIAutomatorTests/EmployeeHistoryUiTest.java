@@ -94,7 +94,5 @@ public class EmployeeHistoryUiTest {
         UiObject previousJobs = device.findObject(new UiSelector().textContains("Previous Jobs"));
         assertTrue(previousJobs.exists());
 
-
     }
-
 }
