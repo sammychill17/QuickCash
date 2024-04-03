@@ -75,7 +75,6 @@ public class EmployeeHomeFragment extends Fragment {
             }
         };
         makeMoneyButton.setOnClickListener(goToSearchPage);
-        binding.title.setOnClickListener(goToSearchPage);
 
         LocationTable locationTable = new LocationTable();
         locationTable.retrieveLocationFromDatabase(userEmail, location -> {

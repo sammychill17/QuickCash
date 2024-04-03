@@ -177,7 +177,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void showJobDetailsPrompt(Job job) {
         new AlertDialog.Builder(getContext())
                 .setTitle(job.getTitle())
-                .setMessage("Wanna see what I have inside my wallet waltuh??")
+                .setMessage("Want to check out the job's details?")
                 .setPositiveButton("Yes", (dialog, which) -> openJobDetailsActivity(job))
                 .setNegativeButton("No", null)
                 .show();
@@ -189,7 +189,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void showUserPrompt(){
         new AlertDialog.Builder(getContext())
                 .setTitle("Current User Location")
-                .setMessage("I am you, and you are me. This is where you are!")
+                .setMessage("This is where you are!")
                 .setPositiveButton("Yes", null)
                 .setNegativeButton("No", null)
                 .show();
