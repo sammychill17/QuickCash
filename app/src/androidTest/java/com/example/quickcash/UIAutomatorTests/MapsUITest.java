@@ -60,7 +60,7 @@ public class MapsUITest {
         Thread.sleep(1000);
         UiObject makeMoneyButton = device.findObject(new UiSelector().className(ImageButton.class));
         assertTrue(makeMoneyButton.exists());
-        UiObject makeMoneyOption = device.findObject(new UiSelector().text("Make Money"));
+        UiObject makeMoneyOption = device.findObject(new UiSelector().resourceIdMatches(".*makeMoneyButton"));
         makeMoneyOption.clickAndWaitForNewWindow();
 
         UiObject mapButton = device.findObject(new UiSelector().text("See on map"));

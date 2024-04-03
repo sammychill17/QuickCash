@@ -82,14 +82,14 @@ public class JobPostUITest {
         Thread.sleep(1000); // Give me some time to click manually if it cant click automatically
         UiObject postJobs = device.findObject(new UiSelector().className(ImageButton.class));
         postJobs.click();
-        UiObject loseYourselfButton = device.findObject(new UiSelector().textContains("LOSE YOURSELF (Post Job)"));
+        UiObject loseYourselfButton = device.findObject(new UiSelector().textContains("Post Job"));
         UiObject title = device.findObject(new UiSelector().textContains("Title"));
         UiObject description = device.findObject(new UiSelector().textContains("Description"));
         UiObject typeSpinner = device.findObject(new UiSelector().className(Spinner.class));
         UiObject salaryRange = device.findObject(new UiSelector().textContains("Salary range"));
         UiObject durationField = device.findObject(new UiSelector().textContains("Duration (hours)"));
         UiObject selectDateButton = device.findObject(new UiSelector().textContains("Select date"));
-        UiObject backButton = device.findObject(new UiSelector().textContains("Go Back to the previous page"));
+        UiObject backButton = device.findObject(new UiSelector().textContains("Back"));
         assertTrue("No loseYourselfButton", loseYourselfButton.exists());
         assertTrue("No title", title.exists());
         assertTrue("No description", description.exists());
