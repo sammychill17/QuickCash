@@ -5,7 +5,8 @@
     android:id="@+id/searchActivityLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.SearchActivity">
+    tools:context=".Activities.SearchActivity"
+    android:background="#9bcf9f">
 
     <ImageButton
         android:id="@+id/filterButton"
@@ -53,7 +54,10 @@
         android:contentDescription="Open Map"
         android:src="@drawable/ic_home_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="#346e2c"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/mapButton"
@@ -69,7 +73,10 @@
         app:layout_constraintBottom_toTopOf="@+id/fab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchResultsRecycler" />
+        app:layout_constraintTop_toBottomOf="@+id/searchResultsRecycler"
+        app:backgroundTint="#e4e278"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
     <FrameLayout
         android:id="@+id/map"
         android:layout_width="match_parent"

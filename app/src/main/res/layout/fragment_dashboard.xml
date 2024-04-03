@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        >
+        android:background="#9bcf9f">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_inner"
@@ -29,12 +29,14 @@
             android:layout_marginTop="0dp"
             app:cardBackgroundColor="#9bcf9f"
             app:cardCornerRadius="24dp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="12dp">
+                android:padding="12dp"
+                >
 
                 <TextView
                     android:id="@+id/title"
@@ -45,7 +47,8 @@
                     android:textAllCaps="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/meFragmentButton" />
+                    app:layout_constraintTop_toBottomOf="@+id/meFragmentButton"
+                    />
 
                 <ImageButton
                     android:id="@+id/meFragmentButton"
@@ -92,31 +95,25 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="12dp">
+                android:padding="12dp"
+                android:background="#9bcf9f">
 
                 <Button
                     android:id="@+id/myMoneyButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="76dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:text="My Money"
+                    android:text="My Income Statistics"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:backgroundTint="#e4e278"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-                <Button
-                    android:id="@+id/jobHistoryButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Job History"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>

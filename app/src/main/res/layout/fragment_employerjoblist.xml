@@ -17,7 +17,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:backgroundTint="#e4e278"
+        app:backgroundTint="#346e2c"
         android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
