@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.test.espresso.remote.EspressoRemoteMessage;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.drawable.Drawable;
@@ -50,10 +51,11 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         OnChartValueSelectedListener {
 
     private LineChart chart;
-    private SeekBar seekBarX, seekBarY;
-    private TextView tvX, tvY;
+    private SeekBar seekBarX;
+    private TextView tvX;
 
     private List<PaymentInfo> paymentList;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +63,18 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         setContentView(R.layout.activity_my_money);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.our_toolbar);
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString("email", "Error - cannot get email");
+        userName = sharedPreferences.getString("username", "Error - can't fetch your names yet...");
+
+        StringBuilder titleBuilder = new StringBuilder();
+        titleBuilder.append(userName);
+        titleBuilder.append("'s income chart");
+        myToolbar.setTitle(titleBuilder.toString());
+
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        String email = this.getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE).getString("email", "Error - cannot get email");
 
         PaymentsDBHelper paymentsDBHelper = new PaymentsDBHelper();
         paymentsDBHelper.getAllPayments(email, new PaymentsDBHelper.PaymentObjectCallback() {
@@ -82,109 +92,56 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         });
 
         tvX = findViewById(R.id.tvXMax);
-        tvY = findViewById(R.id.tvYMax);
 
         seekBarX = findViewById(R.id.seekBar1);
         seekBarX.setOnSeekBarChangeListener(this);
+        seekBarX.setMax(91);
 
-        seekBarY = findViewById(R.id.seekBar2);
-        seekBarY.setMax(180);
-        seekBarY.setOnSeekBarChangeListener(this);
+        // // Chart Style // //
+        chart = findViewById(R.id.chart1);
 
+        // background color
+        chart.setBackgroundColor(Color.WHITE);
 
-        {   // // Chart Style // //
-            chart = findViewById(R.id.chart1);
+        // disable description text
+        chart.getDescription().setEnabled(false);
 
-            // background color
-            chart.setBackgroundColor(Color.WHITE);
+        // enable touch gestures
+        chart.setTouchEnabled(true);
 
-            // disable description text
-            chart.getDescription().setEnabled(false);
+        // set listeners
+        chart.setOnChartValueSelectedListener(this);
+        chart.setDrawGridBackground(false);
 
-            // enable touch gestures
-            chart.setTouchEnabled(true);
+        // enable scaling and dragging
+        chart.setDragEnabled(true);
+        chart.setScaleEnabled(true);
 
-            // set listeners
-            chart.setOnChartValueSelectedListener(this);
-            chart.setDrawGridBackground(false);
-
-//            // create marker to display box when values are selected
-//            MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
-//
-//            // Set the marker to the chart
-//            mv.setChartView(chart);
-//            chart.setMarker(mv);
-
-            // enable scaling and dragging
-            chart.setDragEnabled(true);
-            chart.setScaleEnabled(true);
-            // chart.setScaleXEnabled(true);
-            // chart.setScaleYEnabled(true);
-
-            // force pinch zoom along both axis
-            chart.setPinchZoom(true);
-        }
+        // force pinch zoom along both axis
+        chart.setPinchZoom(true);
 
         XAxis xAxis;
-        {   // // X-Axis Style // //
-            xAxis = chart.getXAxis();
+        // // X-Axis Style // //
+        xAxis = chart.getXAxis();
 
-            // vertical grid lines
-            xAxis.enableGridDashedLine(10f, 10f, 0f);
-        }
+        // vertical grid lines
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
 
         YAxis yAxis;
-        {   // // Y-Axis Style // //
-            yAxis = chart.getAxisLeft();
+        // // Y-Axis Style // //
+        yAxis = chart.getAxisLeft();
 
-            // disable dual axis (only use LEFT axis)
-            chart.getAxisRight().setEnabled(false);
+        // disable dual axis (only use LEFT axis)
+        chart.getAxisRight().setEnabled(false);
 
-            // horizontal grid lines
-            yAxis.enableGridDashedLine(10f, 10f, 0f);
+        // horizontal grid lines
+        yAxis.enableGridDashedLine(10f, 10f, 0f);
 
-            // axis range
-            yAxis.setAxisMaximum(200f);
-            yAxis.setAxisMinimum(-50f);
-        }
-
-
-        {   // // Create Limit Lines // //
-            LimitLine llXAxis = new LimitLine(9f, "Index 10");
-            llXAxis.setLineWidth(4f);
-            llXAxis.enableDashedLine(10f, 10f, 0f);
-            llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-            llXAxis.setTextSize(10f);
-//            llXAxis.setTypeface(tfRegular);
-
-            LimitLine ll1 = new LimitLine(150f, "Upper Limit");
-            ll1.setLineWidth(4f);
-            ll1.enableDashedLine(10f, 10f, 0f);
-            ll1.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-            ll1.setTextSize(10f);
-//            ll1.setTypeface(tfRegular);
-
-            LimitLine ll2 = new LimitLine(-30f, "Lower Limit");
-            ll2.setLineWidth(4f);
-            ll2.enableDashedLine(10f, 10f, 0f);
-            ll2.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-            ll2.setTextSize(10f);
-//            ll2.setTypeface(tfRegular);
-
-            // draw limit lines behind data instead of on top
-            yAxis.setDrawLimitLinesBehindData(true);
-            xAxis.setDrawLimitLinesBehindData(true);
-
-            // add limit lines
-            yAxis.addLimitLine(ll1);
-            yAxis.addLimitLine(ll2);
-            //xAxis.addLimitLine(llXAxis);
-        }
+        // axis range
+        yAxis.setAxisMinimum(0f);
 
         // add data
-        seekBarX.setProgress(45);
-        seekBarY.setProgress(180);
-        setData(45, 180);
+        seekBarX.setProgress(8);
 
         // draw points over time
         chart.animateX(1500);
@@ -205,11 +162,78 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
             values = getEntriesForPastNumberOfDay(daysToLook);
         }
 
-        LineDataSet set = (LineDataSet) chart.getData().getDataSetByIndex(0);
-        set.setValues(values);
-        set.notifyDataSetChanged();
-        chart.getData().notifyDataChanged();
-        chart.notifyDataSetChanged();
+        StringBuilder labelBuilder = new StringBuilder();
+        labelBuilder.append(userName);
+        labelBuilder.append("'s income against time");
+
+        LineDataSet set;
+
+        if (chart.getData() != null &&
+                chart.getData().getDataSetCount() > 0) {
+            set = (LineDataSet) chart.getData().getDataSetByIndex(0);
+            set.setValues(values);
+            set.notifyDataSetChanged();
+            set.setLabel(labelBuilder.toString());
+            chart.getData().notifyDataChanged();
+            chart.notifyDataSetChanged();
+        } else {
+            // create a dataset and give it a type
+            set = new LineDataSet(values, labelBuilder.toString());
+
+            set.setDrawIcons(false);
+
+            // draw dashed line
+            set.enableDashedLine(10f, 5f, 0f);
+
+            // black lines and points
+            set.setColor(Color.BLACK);
+            set.setCircleColor(Color.BLACK);
+
+            // line thickness and point size
+            set.setLineWidth(1f);
+            set.setCircleRadius(3f);
+
+            // draw points as solid circles
+            set.setDrawCircleHole(false);
+
+            // customize legend entry
+            set.setFormLineWidth(1f);
+            set.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            set.setFormSize(15.f);
+
+            // text size of values
+            set.setValueTextSize(9f);
+
+            // draw selection line as dashed
+            set.enableDashedHighlightLine(10f, 5f, 0f);
+
+            // set the filled area
+            set.setDrawFilled(true);
+            set.setFillFormatter(new IFillFormatter() {
+                @Override
+                public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
+                    return chart.getAxisLeft().getAxisMinimum();
+                }
+            });
+
+            // set color of filled area
+            if (Utils.getSDKInt() >= 18) {
+                // drawables only supported on api level 18 and above
+                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.best_logo_ever);
+                set.setFillDrawable(drawable);
+            } else {
+                set.setFillColor(Color.BLACK);
+            }
+
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(set); // add the data sets
+
+            // create a data object with the data sets
+            LineData data = new LineData(dataSets);
+
+            // set data
+            chart.setData(data);
+        }
     }
 
     private List<Entry> getEntriesForPastNumberOfDay(int numDays) {
@@ -233,6 +257,7 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
                 }
             }
             values.add(new Entry(i, value, getResources().getDrawable(R.drawable.icon_menhera_view)));
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
         }
 
         return values;
@@ -256,85 +281,6 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         return getEntriesForPastNumberOfDay((int) duration.toDays());
     }
 
-    private void setData(int count, float range) {
-
-        ArrayList<Entry> values = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-
-            float val = (float) (Math.random() * range) - 30;
-            values.add(new Entry(i, val, getResources().getDrawable(R.drawable.icon_menhera_view)));
-        }
-
-        LineDataSet set1;
-
-        if (chart.getData() != null &&
-                chart.getData().getDataSetCount() > 0) {
-            set1 = (LineDataSet) chart.getData().getDataSetByIndex(0);
-            set1.setValues(values);
-            set1.notifyDataSetChanged();
-            chart.getData().notifyDataChanged();
-            chart.notifyDataSetChanged();
-        } else {
-            // create a dataset and give it a type
-            set1 = new LineDataSet(values, "DataSet 1");
-
-            set1.setDrawIcons(false);
-
-            // draw dashed line
-            set1.enableDashedLine(10f, 5f, 0f);
-
-            // black lines and points
-            set1.setColor(Color.BLACK);
-            set1.setCircleColor(Color.BLACK);
-
-            // line thickness and point size
-            set1.setLineWidth(1f);
-            set1.setCircleRadius(3f);
-
-            // draw points as solid circles
-            set1.setDrawCircleHole(false);
-
-            // customize legend entry
-            set1.setFormLineWidth(1f);
-            set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
-            set1.setFormSize(15.f);
-
-            // text size of values
-            set1.setValueTextSize(9f);
-
-            // draw selection line as dashed
-            set1.enableDashedHighlightLine(10f, 5f, 0f);
-
-            // set the filled area
-            set1.setDrawFilled(true);
-            set1.setFillFormatter(new IFillFormatter() {
-                @Override
-                public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
-                    return chart.getAxisLeft().getAxisMinimum();
-                }
-            });
-
-            // set color of filled area
-            if (Utils.getSDKInt() >= 18) {
-                // drawables only supported on api level 18 and above
-                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.best_logo_ever);
-                set1.setFillDrawable(drawable);
-            } else {
-                set1.setFillColor(Color.BLACK);
-            }
-
-            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-            dataSets.add(set1); // add the data sets
-
-            // create a data object with the data sets
-            LineData data = new LineData(dataSets);
-
-            // set data
-            chart.setData(data);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -346,14 +292,22 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        tvX.setText(String.valueOf(seekBarX.getProgress()));
-        tvY.setText(String.valueOf(seekBarY.getProgress()));
+        if (seekBarX.getProgress() == seekBarX.getMax()) {
+            tvX.setText("Since time immemorial");
+        } else {
+            StringBuilder tvXBuilder = new StringBuilder();
+            tvXBuilder.append("Last ");
+            tvXBuilder.append(seekBarX.getProgress());
+            tvXBuilder.append(" days");
+            tvX.setText(tvXBuilder.toString());
+        }
 
-//        setData(seekBarX.getProgress(), seekBarY.getProgress());
-        updateChart();
+        if (paymentList != null) {
+            updateChart();
 
-        // redraw
-        chart.invalidate();
+            // redraw
+            chart.invalidate();
+        }
     }
 
     @Override
