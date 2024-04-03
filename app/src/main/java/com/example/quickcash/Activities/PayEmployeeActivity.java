@@ -56,7 +56,7 @@ public class PayEmployeeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Pay the employee I BEG U");
+        getSupportActionBar().setTitle("Pay Employee");
         /*
          finish the activity if the back arrow is pressed
          */
