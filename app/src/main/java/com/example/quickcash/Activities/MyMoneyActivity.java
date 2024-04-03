@@ -223,7 +223,7 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
             // set color of filled area
             if (Utils.getSDKInt() >= 18) {
                 // drawables only supported on api level 18 and above
-                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.best_logo_ever);
+                Drawable drawable = ContextCompat.getDrawable(this, R.drawable.shadow);
                 set.setFillDrawable(drawable);
             } else {
                 set.setFillColor(Color.BLACK);
