@@ -56,10 +56,26 @@ public class EmployeeRatingsHistoryFragment extends Fragment {
             ratingMap.put("ratingStars", String.format("%d Star", review.getRatingStars()));
             ratingsList.add(ratingMap);
         }
+
+        if(rating.getNumReview()==0){
+            TextView emptyTextView = getView().findViewById(R.id.emptyListTextView);
+            emptyTextView.setVisibility(View.VISIBLE);
+        }
+        else{
+            TextView emptyTextView = getView().findViewById(R.id.emptyListTextView);
+            emptyTextView.setVisibility(View.INVISIBLE);
+        }
+
         /* Displaying the average rating in a TextView */
         TextView averageRatingTextView = getView().findViewById(R.id.averageRatingTextView);
         String averageRatingText = String.format("Average Rating: %.2f", rating.getAverageStarRating());
         averageRatingTextView.setText(averageRatingText);
+
+
+        /* Displaying the total number of reviews in a TextView */
+        TextView totalNumberOfReviews = getView().findViewById(R.id.totalReviewNum);
+        totalNumberOfReviews.setText("Total Reviews: "+rating.getNumReview());
+
         /* Setting up the adapter to display the ratings and descriptions in the ListView */
         ratingsAdapter = new SimpleAdapter(getContext(), ratingsList, R.layout.rating_item,
                 new String[]{"description", "ratingStars"}, new int[]{R.id.ratingDescription, R.id.ratingStars});

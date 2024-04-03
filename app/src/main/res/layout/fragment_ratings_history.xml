@@ -11,11 +11,12 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="-97dp"
         android:text="Back"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="8dp"
+        android:textColor="@color/black"
         app:backgroundTint="#346e2c"
-        android:textColor="@color/black"/>
+        app:layout_constraintEnd_toStartOf="@+id/averageRatingTextView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ratingHistoryTitle"
@@ -50,6 +51,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/averageRatingTextView" />
+        app:layout_constraintTop_toBottomOf="@id/averageRatingTextView" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/totalReviewNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Total Reviews"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingHistoryTitle" />
+
+    <TextView
+        android:id="@+id/emptyListTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="289dp"
+        android:text="You have no ratings yet!"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ratingsListView"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

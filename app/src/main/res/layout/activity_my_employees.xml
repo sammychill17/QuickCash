@@ -27,5 +27,16 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         />
 
+    <TextView
+        android:id="@+id/emptyListTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="289dp"
+        android:text="You have no chosen employees yet!\nChoose an applicant from one of your jobs to see them here!"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

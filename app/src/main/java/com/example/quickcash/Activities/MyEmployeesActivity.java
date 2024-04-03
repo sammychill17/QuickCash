@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 
 import com.example.quickcash.Activities.Adapters.MyEmployeesAdapter;
@@ -53,6 +55,15 @@ public class MyEmployeesActivity extends AppCompatActivity {
                     }
                 }
                 recyclerView.getAdapter().notifyItemRangeInserted(0, employees.size());
+
+                if(employees.isEmpty()){
+                    TextView emptyTextView = findViewById(R.id.emptyListTextView);
+                    emptyTextView.setVisibility(View.VISIBLE);
+                }
+                else{
+                    TextView emptyTextView = findViewById(R.id.emptyListTextView);
+                    emptyTextView.setVisibility(View.INVISIBLE);
+                }
             }
 
         });
