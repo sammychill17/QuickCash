@@ -42,4 +42,9 @@
         android:name="com.example.quickcash.ui.employeeJobHistory.EmployeeJobHistoryFragment"
         android:label="History"
         tools:layout="@layout/fragment_employeejobhistory"/>
+    <fragment
+        android:id="@+id/employeeRatingsHistoryFragment"
+        android:name="com.example.quickcash.ui.employeeJobHistory.EmployeeRatingsHistoryFragment"
+        android:label="Ratings History"
+        tools:layout="@layout/fragment_ratings_history"/>
 </navigation>
