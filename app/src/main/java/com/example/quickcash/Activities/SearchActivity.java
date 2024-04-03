@@ -67,11 +67,11 @@ public class SearchActivity extends AppCompatActivity {
             list.add(JobTypes.ARTS_CREATIVE);
             list.add(JobTypes.BABYSITTING);
             list.add(JobTypes.COOK);
-            list.add(JobTypes.HITMAN);
+            list.add(JobTypes.CHAUFFEUR);
             list.add(JobTypes.MAGICIAN);
             list.add(JobTypes.MOVING);
             list.add(JobTypes.PETCARE);
-            list.add(JobTypes.POLITICIAN);
+            list.add(JobTypes.WELDER);
             list.add(JobTypes.TECH);
             list.add(JobTypes.TUTORING);
             list.add(JobTypes.YARDWORK);

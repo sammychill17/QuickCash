@@ -92,7 +92,7 @@ public class EmployeePreferredAdapter extends ArrayAdapter<JobTypes> {
                 case ARTS_CREATIVE:
                     imageResId = R.drawable.icon_arts_creative_preferred;
                     break;
-                case HITMAN:
+                case CHAUFFEUR:
                     imageResId = R.drawable.icon_hitman_preferred;
                     break;
                 case COOK:
@@ -107,7 +107,7 @@ public class EmployeePreferredAdapter extends ArrayAdapter<JobTypes> {
                 case MAGICIAN:
                     imageResId = R.drawable.icon_magician_preferred;
                     break;
-                case POLITICIAN:
+                case WELDER:
                     imageResId = R.drawable.icon_politician_preferred;
                     break;
                 case MOVING:
@@ -134,7 +134,7 @@ public class EmployeePreferredAdapter extends ArrayAdapter<JobTypes> {
                 case ARTS_CREATIVE:
                     imageResId = R.drawable.icon_arts_creative;
                     break;
-                case HITMAN:
+                case CHAUFFEUR:
                     imageResId = R.drawable.icon_hitman;
                     break;
                 case COOK:
@@ -149,7 +149,7 @@ public class EmployeePreferredAdapter extends ArrayAdapter<JobTypes> {
                 case MAGICIAN:
                     imageResId = R.drawable.icon_magician;
                     break;
-                case POLITICIAN:
+                case WELDER:
                     imageResId = R.drawable.icon_politician;
                     break;
                 case MOVING:

@@ -85,7 +85,7 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
         else if(currJobType==JobTypes.COOK){
             EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_cook);
         }
-        else if(currJobType==JobTypes.HITMAN){
+        else if(currJobType==JobTypes.CHAUFFEUR){
             EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_hitman);
         }
         else if(currJobType==JobTypes.MAGICIAN){
@@ -97,7 +97,7 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
         else if(currJobType==JobTypes.PETCARE){
             EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_petcare);
         }
-        else if(currJobType==JobTypes.POLITICIAN){
+        else if(currJobType==JobTypes.WELDER){
             EmployerJobListHolder.imageView.setImageResource(R.drawable.icon_politician);
         }
         else if(currJobType==JobTypes.TECH){

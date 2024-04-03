@@ -96,8 +96,8 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
                     holder.picView.setImageResource(R.drawable.icon_tech);
                 }
                 break;
-            case HITMAN:
-                if(pref.containsJob(JobTypes.HITMAN)){
+            case CHAUFFEUR:
+                if(pref.containsJob(JobTypes.CHAUFFEUR)){
                     holder.picView.setImageResource(R.drawable.icon_hitman_preferred);
                 }
                 else {
@@ -144,8 +144,8 @@ public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemViewHolder
                     holder.picView.setImageResource(R.drawable.icon_yardwork);
                 }
                 break;
-            case POLITICIAN:
-                if(pref.containsJob(JobTypes.POLITICIAN)){
+            case WELDER:
+                if(pref.containsJob(JobTypes.WELDER)){
                     holder.picView.setImageResource(R.drawable.icon_politician_preferred);
                 }
                 else {
