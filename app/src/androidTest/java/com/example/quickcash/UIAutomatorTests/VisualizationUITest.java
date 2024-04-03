@@ -115,7 +115,7 @@ public class VisualizationUITest {
         Thread.sleep(2000); // Give me some time to click manually if it cant click automatically
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
-        UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Money"));
+        UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Income Statistics"));
         assertFalse(myMoneyButton.exists());
     }
 
@@ -138,9 +138,8 @@ public class VisualizationUITest {
         Thread.sleep(4000); // Give me some time to click manually if it cant click automatically
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
         Thread.sleep(2000);
-        UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Money"));
+        UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Income Statistics"));
         myMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-
         UiObject lineGraph = device.findObject(new UiSelector().className(LineChart.class));
         assertTrue(lineGraph.exists());
     }
