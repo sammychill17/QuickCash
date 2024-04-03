@@ -162,6 +162,10 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
             values = getEntriesForPastNumberOfDay(daysToLook);
         }
 
+        for (PaymentInfo info : paymentList) {
+            Log.i("My purse", "Received info - " + info.getDate() + " - " + info.getDoubleAmount());
+        }
+
         StringBuilder labelBuilder = new StringBuilder();
         labelBuilder.append(userName);
         labelBuilder.append("'s income against time");
@@ -240,7 +244,7 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         Date today = new Date();
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(today);
-        calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) - numDays);
+        calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) - numDays + 1);
         List<Entry> values = new ArrayList<>();
         for (int i= 0; i < numDays; i++) {
             Date date = calendar.getTime();
