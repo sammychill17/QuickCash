@@ -37,7 +37,13 @@ import com.github.mikephil.charting.utils.Utils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseError;
 
+import java.text.ParseException;
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
@@ -65,6 +71,8 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
             @Override
             public void onPaymentsReceived(List<PaymentInfo> paymentInfos) {
                 paymentList = paymentInfos;
+
+                updateChart();
             }
 
             @Override
@@ -188,6 +196,66 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         l.setForm(Legend.LegendForm.LINE);
     }
 
+    private void updateChart() {
+        List<Entry> values;
+        int daysToLook = seekBarX.getProgress();
+        if (daysToLook == seekBarX.getMax()) {
+            values = getEntriesForEternity();
+        } else {
+            values = getEntriesForPastNumberOfDay(daysToLook);
+        }
+
+        LineDataSet set = (LineDataSet) chart.getData().getDataSetByIndex(0);
+        set.setValues(values);
+        set.notifyDataSetChanged();
+        chart.getData().notifyDataChanged();
+        chart.notifyDataSetChanged();
+    }
+
+    private List<Entry> getEntriesForPastNumberOfDay(int numDays) {
+        Date today = new Date();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(today);
+        calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) - numDays);
+        List<Entry> values = new ArrayList<>();
+        for (int i= 0; i < numDays; i++) {
+            Date date = calendar.getTime();
+            float value = 0;
+            for (PaymentInfo info : paymentList) {
+                try {
+                    Date paymentDate = info.getDateObject();
+                    if (date.getDate() == paymentDate.getDate() && date.getMonth() == paymentDate.getMonth() && date.getYear() == paymentDate.getYear()) {
+                        value += (float) info.getDoubleAmount();
+                    }
+                } catch (ParseException exception) {
+                    Log.e("My Purse", "Cannot parse " + info.getDate());
+                    Log.e("My Purse", exception.getMessage() + "\n" + exception.toString());
+                }
+            }
+            values.add(new Entry(i, value, getResources().getDrawable(R.drawable.icon_menhera_view)));
+        }
+
+        return values;
+    }
+
+    private List<Entry> getEntriesForEternity() {
+        Date today = new Date();
+        Date date = new Date();
+        for (PaymentInfo info : paymentList) {
+            try {
+                if (info.getDateObject().before(date)) {
+                    date = info.getDateObject();
+                }
+            } catch (ParseException exception) {
+                Log.e("My Purse (Forever)", "Cannot parse " + info.getDate());
+                Log.e("My Purse (Forever)", exception.getMessage() + "\n" + exception.toString());
+            }
+        }
+
+        Duration duration = Duration.between(date.toInstant(), today.toInstant());
+        return getEntriesForPastNumberOfDay((int) duration.toDays());
+    }
+
     private void setData(int count, float range) {
 
         ArrayList<Entry> values = new ArrayList<>();
@@ -281,7 +349,8 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         tvX.setText(String.valueOf(seekBarX.getProgress()));
         tvY.setText(String.valueOf(seekBarY.getProgress()));
 
-        setData(seekBarX.getProgress(), seekBarY.getProgress());
+//        setData(seekBarX.getProgress(), seekBarY.getProgress());
+        updateChart();
 
         // redraw
         chart.invalidate();
