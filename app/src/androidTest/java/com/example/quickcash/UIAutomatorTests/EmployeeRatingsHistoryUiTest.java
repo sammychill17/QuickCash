@@ -62,7 +62,7 @@ public class EmployeeRatingsHistoryUiTest {
         permissionHandler.allowPermissionsIfNeeded();
         Thread.sleep(2000); // Give it some time to click manually if it cant click automatically
         device.click(device.getDisplayWidth()/2, device.getDisplayHeight()-40);
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         UiObject rateButton = device.findObject(new UiSelector().resourceIdMatches(".*meFragmentButton"));
         assertTrue(rateButton.exists());
     }
