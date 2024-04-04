@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -89,6 +90,24 @@ public class EmployeeJobHistoryFragment extends Fragment {
                  */
                 previousJobList.clear();
                 upcomingJobList.clear();
+
+                if (previousJobList.isEmpty()) {
+                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyPreviousTextView);
+                    emptyTextView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyPreviousTextView);
+                    emptyTextView.setVisibility(View.INVISIBLE);
+                }
+
+                if (upcomingJobList.isEmpty()) {
+                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyUpcomingTextView);
+                    emptyTextView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyUpcomingTextView);
+                    emptyTextView.setVisibility(View.INVISIBLE);
+                }
                 /*
                 loop through the snapshots of each job posted accordingly
                  */

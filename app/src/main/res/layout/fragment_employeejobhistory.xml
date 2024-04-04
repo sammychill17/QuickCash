@@ -29,7 +29,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upcomingJobHeader"
-        android:background="@drawable/borderz"/>
+        android:background="@drawable/borderz"
+
+    />
+
+    <TextView
+        android:id="@+id/emptyUpcomingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:text="No upcoming jobs!\nHow about you celebrate?"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upcomingJobHeader" />
 
     <TextView
         android:id="@+id/previousJobHeader"
@@ -52,6 +65,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/previousJobHeader"
         android:background="@drawable/borderz"/>
+
+    <TextView
+        android:id="@+id/emptyPreviousTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:text="No previous jobs yet!"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/previousJobHeader" />
 
     <Button
         android:id="@+id/backFromHistory"
