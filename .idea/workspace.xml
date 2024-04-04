@@ -41,14 +41,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="error fixes regarding invalid resource call by invocations in PushNotifHandler">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="moved functionality over to where it's more relevant (MyFirebaseMessagingService)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/UIAutomatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/quickcash/UIAutomatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/BusinessLogic/PushNotifHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/BusinessLogic/PushNotifHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/FirebaseStuff/MyFirebaseMessagingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/FirebaseStuff/MyFirebaseMessagingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Filters/DistanceFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Objects/Filters/DistanceFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobPost/EmployerJobPostFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -775,7 +769,39 @@
       <option name="project" value="LOCAL" />
       <updated>1711768590507</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="convert DistanceFilter difference method to be public to allow for reuse">
+      <option name="closed" value="true" />
+      <created>1711909723704</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909723704</updated>
+    </task>
+    <task id="LOCAL-00027" summary="constructor redesign for more necessary location parameters + added isWithinRange method">
+      <option name="closed" value="true" />
+      <created>1711909924341</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909924341</updated>
+    </task>
+    <task id="LOCAL-00028" summary="refactor: EmployerJobPostFragment and UIAutomatorTest to both use the proper PushNotifHandler constructor">
+      <option name="closed" value="true" />
+      <created>1711909981596</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1711909981596</updated>
+    </task>
+    <task id="LOCAL-00029" summary="moved functionality over to where it's more relevant (MyFirebaseMessagingService)">
+      <option name="closed" value="true" />
+      <created>1711910336406</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1711910336406</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -790,9 +816,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Implementation] Implemented merge between the location and login/register branch" />
-    <MESSAGE value="[Implementation] Implemented location stalking feature" />
-    <MESSAGE value="[Implementation] Removed email reference in employee dashboard" />
     <MESSAGE value="[Implementation] Best logo ever" />
     <MESSAGE value="[Implementation] Slight UI change on employee and employer dashboard pages to prevent ugly label overflowing" />
     <MESSAGE value="[Test] Changed test code to remove dependence on accounts that have been deleted and information that is outdated" />
@@ -814,6 +837,10 @@
     <MESSAGE value="build.gradle updated" />
     <MESSAGE value="error fixes regarding invalid context of PushNotifHandler in 3 files" />
     <MESSAGE value="error fixes regarding invalid resource call by invocations in PushNotifHandler" />
-    <option name="LAST_COMMIT_MESSAGE" value="error fixes regarding invalid resource call by invocations in PushNotifHandler" />
+    <MESSAGE value="convert DistanceFilter difference method to be public to allow for reuse" />
+    <MESSAGE value="constructor redesign for more necessary location parameters + added isWithinRange method" />
+    <MESSAGE value="refactor: EmployerJobPostFragment and UIAutomatorTest to both use the proper PushNotifHandler constructor" />
+    <MESSAGE value="moved functionality over to where it's more relevant (MyFirebaseMessagingService)" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved functionality over to where it's more relevant (MyFirebaseMessagingService)" />
   </component>
 </project>
