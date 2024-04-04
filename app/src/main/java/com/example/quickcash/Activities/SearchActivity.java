@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
@@ -151,6 +152,15 @@ public class SearchActivity extends AppCompatActivity {
     private void applyFiltersAndSearch() {
         jobs.clear();
         recyclerView.getAdapter().notifyDataSetChanged();
+
+        if (jobs.isEmpty()) {
+            TextView emptyTextView = findViewById(R.id.emptyListTextView);
+            emptyTextView.setVisibility(View.VISIBLE);
+        }
+        else {
+            TextView emptyTextView = findViewById(R.id.emptyListTextView);
+            emptyTextView.setVisibility(View.INVISIBLE);
+        }
 
         List<IFilter> filters1 = new ArrayList<>(filters);
         if (searchBar.getText().length() != 0) {

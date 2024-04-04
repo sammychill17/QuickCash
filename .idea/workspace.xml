@@ -51,12 +51,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/androidTestResultsUserPreferences.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="merge cleanup from dev">
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/SearchActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterDir="false" />
     </list>
@@ -636,7 +631,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708209426408</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="merge cleanup from dev">
+      <option name="closed" value="true" />
+      <created>1712202776691</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712202776691</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -648,6 +651,7 @@
     <MESSAGE value="[Test] Changed test code to remove dependence on accounts that have been deleted and information that is outdated" />
     <MESSAGE value="[Test] Updated LoginEspressoTest" />
     <MESSAGE value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
+    <MESSAGE value="merge cleanup from dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge cleanup from dev" />
   </component>
 </project>
