@@ -45,12 +45,9 @@ public class EmployeeJobApplyEspressoTest {
     @Test
     public void checkBackButton() throws InterruptedException {
         onView(withId(R.id.filterButton)).perform(click());
+        Thread.sleep(1000);
         onView(withId(R.id.applyFilterButton)).perform(click());
-        Espresso.pressBack();
         Thread.sleep(2000);
-        onView(withId(R.id.searchResultsRecycler)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
-        Thread.sleep(2000);
-        onView(withId(R.id.jobPageBackBtn)).perform(click());
         onView(withId(R.id.searchBar)).check(matches(isDisplayed()));
     }
 

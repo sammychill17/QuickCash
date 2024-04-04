@@ -62,6 +62,10 @@ public class FilterExecutionStrategyFactory {
                 shouldForceLoopStrategy = true; // Favor the .contains() of the client-side version of the title filter
                 break;
             }
+            if (filter instanceof AssignedFilter) {
+                shouldForceLoopStrategy = true;
+                break;
+            }
         }
         if (shouldForceLoopStrategy) {
             // Distance filter is always executed in the Loop strategy
