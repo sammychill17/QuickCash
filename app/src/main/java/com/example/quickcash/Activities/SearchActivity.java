@@ -1,15 +1,10 @@
 package com.example.quickcash.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,10 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
-import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.FirebaseStuff.FirebasePreferredJobsHelper;
 import com.example.quickcash.Objects.Filters.AssignedFilter;
 import com.example.quickcash.Objects.Filters.DateFilter;
@@ -36,7 +29,6 @@ import com.example.quickcash.R;
 
 import com.example.quickcash.ui.map.MapFragment;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -154,11 +146,11 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.getAdapter().notifyDataSetChanged();
 
         if (jobs.isEmpty()) {
-            TextView emptyTextView = findViewById(R.id.emptyListTextView);
+            TextView emptyTextView = findViewById(R.id.emptySearchTextView);
             emptyTextView.setVisibility(View.VISIBLE);
         }
         else {
-            TextView emptyTextView = findViewById(R.id.emptyListTextView);
+            TextView emptyTextView = findViewById(R.id.emptySearchTextView);
             emptyTextView.setVisibility(View.INVISIBLE);
         }
 
