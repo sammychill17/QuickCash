@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#9bcf9f">
 
     <Button
         android:id="@+id/buttonGotoLogin"
@@ -16,7 +17,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:backgroundTint="#e4e278"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/loginTextView_title"
@@ -27,6 +31,7 @@
         android:layout_marginEnd="177dp"
         android:layout_marginBottom="24dp"
         android:text="Log in!"
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +52,10 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginTextView_title" />
+        app:layout_constraintTop_toBottomOf="@+id/loginTextView_title"
+        app:backgroundTint="#e4e278"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@+id/editTextTextPassword"
@@ -62,7 +70,10 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        app:backgroundTint="#e4e278"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/loginTextView_makeAnAccount"
@@ -75,6 +86,8 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGotoLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonGotoLogin"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

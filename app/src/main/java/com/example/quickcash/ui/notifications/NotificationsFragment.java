@@ -40,8 +40,6 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        textView.setText("Settings fragment");
         final Button logOutButton = binding.settingsLogoutButton;
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,10 +11,10 @@ public enum JobTypes {
         TUTORING,
         TECH,
         MOVING,
-        HITMAN,
+        CHAUFFEUR,
         ARTS_CREATIVE,
         COOK,
         MAGICIAN,
-        POLITICIAN,
+        WELDER,
 }
 

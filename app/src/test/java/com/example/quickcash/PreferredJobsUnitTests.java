@@ -23,18 +23,18 @@ public class PreferredJobsUnitTests {
     }
     @Test
     public void checkJobAddsJobCorrectly() {
-        preferredJobs.checkJob(JobTypes.HITMAN);
+        preferredJobs.checkJob(JobTypes.CHAUFFEUR);
         assertTrue("Job should be added to the preferred jobs accordingly.",
-                preferredJobs.getPreferredJobs().contains(JobTypes.HITMAN.name()));
+                preferredJobs.getPreferredJobs().contains(JobTypes.CHAUFFEUR.name()));
     }
 
     @Test
     public void uncheckJobRemovesJobCorrectly() {
-        preferredJobs.checkJob(JobTypes.HITMAN);
+        preferredJobs.checkJob(JobTypes.TECH);
         preferredJobs.checkJob(JobTypes.MAGICIAN);
-        preferredJobs.uncheckJob(JobTypes.HITMAN);
+        preferredJobs.uncheckJob(JobTypes.TECH);
         assertFalse("Job should be removed from the preferred jobs",
-                preferredJobs.getPreferredJobs().contains(JobTypes.HITMAN));
+                preferredJobs.getPreferredJobs().contains(JobTypes.TECH));
     }
 
     @Test

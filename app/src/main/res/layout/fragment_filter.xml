@@ -3,20 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:layout_width="313dp"
         android:layout_height="583dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:background="@color/employeePink"
+        android:background="#9bcf9f"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <TextView
             android:id="@+id/textView2"
@@ -104,7 +106,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="Select a date"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            />
 
         <TextView
             android:id="@+id/distanceText"
@@ -138,7 +141,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Apply Filter" />
+            android:text="Apply Filter"
+            app:backgroundTint="#e4e278"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
 
     </LinearLayout>

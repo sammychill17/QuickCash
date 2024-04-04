@@ -35,8 +35,11 @@
             android:layout_width="108dp"
             android:layout_height="50dp"
             android:layout_marginStart="266dp"
-            android:layout_marginTop="15dp"
-            android:text="DETAILS" />
+            android:layout_marginTop="30dp"
+            android:text="DETAILS"
+            app:backgroundTint="#e4e278"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
     </RelativeLayout>
 

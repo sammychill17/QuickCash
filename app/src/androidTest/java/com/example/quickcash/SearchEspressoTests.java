@@ -45,29 +45,33 @@ public class SearchEspressoTests {
 
     @Test
     public void checkOuiJobTitle() {
-        onView(withId(R.id.searchBar)).perform(typeText("oui"));
+        String textToType = "Teach me Design Patterns";
+        onView(withId(R.id.searchBar)).perform(typeText(textToType));
         Espresso.closeSoftKeyboard();
-        onView(withText("oui")).check(matches(isDisplayed()));
+        onView(withId(R.id.jobItem_title)).check(matches(withText(textToType)));
     }
 
     @Test
     public void checkHitmanJobTitle() {
-        onView(withId(R.id.searchBar)).perform(typeText("Hitman for hire"));
+        String textToType = "Walk my animals";
+        onView(withId(R.id.searchBar)).perform(typeText(textToType));
         Espresso.closeSoftKeyboard();
-        onView(withText("Hitman for hire")).check(matches(isDisplayed()));
+        onView(withId(R.id.jobItem_title)).check(matches(withText(textToType)));
     }
 
     @Test
     public void checkOuiJobTitleComplement() {
-        onView(withId(R.id.searchBar)).perform(typeText("oui"));
+        String textToType = "Teach me Design Patterns";
+        onView(withId(R.id.searchBar)).perform(typeText(textToType));
         Espresso.closeSoftKeyboard();
-        onView(withText("Hitman for hire")).check(doesNotExist());
+        onView(withText("Walk my animals")).check(doesNotExist());
     }
 
     @Test
     public void checkHitmanJobTitleComplement() {
-        onView(withId(R.id.searchBar)).perform(typeText("Hitman for hire"));
+        String textToType = "Walk my animals";
+        onView(withId(R.id.searchBar)).perform(typeText(textToType));
         Espresso.closeSoftKeyboard();
-        onView(withText("oui")).check(doesNotExist());
+        onView(withText("Teach me Design Patterns")).check(doesNotExist());
     }
 }

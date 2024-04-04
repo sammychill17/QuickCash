@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
 import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.FirebaseStuff.FirebasePreferredJobsHelper;
+import com.example.quickcash.Objects.Filters.AssignedFilter;
+import com.example.quickcash.Objects.Filters.DateFilter;
 import com.example.quickcash.Objects.Filters.FilterHelper;
 import com.example.quickcash.Objects.Filters.IFilter;
 import com.example.quickcash.Objects.Filters.TitleFilter;
@@ -35,6 +37,7 @@ import com.example.quickcash.ui.map.MapFragment;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -65,11 +68,11 @@ public class SearchActivity extends AppCompatActivity {
             list.add(JobTypes.ARTS_CREATIVE);
             list.add(JobTypes.BABYSITTING);
             list.add(JobTypes.COOK);
-            list.add(JobTypes.HITMAN);
+            list.add(JobTypes.CHAUFFEUR);
             list.add(JobTypes.MAGICIAN);
             list.add(JobTypes.MOVING);
             list.add(JobTypes.PETCARE);
-            list.add(JobTypes.POLITICIAN);
+            list.add(JobTypes.WELDER);
             list.add(JobTypes.TECH);
             list.add(JobTypes.TUTORING);
             list.add(JobTypes.YARDWORK);
@@ -120,6 +123,7 @@ public class SearchActivity extends AppCompatActivity {
                         filters = newFilters;
 
                         applyFiltersAndSearch();
+                        filterActivity.dismiss();
                     }
                 });
                 filterActivity.show(getSupportFragmentManager(), "Filter fragment");
@@ -154,6 +158,11 @@ public class SearchActivity extends AppCompatActivity {
             titleFilter.setValue(searchBar.getText().toString());
             filters1.add(titleFilter);
         }
+        DateFilter filterToDeletePastItems = new DateFilter();
+        filterToDeletePastItems.setValue(new Date());
+        filters1.add(filterToDeletePastItems);
+        AssignedFilter assignedFilter = new AssignedFilter();
+        filters.add(0, assignedFilter); // Insert at front for execution efficiency
 
         FilterHelper helper = new FilterHelper();
         FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {

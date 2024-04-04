@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/employee_background_gradient"
-    tools:context=".ui.employeeHome.EmployeeHomeFragment">
+    android:background="#9bcf9f"
+    tools:context=".ui.employeeHome.EmployeeHomeFragment"
+    >
 
     <TextView
         android:id="@+id/dashboardTextView_Welcome"
@@ -38,7 +39,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="@android:color/transparent"
+        app:cardBackgroundColor="#9bcf9f"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,31 +58,21 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="12dp">
-
-                <TextView
-                    android:id="@+id/title"
-                    style="@style/TextAppearance.MaterialComponents.Headline3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Make Money"
-                    android:textAllCaps="false"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/makeMoneyButton" />
+                android:padding="12dp"
+                android:background="#9bcf9f">
 
                 <ImageButton
                     android:id="@+id/makeMoneyButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="240dp"
+                    android:layout_width="700dp"
+                    android:layout_height="400dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
+                    android:background="#9bcf9f"
                     android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/best_logo_ever"
+                    android:src="@drawable/searchlogo"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,5 +80,19 @@
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
 
-
+    <Button
+        android:id="@+id/myJobHistoryButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="90dp"
+        app:backgroundTint="#e4e278"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Job History"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardCardView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

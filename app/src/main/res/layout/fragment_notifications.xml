@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".ui.notifications.NotificationsFragment"
+    android:background="#9bcf9f">
 
     <TextView
         android:id="@+id/text_notifications"
@@ -24,38 +25,39 @@
         android:id="@+id/settings_logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="164dp"
         android:text="LOG OUT"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:backgroundTint="#e4e278"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
 
     <ImageView
         android:id="@+id/settings_menheraView"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/icon_menhera_view"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/settings"
         app:layout_constraintBottom_toTopOf="@+id/text_notifications"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/preferencesButton"
-        android:layout_width="157dp"
-        android:layout_height="116dp"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="610dp"
-        android:layout_marginEnd="156dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="75dp"
         android:text="Preferences"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:backgroundTint="#e4e278"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

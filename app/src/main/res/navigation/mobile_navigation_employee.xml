@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.quickcash.ui.dashboard.EmployeeDashboardFragment"
+        android:name="com.example.quickcash.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
@@ -37,4 +37,14 @@
         android:name="com.example.quickcash.ui.map.MapFragment"
         android:label="Map"
         tools:layout="@layout/fragment_employee_map_activity"/>
+    <fragment
+        android:id="@+id/employeeJobHistoryFragment"
+        android:name="com.example.quickcash.ui.employeeJobHistory.EmployeeJobHistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_employeejobhistory"/>
+    <fragment
+        android:id="@+id/employeeRatingsHistoryFragment"
+        android:name="com.example.quickcash.ui.employeeJobHistory.EmployeeRatingsHistoryFragment"
+        android:label="Ratings History"
+        tools:layout="@layout/fragment_ratings_history"/>
 </navigation>

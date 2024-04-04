@@ -5,7 +5,7 @@
     android:id="@+id/employerJobPageFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/employer_background_gradient"
+    android:background="#9bcf9f"
     tools:context=".ui.employeeHome.EmployeeHomeFragment">
 
     <androidx.cardview.widget.CardView
@@ -31,7 +31,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:background="#9bcf9f">
 
                 <TextView
                     android:id="@+id/jobPageTitle"
@@ -41,6 +42,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Title"
+                    android:textAlignment="center"
                     android:textSize="35sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +57,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Job Type: "
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobPageTitle" />
@@ -67,6 +70,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Address: "
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobPageType" />
@@ -79,6 +83,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Min. salary: "
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobPageAddress" />
@@ -91,6 +96,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Start date: "
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobPageSalary" />
@@ -103,6 +109,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Employer: "
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/jobPageDate" />
@@ -115,6 +122,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="Applicant: "
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobPageEmployerName" />
@@ -129,34 +137,39 @@
                     android:lines="8"
                     android:maxLines="8"
                     android:text="Description"
+                    android:textColor="@color/black"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobPageApplicant" />
 
                 <Button
-                    android:id="@+id/jobPageBackBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="Go Back"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/jobPageDesc" />
-
-                <Button
                     android:id="@+id/applicantsBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="104dp"
+                    android:layout_marginTop="24dp"
                     android:text="View Applicants"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:backgroundTint="#e4e278"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/jobPageDesc" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/jobPageBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:backgroundTint="#346e2c"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

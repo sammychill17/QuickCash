@@ -17,11 +17,18 @@
         android:theme="@style/Theme.Quickcash"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.RateEmployeeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MyEmployeesActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.SearchActivity"
             android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC5cZia3BFONTVXrHZNN-VjAN3k2oyPvMY"></meta-data>
+            android:value="AIzaSyC5cZia3BFONTVXrHZNN-VjAN3k2oyPvMY" />
 
         <activity
             android:name=".Activities.DashboardActivity"
@@ -45,12 +52,18 @@
         </activity>
         <activity
             android:name=".Activities.RegistrationActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".Activities.LocationActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".Activities.JobApplyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.PayEmployeeActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".Activities.MyMoneyActivity"
             android:exported="true"/>
     </application>
 

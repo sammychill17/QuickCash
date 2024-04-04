@@ -66,14 +66,6 @@ public class EmployerJobPostEspressoTest {
         onView(withId(R.id.jobPostButton)).perform(click());
     }
 
-
-    @Test
-    public void testForJobPostSuccess() {
-        onView(withId(R.id.jobTitleField)).perform(typeText("Hi"), closeSoftKeyboard());
-        onView(withId(R.id.jobDescField)).perform(typeText("Hi, TA Vatsal, You are the best TA i've ever had in my entire academic journey!"), closeSoftKeyboard());
-        onView(withId(R.id.jobPostButton)).perform(click());
-    }
-
     @Test
     public void datePickerTest() {
         onView(withId(R.id.jobDateButton)).perform(click());

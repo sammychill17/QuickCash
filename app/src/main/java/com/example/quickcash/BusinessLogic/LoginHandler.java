@@ -93,4 +93,9 @@ public class LoginHandler extends AppCompatActivity {
         sp.edit().putString("username", user.getName()).commit();
         sp.edit().putString("role", user.getRole()).commit();
     }
+
+    public void handleSpEvil() {
+        // Evil!
+        handleSp();
+    }
 }
