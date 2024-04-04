@@ -71,7 +71,7 @@ public class JobApplicantsFragment extends Fragment {
             @Override
             public void onObjectReceived(JobApplicants object) {
                 if(object!=null){
-                    myAdapter.updateApplicants(object.getApplicants());
+                    myAdapter.updateApplicants(object.getApplicants(), binding.getRoot());
                     myAdapter.notifyDataSetChanged();
                 }
             }
