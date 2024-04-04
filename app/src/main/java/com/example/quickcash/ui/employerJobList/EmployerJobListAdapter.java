@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -118,7 +119,16 @@ public class EmployerJobListAdapter extends RecyclerView.Adapter<EmployerJobList
     /*
      * This entire method was added by suggestion of ChatGPT: https://chat.openai.com/share/51eb0c15-b549-4b73-b76e-b28aa718b838
      */
-    public void updateJobs(List<Job> jobs) {
+    public void updateJobs(List<Job> jobs, View extractView) {
         this.models = (ArrayList<Job>) jobs;
+
+        if (models.isEmpty()) {
+            TextView emptyTextView = extractView.findViewById(R.id.emptyJobListTextView);
+            emptyTextView.setVisibility(View.VISIBLE);
+        }
+        else {
+            TextView emptyTextView = extractView.findViewById(R.id.emptyJobListTextView);
+            emptyTextView.setVisibility(View.INVISIBLE);
+        }
     }
 }

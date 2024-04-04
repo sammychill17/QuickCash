@@ -97,7 +97,7 @@ public class EmployerJobListFragment extends Fragment{
         helper.getJobsByEmployer(spEmail, new EmployerDBHelper.JobObjectCallback() {
             @Override
             public void onJobsReceived(List<Job> jobs) {
-                myAdapter.updateJobs(jobs);
+                myAdapter.updateJobs(jobs, binding.getRoot());
                 myAdapter.notifyDataSetChanged();
             }
 
