@@ -140,7 +140,8 @@ public class VisualizationUITest {
         Thread.sleep(2000);
         UiObject myMoneyButton = device.findObject(new UiSelector().textContains("My Income Statistics"));
         myMoneyButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
-        UiObject lineGraph = device.findObject(new UiSelector().className(LineChart.class));
+        UiObject lineGraph = device.findObject(new UiSelector().resourceIdMatches(".*chart1"));
+        Thread.sleep(5000);
         assertTrue(lineGraph.exists());
     }
 }

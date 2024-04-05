@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
 import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.FirebaseStuff.FirebasePreferredJobsHelper;
+import com.example.quickcash.Objects.Filters.AssignedFilter;
 import com.example.quickcash.Objects.Filters.DateFilter;
 import com.example.quickcash.Objects.Filters.FilterHelper;
 import com.example.quickcash.Objects.Filters.IFilter;
@@ -160,6 +161,8 @@ public class SearchActivity extends AppCompatActivity {
         DateFilter filterToDeletePastItems = new DateFilter();
         filterToDeletePastItems.setValue(new Date());
         filters1.add(filterToDeletePastItems);
+        AssignedFilter assignedFilter = new AssignedFilter();
+        filters.add(0, assignedFilter); // Insert at front for execution efficiency
 
         FilterHelper helper = new FilterHelper();
         FilterHelper.FilterHelperCallback callback = new FilterHelper.FilterHelperCallback() {

@@ -67,7 +67,7 @@ public class EmployerJobPageEspressoTest {
         onView(withId(R.id.jobPageEmployerName)).check(matches(withText(
                 containsString("parker@morrison.com"))));
         onView(withId(R.id.jobPageApplicant)).check(matches(withText(
-                containsString("No applicant chosen yet"))));
+                containsString("Assignee: employee@website.com"))));
         onView(withId(R.id.jobPageDesc)).check(matches(withText(
                 containsString("Do a card trick! Pull a rabbit out of your hat! Anything!"))));
     }

@@ -79,7 +79,7 @@ public class FilterActivityUITest {
         filterButton.clickAndWaitForNewWindow(LAUNCH_TIMEOUT);
         UiObject jobTypeFilter = device.findObject(new UiSelector().className(Spinner.class));
         jobTypeFilter.click();
-        UiObject politicianItem = device.findObject(new UiSelector().text("POLITICIAN"));
+        UiObject politicianItem = device.findObject(new UiSelector().text("TUTORING"));
         politicianItem.click();
         UiObject applyFilterButton = device.findObject(new UiSelector().className(Button.class));
         assertTrue(applyFilterButton.exists());

@@ -36,10 +36,10 @@
         <item>TUTORING</item>
         <item>TECH</item>
         <item>MOVING</item>
-        <item>HITMAN</item>
+        <item>CHAUFFEUR</item>
         <item>ARTS_CREATIVE</item>
         <item>COOK</item>
         <item>MAGICIAN</item>
-        <item>POLITICIAN</item>
+        <item>WELDER</item>
     </string-array>
 </resources>
