@@ -20,7 +20,17 @@
           <theme>@style/Theme.Quickcash</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_employees.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registration.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml">
         <config>
           <theme>@style/Theme.Quickcash</theme>
         </config>
@@ -35,17 +45,44 @@
           <theme>@style/Theme.Quickcash</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_employeejobhistory.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobapplicants.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjoblist.xml">
+        <config>
+          <theme>@style/Theme.Quickcash</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt">
+    <list default="true" id="d2e63231-d83b-46db-a8f2-71bb766b3aa4" name="Changes" comment="refactor // renamed View reference in SearchActivity to prevent overlap">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/JobApplyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/JobApplyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/MyEmployeesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/MyEmployeesActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/Activities/SearchActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employeeJobHistory/EmployeeJobHistoryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employeeJobHistory/EmployeeJobHistoryFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employeeJobHistory/EmployeeRatingsHistoryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employeeJobHistory/EmployeeRatingsHistoryFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobApplicants/JobApplicantsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/quickcash/ui/employerJobList/EmployerJobListFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_employees.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_employees.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employeejobhistory.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employeejobhistory.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobapplicants.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjobapplicants.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjoblist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_employerjoblist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ratings_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_ratings_history.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +92,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/shreyarai/.android/avd/Pixel_3a_API_34_extension_level_7_arm64-v8a.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\parke\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -143,13 +180,13 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "History__Shreya",
+    "git-widget-placeholder": "Preferred__Notifications__Parker",
     "last_opened_file_path": "C:/Users/TraxS/CSCI_3130/csci3130-courseproject/csci3130-w24-group17",
     "settings.editor.selected.configurable": "AndroidSdkUpdater",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android App.MainActivity">
     <configuration name="MainActivity" type="AndroidRunConfigurationType" factoryName="Android App" temporary="true">
       <module name="quickcash.app.main" />
       <option name="DEPLOY" value="true" />
@@ -408,11 +445,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginEspressoTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+    <configuration name="JobHistoryListEspressoTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="quickcash.app.androidTest" />
       <option name="TESTING_TYPE" value="2" />
       <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.example.quickcash.LoginEspressoTest" />
+      <option name="CLASS_NAME" value="com.example.quickcash.JobHistoryListEspressoTest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_NAME_REGEX" value="" />
       <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
@@ -535,18 +572,18 @@
     <list>
       <item itemvalue="Android App.app" />
       <item itemvalue="Android App.MainActivity" />
+      <item itemvalue="Android Instrumented Tests.JobHistoryListEspressoTest" />
       <item itemvalue="Android Instrumented Tests.EmployeeJobApplyEspressoTest" />
       <item itemvalue="Android Instrumented Tests.EmployerJobApplicantsEspressoTest" />
       <item itemvalue="Android Instrumented Tests.Tests in 'com.example.quickcash'" />
-      <item itemvalue="Android Instrumented Tests.LoginEspressoTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Android App.MainActivity" />
+        <item itemvalue="Android Instrumented Tests.JobHistoryListEspressoTest" />
         <item itemvalue="Android Instrumented Tests.EmployerJobApplicantsEspressoTest" />
         <item itemvalue="Android Instrumented Tests.EmployeeJobApplyEspressoTest" />
         <item itemvalue="Android Instrumented Tests.Tests in 'com.example.quickcash'" />
-        <item itemvalue="Android App.MainActivity" />
-        <item itemvalue="Android Instrumented Tests.LoginEspressoTest" />
       </list>
     </recent_temporary>
   </component>
@@ -623,7 +660,31 @@
       <option name="project" value="LOCAL" />
       <updated>1708209426408</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="merge cleanup from dev">
+      <option name="closed" value="true" />
+      <created>1712202776691</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712202776691</updated>
+    </task>
+    <task id="LOCAL-00010" summary="implementation // added 'empty list' notification to SearchActivity">
+      <option name="closed" value="true" />
+      <created>1712202866821</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712202866821</updated>
+    </task>
+    <task id="LOCAL-00011" summary="refactor // renamed View reference in SearchActivity to prevent overlap">
+      <option name="closed" value="true" />
+      <created>1712207849433</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1712207849433</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -635,6 +696,9 @@
     <MESSAGE value="[Test] Changed test code to remove dependence on accounts that have been deleted and information that is outdated" />
     <MESSAGE value="[Test] Updated LoginEspressoTest" />
     <MESSAGE value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Implementation] Changed behaviour of LoginHandler such that it returns a general &quot;account or password not found&quot; error instead of a specific &quot;password wrong&quot; prompt" />
+    <MESSAGE value="merge cleanup from dev" />
+    <MESSAGE value="implementation // added 'empty list' notification to SearchActivity" />
+    <MESSAGE value="refactor // renamed View reference in SearchActivity to prevent overlap" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor // renamed View reference in SearchActivity to prevent overlap" />
   </component>
 </project>

@@ -30,4 +30,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="#9bcf9f"/>
 
+    <TextView
+        android:id="@+id/emptyApplicantsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Nobody has applied for this job yet!"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/jobApplicantList" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
