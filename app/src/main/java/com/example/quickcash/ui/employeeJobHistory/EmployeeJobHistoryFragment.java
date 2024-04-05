@@ -91,23 +91,6 @@ public class EmployeeJobHistoryFragment extends Fragment {
                 previousJobList.clear();
                 upcomingJobList.clear();
 
-                if (previousJobList.isEmpty()) {
-                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyPreviousTextView);
-                    emptyTextView.setVisibility(View.VISIBLE);
-                }
-                else {
-                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyPreviousTextView);
-                    emptyTextView.setVisibility(View.INVISIBLE);
-                }
-
-                if (upcomingJobList.isEmpty()) {
-                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyUpcomingTextView);
-                    emptyTextView.setVisibility(View.VISIBLE);
-                }
-                else {
-                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyUpcomingTextView);
-                    emptyTextView.setVisibility(View.INVISIBLE);
-                }
                 /*
                 loop through the snapshots of each job posted accordingly
                  */
@@ -147,6 +130,24 @@ public class EmployeeJobHistoryFragment extends Fragment {
                             upcomingJobList.add(jobData);
                         }
                     }
+                }
+
+                if (previousJobList.isEmpty()) {
+                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyPreviousTextView);
+                    emptyTextView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyPreviousTextView);
+                    emptyTextView.setVisibility(View.INVISIBLE);
+                }
+
+                if (upcomingJobList.isEmpty()) {
+                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyUpcomingTextView);
+                    emptyTextView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    TextView emptyTextView = (TextView) getView().findViewById(R.id.emptyUpcomingTextView);
+                    emptyTextView.setVisibility(View.INVISIBLE);
                 }
                 /*
                 this notifies the adapters that the data has changed

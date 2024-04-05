@@ -149,15 +149,18 @@ public class JobApplyActivity extends AppCompatActivity {
             applicationsRef.child(jobKey).setValue(jobApplicants, (databaseError, databaseReference) -> {
 
                 if(databaseError == null) {
-                    Toast.makeText(JobApplyActivity.this, "Applied for job: " + jobTitle, Toast.LENGTH_SHORT).show();
+                    TextView statusLabel = findViewById(R.id.jobApplyStatusLabel);
+                    statusLabel.setText("Applied for job: " + jobTitle);
                 }
                 else {
-                    Toast.makeText(JobApplyActivity.this, "Failed to apply for job: " + jobTitle, Toast.LENGTH_SHORT).show();
+                    TextView statusLabel = findViewById(R.id.jobApplyStatusLabel);
+                    statusLabel.setText("Failed to apply for job: " + jobTitle);
                 }
             });
         }
         else{
-            Toast.makeText(JobApplyActivity.this, "You have already applied for this job", Toast.LENGTH_SHORT).show();
+            TextView statusLabel = findViewById(R.id.jobApplyStatusLabel);
+            statusLabel.setText("You have already applied for this job");
         }
 
     }

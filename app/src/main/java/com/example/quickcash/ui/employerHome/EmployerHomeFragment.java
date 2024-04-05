@@ -1,6 +1,8 @@
 package com.example.quickcash.ui.employerHome;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +53,14 @@ public class EmployerHomeFragment extends Fragment {
             navController.navigate(R.id.employerJobPostFragment);
         });
 
+        SharedPreferences sp = requireContext().getSharedPreferences(getResources().getString(R.string.sessionData_spID), Context.MODE_PRIVATE);
+
+        final String userName = sp.getString("username", "Error - cannot get username");
+
+        final TextView textView = binding.dashboardTextViewWelcome;
+        textView.setText("Dashboard");
+        final TextView roleView = binding.dashboardTextViewRoleLabel;
+        roleView.setText(userName + " is an employer!");
 
         final Button myJobsButton = binding.myJobsButton;
 

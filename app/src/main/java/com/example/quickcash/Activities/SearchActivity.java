@@ -84,7 +84,6 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.getAdapter().notifyDataSetChanged();
 
-
         searchBar = (EditText) findViewById(R.id.searchBar);
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -145,15 +144,6 @@ public class SearchActivity extends AppCompatActivity {
         jobs.clear();
         recyclerView.getAdapter().notifyDataSetChanged();
 
-        if (jobs.isEmpty()) {
-            TextView emptyTextView = findViewById(R.id.emptySearchTextView);
-            emptyTextView.setVisibility(View.VISIBLE);
-        }
-        else {
-            TextView emptyTextView = findViewById(R.id.emptySearchTextView);
-            emptyTextView.setVisibility(View.INVISIBLE);
-        }
-
         List<IFilter> filters1 = new ArrayList<>(filters);
         if (searchBar.getText().length() != 0) {
             TitleFilter titleFilter = new TitleFilter();
@@ -175,11 +165,17 @@ public class SearchActivity extends AppCompatActivity {
                     jobs.add(job);
                     recyclerView.getAdapter().notifyItemChanged(jobs.size() - 2, job);
                 }
+                if (jobs.isEmpty()) {
+                    TextView emptyTextView = findViewById(R.id.emptySearchTextView);
+                    emptyTextView.setVisibility(View.VISIBLE);
+                } else {
+                    TextView emptyTextView = findViewById(R.id.emptySearchTextView);
+                    emptyTextView.setVisibility(View.INVISIBLE);
+                }
             }
         };
         helper.setCallback(callback);
         helper.setFilters(filters1);
         helper.run();
     }
-
 }
