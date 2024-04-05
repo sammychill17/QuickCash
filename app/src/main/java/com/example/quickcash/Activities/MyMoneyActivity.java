@@ -301,7 +301,7 @@ public class MyMoneyActivity extends AppCompatActivity implements SeekBar.OnSeek
         } else {
             StringBuilder tvXBuilder = new StringBuilder();
             tvXBuilder.append("Last ");
-            tvXBuilder.append(seekBarX.getProgress());
+            tvXBuilder.append(seekBarX.getProgress()-1);
             tvXBuilder.append(" days");
             tvX.setText(tvXBuilder.toString());
         }
