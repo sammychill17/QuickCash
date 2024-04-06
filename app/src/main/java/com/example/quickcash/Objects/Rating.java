@@ -35,8 +35,12 @@ public class Rating {
     private int numReview;
     public static class RatingCallback {
 
-        public void onComplete(){}
-        public void onError(DatabaseError error){}
+        public void onComplete(){
+            //This method is overwritten when called.
+        }
+        public void onError(DatabaseError error){
+            //This method is overwritten when called.
+        }
     }
 
     public Rating(){

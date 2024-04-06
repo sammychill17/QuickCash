@@ -90,7 +90,9 @@ public class EmployerApplicantPageFragment extends Fragment{
 
             @Override
             public void onError(DatabaseError error) {
-
+                /*
+                *We are swallowing this error.
+                 */
             }
         });
     }

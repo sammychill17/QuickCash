@@ -114,7 +114,7 @@ public class FilterExecutionSetIntersectionStrategy implements FilterExecutionSt
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    //We are swallowing this error
                 }
             });
         }

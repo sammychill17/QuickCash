@@ -70,6 +70,7 @@ public class FirebasePreferredJobsHelper {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                //This error is swallowed
             }
         });
     }

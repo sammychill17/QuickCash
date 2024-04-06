@@ -101,6 +101,9 @@ public class EmployeeRatingsHistoryFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                /*
+                * We are swallowing this error.
+                 */
             }
         });
     }

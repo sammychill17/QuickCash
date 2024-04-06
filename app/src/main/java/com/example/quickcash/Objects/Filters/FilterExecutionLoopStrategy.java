@@ -86,7 +86,7 @@ public class FilterExecutionLoopStrategy implements FilterExecutionStrategy{
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                //We are swallowing this error
             }
         });
     }

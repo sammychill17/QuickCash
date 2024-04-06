@@ -35,6 +35,8 @@ public class EmployeeHomeFragment extends Fragment {
     private boolean isLocationFetched = false;
     private UserLocation location;
 
+    private Random random = new Random();
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         EmployeeHomeViewModel employeeHomeViewModel =
@@ -46,7 +48,6 @@ public class EmployeeHomeFragment extends Fragment {
 
         ImageView logo = binding.makeMoneyButton;
 
-        Random random = new Random();
         int funNum = random.nextInt(100);
         if(funNum == 42){
             logo.setImageResource(R.drawable.logo__quickkash);

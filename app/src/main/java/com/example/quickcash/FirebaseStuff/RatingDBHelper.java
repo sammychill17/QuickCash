@@ -25,9 +25,13 @@ public class RatingDBHelper {
     }
 
     public static class onRatingReceivedCallback {
-        public void onRatingReceived(Rating rating){}
+        public void onRatingReceived(Rating rating){
+            //This method is overwritten when called.
+        }
 
-        public void onError(DatabaseError error){}
+        public void onError(DatabaseError error){
+            //This method is overwritten when called.
+        }
     }
 
     public void getRatingsByEmployee(String email, RatingDBHelper.onRatingReceivedCallback callback) {

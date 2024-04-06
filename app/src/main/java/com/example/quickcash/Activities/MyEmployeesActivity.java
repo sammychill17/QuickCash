@@ -5,18 +5,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 
 import com.example.quickcash.Activities.Adapters.MyEmployeesAdapter;
-import com.example.quickcash.Activities.Adapters.SearchItemAdapter;
-import com.example.quickcash.FirebaseStuff.JamesDBHelper;
+import com.example.quickcash.FirebaseStuff.ApplicantDBHelper;
 import com.example.quickcash.Objects.Employee;
 import com.example.quickcash.R;
 
@@ -39,9 +36,9 @@ public class MyEmployeesActivity extends AppCompatActivity {
 
         SharedPreferences sp = getSharedPreferences("session_login", MODE_PRIVATE);
         String userEmail = sp.getString("email", "");
-        JamesDBHelper jamesDBHelper = new JamesDBHelper(userEmail);
+        ApplicantDBHelper applicantDBHelper = new ApplicantDBHelper(userEmail);
 
-        jamesDBHelper.runHelper(new JamesDBHelper.DatabaseScroungerCallback(){
+        applicantDBHelper.runHelper(new ApplicantDBHelper.DatabaseScroungerCallback(){
 
             @Override
             public void onResult(List<Employee> list){

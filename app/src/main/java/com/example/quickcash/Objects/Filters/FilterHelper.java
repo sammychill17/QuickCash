@@ -38,7 +38,9 @@ public class FilterHelper {
          *
          * @param searchResult the search result
          */
-        public void onResult(Set<Job> searchResult) {}
+        public void onResult(Set<Job> searchResult) {
+            //This method is overridden when it is called
+        }
     }
 
     /**

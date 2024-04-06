@@ -103,7 +103,7 @@ public class EmployeeJobHistoryFragment extends Fragment {
                     /*
                     checks if the job is assigned and the epoch time is not null
                      */
-                    if (assigned != null && assigned && epoch != null) {
+                    if (ifJobAssignedValid(epoch, assigned)) {
                         /*
                         this creates a map to hold the job data
                          */
@@ -181,5 +181,17 @@ public class EmployeeJobHistoryFragment extends Fragment {
         Date date = new Date(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         return dateFormat.format(date);
+    }
+
+    private boolean ifJobAssignedValid(Long epoch, Boolean assigned){
+        if(assigned == null){
+            return false;
+        }
+        else if(epoch == null){
+            return false;
+        }
+        else{
+            return assigned;
+        }
     }
 }

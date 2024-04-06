@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * This class 'JamesDBHelper' is a DatabaseHelper function designed to query from multiple
+ * This class 'ApplicantDBHelper' is a DatabaseHelper function designed to query from multiple
  * data objects in the database to get a set of all unique Employee objects who are
  * applied and accepted to any and all jobs posted by the given employer email.
  *
@@ -23,12 +23,9 @@ import java.util.Set;
  *
  * Then it converts those applicants back into users before returning them for use in the MyEmployees activity.
  *
- * The name JamesDBHelper is a reference to James Gaultois, who was one of the developers for
- * this application who had a penchant for creating DatabaseHelper and DatabaseScrounger classes.
- *
  * The majority of the ones used in this application were made and used by him.
  */
-public class JamesDBHelper {
+public class ApplicantDBHelper {
     String email;
     ArrayList<Employee> returnList;
     Set<String> emailList = new HashSet<>();
@@ -36,12 +33,12 @@ public class JamesDBHelper {
     List<Job> jobList;
     ArrayList<String> chosenApplicantList = new ArrayList<>();
     private int setEmployeeObjectListSemaphore = 0;
-    public JamesDBHelper(){
+    public ApplicantDBHelper(){
         email = "";
         returnList = new ArrayList<>();
     }
 
-    public JamesDBHelper(String email){
+    public ApplicantDBHelper(String email){
         this.email = email;
         returnList = new ArrayList<>();
     }
@@ -59,7 +56,11 @@ public class JamesDBHelper {
     }
 
     public static class EmployerDBHelperCallback{
-        public void onResult(List<Job> jobs){}
+        public void onResult(List<Job> jobs){
+            /*
+             * This is overwritten in later callings of this method and as such is blank when declared here.
+             */
+        }
     }
     public void setJobList(String email, EmployerDBHelperCallback callback) {
         EmployerDBHelper employerDBHelper = new EmployerDBHelper();
@@ -72,7 +73,9 @@ public class JamesDBHelper {
 
             @Override
             public void onError(DatabaseError error) {
-
+                /*
+                * We are swallowing this error.
+                 */
             }
         });
     }
@@ -94,7 +97,11 @@ public class JamesDBHelper {
 
     public static class DatabaseScroungerCallback{
 
-        public void onResult(List<Employee> list){}
+        public void onResult(List<Employee> list){
+            /*
+             * This is empty as it has to be overwritten in future callings of this method.
+             */
+        }
     }
 
     public void setReturnList(DatabaseScroungerCallback callback){

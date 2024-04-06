@@ -79,7 +79,7 @@ public class FilterActivity extends DialogFragment
          *
          * @param filters the list of filters the user have selected
          */
-        public void onResult(List<IFilter> filters) {}
+        public void onResult(List<IFilter> filters) {} //This method is overwritten when it gets called
     }
 
     /**
@@ -169,11 +169,11 @@ public class FilterActivity extends DialogFragment
 
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(SeekBar seekBar) { //This method is not needed in this activity, but has to be here for the sake of overwriting.
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onStopTrackingTouch(SeekBar seekBar) { //This method is not needed in this activity, but has to be here for the sake of overwriting.
             }
         });
 

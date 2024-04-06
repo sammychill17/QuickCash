@@ -70,7 +70,7 @@ public class LocationTable {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                //This error is swallowed
             }
         });
     }
