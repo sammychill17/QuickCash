@@ -7,7 +7,6 @@
     android:background="#9bcf9f"
     tools:context=".ui.employeeHome.EmployeeHomeFragment"
     >
-relati
     <TextView
         android:id="@+id/dashboardTextView_Welcome"
         android:layout_width="wrap_content"
