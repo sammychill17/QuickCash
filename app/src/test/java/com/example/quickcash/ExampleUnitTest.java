@@ -7,9 +7,12 @@ import static org.junit.Assert.*;
 
 import com.example.quickcash.BusinessLogic.CredentialValidator;
 import com.example.quickcash.BusinessLogic.LocationUtil;
+import com.example.quickcash.BusinessLogic.SanitizeEmail;
 import com.example.quickcash.Objects.JobApplicants;
 import com.example.quickcash.Objects.PreferredJobs;
 import com.example.quickcash.Objects.JobTypes;
+import com.example.quickcash.Objects.Rating;
+import com.example.quickcash.Objects.Review;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +23,7 @@ import java.util.List;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    Rating rating = new Rating();
     CredentialValidator validator;
 
 
@@ -101,5 +105,28 @@ public class ExampleUnitTest {
                 "maximum allowed value for longitude",LocationUtil.isValidLongitude("180.1"));
     }
 
+    @Test
+    public void addSingleReview() {
+        Review review = new Review(5, "Great service!");
+        rating.addReview(review);
+        assertEquals("After adding one review, the average rating should be equal to that review's rating.", 5.0, rating.getAverageStarRating(), 0.0);
+        assertEquals("The number of reviews should be 1 after adding one review.", 1, rating.getNumReview());
+        assertFalse("The review list should not be empty after adding a review.", rating.getReviewList().isEmpty());
+        assertEquals("The added review should be the same as the one in the review list.", review, rating.getReviewList().get(0));
+    }
 
+    @Test
+    public void addMultipleReviews() {
+        Review firstReview = new Review(5, "Great service!");
+        Review secondReview = new Review(3, "Good, but could be better.");
+        rating.addReview(firstReview);
+        rating.addReview(secondReview);
+        double expectedAverage = (5.0 + 3.0) / 2;
+        assertEquals("The average rating should be correct after adding two reviews.", expectedAverage, rating.getAverageStarRating(), 0.0);
+        assertEquals("The number of reviews should be 2 after adding two reviews.", 2, rating.getNumReview());
+        assertEquals("The review list size should be 2 after adding two reviews.", 2, rating.getReviewList().size());
+    }
 }
+
+
+

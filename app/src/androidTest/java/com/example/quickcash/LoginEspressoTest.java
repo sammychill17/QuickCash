@@ -93,6 +93,7 @@ public class LoginEspressoTest {
         onView(withId(R.id.buttonGotoLogin)).perform(click());
         onView(withText(res.getString(R.string.LOGIN_ERROR_PASSWORD_EMPTY))).check(matches(isDisplayed()));
     }
+}
 
     /*
     * This test is antiquated. Before the implementation of Dashboards, it would have worked more effectively
@@ -109,9 +110,4 @@ public class LoginEspressoTest {
 //        onView(withText(res.getString(R.string.LOGIN_SUCCESS))).check(matches(isDisplayed()));
 //    }
 
-    @Test
-    public void checkIfTrueIsTrue() {
-        assertTrue(true);
-    }
-}
 
