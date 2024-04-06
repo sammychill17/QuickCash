@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="job_type_array">
+        <item>Yardwork</item>
+        <item>Petcare</item>
+        <item>Babysitting</item>
+        <item>Tutoring</item>
+        <item>Tech</item>
+        <item>Moving</item>
+        <item>Chauffeur</item>
+        <item>Arts/Creative</item>
+        <item>Cook</item>
+        <item>Magician</item>
+        <item>Welder</item>
+    </string-array>
+</resources>

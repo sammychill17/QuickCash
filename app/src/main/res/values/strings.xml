@@ -1,3 +1,51 @@
 <resources>
-    <string name="app_name">quickcash</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Me</string>
+    <string name="title_notifications">Settings</string>
+    <string name="app_name">QuickCash</string>
+    <string name="LOGIN_SUCCESS">Login successful!</string>
+    <string name="LOGIN_ERROR_EMAIL_EMPTY">Email required to log in</string>
+    <string name="LOGIN_ERROR_EMAIL_INVALID">Account not found. Please register</string>
+    <string name="LOGIN_ERROR_PASSWORD_EMPTY">Password required to log in</string>
+    <string name="LOGIN_ERROR_PASSWORD_INCORRECT">Incorrect email or password</string>
+    <string name="EMPTY_FIELD_ERROR">Please enter all fields!</string>
+    <string name="INVALID_EMAIL_ERROR">Invalid email!</string>
+    <string name="JOB_POSTING_SUCCESSFUL">Job has been posted successfully :D</string>
+    <string name="JOB_POSTING_FAILED">Job could not be posted :o</string>
+    <string name="LACK_OF_FILLED_FIELDS">Fill up 2 or more fields to post a job</string>
+    <string name="REGISTRATION_SUCCESS_MESSAGE">Registration successful :)</string>
+    <string name="DUPLICATE_EMAIL_ERROR">Email already associated with account :/</string>
+
+
+    <string name="FIREBASE_DATABASE_URL">https://quickcash-6941c-default-rtdb.firebaseio.com/</string>
+    <string name="FIREBASE_SERVER_KEY">ya29.c.c0AY_VpZjzK9Q5kfTOzik_SS9bsO5HrPmosLIl0Gm2Wx6zV2V7CcwTj8IIIzoC7JUngXo5XWrA0w8DyJDJgUBd5KLOjL1KQt26erwMO6_Zfv6C6xGnRak7FzlOi0CCwUdraeRIzm1mYRsVjNbPHhE-Hfw6_GraNY_fmVrv9n1-lydz6V0Am0jzQ_6dEy9X_1752pQA3XV0lGoICa0n6nhPGNeRRJw-azNreJT4szTCeLGlx85o9O_cxRdOdk-EbQmRjJS1RxZM872hhDtRLq2obN84_L8l7j2ugEL_vEE4H5pJOKLw8lRCBJC24EynSNT3VICOkOdsSL08jINlW4TdmuiO--9LsiEqOWxxxxwX47UPZsf5rVbFxkl35AoQFJjGJwy2SQG399Ch0OcnW6BVUl5pIMa1Mu3YjqwavMdoRsOljIW1Myke1d_eRm-1vBy_jyjWnB9a-mtRQJe6FQF2VJ7bg13Sdud8c5-qMFw-myQ0Ix7jRcSQSU8l2RsBx7noldW0pijlnvjy7QknjROoRp-k-IJszzkM020Qffyzd1mz8baVcMsdYd5-ijt350UZgmtk-h3mWWqrr4Rr_OubW7Mz0bp9g-hikb23iUosq6pFc678fvkZIlIcvphlzp_j-09U1Ip_wglcW-QouubSpZmv6_ydq1yRMeO7idRaZIr2g030Yg_RJ_dWRWc3s_yy602Mkotkxt63f1IbSZ0UVtqbfV9RpgOwbrvfg1ifo29a3c6VztMn_uah9QFW0d6alY1bvUZVi3eMOmXSXOZ-0_p7ZSQQwjOxusOrIumnd_zBgwrnY00qhzccRcc5hFg8hnga6hrf1sZbm1-wUIMou7enfb8je2RIX04JMio9wRpvhq6r0h6M6oIQ2cOvrIr69lpIV4Zn3Qj3cZac0ZbtfW-Z5afpsgx36SpteqB2RUM2c182UnRcsI6VzOef3asZJeYcq1IFMksVV91ySRk-pe2FiUy9btb6bY08vbF151h64U0tyB7V4jc</string>
+    <string name="PUSH_NOTIFICATION_ENDPOINT">https://fcm.googleapis.com/v1/projects/quickcash-6941c/messages:send</string>
+
+
+    <string name="DATABASE_REGISTRATION_ERROR">A Database Error has occurred: </string>
+    <string name="user_email">USER_EMAIL</string>
+    <string name="error_no_location_detected">No Location Detected</string>
+    <string name="error_location_permission_required">Location permission is required to use this feature.</string>
+    <string name="sessionData_spID">session_login</string>
+    <string name="payment_approved">Good News! Payment approved!</string>
+    <string name="payment_error">Bad News! An error occurred during payment confirmation!</string>
+    <string name="payment_canceled">Payment canceled by Employer!</string>
+    <string name="invalid_payment">Sorry! Invalid PayPal credentials!</string>
+    <string name="empty_amount">Amount cannot be empty! Please set an amount!</string>
+    <string name="employee_data_unavailable">Employee data is currently not available!</string>
+    <string-array name="job_types_array">
+        <item>ALL JOBS</item>
+        <item>YARDWORK</item>
+        <item>PETCARE</item>
+        <item>BABYSITTING</item>
+        <item>TUTORING</item>
+        <item>TECH</item>
+        <item>MOVING</item>
+        <item>CHAUFFEUR</item>
+        <item>ARTS_CREATIVE</item>
+        <item>COOK</item>
+        <item>MAGICIAN</item>
+        <item>WELDER</item>
+    </string-array>
 </resources>

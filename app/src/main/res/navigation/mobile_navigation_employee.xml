@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_employee"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.quickcash.ui.employeeHome.EmployeeHomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_employeehome" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.quickcash.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.quickcash.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/employeePreferredJobs"
+        android:name="com.example.quickcash.ui.employeePreferredJobs.EmployeePreferredJobsFragment"
+        android:label="Preferences"
+        tools:layout="@layout/preferred_job_type_items"/>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.quickcash.ui.map.MapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_employee_map_activity"/>
+    <fragment
+        android:id="@+id/mapDirections"
+        android:name="com.example.quickcash.ui.map.MapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_employee_map_activity"/>
+    <fragment
+        android:id="@+id/employeeJobHistoryFragment"
+        android:name="com.example.quickcash.ui.employeeJobHistory.EmployeeJobHistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_employeejobhistory"/>
+    <fragment
+        android:id="@+id/employeeRatingsHistoryFragment"
+        android:name="com.example.quickcash.ui.employeeJobHistory.EmployeeRatingsHistoryFragment"
+        android:label="Ratings History"
+        tools:layout="@layout/fragment_ratings_history"/>
+</navigation>
