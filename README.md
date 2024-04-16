@@ -4,7 +4,7 @@
 
 * [Ali Amini](al935400@dal.ca) - *(Role)*
 * [Shamayel Chowdhury](fz338338@dal.ca) - *(Role)*
-* [Parker Morriso](pr581958@dal.ca) - *(Role)*
+* [Parker Morrison](pr581958@dal.ca) - *(Role)*
 * [Shreya Rai](sh219628@dal.ca) - *(Role)*
 * [James Gaultois](james.gaultois@dal.ca) - *(Role)*
 
